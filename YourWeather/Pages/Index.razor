@@ -1,0 +1,17 @@
+﻿@page "/"
+<h2>@(LocationName)</h2>
+<MCard>
+    <div class="d-flex">
+        <MCardTitle>
+            23℃
+        </MCardTitle>
+        <MAvatar Size="100" Tile>
+            <MIcon>mdi-weather-cloudy</MIcon>
+        </MAvatar>
+    </div>
+
+</MCard>
+
+@code{
+    string LocationName { get; set; }
+}

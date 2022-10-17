@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+
+<MApp>
+    <MMain>
+        <MContainer>
+            @Body
+        </MContainer>
+    </MMain>
+    <MBottomNavigation Class="d-flex justify-content-around"
+                       App
+                       Shift>
+        <MButton>
+            <span>天气</span>
+            <MIcon>mdi-weather-cloudy</MIcon>
+        </MButton>
+        <MButton>
+            <span>位置</span>
+            <MIcon>mdi-map-marker</MIcon>
+        </MButton>
+        <MButton>
+            <span>设置</span>
+            <MIcon>mdi-cog</MIcon>
+        </MButton>
+    </MBottomNavigation>
+</MApp>
