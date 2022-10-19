@@ -1,25 +1,42 @@
 ﻿@inherits LayoutComponentBase
 
 <MApp>
-    <MMain>
-        <MContainer>
-            @Body
-        </MContainer>
-    </MMain>
-    <MBottomNavigation Class="d-flex justify-content-around"
+    <div class="d-flex">
+        <MNavigationDrawer Class="d-none d-sm-block"
+                           Permanent>
+            <MList Rounded>
+                <MListItemGroup @bind-Value="SelectItem">
+                    @foreach (var navigationButton in NavigationButtons)
+                    {
+                        <MListItem Href="@navigationButton.Href">
+                            <MListItemIcon>
+                                <MIcon>@GetIcon(navigationButton)</MIcon>
+                            </MListItemIcon>
+                            <MListItemTitle>@navigationButton.Title</MListItemTitle>
+                        </MListItem>
+                    }
+                </MListItemGroup>
+
+            </MList>
+        </MNavigationDrawer>
+        <MMain>
+            <MContainer>
+                @Body
+            </MContainer>
+        </MMain>
+    </div>
+
+    <MBottomNavigation Class="d-flex justify-content-around d-sm-none "
+                       @bind-Value="SelectItem"
                        App
                        Shift>
-        <MButton>
-            <span>天气</span>
-            <MIcon>mdi-weather-cloudy</MIcon>
-        </MButton>
-        <MButton>
-            <span>位置</span>
-            <MIcon>mdi-map-marker</MIcon>
-        </MButton>
-        <MButton>
-            <span>设置</span>
-            <MIcon>mdi-cog</MIcon>
-        </MButton>
+            @foreach (var navigationButton in NavigationButtons)
+            {
+                <MButton Href="@navigationButton.Href">
+                    <span>@navigationButton.Title</span>
+                    <MIcon>@GetIcon(navigationButton)</MIcon>
+                </MButton>
+            }
+
     </MBottomNavigation>
 </MApp>
