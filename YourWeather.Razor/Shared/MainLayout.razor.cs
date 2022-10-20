@@ -1,5 +1,7 @@
 ﻿using BlazorComponent;
 using Masa.Blazor;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +23,15 @@ namespace YourWeather.Razor.Shared
         private class NavigationButton
         {
             public int Id;
-            public string Title { get; set; }
-            public string Icon { get; set; }
-            public string SelectIcon { get; set; }
-            public string Href { get; set; }
+            public string? Title { get; set; }
+            public string? Icon { get; set; }
+            public string? SelectIcon { get; set; }
+            public string? Href { get; set; }
         }
-        private string GetIcon(NavigationButton navigationButton)
+        private string? GetIcon(NavigationButton navigationButton)
         {
             return SelectItem == navigationButton.Id ? navigationButton.SelectIcon : navigationButton.Icon;
         }
+
     }
 }

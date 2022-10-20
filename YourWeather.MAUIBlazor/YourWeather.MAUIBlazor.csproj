@@ -13,7 +13,7 @@
         <EnableDefaultCssItems>false</EnableDefaultCssItems>
 
         <!-- Display name -->
-        <ApplicationTitle>YourWeather.MAUIBlazor</ApplicationTitle>
+        <ApplicationTitle>你的天气</ApplicationTitle>
 
         <!-- App Identifier -->
         <ApplicationId>com.companyname.yourweather.mauiblazor</ApplicationId>
