@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YourWeather.Razor\YourWeather.Razor.csproj" />
+    <ProjectReference Include="..\YourWeather.Service\YourWeather.Service.csproj" />
   </ItemGroup>
 
 </Project>

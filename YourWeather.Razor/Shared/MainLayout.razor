@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MApp>
+<MApp Dark="IsDark">
     <div class="d-flex" style="height:100%;">
         <MNavigationDrawer Class="d-none d-sm-block"
                            Permanent>
@@ -26,7 +26,7 @@
         </MMain>
     </div>
 
-    <MBottomNavigation Class="d-flex justify-content-around d-sm-none "
+    <MBottomNavigation Class="d-flex justify-space-around d-sm-none "
                        @bind-Value="SelectItem"
                        App
                        Shift>

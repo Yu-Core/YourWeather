@@ -2,11 +2,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.MAUIBlazor", "YourWeather.MAUIBlazor\YourWeather.MAUIBlazor.csproj", "{31A39785-6DD5-41C3-BC79-286714E59BA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourWeather.MAUIBlazor", "YourWeather.MAUIBlazor\YourWeather.MAUIBlazor.csproj", "{31A39785-6DD5-41C3-BC79-286714E59BA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.Razor", "YourWeather.Razor\YourWeather.Razor.csproj", "{41030B7B-94EB-4B98-8794-A1976B8124CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourWeather.Razor", "YourWeather.Razor\YourWeather.Razor.csproj", "{41030B7B-94EB-4B98-8794-A1976B8124CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.BlazorWasm", "YourWeather.BlazorWasm\YourWeather.BlazorWasm.csproj", "{BB31D4F3-5D06-4032-991E-CE422D8E9DE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourWeather.BlazorWasm", "YourWeather.BlazorWasm\YourWeather.BlazorWasm.csproj", "{BB31D4F3-5D06-4032-991E-CE422D8E9DE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{B03E6296-0267-4487-9C75-00F590FF7DC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.Service", "YourWeather.Service\YourWeather.Service.csproj", "{A4C97A66-CC28-4620-B81D-A168D5E4A2D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.IService", "YourWeather.IService\YourWeather.IService.csproj", "{06435E9A-B3C8-4E80-875D-33F79920D390}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.Model", "YourWeather.Model\YourWeather.Model.csproj", "{472B7033-D790-4CB5-A424-B4F8487AFB98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,9 +36,25 @@ Global
 		{BB31D4F3-5D06-4032-991E-CE422D8E9DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB31D4F3-5D06-4032-991E-CE422D8E9DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB31D4F3-5D06-4032-991E-CE422D8E9DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C97A66-CC28-4620-B81D-A168D5E4A2D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C97A66-CC28-4620-B81D-A168D5E4A2D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C97A66-CC28-4620-B81D-A168D5E4A2D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C97A66-CC28-4620-B81D-A168D5E4A2D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06435E9A-B3C8-4E80-875D-33F79920D390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06435E9A-B3C8-4E80-875D-33F79920D390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06435E9A-B3C8-4E80-875D-33F79920D390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06435E9A-B3C8-4E80-875D-33F79920D390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{472B7033-D790-4CB5-A424-B4F8487AFB98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472B7033-D790-4CB5-A424-B4F8487AFB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472B7033-D790-4CB5-A424-B4F8487AFB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472B7033-D790-4CB5-A424-B4F8487AFB98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A4C97A66-CC28-4620-B81D-A168D5E4A2D8} = {B03E6296-0267-4487-9C75-00F590FF7DC2}
+		{06435E9A-B3C8-4E80-875D-33F79920D390} = {B03E6296-0267-4487-9C75-00F590FF7DC2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

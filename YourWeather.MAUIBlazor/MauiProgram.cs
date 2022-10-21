@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.WebView.Maui;
+using YourWeather.MAUIBlazor.Extend;
 using YourWeather.Razor;
 using YourWeather.Razor.Shared;
 
@@ -21,6 +22,8 @@ namespace YourWeather.MAUIBlazor
             builder.Services.AddBlazorWebViewDeveloperTools();
 #endif
             builder.Services.AddMasaBlazor();
+
+            builder.Services.AddCustomIOC();
 
             return builder.Build();
         }

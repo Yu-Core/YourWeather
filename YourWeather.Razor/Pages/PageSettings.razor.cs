@@ -1,20 +1,25 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Masa.Blazor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YourWeather.IService;
 
 namespace YourWeather.Razor.Pages
 {
     public partial  class PageSettings
     {
         [Inject]
-        IJSRuntime JS { get; set; }
+        IJSRuntime? JS { get; set; }
+
+
         protected override async Task OnInitializedAsync()
         {
-            await JS.InvokeVoidAsync("disableBack");
+            await JS!.InvokeVoidAsync("disableBack");
         }
+
     }
 }

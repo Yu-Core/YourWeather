@@ -7,11 +7,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YourWeather.IService;
 
 namespace YourWeather.Razor.Shared
 {
     public partial class MainLayout
     {
+        [Inject]
+        //注入主题服务
+        private IThemeService? IThemeService { get; set; }
+
+        private bool IsDark { get; set; }
 
         StringNumber SelectItem = 0;
         readonly List<NavigationButton> NavigationButtons = new()
@@ -28,9 +34,33 @@ namespace YourWeather.Razor.Shared
             public string? SelectIcon { get; set; }
             public string? Href { get; set; }
         }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                if (IThemeService!.IsMAUI)
+                {
+                    // 根据系统主题是否为Dark，为IsDark属性赋值
+                    IsDark = IThemeService.IsDark();
+                    IThemeService.Onchange += ChangeTheme;
+                    IThemeService.ThemeChanged();
+                    StateHasChanged();
+                }
+
+            }
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
         private string? GetIcon(NavigationButton navigationButton)
         {
             return SelectItem == navigationButton.Id ? navigationButton.SelectIcon : navigationButton.Icon;
+        }
+
+        private void ChangeTheme()
+        {
+            IsDark = IThemeService!.IsDark();
+            InvokeAsync(StateHasChanged);
         }
 
     }
