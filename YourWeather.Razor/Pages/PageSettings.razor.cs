@@ -16,7 +16,9 @@ namespace YourWeather.Razor.Pages
         IJSRuntime? JS { get; set; }
 
         [Inject]
-        private IBrowserService? IBrowserService { get; set; }
+        private ISystemService? SystemService { get; set; }
+        [Inject]
+        private IProjectService? ProjectService { get; set; }
         [Inject]
         IPopupService? IPopupService { get; set; }
 
@@ -30,13 +32,12 @@ namespace YourWeather.Razor.Pages
         private async Task ViewSourceCode()
         {
             string url = "https://github.com/Yu-Core/YourWeather";
-            await IBrowserService!.OpenLink(url);
-        }
+            await SystemService!.OpenLink(url);
+        } 
 
         private void ExitApp()
         {
-            
-            Environment.Exit(0);
+            SystemService!.ExitApp();
         }
     }
 }

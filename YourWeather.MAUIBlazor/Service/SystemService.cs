@@ -7,8 +7,19 @@ using YourWeather.IService;
 
 namespace YourWeather.MAUIBlazor.Service
 {
-    public class BrowserService : IBrowserService
+    public class SystemService : ISystemService
     {
+        public void ExitApp()
+        {
+#if ANDROID
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+#elif IOS
+            Thread.CurrentThread.Abort();
+#else
+            System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+#endif
+        }
+
         public async Task OpenLink(string Url)
         {
             try
@@ -17,6 +28,7 @@ namespace YourWeather.MAUIBlazor.Service
             }
             catch (Exception ex)
             {
+                throw;
                 // An unexpected error occured. No browser may be installed on the device.
             }
         }

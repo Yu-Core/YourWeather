@@ -5,8 +5,8 @@
         public MainPage()
         {
             InitializeComponent();
-            
-        }
 
+        }
+        
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace YourWeather.IService
 {
-    public interface IBrowserService
+    public interface ISystemService
     {
         Task OpenLink(string Url);
+        void ExitApp();
     }
 }

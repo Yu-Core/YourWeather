@@ -1,4 +1,5 @@
 ﻿@page "/Settings"
+@using YourWeather.Model.Enum
 
 <div class="text-h6 settings-tile">数据</div>
 <MCard Class="settings-card">
@@ -99,30 +100,34 @@
 
     </MList>
 </MCard>
-<MCard Class="settings-exit">
-    <MListItem OnClick="()=>_dialogExit = true">
-        <MListItemContent>
-            退出
-        </MListItemContent>
-    </MListItem>
-</MCard>
-<MDialog @bind-Value="_dialogExit">
+@if (ProjectService!.Project == Project.MAUIBlazor)
+{
     <MCard>
-        <MCardTitle Class="text-h6 justify-center">
-            确认退出应用吗？
-        </MCardTitle>
-        <MCardActions>
-            <MButton Class="flex-grow-1"
+        <MListItem OnClick="()=>_dialogExit = true">
+            <MListItemContent>
+                退出
+            </MListItemContent>
+        </MListItem>
+    </MCard>
+    <MDialog @bind-Value="_dialogExit" MaxWidth="420">
+        <MCard>
+            <MCardTitle Class="text-h6 justify-center">
+                确认退出应用吗？
+            </MCardTitle>
+            <MCardActions>
+                <MButton Class="flex-grow-1"
                      Text
                      OnClick="()=>_dialogExit = false">
-                取消
-            </MButton>
-            <MButton Class="flex-grow-1"
+                    取消
+                </MButton>
+                <MButton Class="flex-grow-1"
                      Text
                      Color="error"
                      OnClick="()=>ExitApp()">
-                确认
-            </MButton>
-        </MCardActions>
-    </MCard>
-</MDialog>
+                    确认
+                </MButton>
+            </MCardActions>
+        </MCard>
+    </MDialog>
+}
+

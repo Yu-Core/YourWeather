@@ -4,12 +4,12 @@ using YourWeather.IService;
 
 namespace YourWeather.BlazorWasm.Service
 {
-    public class BrowserService : IBrowserService
+    public class SystemService : ISystemService
     {
         [Inject]
         IJSRuntime JS { get; set; }
 
-        public BrowserService(IJSRuntime jS)
+        public SystemService(IJSRuntime jS)
         {
             JS = jS;
         }
@@ -17,6 +17,11 @@ namespace YourWeather.BlazorWasm.Service
         public async Task OpenLink(string Url)
         {
             await JS.InvokeAsync<object>("open", Url, "_blank");
+        }
+
+        public void ExitApp()
+        {
+            throw new NotImplementedException();
         }
     }
 }
