@@ -100,9 +100,29 @@
     </MList>
 </MCard>
 <MCard Class="settings-exit">
-    <MListItem OnClick="()=>ExitApp()">
+    <MListItem OnClick="()=>_dialogExit = true">
         <MListItemContent>
             退出
         </MListItemContent>
     </MListItem>
 </MCard>
+<MDialog @bind-Value="_dialogExit">
+    <MCard>
+        <MCardTitle Class="text-h6 justify-center">
+            确认退出应用吗？
+        </MCardTitle>
+        <MCardActions>
+            <MButton Class="flex-grow-1"
+                     Text
+                     OnClick="()=>_dialogExit = false">
+                取消
+            </MButton>
+            <MButton Class="flex-grow-1"
+                     Text
+                     Color="error"
+                     OnClick="()=>ExitApp()">
+                确认
+            </MButton>
+        </MCardActions>
+    </MCard>
+</MDialog>

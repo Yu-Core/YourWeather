@@ -17,6 +17,10 @@ namespace YourWeather.Razor.Pages
 
         [Inject]
         private IBrowserService? IBrowserService { get; set; }
+        [Inject]
+        IPopupService? IPopupService { get; set; }
+
+        private bool _dialogExit;
 
         protected override async Task OnInitializedAsync()
         {
@@ -31,6 +35,7 @@ namespace YourWeather.Razor.Pages
 
         private void ExitApp()
         {
+            
             Environment.Exit(0);
         }
     }
