@@ -56,7 +56,7 @@
 <MCard Class="settings-card">
     <MList>
         <MSubheader Class="d-sm-none">关于</MSubheader>
-        <MListItem>
+        <MListItem OnClick="()=>_dialogAppInformation = true">
             <MListItemContent>
                 应用信息
             </MListItemContent>
@@ -72,13 +72,33 @@
                 查看源代码
             </MListItemContent>
             <MListItemAction>
-                <MIcon>mdi-chevron-right</MIcon>
+                <div style="max-width:150px;" @onclick:stopPropagation="true">
+                    <MSelect Items="CodeSourceItems"
+                             @bind-Value="@_selectCodeSourceItemValue"
+                             ItemText="u => u.Text"
+                             ItemValue="u => u.Value"
+                             Color="black"
+                             Dense
+                             HideDetails="@("auto")"
+                             Outlined>
+                        <PrependInnerContent>
+                            @if (_selectCodeSourceItemValue == githubUrl)
+                            {
+                                <MIcon Color="black">mdi-github</MIcon>
+                            }
+                            else if (_selectCodeSourceItemValue == giteeUrl)
+                            {
+                                <img style="width:24px;height:24px;" src="_content/YourWeather.Razor/image/gitee.png" />
+                            }
+                        </PrependInnerContent>
+                    </MSelect>
+                </div>
             </MListItemAction>
         </MListItem>
 
         <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-        <MListItem>
+        <MListItem >
             <MListItemContent>
                 第三方版权
             </MListItemContent>
@@ -131,3 +151,30 @@
     </MDialog>
 }
 
+<Masa.Blazor.Presets.PModal MaxWidth="420"
+        @bind-Value="_dialogAppInformation"
+        Title="应用信息">
+    <MList>
+        <MListItem>
+            <MListItemContent>
+                <MListItemTitle>应用：你的天气</MListItemTitle>
+            </MListItemContent>
+        </MListItem>
+        <MListItem>
+            <MListItemContent>
+                <MListItemTitle>作者：Yu-Core</MListItemTitle>
+            </MListItemContent>
+        </MListItem>
+        <MListItem>
+            <MListItemContent>
+                <MListItemTitle>Project：@AppName</MListItemTitle>
+            </MListItemContent>
+        </MListItem>
+        <MListItem>
+            <MListItemContent>
+                <MListItemTitle>Version：@AppVersion</MListItemTitle>
+            </MListItemContent>
+        </MListItem>
+    </MList>
+    <div></div>
+</Masa.Blazor.Presets.PModal>

@@ -25,12 +25,20 @@ namespace YourWeather.Razor.Shared
         StringNumber SelectItem = 0;
         readonly List<NavigationButton> NavigationButtons = new()
         {
-            new NavigationButton(){Id=0,Title="天气",Icon="mdi-cloud-outline",SelectIcon="mdi-cloud",Href="/"},
-            new NavigationButton(){Id=1,Title="位置",Icon="mdi-map-marker-outline",SelectIcon="mdi-map-marker",Href="/Location"},
-            new NavigationButton(){Id=2,Title="设置",Icon="mdi-cog-outline",SelectIcon="mdi-cog",Href="/Settings"}
+            new NavigationButton(0,"天气","mdi-cloud-outline","mdi-cloud","/"),
+            new NavigationButton(1,"位置","mdi-map-marker-outline","mdi-map-marker","/Location"),
+            new NavigationButton(2,"设置","mdi-cog-outline","mdi-cog","/Settings")
         };
         private class NavigationButton
         {
+            public NavigationButton(int id,string title,string icon,string selectIcon,string href)
+            {
+                Id = id;
+                Title = title;
+                Icon = icon;
+                SelectIcon = selectIcon;
+                Href = href;
+            }
             public int Id;
             public string? Title { get; set; }
             public string? Icon { get; set; }
