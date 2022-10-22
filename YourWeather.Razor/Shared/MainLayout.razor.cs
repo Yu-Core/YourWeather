@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourWeather.IService;
+using YourWeather.Model.Enum;
 
 namespace YourWeather.Razor.Shared
 {
@@ -16,6 +17,8 @@ namespace YourWeather.Razor.Shared
         [Inject]
         //注入主题服务
         private IThemeService? IThemeService { get; set; }
+        [Inject]
+        private IProjectService? IProjectService { get; set; }
 
         private bool IsDark { get; set; }
 
@@ -39,7 +42,7 @@ namespace YourWeather.Razor.Shared
         {
             if (firstRender)
             {
-                if (IThemeService!.IsMAUI)
+                if (IProjectService!.Project == Project.MAUIBlazor)
                 {
                     // 根据系统主题是否为Dark，为IsDark属性赋值
                     IsDark = IThemeService.IsDark();
@@ -62,6 +65,8 @@ namespace YourWeather.Razor.Shared
             IsDark = IThemeService!.IsDark();
             InvokeAsync(StateHasChanged);
         }
+
+        
 
     }
 }

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace YourWeather.IService
 {
-    public interface IThemeService
+    public interface IBrowserService
     {
-        bool IsDark();
-        void ThemeChanged();
-        event Action Onchange;
+        Task OpenLink(string Url);
     }
 }

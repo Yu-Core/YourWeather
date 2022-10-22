@@ -15,11 +15,23 @@ namespace YourWeather.Razor.Pages
         [Inject]
         IJSRuntime? JS { get; set; }
 
+        [Inject]
+        private IBrowserService? IBrowserService { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             await JS!.InvokeVoidAsync("disableBack");
         }
 
+        private async Task ViewSourceCode()
+        {
+            string url = "https://github.com/Yu-Core/YourWeather";
+            await IBrowserService!.OpenLink(url);
+        }
+
+        private void ExitApp()
+        {
+            Environment.Exit(0);
+        }
     }
 }

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YourWeather.Model.Enum;
 
 namespace YourWeather.IService
 {
-    public interface IThemeService
+    public interface IProjectService
     {
-        bool IsDark();
-        void ThemeChanged();
-        event Action Onchange;
+        Project Project { get; }
     }
 }

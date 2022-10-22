@@ -9,7 +9,6 @@ namespace YourWeather.MAUIBlazor.Service
 {
     public class ThemeService : IThemeService
     {
-        public bool IsMAUI {get; set;} = true;
         public bool IsDark() => ThemeService.GetAppTheme() == AppTheme.Dark;
 
         public event Action Onchange;

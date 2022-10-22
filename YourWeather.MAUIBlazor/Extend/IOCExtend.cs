@@ -13,6 +13,8 @@ namespace YourWeather.MAUIBlazor.Extend
         public static IServiceCollection AddCustomIOC(this IServiceCollection services)
         {
             services.AddScoped<IThemeService,ThemeService>();
+            services.AddScoped<IProjectService,ProjectService>();
+            services.AddScoped<IBrowserService,BrowserService>();
             return services;
         }
     }
