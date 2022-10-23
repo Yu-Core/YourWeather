@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YourWeather.Service
+namespace YourWeather.Model.Enum
 {
-    internal class Class1
+    public enum ThemeState
     {
+        System,
+        Light,
+        Dark
     }
 }

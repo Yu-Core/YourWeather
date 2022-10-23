@@ -5,7 +5,7 @@
 <MCard Class="settings-card">
     <MList>
         <MSubheader Class="d-sm-none">数据</MSubheader>
-        <MListItem>
+        <MListItem OnClick="()=>_dialogWeatherSource = true">
             <MListItemContent>
                 更换天气源
             </MListItemContent>
@@ -20,14 +20,31 @@
 <MCard Class="settings-card">
     <MList>
         <MSubheader Class="d-sm-none">显示</MSubheader>
-        <MListItem>
-            <MListItemContent>
-                深色模式
-            </MListItemContent>
-            <MListItemAction>
-                <MSwitch></MSwitch>
-            </MListItemAction>
-        </MListItem>
+
+        @if (ProjectService.Project == Project.MAUIBlazor)
+        {
+            <MListItem OnClick="()=>_dialogTheme = true">
+                <MListItemContent>
+                    深色模式
+                </MListItemContent>
+                <MListItemAction>
+                    <MIcon>mdi-chevron-right</MIcon>
+
+                </MListItemAction>
+            </MListItem>
+        }
+        else
+        {
+            <MListItem >
+                <MListItemContent>
+                    深色模式
+                </MListItemContent>
+                <MListItemAction>
+                    <MSwitch Value="_switchTheme" ValueChanged="()=>SwitchChange()"></MSwitch>
+                </MListItemAction>
+            </MListItem>
+
+        }
 
         <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
@@ -72,6 +89,7 @@
                 查看源代码
             </MListItemContent>
             <MListItemAction>
+                @*由于MasaBlazor的下拉框在MAUI中存在bug，所以更换源暂不可用*@
                 @if (ProjectService!.Project != Project.MAUIBlazor)
                 {
                     <div style="max-width:150px;" @onclick:stopPropagation="true">
@@ -84,14 +102,9 @@
                              HideDetails="@("auto")"
                              Outlined>
                             <PrependInnerContent>
-                                @if (_selectCodeSourceItemValue == githubUrl)
-                                {
-                                    <MIcon Color="black">mdi-github</MIcon>
-                                }
-                                else if (_selectCodeSourceItemValue == giteeUrl)
-                                {
-                                    <img style="width:24px;height:24px;" src="_content/YourWeather.Razor/image/gitee.png" />
-                                }
+                                <MIcon Color="black">
+                                    @(CodeSourceItems.FirstOrDefault(i => i.Value == _selectCodeSourceItemValue)!.Icon)
+                                </MIcon>
                             </PrependInnerContent>
                         </MSelect>
                     </div>
@@ -158,6 +171,62 @@
         </MCard>
     </MDialog>
 }
+<MDialog MaxWidth="420"
+         @bind-Value="_dialogWeatherSource">
+    <MCard>
+        <MCardTitle>
+            更换天气源
+            <MSpacer></MSpacer>
+            <MButton Icon OnClick="()=>_dialogWeatherSource = false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MDivider></MDivider>
+        <MCardText>
+            <MRadioGroup @bind-Value="_settins!.WeatherSource"
+                         Mandatory>
+                @foreach (var item in WeatherSources)
+                {
+                    <MRadio Label="@(item.Name)"
+                        Value="@item"
+                        Color="black">
+                    </MRadio>
+                    <div class="ms-8 mb-2 body-2">@item.Description</div>
+                }
+            </MRadioGroup>
+        </MCardText>
+    </MCard>
+</MDialog>
+<MDialog MaxWidth="420"
+         @bind-Value="_dialogTheme">
+    <MCard>
+        <MCardTitle>
+            深色模式
+            <MSpacer></MSpacer>
+            <MButton Icon OnClick="()=>_dialogTheme = false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MDivider></MDivider>
+        <MCardText>
+            <MRadioGroup @bind-Value="_settins!.ThemeState"
+                         Mandatory>
+                <MRadio Label="跟随系统"
+                        Value="ThemeState.System"
+                        Color="black">
+                </MRadio>
+                <MRadio Label="浅色"
+                        Value="ThemeState.Light"
+                        Color="black">
+                </MRadio>
+                <MRadio Label="深色"
+                        Value="ThemeState.Dark"
+                        Color="black">
+                </MRadio>
+            </MRadioGroup>
+        </MCardText>
+    </MCard>
+</MDialog>
 <MDialog MaxWidth="420"
          @bind-Value="_dialogAppInformation">
     <MCard>

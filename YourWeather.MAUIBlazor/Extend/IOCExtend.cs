@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YourWeather.IService;
 using YourWeather.MAUIBlazor.Service;
+using YourWeather.Service;
 
 namespace YourWeather.MAUIBlazor.Extend
 {
@@ -15,6 +16,8 @@ namespace YourWeather.MAUIBlazor.Extend
             services.AddScoped<IThemeService,ThemeService>();
             services.AddSingleton<IProjectService,ProjectService>();
             services.AddScoped<ISystemService,SystemService>();
+            services.AddScoped<WeatherService>();
+            services.AddScoped<SettingsService>();
             return services;
         }
     }

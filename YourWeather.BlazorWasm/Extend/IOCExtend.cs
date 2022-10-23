@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YourWeather.IService;
 using YourWeather.BlazorWasm.Service;
+using YourWeather.Service;
 
 namespace YourWeather.BlazorWasm.Extend
 {
@@ -15,6 +16,8 @@ namespace YourWeather.BlazorWasm.Extend
             services.AddScoped<IThemeService,ThemeService>();
             services.AddSingleton<IProjectService,ProjectService>();
             services.AddScoped<ISystemService,SystemService>();
+            services.AddScoped<WeatherService>();
+            services.AddScoped<SettingsService>();
             return services;
         }
     }
