@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Reflection;
 using YourWeather.IService;
 
 namespace YourWeather.BlazorWasm.Service
@@ -22,6 +23,11 @@ namespace YourWeather.BlazorWasm.Service
         public void ExitApp()
         {
             throw new NotImplementedException();
+        }
+
+        public string GetAppVersion()
+        {
+            return Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
         }
     }
 }

@@ -20,6 +20,11 @@ namespace YourWeather.MAUIBlazor.Service
 #endif
         }
 
+        public string GetAppVersion()
+        {
+            return AppInfo.Current.VersionString;
+        }
+
         public async Task OpenLink(string Url)
         {
             try

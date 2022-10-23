@@ -10,5 +10,6 @@ namespace YourWeather.IService
     {
         Task OpenLink(string Url);
         void ExitApp();
+        string GetAppVersion();
     }
 }

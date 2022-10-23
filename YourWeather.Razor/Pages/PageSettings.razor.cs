@@ -31,14 +31,12 @@ namespace YourWeather.Razor.Pages
         private bool _dialogExit;
         private bool _dialogAppInformation;
 
-        AssemblyName assemblyName = Assembly.GetEntryAssembly().GetName();
-
-        string AppName => assemblyName.Name;
-        string AppVersion => assemblyName.Version.ToString();
+        
+        private string AppVersion => SystemService!.GetAppVersion();
 
         private string _selectCodeSourceItemValue = "https://github.com/Yu-Core/YourWeather";
 
-        private List<CodeSourceItem> CodeSourceItems = new List<CodeSourceItem>()
+        private readonly List<CodeSourceItem> CodeSourceItems = new List<CodeSourceItem>()
         {
             new CodeSourceItem("Github",githubUrl),
             new CodeSourceItem("Gitee",giteeUrl)

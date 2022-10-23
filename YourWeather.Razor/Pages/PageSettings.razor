@@ -72,8 +72,10 @@
                 查看源代码
             </MListItemContent>
             <MListItemAction>
-                <div style="max-width:150px;" @onclick:stopPropagation="true">
-                    <MSelect Items="CodeSourceItems"
+                @if (ProjectService!.Project != Project.MAUIBlazor)
+                {
+                    <div style="max-width:150px;" @onclick:stopPropagation="true">
+                        <MSelect Items="CodeSourceItems"
                              @bind-Value="@_selectCodeSourceItemValue"
                              ItemText="u => u.Text"
                              ItemValue="u => u.Value"
@@ -81,24 +83,30 @@
                              Dense
                              HideDetails="@("auto")"
                              Outlined>
-                        <PrependInnerContent>
-                            @if (_selectCodeSourceItemValue == githubUrl)
-                            {
-                                <MIcon Color="black">mdi-github</MIcon>
-                            }
-                            else if (_selectCodeSourceItemValue == giteeUrl)
-                            {
-                                <img style="width:24px;height:24px;" src="_content/YourWeather.Razor/image/gitee.png" />
-                            }
-                        </PrependInnerContent>
-                    </MSelect>
-                </div>
+                            <PrependInnerContent>
+                                @if (_selectCodeSourceItemValue == githubUrl)
+                                {
+                                    <MIcon Color="black">mdi-github</MIcon>
+                                }
+                                else if (_selectCodeSourceItemValue == giteeUrl)
+                                {
+                                    <img style="width:24px;height:24px;" src="_content/YourWeather.Razor/image/gitee.png" />
+                                }
+                            </PrependInnerContent>
+                        </MSelect>
+                    </div>
+                }
+                else
+                {
+                    <MIcon>mdi-chevron-right</MIcon>
+                }
             </MListItemAction>
+
         </MListItem>
 
         <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-        <MListItem >
+        <MListItem>
             <MListItemContent>
                 第三方版权
             </MListItemContent>
@@ -131,7 +139,7 @@
     </MCard>
     <MDialog @bind-Value="_dialogExit" MaxWidth="420">
         <MCard>
-            <MCardTitle Class="text-h6 justify-center">
+            <MCardTitle Class="subtitle-1 justify-center">
                 确认退出应用吗？
             </MCardTitle>
             <MCardActions>
@@ -150,31 +158,28 @@
         </MCard>
     </MDialog>
 }
-
-<Masa.Blazor.Presets.PModal MaxWidth="420"
-        @bind-Value="_dialogAppInformation"
-        Title="应用信息">
-    <MList>
-        <MListItem>
-            <MListItemContent>
-                <MListItemTitle>应用：你的天气</MListItemTitle>
-            </MListItemContent>
-        </MListItem>
-        <MListItem>
-            <MListItemContent>
-                <MListItemTitle>作者：Yu-Core</MListItemTitle>
-            </MListItemContent>
-        </MListItem>
-        <MListItem>
-            <MListItemContent>
-                <MListItemTitle>Project：@AppName</MListItemTitle>
-            </MListItemContent>
-        </MListItem>
-        <MListItem>
-            <MListItemContent>
-                <MListItemTitle>Version：@AppVersion</MListItemTitle>
-            </MListItemContent>
-        </MListItem>
-    </MList>
-    <div></div>
-</Masa.Blazor.Presets.PModal>
+<MDialog MaxWidth="420"
+         @bind-Value="_dialogAppInformation">
+    <MCard>
+        <MCardTitle>应用信息</MCardTitle>
+        <MDivider></MDivider>
+        <MCardText>
+            <MSimpleTable>
+                <tbody>
+                    <tr>
+                        <td>应用</td>
+                        <td>你的天气</td>
+                    </tr>
+                    <tr>
+                        <td>作者</td>
+                        <td>Yu-Core</td>
+                    </tr>
+                    <tr>
+                        <td>版本</td>
+                        <td>@AppVersion</td>
+                    </tr>
+                </tbody>
+            </MSimpleTable>
+        </MCardText>
+    </MCard>
+</MDialog>
