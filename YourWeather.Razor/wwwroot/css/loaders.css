@@ -1,17 +1,17 @@
-﻿
-#app > .loader {
-    position:fixed;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100vw;
-    height:100vh;
-    z-index: 99;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
+﻿/**
+ * Copyright (c) 2016 Connor Atherton
+ *
+ * All animations must live in their own file
+ * in the animations directory and be included
+ * here.
+ *
+ */
+/**
+ * Styles shared by multiple animations
+ */
+/**
+ * Dots
+ */
 @-webkit-keyframes scale {
     0% {
         -webkit-transform: scale(1);
@@ -76,4 +76,17 @@
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
     display: inline-block;
+}
+
+#app > .loader {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
