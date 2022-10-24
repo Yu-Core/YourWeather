@@ -1,0 +1,8 @@
+﻿@media (hover: none) {
+    *:hover *::before{
+        display:none;
+    }
+    *:hover i::before {
+        display:inline-block
+    }
+}

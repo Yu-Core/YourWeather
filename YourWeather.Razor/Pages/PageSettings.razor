@@ -21,7 +21,7 @@
     <MList>
         <MSubheader Class="d-sm-none">显示</MSubheader>
 
-        @if (ProjectService.Project == Project.MAUIBlazor)
+        @if (project == Project.MAUIBlazor)
         {
             <MListItem OnClick="()=>_dialogTheme = true">
                 <MListItemContent>
@@ -90,7 +90,7 @@
             </MListItemContent>
             <MListItemAction>
                 @*由于MasaBlazor的下拉框在MAUI中存在bug，所以更换源暂不可用*@
-                @if (ProjectService!.Project != Project.MAUIBlazor)
+                @if (project != Project.MAUIBlazor)
                 {
                     <div style="max-width:150px;" @onclick:stopPropagation="true">
                         <MSelect Items="CodeSourceItems"
@@ -141,7 +141,7 @@
 
     </MList>
 </MCard>
-@if (ProjectService!.Project == Project.MAUIBlazor)
+@if (project == Project.MAUIBlazor)
 {
     <MCard>
         <MListItem OnClick="()=>_dialogExit = true">
@@ -213,15 +213,17 @@
                          Mandatory>
                 <MRadio Label="跟随系统"
                         Value="ThemeState.System"
-                        Color="black">
+                        Color="grey darken-3">
                 </MRadio>
+                <div class="mb-2"></div>
                 <MRadio Label="浅色"
                         Value="ThemeState.Light"
-                        Color="black">
+                        Color="grey darken-3">
                 </MRadio>
+                <div class="mb-2"></div>
                 <MRadio Label="深色"
                         Value="ThemeState.Dark"
-                        Color="black">
+                        Color="grey darken-3">
                 </MRadio>
             </MRadioGroup>
         </MCardText>

@@ -42,6 +42,7 @@ namespace YourWeather.Razor.Pages
         private bool _dialogTheme;
         private bool _switchTheme;
         private Settings? _settins = new();
+        private Project project => ProjectService!.Project;
 
         private string AppVersion => SystemService!.GetAppVersion();
         //查看源代码默认github
