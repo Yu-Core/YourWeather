@@ -19,9 +19,6 @@ namespace YourWeather.Razor.Pages
         #region 注入
 
         [Inject]
-        IJSRuntime? JS { get; set; }
-
-        [Inject]
         private ISystemService? SystemService { get; set; }
         [Inject]
         private IProjectService? ProjectService { get; set; }
@@ -71,12 +68,10 @@ namespace YourWeather.Razor.Pages
         #endregion
 
         #region 方法
-        protected override async Task OnInitializedAsync()
+        protected override  Task OnInitializedAsync()
         {
-            await JS!.InvokeVoidAsync("disableBack");
-
-            _settins = SettingsService!.GetSettings();
-
+           _settins = SettingsService!.GetSettings();
+            return base.OnInitializedAsync();
         }
 
         private async Task ViewSourceCode()

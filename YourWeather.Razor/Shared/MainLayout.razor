@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@using YourWeather.Razor.Pages
 
 <MApp Dark="IsDark">
     <div class="d-flex" style="height:100%;">
@@ -8,7 +9,7 @@
                 <MListItemGroup @bind-Value="SelectItem">
                     @foreach (var navigationButton in NavigationButtons)
                     {
-                        <MListItem Href="@navigationButton.Href">
+                        <MListItem OnClick="()=>ChangeView(navigationButton.Id)">
                             <MListItemIcon>
                                 <MIcon>@GetIcon(navigationButton)</MIcon>
                             </MListItemIcon>
@@ -20,7 +21,19 @@
         </MNavigationDrawer>
         <MMain Class="grey lighten-5">
             <MContainer>
-                @Body
+                <div class="swiper" style="width:100%;height:100%;">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <PageWeather></PageWeather>
+                        </div>
+                        <div class="swiper-slide">
+                            <PageLocation></PageLocation>
+                        </div>
+                        <div class="swiper-slide">
+                            <PageSettings></PageSettings>
+                        </div>
+                    </div>
+                </div>
             </MContainer>
         </MMain>
     </div>
@@ -29,13 +42,13 @@
                        @bind-Value="SelectItem"
                        App
                        Shift>
-            @foreach (var navigationButton in NavigationButtons)
-            {
-                <MButton Href="@navigationButton.Href">
-                    <span>@navigationButton.Title</span>
-                    <MIcon>@GetIcon(navigationButton)</MIcon>
-                </MButton>
-            }
+        @foreach (var navigationButton in NavigationButtons)
+        {
+            <MButton OnClick="()=>ChangeView(navigationButton.Id)">
+                <span>@navigationButton.Title</span>
+                <MIcon>@GetIcon(navigationButton)</MIcon>
+            </MButton>
+        }
 
     </MBottomNavigation>
 </MApp>

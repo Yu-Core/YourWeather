@@ -10,11 +10,5 @@ namespace YourWeather.Razor.Pages
 {
     public partial class PageLocation
     {
-        [Inject]
-        IJSRuntime JS { get; set; }
-        protected override async Task OnInitializedAsync()
-        {
-            await JS.InvokeVoidAsync("disableBack");
-        }
     }
 }

@@ -10,11 +10,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourWeather.BlazorWasm", "Y
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{B03E6296-0267-4487-9C75-00F590FF7DC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.Service", "YourWeather.Service\YourWeather.Service.csproj", "{A4C97A66-CC28-4620-B81D-A168D5E4A2D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourWeather.Service", "YourWeather.Service\YourWeather.Service.csproj", "{A4C97A66-CC28-4620-B81D-A168D5E4A2D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.IService", "YourWeather.IService\YourWeather.IService.csproj", "{06435E9A-B3C8-4E80-875D-33F79920D390}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourWeather.IService", "YourWeather.IService\YourWeather.IService.csproj", "{06435E9A-B3C8-4E80-875D-33F79920D390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.Model", "YourWeather.Model\YourWeather.Model.csproj", "{472B7033-D790-4CB5-A424-B4F8487AFB98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourWeather.Model", "YourWeather.Model\YourWeather.Model.csproj", "{472B7033-D790-4CB5-A424-B4F8487AFB98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
