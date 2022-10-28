@@ -11,6 +11,7 @@ using YourWeather.IService;
 using YourWeather.Model;
 using YourWeather.Model.Enum;
 using YourWeather.Service;
+using static YourWeather.Razor.Pages.PageSettings;
 
 namespace YourWeather.Razor.Pages
 {
@@ -27,7 +28,7 @@ namespace YourWeather.Razor.Pages
         [Inject]
         private ISettingsService? SettingsService { get; set; }
         [Inject]
-        private ISystemThemeService? ThemeService { get; set; }
+        private IThemeService? ThemeService { get; set; }
 
         #endregion
 
@@ -52,13 +53,30 @@ namespace YourWeather.Razor.Pages
                 _themeState = value ? ThemeState.Dark : ThemeState.Light;
             }
         }
-        private Settings? SettinsData => SettingsService.Settings;
+        private Settings SettinsData => SettingsService.Settings;
         private Project project => ProjectService!.Project;
 
         private string AppVersion => SystemService!.GetAppVersion();
-        //查看源代码默认github
-        private CodeSourceItem _selectCodeSourceItem = CodeSourceItems[0];
+        
+        private int _selectCodeSourceIndex
+        {
+            get=> SettinsData.CodeSourceState;
+            set
+            {
+                SettinsData.CodeSourceState = value;
+            }
+        }
+        private CodeSourceItem _selectCodeSourceItem
+        {
+            get => CodeSourceItems[_selectCodeSourceIndex];
+            set
+            {
+                _selectCodeSourceIndex = CodeSourceItems.IndexOf(value);
+                _dialogSourceCode = false;
+            }
+        }
 
+        //应用的主题状态
         private ThemeState _themeState
         {
             get => SettinsData.ThemeState;
@@ -66,6 +84,7 @@ namespace YourWeather.Razor.Pages
             {
                 SettinsData.ThemeState = value;
                 ThemeChanged();
+                _dialogTheme = false;
             }
         }
 
@@ -108,22 +127,10 @@ namespace YourWeather.Razor.Pages
             SystemService!.ExitApp();
         }
 
-        private void SwitchChange()
-        {
-            _switchTheme = !_switchTheme;
-            SettinsData.ThemeState = _switchTheme ?  ThemeState.Dark : ThemeState.Light;
-        }
-
+        //主题状态更改
         private void ThemeChanged()
         {
-            if(SettinsData.ThemeState == ThemeState.System)
-            {
-                ThemeService.AddSystemThemeHandler();
-            }
-            else
-            {
-                ThemeService.ClearSystemThemeHandler();
-            }
+            ThemeService.ThemeChanged(SettinsData.ThemeState);
         }
 
         #endregion

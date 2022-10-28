@@ -7,11 +7,10 @@ using YourWeather.Model.Enum;
 
 namespace YourWeather.IService
 {
-    public interface ISystemThemeService
+    public interface IThemeService
     {
         public bool IsDark(ThemeState themeState);
         event Action Onchange;
-        public void AddSystemThemeHandler();
-        public void ClearSystemThemeHandler();
+        public void ThemeChanged(ThemeState themeState);
     }
 }

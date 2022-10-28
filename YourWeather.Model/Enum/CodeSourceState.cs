@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YourWeather.Model;
 
-namespace YourWeather.IService
+namespace YourWeather.Model.Enum
 {
-    public interface ISettingsService
+    public enum CodeSourceState
     {
-        public Settings Settings { get; }
+        Github,
+        Gitee
     }
 }

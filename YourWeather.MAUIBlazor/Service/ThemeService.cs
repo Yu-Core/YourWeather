@@ -9,14 +9,14 @@ using YourWeather.Model.Enum;
 
 namespace YourWeather.MAUIBlazor.Service
 {
-    public class SystemThemeService : ISystemThemeService
+    public class ThemeService : IThemeService
     {
         
         public bool IsDark(ThemeState themeState)
         {
             if(themeState == ThemeState.System)
             {
-                return GetAppTheme() == AppTheme.Dark;
+                return Application.Current!.RequestedTheme == AppTheme.Dark;
             }
             else
             {
@@ -28,35 +28,33 @@ namespace YourWeather.MAUIBlazor.Service
 
             return false;
         }
-        public void ClearSystemThemeHandler()
-        {
-            Application.Current!.RequestedThemeChanged -= HandlerAppThemeChanged;
-            Onchange.Invoke();
-        }
-
+        
         public event Action Onchange;
 
         /// <summary>
         /// 获取当前系统主题
         /// </summary>
         /// <returns></returns>
-        private static AppTheme GetAppTheme()
-        {
-            return Application.Current!.RequestedTheme;
-        }
+        
 
-        /// <summary>
-        /// 系统主题切换
-        /// </summary>
-        public void AddSystemThemeHandler()
-        {
-            Application.Current!.RequestedThemeChanged += HandlerAppThemeChanged;
-            Onchange.Invoke();
-        }
         private void HandlerAppThemeChanged(object sender, AppThemeChangedEventArgs e)
         {
             Onchange.Invoke();
         }
-
+        /// <summary>
+        /// 系统主题切换
+        /// </summary>
+        public void ThemeChanged(ThemeState themeState)
+        {
+            if(themeState == ThemeState.System)
+            {
+                Application.Current!.RequestedThemeChanged += HandlerAppThemeChanged;
+            }
+            else
+            {
+                Application.Current!.RequestedThemeChanged -= HandlerAppThemeChanged;
+            }
+            Onchange.Invoke();
+        }
     }
 }

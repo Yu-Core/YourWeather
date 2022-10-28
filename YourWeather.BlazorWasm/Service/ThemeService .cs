@@ -3,7 +3,7 @@ using YourWeather.Model.Enum;
 
 namespace YourWeather.BlazorWasm.Service
 {
-    public class SystemThemeService : ISystemThemeService
+    public class ThemeService : IThemeService
     {
         public bool IsDark(ThemeState themeState)
         {
@@ -15,10 +15,6 @@ namespace YourWeather.BlazorWasm.Service
 
             return false;
         }
-        public void ClearSystemThemeHandler()
-        {
-            Onchange.Invoke();
-        }
 
         public event Action Onchange;
 
@@ -26,11 +22,9 @@ namespace YourWeather.BlazorWasm.Service
         /// <summary>
         /// 系统主题切换
         /// </summary>
-        public void AddSystemThemeHandler()
+        public void ThemeChanged(ThemeState themeState)
         {
             Onchange.Invoke();
         }
-        
-
     }
 }

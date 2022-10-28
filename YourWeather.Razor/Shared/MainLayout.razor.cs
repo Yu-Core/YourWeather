@@ -18,7 +18,7 @@ namespace YourWeather.Razor.Shared
     {
         [Inject]
         //注入主题服务
-        private ISystemThemeService? SystemThemeService { get; set; }
+        private IThemeService? SystemThemeService { get; set; }
         [Inject]
         private IProjectService? IProjectService { get; set; }
         [Inject]
@@ -89,37 +89,12 @@ namespace YourWeather.Razor.Shared
             SystemThemeService.Onchange += ChangeTheme;
             if (IProjectService!.Project == Project.MAUIBlazor)
             {
-
-                if (SettingData.ThemeState == ThemeState.System)
-                {
-                    // 开启主题跟随系统
-                    SystemThemeService.AddSystemThemeHandler();
-
-                }
+                SystemThemeService.ThemeChanged(SettingData.ThemeState);
             }
             else
             {
                 ChangeTheme();
             }
-            //if (IProjectService!.Project == Project.MAUIBlazor)
-            //{
-
-            //    if (SettingData.ThemeState == ThemeState.System)
-            //    {
-            //        // 开启主题跟随系统
-            //        SystemThemeService.AddSystemThemeHandler();
-
-            //    }
-            //}
-
-            //if (SettingData.ThemeState == ThemeState.Light)
-            //{
-            //    IsDark = false;
-            //}
-            //else if (SettingData?.ThemeState == ThemeState.Dark)
-            //{
-            //    IsDark = true;
-            //}
 
             StateHasChanged();
         }
