@@ -34,12 +34,12 @@
         }
         else
         {
-            <MListItem >
+            <MListItem>
                 <MListItemContent>
                     深色模式
                 </MListItemContent>
                 <MListItemAction>
-                    <MSwitch Value="_switchTheme" ValueChanged="()=>SwitchChange()"></MSwitch>
+                    <MSwitch @bind-Value="_switchTheme"></MSwitch>
                 </MListItemAction>
             </MListItem>
 
@@ -47,7 +47,7 @@
 
         <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-        <MListItem>
+        <MListItem OnClick="()=>_dialogLanguage = true">
             <MListItemContent>
                 切换语言
             </MListItemContent>
@@ -88,30 +88,20 @@
                 查看源代码
             </MListItemContent>
             <MListItemAction>
-                @*由于MasaBlazor的下拉框在MAUI中存在bug，所以更换源暂不可用*@
-                @if (project != Project.MAUIBlazor)
-                {
-                    <div style="max-width:150px;" @onclick:stopPropagation="true">
-                        <MSelect Items="CodeSourceItems"
-                             @bind-Value="@_selectCodeSourceItemValue"
-                             ItemText="u => u.Text"
-                             ItemValue="u => u.Value"
-                             Color="black"
-                             Dense
-                             HideDetails="@("auto")"
+                <div @onclick:stopPropagation="true">
+                    <MButton OnClick="()=>_dialogSourceCode = true"
+                             Style="text-transform:initial;"
                              Outlined>
-                            <PrependInnerContent>
-                                <MIcon Color="black">
-                                    @(CodeSourceItems.FirstOrDefault(i => i.Value == _selectCodeSourceItemValue)!.Icon)
-                                </MIcon>
-                            </PrependInnerContent>
-                        </MSelect>
-                    </div>
-                }
-                else
-                {
-                    <MIcon>mdi-chevron-right</MIcon>
-                }
+                        <MIcon Color="black">
+                            @(_selectCodeSourceItem.Icon)
+                        </MIcon>
+                        @(_selectCodeSourceItem.Text)
+                        <MIcon>
+                            mdi-chevron-down
+                        </MIcon>
+                    </MButton>
+                </div>
+
             </MListItemAction>
 
         </MListItem>
@@ -182,7 +172,7 @@
         </MCardTitle>
         <MDivider></MDivider>
         <MCardText>
-            <MRadioGroup @bind-Value="_settins!.WeatherSource"
+            <MRadioGroup @bind-Value="SettinsData!.WeatherSource"
                          Mandatory>
                 @foreach (var item in WeatherSources)
                 {
@@ -208,19 +198,51 @@
         </MCardTitle>
         <MDivider></MDivider>
         <MCardText>
-            <MRadioGroup @bind-Value="_settins!.ThemeState"
+            <MRadioGroup @bind-Value="_themeState"
+                         Mandatory>
+                <MRadio Label="跟随系统"
+                        Value="ThemeState.System"
+                        Color="black">
+                </MRadio>
+                <div class="mb-2"></div>
+                <MRadio Label="浅色"
+                        Value="ThemeState.Light"
+                        Color="black">
+                </MRadio>
+                <div class="mb-2"></div>
+                <MRadio Label="深色"
+                        Value="ThemeState.Dark"
+                        Color="black">
+                </MRadio>
+            </MRadioGroup>
+        </MCardText>
+    </MCard>
+</MDialog>
+<MDialog MaxWidth="420"
+         @bind-Value="_dialogLanguage">
+    <MCard>
+        <MCardTitle>
+            更改语言
+            <MSpacer></MSpacer>
+            <MButton Icon OnClick="()=>_dialogLanguage= false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MDivider></MDivider>
+        <MCardText>
+            <MRadioGroup @bind-Value="SettinsData.ThemeState"
                          Mandatory>
                 <MRadio Label="跟随系统"
                         Value="ThemeState.System"
                         Color="grey darken-3">
                 </MRadio>
                 <div class="mb-2"></div>
-                <MRadio Label="浅色"
+                <MRadio Label="English"
                         Value="ThemeState.Light"
                         Color="grey darken-3">
                 </MRadio>
                 <div class="mb-2"></div>
-                <MRadio Label="深色"
+                <MRadio Label="中文"
                         Value="ThemeState.Dark"
                         Color="grey darken-3">
                 </MRadio>
@@ -250,6 +272,33 @@
                     </tr>
                 </tbody>
             </MSimpleTable>
+        </MCardText>
+    </MCard>
+</MDialog>
+<MDialog MaxWidth="420"
+         @bind-Value="_dialogSourceCode">
+    <MCard>
+        <MCardTitle>
+            更改来源
+            <MSpacer></MSpacer>
+            <MButton Icon OnClick="()=>_dialogSourceCode = false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MDivider></MDivider>
+        <MCardText>
+            <MRadioGroup @bind-Value="_selectCodeSourceItem"
+                         Mandatory>
+                @foreach (var item in CodeSourceItems)
+                {
+                    <MRadio Label="@(item.Text)"
+                        Value="@item"
+                        Color="black">
+                    </MRadio>
+                    <div class="mb-2"></div>
+                }
+
+            </MRadioGroup>
         </MCardText>
     </MCard>
 </MDialog>

@@ -7,6 +7,7 @@ function initSwiper() {
         observer: true,
         observeParents: true,
         autoHeight: true,
+        updateOnWindowResize: true,
         on: {
             slideChangeTransitionEnd: function () {
                 DotNet.invokeMethodAsync('YourWeather.Razor', 'ChangeDotNetIndex', this.activeIndex);

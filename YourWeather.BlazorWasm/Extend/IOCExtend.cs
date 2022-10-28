@@ -13,11 +13,11 @@ namespace YourWeather.BlazorWasm.Extend
     {
         public static IServiceCollection AddCustomIOC(this IServiceCollection services)
         {
-            services.AddScoped<IThemeService,ThemeService>();
+            services.AddScoped<ISystemThemeService,SystemThemeService>();
             services.AddSingleton<IProjectService,ProjectService>();
             services.AddScoped<ISystemService,SystemService>();
             services.AddScoped<WeatherService>();
-            services.AddScoped<SettingsService>();
+            services.AddScoped<ISettingsService, SettingsService>();
             return services;
         }
     }

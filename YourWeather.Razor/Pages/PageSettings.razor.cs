@@ -25,7 +25,9 @@ namespace YourWeather.Razor.Pages
         [Inject]
         private WeatherService? WeatherService { get; set; }
         [Inject]
-        private SettingsService? SettingsService { get; set; }
+        private ISettingsService? SettingsService { get; set; }
+        [Inject]
+        private ISystemThemeService? ThemeService { get; set; }
 
         #endregion
 
@@ -37,15 +39,37 @@ namespace YourWeather.Razor.Pages
         private bool _dialogAppInformation;
         private bool _dialogWeatherSource;
         private bool _dialogTheme;
-        private bool _switchTheme;
-        private Settings? _settins = new();
+        private bool _dialogSourceCode;
+        private bool _dialogLanguage;
+        private bool _switchTheme
+        {
+            get
+            {
+                return _themeState == ThemeState.Dark;
+            }
+            set
+            {
+                _themeState = value ? ThemeState.Dark : ThemeState.Light;
+            }
+        }
+        private Settings? SettinsData => SettingsService.Settings;
         private Project project => ProjectService!.Project;
 
         private string AppVersion => SystemService!.GetAppVersion();
         //查看源代码默认github
-        private string _selectCodeSourceItemValue = githubUrl;
+        private CodeSourceItem _selectCodeSourceItem = CodeSourceItems[0];
 
-        private readonly List<CodeSourceItem> CodeSourceItems = new List<CodeSourceItem>()
+        private ThemeState _themeState
+        {
+            get => SettinsData.ThemeState;
+            set
+            {
+                SettinsData.ThemeState = value;
+                ThemeChanged();
+            }
+        }
+
+        private readonly static List<CodeSourceItem> CodeSourceItems = new List<CodeSourceItem>()
         {
             new CodeSourceItem("Github",githubUrl,"mdi-github"),
             new CodeSourceItem("Gitee",giteeUrl,mdi_gitee)
@@ -70,13 +94,12 @@ namespace YourWeather.Razor.Pages
         #region 方法
         protected override  Task OnInitializedAsync()
         {
-           _settins = SettingsService!.GetSettings();
-            return base.OnInitializedAsync();
+           return base.OnInitializedAsync();
         }
 
         private async Task ViewSourceCode()
         {
-            string url = _selectCodeSourceItemValue;
+            string url = _selectCodeSourceItem.Value!;
             await SystemService!.OpenLink(url);
         }
 
@@ -88,7 +111,19 @@ namespace YourWeather.Razor.Pages
         private void SwitchChange()
         {
             _switchTheme = !_switchTheme;
-            _settins.ThemeState = _switchTheme ?  ThemeState.Dark : ThemeState.Light;
+            SettinsData.ThemeState = _switchTheme ?  ThemeState.Dark : ThemeState.Light;
+        }
+
+        private void ThemeChanged()
+        {
+            if(SettinsData.ThemeState == ThemeState.System)
+            {
+                ThemeService.AddSystemThemeHandler();
+            }
+            else
+            {
+                ThemeService.ClearSystemThemeHandler();
+            }
         }
 
         #endregion

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YourWeather.Model;
 
 namespace YourWeather.IService
 {
-    public interface IThemeService
+    public interface ISettingsService
     {
-        bool IsDark();
-        void ThemeChanged();
-        event Action Onchange;
+        public Settings Settings { get; }
+        void SaveSetings();
     }
 }

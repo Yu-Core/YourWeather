@@ -10,6 +10,17 @@ namespace YourWeather.Model
     public class Settings
     {
         public WeatherSource? WeatherSource;
-        public ThemeState ThemeState;
+        public ThemeState _themeState;
+        public ThemeState ThemeState
+        {
+            get => _themeState;
+            set
+            {
+                _themeState = value;
+                NotifyStateChanged();
+            }
+        }
+        public event Action OnChange;
+        private void NotifyStateChanged() => OnChange?.Invoke();
     }
 }

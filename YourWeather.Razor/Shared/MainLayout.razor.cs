@@ -9,23 +9,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourWeather.IService;
+using YourWeather.Model;
 using YourWeather.Model.Enum;
 
 namespace YourWeather.Razor.Shared
 {
-    public partial class MainLayout
+    public partial class MainLayout : IDisposable
     {
         [Inject]
         //注入主题服务
-        private IThemeService? IThemeService { get; set; }
+        private ISystemThemeService? SystemThemeService { get; set; }
         [Inject]
         private IProjectService? IProjectService { get; set; }
         [Inject]
         IJSRuntime JSRuntime { get; set; }
+        [Inject]
+        private ISettingsService? SettingsService { get; set; }
 
-        private bool IsDark { get; set; }
+        private bool IsDark { get;set; }
 
         StringNumber SelectItem = 0;
+
+        private Settings SettingData => SettingsService.Settings;
 
         private static Action<int> action;
 
@@ -37,7 +42,7 @@ namespace YourWeather.Razor.Shared
         };
         private class NavigationButton
         {
-            public NavigationButton(int id,string title,string icon,string selectIcon)
+            public NavigationButton(int id, string title, string icon, string selectIcon)
             {
                 Id = id;
                 Title = title;
@@ -62,14 +67,7 @@ namespace YourWeather.Razor.Shared
             {
                 await JSRuntime.InvokeVoidAsync("initSwiper", null);
 
-                if (IProjectService!.Project == Project.MAUIBlazor)
-                {
-                    // 根据系统主题是否为Dark，为IsDark属性赋值
-                    IsDark = IThemeService.IsDark();
-                    IThemeService.Onchange += ChangeTheme;
-                    IThemeService.ThemeChanged();
-                    StateHasChanged();
-                }
+                InitTheme();
 
             }
             await base.OnAfterRenderAsync(firstRender);
@@ -82,9 +80,50 @@ namespace YourWeather.Razor.Shared
 
         private void ChangeTheme()
         {
-            IsDark = IThemeService!.IsDark();
+            IsDark = SystemThemeService!.IsDark(SettingData.ThemeState);
             InvokeAsync(StateHasChanged);
         }
+
+        private void InitTheme()
+        {
+            SystemThemeService.Onchange += ChangeTheme;
+            if (IProjectService!.Project == Project.MAUIBlazor)
+            {
+
+                if (SettingData.ThemeState == ThemeState.System)
+                {
+                    // 开启主题跟随系统
+                    SystemThemeService.AddSystemThemeHandler();
+
+                }
+            }
+            else
+            {
+                ChangeTheme();
+            }
+            //if (IProjectService!.Project == Project.MAUIBlazor)
+            //{
+
+            //    if (SettingData.ThemeState == ThemeState.System)
+            //    {
+            //        // 开启主题跟随系统
+            //        SystemThemeService.AddSystemThemeHandler();
+
+            //    }
+            //}
+
+            //if (SettingData.ThemeState == ThemeState.Light)
+            //{
+            //    IsDark = false;
+            //}
+            //else if (SettingData?.ThemeState == ThemeState.Dark)
+            //{
+            //    IsDark = true;
+            //}
+
+            StateHasChanged();
+        }
+
 
         private async Task ChangeView(int index)
         {
@@ -99,6 +138,15 @@ namespace YourWeather.Razor.Shared
         public static void ChangeDotNetIndex(int index)
         {
             action.Invoke(index);
+        }
+
+        public void Dispose()
+        {
+            //if (IProjectService!.Project == Project.MAUIBlazor)
+            //{
+            //    SystemThemeService.Onchange -= ChangeTheme;
+            //}
+
         }
     }
 }
