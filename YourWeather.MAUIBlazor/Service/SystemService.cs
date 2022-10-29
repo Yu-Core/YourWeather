@@ -15,8 +15,10 @@ namespace YourWeather.MAUIBlazor.Service
             Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
 #elif IOS
             Thread.CurrentThread.Abort();
-#else
+#elif WINDOWS
             System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+#else
+            Environment.Exit(0);
 #endif
         }
 
