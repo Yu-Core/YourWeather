@@ -20,7 +20,7 @@
     <MList>
         <MSubheader Class="d-sm-none">显示</MSubheader>
 
-        @if (project == Project.MAUIBlazor)
+        @if (Project == Project.MAUIBlazor)
         {
             <MListItem OnClick="()=>_dialogTheme = true">
                 <MListItemContent>
@@ -39,7 +39,7 @@
                     深色模式
                 </MListItemContent>
                 <MListItemAction>
-                    <MSwitch @bind-Value="_switchTheme"></MSwitch>
+                    <MSwitch @bind-Value="SwitchTheme"></MSwitch>
                 </MListItemAction>
             </MListItem>
 
@@ -93,9 +93,9 @@
                              Style="text-transform:initial;"
                              Outlined>
                         <MIcon Color="black">
-                            @(_selectCodeSourceItem.Icon)
+                            @(SelectCodeSourceItem.Icon)
                         </MIcon>
-                        @(_selectCodeSourceItem.Text)
+                        @(SelectCodeSourceItem.Text)
                         <MIcon>
                             mdi-chevron-down
                         </MIcon>
@@ -130,13 +130,16 @@
 
     </MList>
 </MCard>
-@if (project == Project.MAUIBlazor)
+@if (Project == Project.MAUIBlazor)
 {
     <MCard>
         <MListItem OnClick="()=>_dialogExit = true">
             <MListItemContent>
                 退出
             </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-exit-to-app</MIcon>
+            </MListItemAction>
         </MListItem>
     </MCard>
     <MDialog @bind-Value="_dialogExit" MaxWidth="420">
@@ -178,7 +181,7 @@
                 {
                     <MRadio Label="@(item.Name)"
                         Value="@item"
-                        Color="black">
+                        Color="@(IsDark()?"white":"black")">
                     </MRadio>
                     <div class="ms-8 mb-2 body-2">@item.Description</div>
                 }
@@ -198,21 +201,21 @@
         </MCardTitle>
         <MDivider></MDivider>
         <MCardText>
-            <MRadioGroup @bind-Value="_themeState"
+            <MRadioGroup @bind-Value="ThemeState"
                          Mandatory>
                 <MRadio Label="跟随系统"
                         Value="ThemeState.System"
-                        Color="black">
+                        Color="@(IsDark()?"white":"black")">
                 </MRadio>
                 <div class="mb-2"></div>
                 <MRadio Label="浅色"
                         Value="ThemeState.Light"
-                        Color="black">
+                        Color="@(IsDark()?"white":"black")">
                 </MRadio>
                 <div class="mb-2"></div>
                 <MRadio Label="深色"
                         Value="ThemeState.Dark"
-                        Color="black">
+                        Color="@(IsDark()?"white":"black")">
                 </MRadio>
             </MRadioGroup>
         </MCardText>
@@ -230,22 +233,17 @@
         </MCardTitle>
         <MDivider></MDivider>
         <MCardText>
-            <MRadioGroup @bind-Value="SettinsData.ThemeState"
+            <MRadioGroup @bind-Value="SelectLanguageItem"
                          Mandatory>
-                <MRadio Label="跟随系统"
-                        Value="ThemeState.System"
-                        Color="grey darken-3">
-                </MRadio>
-                <div class="mb-2"></div>
-                <MRadio Label="English"
-                        Value="ThemeState.Light"
-                        Color="grey darken-3">
-                </MRadio>
-                <div class="mb-2"></div>
-                <MRadio Label="中文"
-                        Value="ThemeState.Dark"
-                        Color="grey darken-3">
-                </MRadio>
+                @foreach (var item in LanguageItems)
+                {
+                    <div class="mb-2"></div>
+                    <MRadio Label="@(item.Text)"
+                        Value="@(item)"
+                        Color="@(IsDark()?"white":"black")">
+                    </MRadio>
+                }
+
             </MRadioGroup>
         </MCardText>
     </MCard>
@@ -287,17 +285,16 @@
         </MCardTitle>
         <MDivider></MDivider>
         <MCardText>
-            <MRadioGroup @bind-Value="_selectCodeSourceItem"
+            <MRadioGroup @bind-Value="SelectCodeSourceItem"
                          Mandatory>
                 @foreach (var item in CodeSourceItems)
                 {
+                    <div class="mb-2"></div>
                     <MRadio Label="@(item.Text)"
                         Value="@item"
-                        Color="black">
+                        Color="@(IsDark()?"white":"black")">
                     </MRadio>
-                    <div class="mb-2"></div>
                 }
-
             </MRadioGroup>
         </MCardText>
     </MCard>

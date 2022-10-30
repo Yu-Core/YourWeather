@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourWeather.Model.Enum;
+using YourWeather.Model.Item;
 
 namespace YourWeather.Model
 {
@@ -20,13 +21,23 @@ namespace YourWeather.Model
                 NotifyStateChanged();
             }
         }
-        private int _codeSourceState;
-        public int CodeSourceState
+        private int _codeSource;
+        public int CodeSource
         {
-            get => _codeSourceState;
+            get => _codeSource;
             set
             {
-                _codeSourceState = value;
+                _codeSource = value;
+                NotifyStateChanged();
+            }
+        }
+        private int _language;
+        public int Language
+        {
+            get => _language;
+            set 
+            { 
+                _language = value;
                 NotifyStateChanged();
             }
         }

@@ -1,8 +1,11 @@
-﻿using Blazored.LocalStorage;
+﻿using BlazorComponent;
+using Blazored.LocalStorage;
+using Masa.Blazor;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using YourWeather.IService;
 using YourWeather.Model;
+using YourWeather.Service;
 
 namespace YourWeather.BlazorWasm.Service
 {
@@ -17,24 +20,37 @@ namespace YourWeather.BlazorWasm.Service
         }
         public Settings Settings { get; private set; } = new Settings();
 
-        
+        public event Action OnChange;
+        private void NotifyStateChanged() => OnChange?.Invoke();
+
         private async void InitSettings()
         {
             var json = await LocalStorage.GetItemAsync<string>("settings");
             
-            if(json != null)
+            if(!string.IsNullOrWhiteSpace(json))
             {
-                Settings = JsonConvert.DeserializeObject<Settings>(json)!;
+                try
+                {
+                    Settings = JsonConvert.DeserializeObject<Settings>(json)!;
+                }
+                catch (Exception ex)
+                {
+                    Settings = new Settings();
+                    await LocalStorage.RemoveItemAsync("settings");
+                }
+                
             }
             
             Settings.OnChange += SaveSetings;
+            NotifyStateChanged();
         }
-
+        
         private async void SaveSetings()
         {
             var json = JsonConvert.SerializeObject(Settings);
             await LocalStorage.RemoveItemAsync("settings");
             await LocalStorage.SetItemAsync<string>("settings", json);
         }
+
     }
 }
