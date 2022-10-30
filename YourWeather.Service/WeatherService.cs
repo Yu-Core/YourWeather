@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourWeather.Model;
+using static System.Net.WebRequestMethods;
 
 namespace YourWeather.Service
 {

@@ -1,3 +1,4 @@
+using BlazorComponent.I18n;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

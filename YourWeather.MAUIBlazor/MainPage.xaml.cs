@@ -19,6 +19,8 @@
                     Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
 #elif IOS
                     Thread.CurrentThread.Abort();
+#elif MACCATALYST
+                    Thread.CurrentThread.Abort();
 #elif WINDOWS
                     System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
 #else
@@ -32,6 +34,8 @@
 #if ANDROID
                     Android.Widget.Toast.MakeText(Android.App.Application.Context, "再按一次退出", Android.Widget.ToastLength.Long).Show();
 #elif IOS
+                    Thread.CurrentThread.Abort();
+#elif MACCATALYST
                     Thread.CurrentThread.Abort();
 #elif WINDOWS
                     System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
