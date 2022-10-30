@@ -10,5 +10,6 @@ namespace YourWeather.IService
     public interface ISettingsService
     {
         public Settings Settings { get; }
+        public event Action OnChange;
     }
 }

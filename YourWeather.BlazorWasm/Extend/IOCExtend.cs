@@ -13,9 +13,9 @@ namespace YourWeather.BlazorWasm.Extend
     {
         public static IServiceCollection AddCustomIOC(this IServiceCollection services)
         {
-            services.AddScoped<IThemeService,ThemeService>();
-            services.AddSingleton<IProjectService,ProjectService>();
-            services.AddScoped<ISystemService,SystemService>();
+            services.AddScoped<IThemeService, ThemeService>();
+            services.AddSingleton<IProjectService, ProjectService>();
+            services.AddScoped<ISystemService, SystemService>();
             services.AddScoped<WeatherService>();
             services.AddScoped<ISettingsService, SettingsService>();
             return services;

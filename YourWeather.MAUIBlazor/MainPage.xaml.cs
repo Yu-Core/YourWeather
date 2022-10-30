@@ -2,7 +2,7 @@
 {
     public partial class MainPage : ContentPage
     {
-        int BackPressCounter = 1;
+        byte BackPressCounter = 1;
         public MainPage()
         {
             InitializeComponent();
