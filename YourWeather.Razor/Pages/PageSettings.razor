@@ -175,9 +175,9 @@
         </MCardTitle>
         <MDivider></MDivider>
         <MCardText>
-            <MRadioGroup @bind-Value="SettinsData!.WeatherSource"
+            <MRadioGroup @bind-Value="SelectWeatherSourceItem"
                          Mandatory>
-                @foreach (var item in WeatherSources)
+                @foreach (var item in WeatherSourceItems)
                 {
                     <MRadio Label="@(item.Name)"
                         Value="@item"

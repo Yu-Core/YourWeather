@@ -10,7 +10,16 @@ namespace YourWeather.Model
 {
     public class Settings
     {
-        public WeatherSource? WeatherSource;
+        private int _weatherSource;
+        public int WeatherSource
+        {
+            get => _weatherSource;
+            set
+            {
+                _weatherSource = value;
+                NotifyStateChanged();
+            }
+        }
         private ThemeState _themeState;
         public ThemeState ThemeState
         {

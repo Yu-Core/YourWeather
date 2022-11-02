@@ -6,46 +6,55 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using YourWeather.Model.Weather.WeatherResult;
 
 namespace YourWeather.Model.Weather.WeatherSource
 {
     public class AmapSource : IWeatherSource
     {
-        private HttpClient? Http { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Key { get; set; }
 
         public async Task<WeatherLives?> Lives(double lat, double lon)
         {
-            
-            var city = await GetCityAsync(lat, lon);
-            if(string.IsNullOrEmpty(city))
+            try
             {
-                return null;
+                using HttpClient Http = new HttpClient();
+
+                var city = await GetCityAsync(lat, lon);
+                if (string.IsNullOrEmpty(city))
+                {
+                    return null;
+                }
+                //获取天气实况
+                var livesUrl = $"https://restapi.amap.com/v3/weather/weatherInfo?city={city}&key={Key}";
+                AmapResultLives lives = await Http.GetFromJsonAsync<AmapResultLives>(livesUrl);
+                if (lives is null)
+                    return null;
+
+                bool state = Convert.ToInt16(lives.Status) == 0 || Convert.ToInt32(lives.Infocode) != 10000;
+                if (state)
+                    return null;
+
+                if (lives.Lives is null)
+                    return null;
+
+                WeatherLives weatherLives = new WeatherLives()
+                {
+                    Weather = lives.Lives[0].Weather,
+                    Temp = lives.Lives[0].Temperature,
+                    WindDeg = lives.Lives[0].Winddirection,
+                    WindSpeed = lives.Lives[0].Windpower,
+                    Humidity = lives.Lives[0].Humidity
+                };
+                return weatherLives;
             }
-            //获取天气实况
-            var livesUrl = $"https://restapi.amap.com/v3/weather/weatherInfo?city={city}&key={Key}";
-            var livesJson = await Http.GetStringAsync(livesUrl);
-
-            if (string.IsNullOrEmpty(livesJson))
-                return null;
-
-            JObject jLives = (JObject)JsonConvert.DeserializeObject(livesJson);
-
-            if (StateError(jLives))
-                return null;
-
-            WeatherLives weatherLives = new WeatherLives()
+            catch (Exception)
             {
-                Weather = jLives["lives"]["weather"].ToString(),
-                Temp = jLives["lives"]["temperature"].ToString(),
-                WindDeg = jLives["lives"]["winddirection"].ToString(),
-                WindSpeed = jLives["lives"]["windpower"].ToString(),
-                Humidity = jLives["lives"]["humidity"].ToString()
-            };
-            return weatherLives;
-
+                throw new Exception("Get WeatherSource Error");
+            }
+            
         }
 
         public Task<List<WeatherForecastHours>?> ForecastHours(double lat, double lon)
@@ -55,58 +64,69 @@ namespace YourWeather.Model.Weather.WeatherSource
 
         public async Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon)
         {
-            var city = await GetCityAsync(lat, lon);
-            if (string.IsNullOrEmpty(city))
+            try
             {
-                return null;
-            }
-            var forecastUrl = $"https://restapi.amap.com/v3/weather/weatherInfo?city={city}&key={Key}&extensions=all";
-            var forecastJson = await Http.GetStringAsync(forecastUrl);
-
-            if (string.IsNullOrEmpty(forecastJson))
-                return null;
-
-            JObject jForecast = (JObject)JsonConvert.DeserializeObject(forecastJson);
-
-            if (StateError(jForecast))
-                return null;
-
-            List<WeatherForecastDay> forecastDays = new();
-
-            foreach (var item in jForecast["forecast"]["casts"])
-            {
-                WeatherForecastDay forecastDay = new()
+                using HttpClient Http = new HttpClient();
+                var city = await GetCityAsync(lat, lon);
+                if (string.IsNullOrEmpty(city))
                 {
-                    Week = item["week"].ToString(),
-                    MaxTemp = item["daytemp"].ToString(),
-                    MinTemp = item["nighttemp"].ToString()
-                };
-                forecastDays.Add(forecastDay);
+                    return null;
+                }
+
+                var forecastUrl = $"https://restapi.amap.com/v3/weather/weatherInfo?city={city}&key={Key}&extensions=all";
+                AmapResultForecast forecast = await Http.GetFromJsonAsync<AmapResultForecast>(forecastUrl);
+                if (forecast is null)
+                    return null;
+
+                bool state = Convert.ToInt16(forecast.Status) == 0 || Convert.ToInt32(forecast.Infocode) != 10000;
+                if (state)
+                    return null;
+
+                List<WeatherForecastDay> forecastDays = new();
+                foreach (var item in forecast.Forecasts[0].Casts)
+                {
+                    WeatherForecastDay forecastDay = new()
+                    {
+                        Week = item.Week,
+                        MaxTemp = item.Daytemp,
+                        MinTemp = item.Nighttemp
+                    };
+                    forecastDays.Add(forecastDay);
+                }
+
+                return forecastDays;
             }
-            return forecastDays;
-
+            catch (Exception)
+            {
+                throw new Exception("Get WeatherSource Error");
+            }
+            
         }
 
-        private bool StateError(JObject jobj)
+
+
+        private async Task<string?> GetCityAsync(double lat, double lon)
         {
-            return Convert.ToInt16(jobj["status"]) == 0 || Convert.ToInt32(jobj["infocode"]) != 10000;
-        }
+            try
+            {
+                using HttpClient Http = new HttpClient();
+                //获取城市编码
+                var locationUrl = $"https://restapi.amap.com/v3/geocode/regeo?location={lat},{lon}&key={Key}";
+                AmapResultAdcode adcode = await Http.GetFromJsonAsync<AmapResultAdcode>(locationUrl);
+                if (adcode is null)
+                    return null;
 
-        private async Task<string> GetCityAsync(double lat, double lon)
-        {
-            //获取城市编码
-            var locationUrl = $"https://restapi.amap.com/v3/geocode/regeo?location={lat},{lon}&key={Key}";
-            var locationJson = await Http.GetStringAsync(locationUrl);
+                bool state = Convert.ToInt16(adcode.status) == 0 || Convert.ToInt32(adcode.infocode) != 10000;
+                if (state)
+                    return null;
 
-            if (string.IsNullOrEmpty(locationJson))
-                return string.Empty;
+                return adcode.regeocode.addressComponent.adcode;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Get WeatherSource Error");
+            }
 
-            JObject jLocation = (JObject)JsonConvert.DeserializeObject(locationJson);
-
-            if (StateError(jLocation))
-                return string.Empty;
-
-            return jLocation["regeocode"]["addressComponent"]["adcode"].ToString();
         }
     }
 }

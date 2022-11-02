@@ -12,19 +12,20 @@ namespace YourWeather.Model.Weather.WeatherSource
         public string? Description { get; set; }
         public string? Key { get; set; }
 
-        public WeatherForecastDay? ForecastDay(double lat, double lon)
+        public Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon)
         {
             throw new NotImplementedException();
         }
 
-        public WeatherForecastHours? ForecastHours(double lat, double lon)
+        public Task<List<WeatherForecastHours>?> ForecastHours(double lat, double lon)
         {
             throw new NotImplementedException();
         }
 
-        public WeatherLives? Lives(double lat, double lon)
+        public Task<WeatherLives?> Lives(double lat, double lon)
         {
             throw new NotImplementedException();
         }
+
     }
 }
