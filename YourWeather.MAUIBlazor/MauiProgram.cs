@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.WebView.Maui;
 using YourWeather.MAUIBlazor.Extend;
+using YourWeather.MAUIBlazor.Service;
 using YourWeather.Razor;
 using YourWeather.Razor.Shared;
 

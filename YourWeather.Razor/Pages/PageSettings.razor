@@ -92,13 +92,11 @@
                     <MButton OnClick="()=>_dialogSourceCode = true"
                              Style="text-transform:initial;"
                              Outlined>
-                        <MIcon Color="black">
+                        <MIcon Color="@(IsDark()?"white":"black")">
                             @(SelectCodeSourceItem.Icon)
                         </MIcon>
                         @(SelectCodeSourceItem.Text)
-                        <MIcon>
-                            mdi-chevron-down
-                        </MIcon>
+                        <MIcon>@(_dialogSourceCode ? "mdi-chevron-up" : "mdi-chevron-down")</MIcon>
                     </MButton>
                 </div>
 
@@ -251,7 +249,13 @@
 <MDialog MaxWidth="420"
          @bind-Value="_dialogAppInformation">
     <MCard>
-        <MCardTitle>应用信息</MCardTitle>
+        <MCardTitle>
+            应用信息
+            <MSpacer></MSpacer>
+            <MButton Icon OnClick="()=>_dialogAppInformation= false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
         <MDivider></MDivider>
         <MCardText>
             <MSimpleTable>
@@ -290,8 +294,8 @@
                 @foreach (var item in CodeSourceItems)
                 {
                     <div class="mb-2"></div>
-                    <MRadio Label="@(item.Text)"
-                        Value="@item"
+                    <MRadio Value="@item"
+                        Label="@(item.Text)"
                         Color="@(IsDark()?"white":"black")">
                     </MRadio>
                 }

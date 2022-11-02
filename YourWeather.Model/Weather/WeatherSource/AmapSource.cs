@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using YourWeather.Model.Weather.WeatherResult;
@@ -29,7 +31,14 @@ namespace YourWeather.Model.Weather.WeatherSource
                 }
                 //获取天气实况
                 var livesUrl = $"https://restapi.amap.com/v3/weather/weatherInfo?city={city}&key={Key}";
-                AmapResultLives lives = await Http.GetFromJsonAsync<AmapResultLives>(livesUrl);
+                AmapResultLives lives = new();
+                var response = await Http.GetAsync(livesUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    lives = JsonConvert.DeserializeObject<AmapResultLives>(content);
+                }
+
                 if (lives is null)
                     return null;
 
@@ -52,7 +61,8 @@ namespace YourWeather.Model.Weather.WeatherSource
             }
             catch (Exception)
             {
-                throw new Exception("Get WeatherSource Error");
+                throw;
+                //throw new Exception("Get WeatherSource Error");
             }
             
         }
@@ -74,7 +84,14 @@ namespace YourWeather.Model.Weather.WeatherSource
                 }
 
                 var forecastUrl = $"https://restapi.amap.com/v3/weather/weatherInfo?city={city}&key={Key}&extensions=all";
-                AmapResultForecast forecast = await Http.GetFromJsonAsync<AmapResultForecast>(forecastUrl);
+                AmapResultForecast forecast = new();
+                var response = await Http.GetAsync(forecastUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    forecast = JsonConvert.DeserializeObject<AmapResultForecast>(content);
+                }
+
                 if (forecast is null)
                     return null;
 
@@ -112,7 +129,14 @@ namespace YourWeather.Model.Weather.WeatherSource
                 using HttpClient Http = new HttpClient();
                 //获取城市编码
                 var locationUrl = $"https://restapi.amap.com/v3/geocode/regeo?location={lat},{lon}&key={Key}";
-                AmapResultAdcode adcode = await Http.GetFromJsonAsync<AmapResultAdcode>(locationUrl);
+                AmapResultAdcode adcode = new();
+                var response = await Http.GetAsync(locationUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    adcode = JsonConvert.DeserializeObject<AmapResultAdcode>(content);
+                }
+                
                 if (adcode is null)
                     return null;
 
@@ -124,7 +148,8 @@ namespace YourWeather.Model.Weather.WeatherSource
             }
             catch (Exception)
             {
-                throw new Exception("Get WeatherSource Error");
+                throw;
+                //throw new Exception("Get WeatherSource Error");
             }
 
         }
