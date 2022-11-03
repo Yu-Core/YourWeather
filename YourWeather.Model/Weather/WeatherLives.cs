@@ -48,6 +48,10 @@ namespace YourWeather.Model.Weather
         /// 能见度
         /// </summary>
         public string? Visibility { get; set; }
+        /// <summary>
+        /// 大气压强
+        /// </summary>
+        public string? Pressure { get; set; }
         public DateTime LastUpdate { get; set; }
     }
 }

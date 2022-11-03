@@ -13,11 +13,11 @@ namespace YourWeather.Model.Weather.WeatherResult
         
         public string? Status { get; set; }
         public string? Infocode { get; set; }
-        public Life[]? Lives { get; set; }
+        public AmapLife[]? Lives { get; set; }
     }
 
     
-    public class Life
+    public class AmapLife
     {
         public string? City { get; set; }
         public string? Adcode { get; set; }
@@ -38,21 +38,21 @@ namespace YourWeather.Model.Weather.WeatherResult
         public string? Info { get; set; }
         public string? Infocode { get; set; }
         
-        public Forecast[]? Forecasts { get; set; }
+        public AmapForecast[]? Forecasts { get; set; }
     }
 
     
-    public class Forecast
+    public class AmapForecast
     {
         public string? City { get; set; }
         public string? Adcode { get; set; }
         public string? Province { get; set; }
         public string? Reporttime { get; set; }
-        public Cast[]? Casts { get; set; }
+        public AmapCast[]? Casts { get; set; }
     }
 
     
-    public class Cast
+    public class AmapCast
     {
         public string? Date { get; set; }
         public string? Week { get; set; }
@@ -72,19 +72,19 @@ namespace YourWeather.Model.Weather.WeatherResult
         
         public string? status { get; set; }
         
-        public Regeocode? regeocode { get; set; }
+        public AmapRegeocode? regeocode { get; set; }
         
         public string? infocode { get; set; }
     }
 
     
-    public class Regeocode
+    public class AmapRegeocode
     {
-        public Addresscomponent? addressComponent { get; set; }
+        public AmapAddresscomponent? addressComponent { get; set; }
     }
 
     
-    public class Addresscomponent
+    public class AmapAddresscomponent
     {
         public string? adcode { get; set; }
     }

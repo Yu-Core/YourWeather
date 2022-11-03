@@ -8,17 +8,17 @@ namespace YourWeather.Model.Weather.WeatherResult
 {
     public class SeniverseResultLives
     {
-        public LivesResult[]? results { get; set; }
+        public SeniverseLivesResult[]? results { get; set; }
     }
 
-    public class LivesResult
+    public class SeniverseLivesResult
     {
-        public Location? location { get; set; }
-        public Now? now { get; set; }
+        public SeniverseLocation? location { get; set; }
+        public SeniverseNow? now { get; set; }
         public DateTime last_update { get; set; }
     }
 
-    public class Location
+    public class SeniverseLocation
     {
         public string? id { get; set; }
         public string? name { get; set; }
@@ -28,7 +28,7 @@ namespace YourWeather.Model.Weather.WeatherResult
         public string? timezone_offset { get; set; }
     }
 
-    public class Now
+    public class SeniverseNow
     {
         public string? text { get; set; }
         public string? code { get; set; }
@@ -43,12 +43,12 @@ namespace YourWeather.Model.Weather.WeatherResult
 
     public class ForeastDayResult
     {
-        public Location location { get; set; }
-        public Daily[] daily { get; set; }
+        public SeniverseLocation location { get; set; }
+        public SeniverseDaily[] daily { get; set; }
         public DateTime last_update { get; set; }
     }
 
-    public class Daily
+    public class SeniverseDaily
     {
         public string date { get; set; }
         public string text_day { get; set; }

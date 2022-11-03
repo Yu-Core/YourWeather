@@ -29,19 +29,19 @@ namespace YourWeather.Service
             new OpenWeatherSource()
             {
                 Name = "OpenWeather",
-                Description = "100 万次/月 分钟级实时预报 天气云图",
+                Description = "100 万次/月 数据较全",
                 Key = "8e4e52f9f838382d6d566cc74a122426"
             },
             new QWeatherSource()
             {
                 Name = "和风天气",
-                Description= "免费付费同权限，非商业无限免费",
+                Description= "1000次调用/天，数据较全",
                 Key = "7b7fa181fa6041cabbad000e89ada12c"
             },
             new SeniverseSource()
             {
                 Name = "心知天气",
-                Description="免费、轻便、专业",
+                Description="调用次数无限制，数据较少，没有逐小时预报",
                 Key = "SJVanI-SKqrgxUj7L"
             },
             new VisualCrossingSource()
@@ -53,7 +53,7 @@ namespace YourWeather.Service
             new AmapSource()
             {
                 Name = "高德地图",
-                Description= "稳定、免费、极简",
+                Description= "30万次调用/日，数据较少，没有逐小时预报",
                 Key = "4eff3072b68dcef66ab85b8be38efc0b"
             },
         };
