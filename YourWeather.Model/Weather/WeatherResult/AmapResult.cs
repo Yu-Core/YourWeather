@@ -26,10 +26,11 @@ namespace YourWeather.Model.Weather.WeatherResult
         public string? Winddirection { get; set; }
         public string? Windpower { get; set; }
         public string? Humidity { get; set; }
+        public string? Reporttime { get; set; }
     }
 
     
-    public class AmapResultForecast
+    public class AmapResultForecastDay
     {
         
         public string? Status { get; set; }

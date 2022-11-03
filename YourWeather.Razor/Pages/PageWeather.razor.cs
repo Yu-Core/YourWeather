@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YourWeather.IService;
 using YourWeather.Model;
+using YourWeather.Model.Weather;
 using YourWeather.Model.Weather.WeatherSource;
 using YourWeather.Service;
 
@@ -17,7 +18,7 @@ namespace YourWeather.Razor.Pages
         [Inject]
         private ISettingsService? SettingsService { get; set; }
         private string Temp { get; set; }
-
+        private List<WeatherForecastDay> ForecastDays { get; set; } = new List<WeatherForecastDay>();
         private Settings SettinsData => SettingsService.Settings;
 
         private int SelectWeatherSourceIndex
@@ -34,10 +35,17 @@ namespace YourWeather.Razor.Pages
 
         private List<IWeatherSource> WeatherSourceItems => StaticDataService.WeatherSources;
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
-            var weatherLives = await SelectWeatherSourceItem.Lives(121.903438, 42.296082);
+            SettingsService.OnChange += InitWeather;
+        }
+
+        private async void InitWeather()
+        {
+            var weatherLives = await SelectWeatherSourceItem.Lives(42.296082, 121.903438);
             Temp = weatherLives.Temp;
+            ForecastDays = await SelectWeatherSourceItem.ForecastDay(42.296082, 121.903438);
+            await InvokeAsync(StateHasChanged);
         }
     }
 }

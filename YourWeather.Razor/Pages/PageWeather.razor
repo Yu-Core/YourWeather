@@ -10,7 +10,13 @@
         </MAvatar>
     </div>
     <div>
-
+        @foreach (var item in ForecastDays)
+        {
+            <div>@item.Date.ToString("yyyy-MM-dd")</div>
+            <div>@item.Weather</div>
+            <div>@item.MinTemp</div>
+            <div>@item.MaxTemp</div>
+        }
     </div>
 </MCard>
 

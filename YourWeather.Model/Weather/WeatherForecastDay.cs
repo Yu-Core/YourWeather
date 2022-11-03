@@ -8,7 +8,7 @@ namespace YourWeather.Model.Weather
 {
     public class WeatherForecastDay
     {
-        public string? Week { get; set; }
+        public DateTime Date { get; set; }
         public string? Weather { get; set; }
         public string? MinTemp { get; set; }
         public string? MaxTemp { get; set; }

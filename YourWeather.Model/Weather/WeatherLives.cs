@@ -9,6 +9,10 @@ namespace YourWeather.Model.Weather
     public class WeatherLives
     {
         /// <summary>
+        /// 城市名
+        /// </summary>
+        public string? City { get; set; }
+        /// <summary>
         /// 天气描述
         /// </summary>
         public string? Weather { get; set; }
@@ -43,6 +47,7 @@ namespace YourWeather.Model.Weather
         /// <summary>
         /// 能见度
         /// </summary>
-        public string? Vis { get; set; }
+        public string? Visibility { get; set; }
+        public DateTime LastUpdate { get; set; }
     }
 }

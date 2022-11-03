@@ -26,7 +26,7 @@ namespace YourWeather.Service
         };
         public readonly static List<IWeatherSource> WeatherSources = new List<IWeatherSource>()
         {
-            new AmapSource()
+            new OpenWeatherSource()
             {
                 Name = "OpenWeather",
                 Description = "100 万次/月 分钟级实时预报 天气云图",
