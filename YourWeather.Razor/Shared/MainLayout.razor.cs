@@ -20,8 +20,6 @@ namespace YourWeather.Razor.Shared
         //注入主题服务
         private IThemeService? SystemThemeService { get; set; }
         [Inject]
-        private IProjectService? IProjectService { get; set; }
-        [Inject]
         IJSRuntime JSRuntime { get; set; }
         [Inject]
         private ISettingsService? SettingsService { get; set; }
@@ -87,7 +85,7 @@ namespace YourWeather.Razor.Shared
         private void InitTheme()
         {
             SystemThemeService.Onchange += ChangeTheme;
-            if (IProjectService!.Project == Project.MAUIBlazor)
+            if (!OperatingSystem.IsBrowser())
             {
                 SystemThemeService.ThemeChanged(SettingData.ThemeState);
             }

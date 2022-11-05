@@ -21,7 +21,7 @@ namespace YourWeather.Model.Weather.WeatherSource
         {
             //和风天气采用了gzip压缩了数据，需设置HttpClientHandler的AutomaticDecompression，gzip会被自动解压缩
             var handler = new HttpClientHandler();
-            //Blazor无需配置
+            //浏览器端无需配置
             if(!OperatingSystem.IsBrowser())
             {
                 handler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;

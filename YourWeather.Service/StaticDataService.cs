@@ -44,13 +44,6 @@ namespace YourWeather.Service
                 Description="调用次数无限制，数据较少，没有逐小时预报",
                 Key = "SJVanI-SKqrgxUj7L"
             },
-            new CaiYunSource()
-            {
-
-                Name = "VisualCrossing",
-                Description="非开发者友好 50年历史气象数据免费调用",
-                Key = "5SD8RVKRBSBGUKME3SN76M8TD"
-            },
             new AmapSource()
             {
                 Name = "高德地图",

@@ -23,8 +23,6 @@ namespace YourWeather.Razor.Pages
         [Inject]
         private ISystemService? SystemService { get; set; }
         [Inject]
-        private IProjectService? ProjectService { get; set; }
-        [Inject]
         private ISettingsService? SettingsService { get; set; }
         [Inject]
         private IThemeService? ThemeService { get; set; }
@@ -51,7 +49,6 @@ namespace YourWeather.Razor.Pages
             }
         }
         private Settings SettinsData => SettingsService.Settings;
-        private Project Project => ProjectService!.Project;
 
         private string AppVersion => SystemService!.GetAppVersion();
 

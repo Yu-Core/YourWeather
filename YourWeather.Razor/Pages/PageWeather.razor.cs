@@ -17,8 +17,6 @@ namespace YourWeather.Razor.Pages
     {
         [Inject]
         private ISettingsService? SettingsService { get; set; }
-        [Inject]
-        private IProjectService? ProjectService { get; set; }
         private WeatherData WeatherData { get; set; } = new WeatherData();
         private Settings SettinsData => SettingsService.Settings;
 
@@ -38,13 +36,13 @@ namespace YourWeather.Razor.Pages
 
         protected override void OnInitialized()
         {
-            if (ProjectService.Project == Model.Enum.Project.MAUIBlazor)
-            {
-                InitWeather();
-            }
-            else if (ProjectService.Project == Model.Enum.Project.BlazorWasm)
+            if (OperatingSystem.IsBrowser())
             {
                 SettingsService.OnChange += InitWeather;
+            }
+            else
+            {
+                InitWeather();
             }
         }
 

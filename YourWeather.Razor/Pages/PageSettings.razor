@@ -20,7 +20,7 @@
     <MList>
         <MSubheader Class="d-sm-none">显示</MSubheader>
 
-        @if (Project == Project.MAUIBlazor)
+        @if (!OperatingSystem.IsBrowser())
         {
             <MListItem OnClick="()=>_dialogTheme = true">
                 <MListItemContent>
@@ -128,7 +128,7 @@
 
     </MList>
 </MCard>
-@if (Project == Project.MAUIBlazor)
+@if (!OperatingSystem.IsBrowser())
 {
     <MCard>
         <MListItem OnClick="()=>_dialogExit = true">
