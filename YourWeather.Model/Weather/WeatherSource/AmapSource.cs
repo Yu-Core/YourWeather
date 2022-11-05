@@ -18,7 +18,7 @@ namespace YourWeather.Model.Weather.WeatherSource
         public string? Description { get; set; }
         public string? Key { get; set; }
 
-        public async Task<WeatherLives?> Lives(double lat, double lon)
+        public async Task<WeatherData> WeatherData(double lat, double lon)
         {
             using HttpClient Http = new HttpClient();
 
@@ -27,6 +27,21 @@ namespace YourWeather.Model.Weather.WeatherSource
             {
                 return null;
             }
+
+            WeatherLives? live = await Lives(lat, lon, Http, city);
+            List<WeatherForecastDay>? forecastDay = await ForecastDay(lat, lon, Http, city);
+
+            WeatherData weatherData = new WeatherData()
+            {
+                Lives = live,
+                ForecastDay = forecastDay
+            };
+            return weatherData;
+        }
+
+        public async Task<WeatherLives?> Lives(double lat, double lon,HttpClient Http,string city)
+        {
+            
             //获取天气实况
             var livesUrl = $"https://restapi.amap.com/v3/weather/weatherInfo?city={city}&key={Key}";
             AmapResultLives? lives = null;
@@ -39,7 +54,6 @@ namespace YourWeather.Model.Weather.WeatherSource
 
                 throw;
             }
-
 
             if (lives is null)
                 return null;
@@ -65,20 +79,9 @@ namespace YourWeather.Model.Weather.WeatherSource
 
         }
 
-        public Task<List<WeatherForecastHours>?> ForecastHours(double lat, double lon)
-        {
-            return null;
-        }
 
-        public async Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon)
+        public async Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon, HttpClient Http, string city)
         {
-            using HttpClient Http = new HttpClient();
-            var city = await GetCityAsync(lat, lon);
-            if (string.IsNullOrEmpty(city))
-            {
-                return null;
-            }
-
             var forecastUrl = $"https://restapi.amap.com/v3/weather/weatherInfo?city={city}&key={Key}&extensions=all";
             AmapResultForecastDay? forecast = null;
             try
@@ -145,5 +148,6 @@ namespace YourWeather.Model.Weather.WeatherSource
 
 
         }
+
     }
 }

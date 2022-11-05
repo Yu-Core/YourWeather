@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace YourWeather.Model.Weather.WeatherSource
 {
-    public class VisualCrossingSource : IWeatherSource
+    public class CaiYunSource : IWeatherSource
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Key { get; set; }
 
+        public Task<WeatherData> WeatherData(double lat, double lon)
+        {
+            throw new NotImplementedException();
+        }
         public Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon)
         {
             throw new NotImplementedException();
@@ -27,5 +31,6 @@ namespace YourWeather.Model.Weather.WeatherSource
             throw new NotImplementedException();
         }
 
+        
     }
 }

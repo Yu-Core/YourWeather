@@ -15,10 +15,21 @@ namespace YourWeather.Model.Weather.WeatherSource
         public string? Description { get; set; }
         public string? Key { get; set; }
 
-        public async Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon)
+        public async Task<WeatherData> WeatherData(double lat, double lon)
         {
             using HttpClient Http = new HttpClient();
+            WeatherLives? lives = await Lives(lat, lon,Http);
+            List<WeatherForecastDay>? forecastDays = await ForecastDay(lat, lon, Http);
+            WeatherData data = new WeatherData()
+            {
+                Lives = lives,
+                ForecastDay = forecastDays
+            };
+            return data;
+        }
 
+        public async Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon,HttpClient Http)
+        {
             var forecastUrl = $"https://api.seniverse.com/v3/weather/daily.json?key={Key}&location={lat}:{lon}";
             SeniverseResultForeastDay? forecast = null;
             try
@@ -50,15 +61,9 @@ namespace YourWeather.Model.Weather.WeatherSource
             return forecastDays;
         }
 
-        public Task<List<WeatherForecastHours>?> ForecastHours(double lat, double lon)
-        {
-            return null;
-        }
 
-        public async Task<WeatherLives?> Lives(double lat, double lon)
-        {
-            using HttpClient Http = new HttpClient();
-
+        public async Task<WeatherLives?> Lives(double lat, double lon, HttpClient Http)
+        {   
             //获取天气实况
             var livesUrl = $"https://api.seniverse.com/v3/weather/now.json?key={Key}&location={lat}:{lon}";
             SeniverseResultLives? lives = null;
@@ -85,5 +90,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             };
             return weatherLives;
         }
+
+        
     }
 }

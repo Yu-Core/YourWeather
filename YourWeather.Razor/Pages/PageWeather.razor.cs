@@ -17,8 +17,9 @@ namespace YourWeather.Razor.Pages
     {
         [Inject]
         private ISettingsService? SettingsService { get; set; }
-        private string Temp { get; set; }
-        private List<WeatherForecastDay> ForecastDays { get; set; } = new List<WeatherForecastDay>();
+        [Inject]
+        private IProjectService? ProjectService { get; set; }
+        private WeatherData WeatherData { get; set; } = new WeatherData();
         private Settings SettinsData => SettingsService.Settings;
 
         private int SelectWeatherSourceIndex
@@ -37,14 +38,19 @@ namespace YourWeather.Razor.Pages
 
         protected override void OnInitialized()
         {
-            SettingsService.OnChange += InitWeather;
+            if (ProjectService.Project == Model.Enum.Project.MAUIBlazor)
+            {
+                InitWeather();
+            }
+            else if (ProjectService.Project == Model.Enum.Project.BlazorWasm)
+            {
+                SettingsService.OnChange += InitWeather;
+            }
         }
 
         private async void InitWeather()
         {
-            var weatherLives = await SelectWeatherSourceItem.Lives(42.296082, 121.903438);
-            Temp = weatherLives.Temp;
-            ForecastDays = await SelectWeatherSourceItem.ForecastDay(42.296082, 121.903438);
+            WeatherData = await SelectWeatherSourceItem.WeatherData(42.296082, 121.903438);
             await InvokeAsync(StateHasChanged);
         }
     }

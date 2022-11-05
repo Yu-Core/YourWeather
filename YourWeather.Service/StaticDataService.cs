@@ -29,7 +29,7 @@ namespace YourWeather.Service
             new OpenWeatherSource()
             {
                 Name = "OpenWeather",
-                Description = "100 万次/月 数据较全",
+                Description = "100 万次/月 数据较少",
                 Key = "8e4e52f9f838382d6d566cc74a122426"
             },
             new QWeatherSource()
@@ -44,8 +44,9 @@ namespace YourWeather.Service
                 Description="调用次数无限制，数据较少，没有逐小时预报",
                 Key = "SJVanI-SKqrgxUj7L"
             },
-            new VisualCrossingSource()
+            new CaiYunSource()
             {
+
                 Name = "VisualCrossing",
                 Description="非开发者友好 50年历史气象数据免费调用",
                 Key = "5SD8RVKRBSBGUKME3SN76M8TD"

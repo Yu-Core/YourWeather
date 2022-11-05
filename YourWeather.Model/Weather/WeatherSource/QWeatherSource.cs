@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,32 @@ namespace YourWeather.Model.Weather.WeatherSource
         public string? Description { get; set; }
         public string? Key { get; set; }
 
-        public async Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon)
+
+        public async Task<WeatherData> WeatherData(double lat, double lon)
         {
-            using HttpClient Http = new HttpClient();
+            //和风天气采用了gzip压缩了数据，需设置HttpClientHandler的AutomaticDecompression，gzip会被自动解压缩
+            var handler = new HttpClientHandler();
+            //Blazor无需配置
+            if(!OperatingSystem.IsBrowser())
+            {
+                handler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            }
+
+            using HttpClient Http = new HttpClient(handler);
+            WeatherLives? lives = await Lives(lat, lon,Http);
+            List<WeatherForecastDay>? forecastDays = await ForecastDay(lat, lon, Http);
+            List<WeatherForecastHours>? forecastHours = await ForecastHours(lat, lon, Http);
+            WeatherData weatherData = new WeatherData()
+            {
+                Lives = lives,
+                ForecastHours = forecastHours,
+                ForecastDay = forecastDays
+            };
+            return weatherData;
+
+        }
+        public async Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon,HttpClient Http)
+        {
             var forecastUrl = $"https://devapi.qweather.com/v7/weather/7d?location={lon},{lat}&key={Key}";
             QWeatherResultForeastDay? forecast = null;
             try
@@ -53,9 +77,8 @@ namespace YourWeather.Model.Weather.WeatherSource
             return forecastDays;
         }
 
-        public async Task<List<WeatherForecastHours>?> ForecastHours(double lat, double lon)
+        public async Task<List<WeatherForecastHours>?> ForecastHours(double lat, double lon,HttpClient Http)
         {
-            using HttpClient Http = new HttpClient();
             var forecastUrl = $"https://devapi.qweather.com/v7/weather/24h?location={lon},{lat}&key={Key}";
             QWeatherResultForeastHours? forecast = null;
             try
@@ -90,15 +113,13 @@ namespace YourWeather.Model.Weather.WeatherSource
             return forecastHours;
         }
 
-        public async Task<WeatherLives?> Lives(double lat, double lon)
+        public async Task<WeatherLives?> Lives(double lat, double lon,HttpClient Http)
         {
-            using HttpClient Http = new HttpClient();
-
-            QWeatherResultCity? city = await GetCityAsync(lat, lon);
+            QWeatherResultCity? city = await GetCityAsync(lat, lon,Http);
 
             if (city == null)
                 return null;
-            
+
             //获取天气实况
             var livesUrl = $"https://devapi.qweather.com/v7/weather/now?location={lon},{lat}&key={Key}";
             QWeatherResultLives? lives = null;
@@ -134,9 +155,8 @@ namespace YourWeather.Model.Weather.WeatherSource
             };
             return weatherLives;
         }
-        public async Task<QWeatherResultCity> GetCityAsync(double lat, double lon)
+        public async Task<QWeatherResultCity> GetCityAsync(double lat, double lon, HttpClient Http)
         {
-            using HttpClient Http = new HttpClient();
             var cityUrl = $"https://geoapi.qweather.com/v2/city/lookup?location={lon},{lat}&key={Key}";
             QWeatherResultCity? city = null;
             try
@@ -145,10 +165,10 @@ namespace YourWeather.Model.Weather.WeatherSource
             }
             catch (Exception)
             {
-
                 throw;
             }
             return city;
         }
+
     }
 }

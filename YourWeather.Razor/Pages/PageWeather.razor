@@ -2,7 +2,11 @@
     <div class="d-flex align-items-center">
         <MCardTitle>
             <h1>
-                @(Temp)℃
+                @if (WeatherData.Lives != null)
+                {
+                    @WeatherData.Lives.Temp
+                }
+                ℃
             </h1>
         </MCardTitle>
         <MAvatar Size="100" Tile>
@@ -10,12 +14,15 @@
         </MAvatar>
     </div>
     <div>
-        @foreach (var item in ForecastDays)
+        @if(WeatherData.ForecastDay != null)
         {
-            <div>@item.Date.ToString("yyyy-MM-dd")</div>
-            <div>@item.Weather</div>
-            <div>@item.MinTemp</div>
-            <div>@item.MaxTemp</div>
+            @foreach (var item in WeatherData.ForecastDay)
+            {
+                <div>@item.Date.ToString("yyyy-MM-dd")</div>
+                <div>@item.Weather</div>
+                <div>@item.MinTemp</div>
+                <div>@item.MaxTemp</div>
+            }
         }
     </div>
     <MButton OnClick="InitWeather">刷新</MButton>
