@@ -1,30 +1,64 @@
-﻿<MCard>
-    <div class="d-flex align-items-center">
-        <MCardTitle>
-            <h1>
-                @if (WeatherData.Lives != null)
-                {
-                    @WeatherData.Lives.Temp
-                }
-                ℃
-            </h1>
-        </MCardTitle>
-        <MAvatar Size="100" Tile>
-            <MIcon XLarge>mdi-weather-cloudy</MIcon>
-        </MAvatar>
+﻿
+<MCard>
+    <div class="d-flex">
+        <div class="flex-grow-1 text--accent-1">
+            @(WeatherData.Lives == null ? string.Empty : WeatherData.Lives.Temp)
+            ℃
+        </div>
+        <div class="flex-grow-1">
+            <MIcon XLarge>
+                mdi-white-balance-sunny
+            </MIcon>
+        </div>
     </div>
+</MCard>
+@if(WeatherData.ForecastHours != null)
+{
     <div>
-        @if(WeatherData.ForecastDay != null)
-        {
+        <div>
+            24小时天气预报
+        </div>
+        <div class="d-flex">
+            @foreach (var item in WeatherData.ForecastHours)
+            {
+                <div>
+                    <div>@item.DateTime.ToString("HH:mm")</div>
+                    <div>
+                        <MIcon>mdi-weather-night</MIcon>
+                    </div>
+                    <div>
+                        @item.Temp
+                    </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+}
+@if (WeatherData.ForecastDay != null)
+{
+    <div>
+        <div>
+            24小时天气预报
+        </div>
+        <div class="d-flex">
             @foreach (var item in WeatherData.ForecastDay)
             {
-                <div>@item.Date.ToString("yyyy-MM-dd")</div>
-                <div>@item.Weather</div>
-                <div>@item.MinTemp</div>
-                <div>@item.MaxTemp</div>
+                <div>
+                    <div>@item.Date.ToString("yyyy-MM-dd")</div>
+                    <div>
+                        <MIcon>mdi-weather-night</MIcon>
+                    </div>
+                    <div>
+                        @item.MinTemp
+                        @item.MaxTemp
+                        @item.Weather
+                    </div>
+                </div>
             }
-        }
+
+        </div>
     </div>
-    <MButton OnClick="InitWeather">刷新</MButton>
-</MCard>
+}
+
 

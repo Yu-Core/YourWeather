@@ -30,6 +30,12 @@ namespace YourWeather.Model.Extend
                 return "西北风";
             return string.Empty;
         }
-
+        public static DateTime ToDateTime(this int timestamp)
+        {
+            string ID = TimeZoneInfo.Local.Id;
+            DateTime start = new DateTime(1970, 1, 1) + TimeZoneInfo.Local.GetUtcOffset(DateTime.Now);
+            DateTime startTime = TimeZoneInfo.ConvertTime(start, TimeZoneInfo.FindSystemTimeZoneById(ID));
+            return startTime.AddSeconds(timestamp);
+        }
     }
 }

@@ -44,6 +44,12 @@ namespace YourWeather.Service
                 Description="调用次数无限制，数据较少，没有逐小时预报",
                 Key = "SJVanI-SKqrgxUj7L"
             },
+            new VisualCrossingSource()
+            {
+                Name = "VisualCrossing",
+                Description ="1000次调用/天，数据较全",
+                Key = "5SD8RVKRBSBGUKME3SN76M8TD"
+            },
             new AmapSource()
             {
                 Name = "高德地图",

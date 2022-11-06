@@ -28,8 +28,8 @@ namespace YourWeather.Model.Weather.WeatherSource
                 return null;
             }
 
-            WeatherLives? live = await Lives(lat, lon, Http, city);
-            List<WeatherForecastDay>? forecastDay = await ForecastDay(lat, lon, Http, city);
+            WeatherLives? live = await Lives(Http, city);
+            List<WeatherForecastDay>? forecastDay = await ForecastDay(Http, city);
 
             WeatherData weatherData = new WeatherData()
             {
@@ -39,7 +39,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             return weatherData;
         }
 
-        public async Task<WeatherLives?> Lives(double lat, double lon,HttpClient Http,string city)
+        public async Task<WeatherLives?> Lives(HttpClient Http,string city)
         {
             
             //获取天气实况
@@ -80,7 +80,7 @@ namespace YourWeather.Model.Weather.WeatherSource
         }
 
 
-        public async Task<List<WeatherForecastDay>?> ForecastDay(double lat, double lon, HttpClient Http, string city)
+        public async Task<List<WeatherForecastDay>?> ForecastDay(HttpClient Http, string city)
         {
             var forecastUrl = $"https://restapi.amap.com/v3/weather/weatherInfo?city={city}&key={Key}&extensions=all";
             AmapResultForecastDay? forecast = null;
