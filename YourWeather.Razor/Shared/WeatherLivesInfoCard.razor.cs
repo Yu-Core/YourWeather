@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace YourWeather.Razor.Shared
 {
-    public partial class WeatherLivesItem
+    public partial class WeatherLivesInfoCard
     {
         [Parameter]
-        public string? Title { get; set; }
+        public string? Value { get; set; }
         [Parameter]
-        public string? SubTitle { get; set; }
+        public string? Name { get; set; }
         [Parameter]
         public string? Icon { get; set; }
         [Parameter]

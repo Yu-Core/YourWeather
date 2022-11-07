@@ -45,6 +45,10 @@ namespace YourWeather.Model.Weather
         /// </summary>
         public string? WindDeg { get; set; }
         /// <summary>
+        /// 风力级别
+        /// </summary>
+        public string? WindScale { get; set; }
+        /// <summary>
         /// 能见度
         /// </summary>
         public string? Visibility { get; set; }
@@ -52,6 +56,10 @@ namespace YourWeather.Model.Weather
         /// 大气压强
         /// </summary>
         public string? Pressure { get; set; }
+        /// <summary>
+        /// 云层
+        /// </summary>
+        public string? Cloud { get; set; }
         public DateTime LastUpdate { get; set; } = DateTime.Now;
     }
 }

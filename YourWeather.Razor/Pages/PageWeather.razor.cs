@@ -20,6 +20,8 @@ namespace YourWeather.Razor.Pages
         private ISettingsService? SettingsService { get; set; }
         [Inject]
         private IThemeService ThemeService { get; set; }
+        [Inject]
+        IJSRuntime JS { get; set; }
         private WeatherData WeatherData { get; set; } = new WeatherData();
         private WeatherLives WeatherLives
         {
@@ -73,6 +75,15 @@ namespace YourWeather.Razor.Pages
             {
                 InitWeather();
             }
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+            }
+            await base.OnAfterRenderAsync(firstRender);
         }
 
         private async void InitWeather()

@@ -42,6 +42,7 @@ namespace YourWeather.Model.Weather.WeatherSource
                 WindDeg = Convert.ToInt32(result.currentConditions.winddir).ToWindDir(),
                 Pressure = Convert.ToInt32(result.currentConditions.pressure).ToString(),
                 Visibility = Convert.ToInt32(result.currentConditions.visibility).ToString(),
+                Cloud = Convert.ToInt32(result.currentConditions.cloudcover).ToString()
             };
             List<WeatherForecastDay> forecastDays = new();
             foreach (var item in result.days)

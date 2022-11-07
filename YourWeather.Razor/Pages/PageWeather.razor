@@ -26,35 +26,75 @@
 </MCard>
 
 <div class="weather-lives-item my-5">
-    <WeatherLivesItem Title="@(WeatherLives.WindDeg)"
-                      SubTitle="风向"
-                      Icon="mdi-sign-direction">
-    </WeatherLivesItem>
-    <WeatherLivesItem Title="@(WeatherLives.WindSpeed)"
-                      SubTitle="风速"
-                      Unit="km/h"
-                      Icon="mdi-weather-windy">
-    </WeatherLivesItem>
-    <WeatherLivesItem Title="@(WeatherLives.Humidity)"
-                      SubTitle="湿度"
-                      Unit="%"
-                      Icon="mdi-water">
-    </WeatherLivesItem>
-    <WeatherLivesItem Title="@(WeatherLives.FeelsLike)"
-                      SubTitle="体感温度"
-                      Unit="℃"
-                      Icon="mdi-thermometer">
-    </WeatherLivesItem>
-    <WeatherLivesItem Title="@(WeatherLives.Pressure)"
-                      SubTitle="大气压"
-                      Unit="hPa"
-                      Icon="mdi-compass">
-    </WeatherLivesItem>
-    <WeatherLivesItem Title="@(WeatherLives.Visibility)"
-                      SubTitle="能见度"
-                      Icon="mdi-eye"
-                      Unit="km">
-    </WeatherLivesItem>
+    <WeatherLivesInfoCard Value="@(WeatherLives.WindDeg)"
+                          Name="风向"
+                          Icon="mdi-sign-direction">
+    </WeatherLivesInfoCard>
+    <WeatherLivesInfoCard Value="@(WeatherLives.WindSpeed)"
+                          Name="风速"
+                          Unit="km/h"
+                          Icon="mdi-weather-windy">
+    </WeatherLivesInfoCard>
+    <WeatherLivesInfoCard Value="@(WeatherLives.WindScale)"
+                          Name="风力等级"
+                          Unit="级"
+                          Icon="mdi-chevron-double-up">
+    </WeatherLivesInfoCard>
+    <WeatherLivesInfoCard Value="@(WeatherLives.Humidity)"
+                          Name="湿度"
+                          Unit="%"
+                          Icon="mdi-water">
+    </WeatherLivesInfoCard>
+    <WeatherLivesInfoCard Value="@(WeatherLives.FeelsLike)"
+                          Name="体感温度"
+                          Unit="℃"
+                          Icon="mdi-thermometer">
+    </WeatherLivesInfoCard>
+    <WeatherLivesInfoCard Value="@(WeatherLives.Pressure)"
+                          Name="大气压"
+                          Unit="hPa"
+                          Icon="mdi-compass">
+    </WeatherLivesInfoCard>
+    <WeatherLivesInfoCard Value="@(WeatherLives.Visibility)"
+                          Name="能见度"
+                          Icon="mdi-eye"
+                          Unit="km">
+    </WeatherLivesInfoCard>
+    <WeatherLivesInfoCard Value="@(WeatherLives.Cloud)"
+                          Name="云量"
+                          Icon="mdi-cloud"
+                          Unit="%">
+    </WeatherLivesInfoCard>
 </div>
+
+@if (WeatherForecastHours != null)
+{
+    <MCard Class="rounded-lg">
+        <MCardTitle>逐小时预报</MCardTitle>
+        <div class="swiper swiper-forecast-hours">
+            <div class="swiper-wrapper">
+                @foreach (var item in WeatherForecastHours)
+                {
+                    <div class="swiper-slide">
+                        <MList>
+                            <MListItem Class="text-body-2">
+                                @item.DateTime.ToString("HH:mm")
+                            </MListItem>
+                            <MListItem Class="d-flex justify-center">
+                                <MIcon Large>
+                                    mdi-white-balance-sunny
+                                </MIcon>
+                            </MListItem>
+                            <MListItem Class="d-flex justify-center">
+                                @(item.Temp + "°")
+                            </MListItem>
+                        </MList>
+                    </div>
+                }
+            </div>
+        </div>
+    </MCard>
+}
+
 
 

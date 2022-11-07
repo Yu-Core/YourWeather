@@ -1,13 +1,13 @@
-﻿@if (!string.IsNullOrEmpty(Title))
+﻿@if (!string.IsNullOrEmpty(Value))
 {
     <MCard Class="rounded-lg">
-        <MListItem ThreeLine>
+        <MListItem ThreeLine Class="mb-md-4">
             <MListItemContent>
                 <MListItemTitle Class="text-h5 mb-1 font-weight-medium">
-                    @Title@Unit
+                    @Value@Unit
                 </MListItemTitle>
                 <MListItemSubtitle>
-                    @SubTitle
+                    @Name
                 </MListItemSubtitle>
             </MListItemContent>
             <MListItemAvatar>
@@ -16,8 +16,6 @@
                 </MIcon>
             </MListItemAvatar>
         </MListItem>
-        <MCardActions>
-        </MCardActions>
     </MCard>
 }
 

@@ -147,10 +147,12 @@ namespace YourWeather.Model.Weather.WeatherSource
                 Temp = lives.now.temp,
                 WindDeg = lives.now.windDir,
                 WindSpeed = lives.now.windSpeed,
+                WindScale = lives.now.windScale,
                 Humidity = lives.now.humidity,
                 FeelsLike = lives.now.feelsLike,
                 Pressure = lives.now.pressure,
                 Visibility = lives.now.vis,
+                Cloud = lives.now.cloud,
             };
             return weatherLives;
         }

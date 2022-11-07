@@ -17,8 +17,17 @@
     grid-row-gap:20px;
 }
 
+.swiper-forecast-hours .swiper-slide {
+    width: auto; /*根据内容调整宽度*/
+}
+
 @media screen and (min-width:960px){
     .weather-lives-item {
         grid-template-columns: repeat(auto-fill,250px);
+    }
+}
+@media screen and (max-width:600px){
+    .weather-lives-item {
+        grid-row-gap: 12px;
     }
 }

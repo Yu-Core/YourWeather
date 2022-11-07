@@ -71,7 +71,7 @@ namespace YourWeather.Model.Weather.WeatherSource
                 Weather = lives.Lives[0].Weather,
                 Temp = lives.Lives[0].Temperature,
                 WindDeg = lives.Lives[0].Winddirection,
-                WindSpeed = lives.Lives[0].Windpower,
+                WindScale = (lives.Lives[0].Windpower??string.Empty).Replace("≤",""),
                 Humidity = lives.Lives[0].Humidity,
             };
             return weatherLives;
