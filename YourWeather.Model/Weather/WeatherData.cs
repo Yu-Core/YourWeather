@@ -10,7 +10,7 @@ namespace YourWeather.Model.Weather
     {
         public WeatherLives? Lives { get; set; }
         public List<WeatherForecastHours>? ForecastHours { get; set; }
-        public List<WeatherForecastDay>? ForecastDay { get; set; }
+        public List<WeatherForecastDay>? ForecastDays { get; set; }
 
     }
 }

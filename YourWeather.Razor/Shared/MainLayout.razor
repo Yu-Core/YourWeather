@@ -2,48 +2,50 @@
 @using YourWeather.Razor.Pages
 
 <MApp Dark="IsDark">
-    <div class="d-flex" style="height:100%;">
-        <MNavigationDrawer Class="d-none d-sm-block"
+    <MMain Class="@(IsDark ?"":"grey lighten-4")">
+        @if (MasaBlazor.Breakpoint.SmAndUp)
+        {
+            <MNavigationDrawer App
                            Permanent>
-            <MList Rounded>
-                <MListItemGroup @bind-Value="SelectItem">
-                    @foreach (var navigationButton in NavigationButtons)
-                    {
-                        <MListItem OnClick="()=>ChangeView(navigationButton.Id)">
-                            <MListItemIcon>
-                                <MIcon>@GetIcon(navigationButton)</MIcon>
-                            </MListItemIcon>
-                            <MListItemTitle>@navigationButton.Title</MListItemTitle>
-                        </MListItem>
-                    }
-                </MListItemGroup>
-            </MList>
-        </MNavigationDrawer>
-        <MMain Class="@(IsDark ?"":"grey lighten-4")">
-            <MContainer>
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div style="margin:4px;">
-                                <PageWeather></PageWeather>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div style="margin:4px;">
-                                <PageLocation></PageLocation>
-                            </div>
+                <MList Rounded>
+                    <MListItemGroup @bind-Value="SelectItem">
+                        @foreach (var navigationButton in NavigationButtons)
+                        {
+                            <MListItem OnClick="()=>ChangeView(navigationButton.Id)">
+                                <MListItemIcon>
+                                    <MIcon>@GetIcon(navigationButton)</MIcon>
+                                </MListItemIcon>
+                                <MListItemTitle>@navigationButton.Title</MListItemTitle>
+                            </MListItem>
+                        }
+                    </MListItemGroup>
+                </MList>
+            </MNavigationDrawer>
+        }
 
+        <MContainer>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div style="margin:4px;">
+                            <PageWeather></PageWeather>
                         </div>
-                        <div class="swiper-slide">
-                            <div style="margin:4px;">
-                                <PageSettings></PageSettings>
-                            </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div style="margin:4px;">
+                            <PageLocation></PageLocation>
+                        </div>
+
+                    </div>
+                    <div class="swiper-slide">
+                        <div style="margin:4px;">
+                            <PageSettings></PageSettings>
                         </div>
                     </div>
                 </div>
-            </MContainer>
-        </MMain>
-    </div>
+            </div>
+        </MContainer>
+    </MMain>
 
     <MBottomNavigation Class="d-flex justify-space-around d-sm-none "
                        @bind-Value="SelectItem"

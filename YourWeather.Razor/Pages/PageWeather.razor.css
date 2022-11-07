@@ -1,0 +1,24 @@
+﻿.weather-baseInfo {
+    display: flex;
+    height:130px;
+    flex-grow:1;
+    align-items:center;
+}
+
+.weather-temp{
+    font-size:5rem;
+    line-height:5rem;
+}
+
+.weather-lives-item {
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,48%);
+    grid-row-gap:20px;
+}
+
+@media screen and (min-width:960px){
+    .weather-lives-item {
+        grid-template-columns: repeat(auto-fill,250px);
+    }
+}

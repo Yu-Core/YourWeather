@@ -35,14 +35,13 @@ namespace YourWeather.Model.Weather.WeatherSource
             WeatherLives lives = new WeatherLives()
             {
                 Weather = result.currentConditions.conditions,
-                Temp = result.currentConditions.temp.ToString(),
-                FeelsLike = result.currentConditions.feelslike.ToString(),
-                Humidity = result.currentConditions.humidity.ToString(),
-                WindSpeed = result.currentConditions.windspeed.ToString(),
+                Temp = Convert.ToInt32(result.currentConditions.temp).ToString(),
+                FeelsLike = Convert.ToInt32(result.currentConditions.feelslike).ToString(),
+                Humidity = Convert.ToInt32(result.currentConditions.humidity).ToString(),
+                WindSpeed = Convert.ToInt32(result.currentConditions.windspeed).ToString(),
                 WindDeg = Convert.ToInt32(result.currentConditions.winddir).ToWindDir(),
-                Pressure = result.currentConditions.pressure.ToString(),
-                Visibility = result.currentConditions.visibility.ToString(),
-                LastUpdate = DateTime.Now,
+                Pressure = Convert.ToInt32(result.currentConditions.pressure).ToString(),
+                Visibility = Convert.ToInt32(result.currentConditions.visibility).ToString(),
             };
             List<WeatherForecastDay> forecastDays = new();
             foreach (var item in result.days)
@@ -52,7 +51,7 @@ namespace YourWeather.Model.Weather.WeatherSource
                     Weather = item.conditions,
                     MaxTemp = Convert.ToInt32(item.tempmax).ToString(),
                     MinTemp = Convert.ToInt32(item.tempmin).ToString(),
-                    Date = DateTime.ParseExact(item.datetime, "yyyy-MM-dd", System.Globalization.CultureInfo.CurrentCulture),
+                    Date = item.datetimeEpoch.ToDateTime(),
                 };
                 forecastDays.Add(forecastDay);
             }
@@ -99,7 +98,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             WeatherData weatherData = new()
             {
                 Lives = lives,
-                ForecastDay = forecastDays,
+                ForecastDays = forecastDays,
                 ForecastHours = forecastHours
             };
             return weatherData;

@@ -62,7 +62,6 @@ namespace YourWeather.Model.Weather.WeatherSource
                 Visibility = lives.visibility.ToString(),
                 MaxTemp = lives.main.temp_max.ToString(),
                 MinTemp = lives.main.temp_min.ToString(),
-                LastUpdate = DateTime.Now
             };
             return weatherLives;
         }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YourWeather.IService;
 using YourWeather.Model;
+using YourWeather.Model.Enum;
 using YourWeather.Model.Weather;
 using YourWeather.Model.Weather.WeatherSource;
 using YourWeather.Service;
@@ -17,8 +18,36 @@ namespace YourWeather.Razor.Pages
     {
         [Inject]
         private ISettingsService? SettingsService { get; set; }
+        [Inject]
+        private IThemeService ThemeService { get; set; }
         private WeatherData WeatherData { get; set; } = new WeatherData();
+        private WeatherLives WeatherLives
+        {
+            get
+            {
+                return WeatherData.Lives ?? new WeatherLives();
+            }
+        }
+        private List<WeatherForecastHours> WeatherForecastHours
+        {
+            get
+            {
+                return WeatherData.ForecastHours ?? new List<WeatherForecastHours>();
+            }
+        }
+        private List<WeatherForecastDay> WeatherForecastDays
+        {
+            get
+            {
+                return WeatherData.ForecastDays ?? new List<WeatherForecastDay>();
+            }
+        }
         private Settings SettinsData => SettingsService.Settings;
+
+        private bool IsDark()
+        {
+            return ThemeService.IsDark(SettinsData.ThemeState);
+        }
 
         private int SelectWeatherSourceIndex
         {

@@ -52,6 +52,6 @@ namespace YourWeather.Model.Weather
         /// 大气压强
         /// </summary>
         public string? Pressure { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; } = DateTime.Now;
     }
 }

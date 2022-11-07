@@ -34,7 +34,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             WeatherData weatherData = new WeatherData()
             {
                 Lives = live,
-                ForecastDay = forecastDay
+                ForecastDays = forecastDay
             };
             return weatherData;
         }
@@ -73,7 +73,6 @@ namespace YourWeather.Model.Weather.WeatherSource
                 WindDeg = lives.Lives[0].Winddirection,
                 WindSpeed = lives.Lives[0].Windpower,
                 Humidity = lives.Lives[0].Humidity,
-                LastUpdate = Convert.ToDateTime(lives.Lives[0].Reporttime)
             };
             return weatherLives;
 

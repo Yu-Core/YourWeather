@@ -1,0 +1,23 @@
+﻿@if (!string.IsNullOrEmpty(Title))
+{
+    <MCard Class="rounded-lg">
+        <MListItem ThreeLine>
+            <MListItemContent>
+                <MListItemTitle Class="text-h5 mb-1 font-weight-medium">
+                    @Title@Unit
+                </MListItemTitle>
+                <MListItemSubtitle>
+                    @SubTitle
+                </MListItemSubtitle>
+            </MListItemContent>
+            <MListItemAvatar>
+                <MIcon XLarge>
+                    @Icon
+                </MIcon>
+            </MListItemAvatar>
+        </MListItem>
+        <MCardActions>
+        </MCardActions>
+    </MCard>
+}
+

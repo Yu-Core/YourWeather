@@ -35,7 +35,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             {
                 Lives = lives,
                 ForecastHours = forecastHours,
-                ForecastDay = forecastDays
+                ForecastDays = forecastDays
             };
             return weatherData;
 
@@ -151,7 +151,6 @@ namespace YourWeather.Model.Weather.WeatherSource
                 FeelsLike = lives.now.feelsLike,
                 Pressure = lives.now.pressure,
                 Visibility = lives.now.vis,
-                LastUpdate = lives.updateTime
             };
             return weatherLives;
         }

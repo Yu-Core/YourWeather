@@ -17,6 +17,8 @@ namespace YourWeather.Razor.Shared
     public partial class MainLayout : IDisposable
     {
         [Inject]
+        private MasaBlazor MasaBlazor { get; set; }
+        [Inject]
         //注入主题服务
         private IThemeService? SystemThemeService { get; set; }
         [Inject]
@@ -56,6 +58,7 @@ namespace YourWeather.Razor.Shared
         protected override Task OnInitializedAsync()
         {
             action = UpdateSelectItem;
+            MasaBlazor.Breakpoint.OnUpdate += () => { return InvokeAsync(StateHasChanged); };
             return base.OnInitializedAsync();
         }
 
@@ -115,11 +118,12 @@ namespace YourWeather.Razor.Shared
 
         public void Dispose()
         {
-            //if (IProjectService!.Project == Project.MAUIBlazor)
-            //{
-            //    SystemThemeService.Onchange -= ChangeTheme;
-            //}
-
+            SystemThemeService.Onchange -= ChangeTheme;
+            if (!OperatingSystem.IsBrowser())
+            {
+                SystemThemeService.ThemeChanged(ThemeState.Light);
+            }
         }
+
     }
 }

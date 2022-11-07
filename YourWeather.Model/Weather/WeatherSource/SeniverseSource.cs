@@ -23,7 +23,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             WeatherData data = new WeatherData()
             {
                 Lives = lives,
-                ForecastDay = forecastDays
+                ForecastDays = forecastDays
             };
             return data;
         }
@@ -86,7 +86,6 @@ namespace YourWeather.Model.Weather.WeatherSource
                 City = lives.results[0].location.name,
                 Weather = lives.results[0].now.text,
                 Temp = lives.results[0].now.temperature,
-                LastUpdate = lives.results[0].last_update
             };
             return weatherLives;
         }

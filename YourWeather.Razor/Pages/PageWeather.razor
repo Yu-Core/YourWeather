@@ -1,64 +1,60 @@
 ﻿
-<MCard>
-    <div class="d-flex">
-        <div class="flex-grow-1 text--accent-1">
-            @(WeatherData.Lives == null ? string.Empty : WeatherData.Lives.Temp)
-            ℃
-        </div>
-        <div class="flex-grow-1">
-            <MIcon XLarge>
-                mdi-white-balance-sunny
-            </MIcon>
-        </div>
-    </div>
+<MCard Class="rounded-lg">
+    <MCardText Style="width:auto;">
+        <MSheet Class="d-flex justify-space-between px-5 px-sm-10">
+            <div class="weather-baseInfo justify-space-around justify-sm-start">
+                <div class=" d-flex align-end">
+                    <span class="weather-temp font-weight-medium">
+                        @((WeatherLives.Temp ?? string.Empty) + "°")
+                    </span>
+                    <span class="text-h6 font-weight-bold">
+                        @(WeatherLives.Weather ?? string.Empty)
+                    </span>
+                </div>
+                <div class="weather-icon ps-sm-10">
+                    <MIcon Class="@($"text-h1 {(IsDark()?"":"black--text")}" )">
+                        mdi-white-balance-sunny
+                    </MIcon>
+                </div>
+            </div>
+            <div class="d-none d-md-flex align-center ps-10 text-h5 font-weight-bold">
+                <span>更新时间：</span>
+                <span>@(WeatherLives.LastUpdate.ToString("HH:mm"))</span>
+            </div>
+        </MSheet>
+    </MCardText>
 </MCard>
-@if(WeatherData.ForecastHours != null)
-{
-    <div>
-        <div>
-            24小时天气预报
-        </div>
-        <div class="d-flex">
-            @foreach (var item in WeatherData.ForecastHours)
-            {
-                <div>
-                    <div>@item.DateTime.ToString("HH:mm")</div>
-                    <div>
-                        <MIcon>mdi-weather-night</MIcon>
-                    </div>
-                    <div>
-                        @item.Temp
-                    </div>
-                </div>
-            }
-            
-        </div>
-    </div>
-}
-@if (WeatherData.ForecastDay != null)
-{
-    <div>
-        <div>
-            24小时天气预报
-        </div>
-        <div class="d-flex">
-            @foreach (var item in WeatherData.ForecastDay)
-            {
-                <div>
-                    <div>@item.Date.ToString("yyyy-MM-dd")</div>
-                    <div>
-                        <MIcon>mdi-weather-night</MIcon>
-                    </div>
-                    <div>
-                        @item.MinTemp
-                        @item.MaxTemp
-                        @item.Weather
-                    </div>
-                </div>
-            }
 
-        </div>
-    </div>
-}
+<div class="weather-lives-item my-5">
+    <WeatherLivesItem Title="@(WeatherLives.WindDeg)"
+                      SubTitle="风向"
+                      Icon="mdi-sign-direction">
+    </WeatherLivesItem>
+    <WeatherLivesItem Title="@(WeatherLives.WindSpeed)"
+                      SubTitle="风速"
+                      Unit="km/h"
+                      Icon="mdi-weather-windy">
+    </WeatherLivesItem>
+    <WeatherLivesItem Title="@(WeatherLives.Humidity)"
+                      SubTitle="湿度"
+                      Unit="%"
+                      Icon="mdi-water">
+    </WeatherLivesItem>
+    <WeatherLivesItem Title="@(WeatherLives.FeelsLike)"
+                      SubTitle="体感温度"
+                      Unit="℃"
+                      Icon="mdi-thermometer">
+    </WeatherLivesItem>
+    <WeatherLivesItem Title="@(WeatherLives.Pressure)"
+                      SubTitle="大气压"
+                      Unit="hPa"
+                      Icon="mdi-compass">
+    </WeatherLivesItem>
+    <WeatherLivesItem Title="@(WeatherLives.Visibility)"
+                      SubTitle="能见度"
+                      Icon="mdi-eye"
+                      Unit="km">
+    </WeatherLivesItem>
+</div>
 
 
