@@ -25,6 +25,8 @@ namespace YourWeather.Razor.Pages
         IJSRuntime JS { get; set; }
         [Inject]
         private WeatherService? WeatherService { get; set; }
+        private string GetWeatherIcon(string weather) => WeatherService.GetWeatherIcon(weather);
+        private string GetWeatherIcon(string weather, DateTime dateTime) => WeatherService.GetWeatherIcon(weather, dateTime);
         private bool LoadingUpadateWeather = false;
         private WeatherData WeatherData { get; set; } = new WeatherData();
         private WeatherLives WeatherLives

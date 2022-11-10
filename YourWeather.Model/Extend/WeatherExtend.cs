@@ -8,6 +8,12 @@ namespace YourWeather.Model.Extend
 {
     public static class WeatherExtend
     {
+        private static Dictionary<string, string> VisualCrossingDic = new Dictionary<string, string>()
+        {
+            {"晴朗","晴" },
+            {"部分多云","少云" },
+            {"阴云密布","多云" },
+        };
         public static string ToWindDir(this int windeg)
         {
             if (windeg < 0 || windeg > 360)
@@ -36,6 +42,19 @@ namespace YourWeather.Model.Extend
             DateTime start = new DateTime(1970, 1, 1) + TimeZoneInfo.Local.GetUtcOffset(DateTime.Now);
             DateTime startTime = TimeZoneInfo.ConvertTime(start, TimeZoneInfo.FindSystemTimeZoneById(ID));
             return startTime.AddSeconds(timestamp);
+        }
+        public static string ToWeather(this string weather)
+        {
+            if (string.IsNullOrEmpty(weather))
+                return "未知";
+
+            weather = weather.Split(",")[0];
+            if (VisualCrossingDic.ContainsKey(weather))
+            {
+                weather = VisualCrossingDic[weather];
+            }
+
+            return weather;
         }
     }
 }

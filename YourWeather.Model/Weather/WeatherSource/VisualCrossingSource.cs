@@ -34,7 +34,7 @@ namespace YourWeather.Model.Weather.WeatherSource
                 return null;
             WeatherLives lives = new WeatherLives()
             {
-                Weather = result.currentConditions.conditions,
+                Weather = result.currentConditions.conditions.ToWeather(),
                 Temp = Convert.ToInt32(result.currentConditions.temp).ToString(),
                 FeelsLike = Convert.ToInt32(result.currentConditions.feelslike).ToString(),
                 Humidity = Convert.ToInt32(result.currentConditions.humidity).ToString(),
@@ -49,7 +49,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             {
                 WeatherForecastDay forecastDay = new WeatherForecastDay()
                 {
-                    Weather = item.conditions,
+                    Weather = item.conditions.ToWeather(),
                     MaxTemp = Convert.ToInt32(item.tempmax).ToString(),
                     MinTemp = Convert.ToInt32(item.tempmin).ToString(),
                     Date = item.datetimeEpoch.ToDateTime(),
@@ -90,7 +90,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             {
                 WeatherForecastHours forecastHour = new WeatherForecastHours()
                 {
-                    Weather = item.conditions,
+                    Weather = item.conditions.ToWeather(),
                     Temp = Convert.ToInt32(item.temp).ToString(),
                     DateTime = item.datetimeEpoch.ToDateTime(),
                 };

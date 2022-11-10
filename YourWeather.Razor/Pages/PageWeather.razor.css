@@ -25,51 +25,6 @@
     width: auto; /*根据内容调整宽度*/
 }
 
-.custom-loader {
-    animation: loader 1s infinite;
-    display: flex;
-}
-
-@("@-moz-keyframes") loader {
-    from {
-        transform: rotate(0);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@("@-webkit-keyframes") loader {
-    from {
-        transform: rotate(0);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@("@-o-keyframes") loader {
-    from {
-        transform: rotate(0);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@("@keyframes") loader {
-    from {
-        transform: rotate(0);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 @media screen and (min-width:960px) and (max-width:1264px) {
     .weather-lives-item ::deep > * {
         width: 32%;

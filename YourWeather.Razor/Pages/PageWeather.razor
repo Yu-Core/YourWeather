@@ -12,9 +12,9 @@
                     </span>
                 </div>
                 <div class="weather-icon ps-sm-10">
-                    <MIcon Class="text-h1">
-                        mdi-white-balance-sunny
-                    </MIcon>
+                    <i class="m-icon text-h1 @(IsDark()?"white--text":"black--text") @(GetWeatherIcon(WeatherLives.Weather,WeatherLives.LastUpdate))">
+
+                    </i>
                 </div>
             </div>
             <MSubheader Class="d-none d-md-flex align-center text-h5 font-weight-bold">
@@ -48,9 +48,7 @@
                                 @(WeatherForecastHours.IndexOf(item) == 0 ? "现在" : item.DateTime.ToString("HH:mm"))
                             </MListItem>
                             <MListItem Class="d-flex justify-center">
-                                <MIcon Large>
-                                    mdi-white-balance-sunny
-                                </MIcon>
+                                <i class="m-icon @(IsDark()?"theme--dark":"theme--light") @(GetWeatherIcon(item.Weather,item.DateTime))"></i>
                             </MListItem>
                             <MListItem Class="d-flex justify-center">
                                 @(item.Temp + "°")
@@ -77,9 +75,7 @@
                     </MListItemTitle>
 
                     <MListItemTitle>
-                        <MIcon Large>
-                            mdi-white-balance-sunny
-                        </MIcon>
+                        <i class="m-icon @(IsDark()?"theme--dark":"theme--light") @(GetWeatherIcon(item.Weather))"></i>
                         @(item.Weather)
                     </MListItemTitle>
 

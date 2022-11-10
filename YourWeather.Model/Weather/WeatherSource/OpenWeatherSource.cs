@@ -53,15 +53,15 @@ namespace YourWeather.Model.Weather.WeatherSource
             {
                 City = lives.name,
                 Weather = lives.weather[0].description,
-                Temp = lives.main.temp.ToString(),
+                Temp = Convert.ToInt32( lives.main.temp).ToString(),
                 WindDeg = lives.wind.deg.ToWindDir(),
                 WindSpeed = lives.wind.speed.ToString(),
                 Humidity = lives.main.humidity.ToString(),
-                FeelsLike = lives.main.feels_like.ToString(),
+                FeelsLike = Convert.ToInt32(lives.main.feels_like).ToString(),
                 Pressure = lives.main.pressure.ToString(),
-                Visibility = lives.visibility.ToString(),
-                MaxTemp = lives.main.temp_max.ToString(),
-                MinTemp = lives.main.temp_min.ToString(),
+                Visibility = (Convert.ToInt32(lives.visibility)/1000).ToString(),
+                MaxTemp = Convert.ToInt32(lives.main.temp_max).ToString(),
+                MinTemp = Convert.ToInt32(lives.main.temp_min).ToString(),
                 Cloud = lives.clouds.all.ToString(),
             };
             return weatherLives;
