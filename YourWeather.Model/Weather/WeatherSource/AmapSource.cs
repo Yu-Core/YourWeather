@@ -70,8 +70,8 @@ namespace YourWeather.Model.Weather.WeatherSource
                 City = lives.Lives[0].City,
                 Weather = lives.Lives[0].Weather,
                 Temp = lives.Lives[0].Temperature,
-                WindDeg = lives.Lives[0].Winddirection,
-                WindScale = (lives.Lives[0].Windpower??string.Empty).Replace("≤",""),
+                WindDeg = lives.Lives[0].Winddirection + "风",
+                WindScale = (lives.Lives[0].Windpower??string.Empty).Replace("≤","") ,
                 Humidity = lives.Lives[0].Humidity,
             };
             return weatherLives;

@@ -6,8 +6,8 @@ function initSwiper() {
         spaceBetween: 12,
         observer: true,
         observeParents: true,
+        observeSlideChildren: true, 
         autoHeight: true,
-        updateOnWindowResize: true,
         noSwipingClass: 'swiper-forecast-hours',
         on: {
             slideChangeTransitionEnd: function () {
@@ -15,12 +15,12 @@ function initSwiper() {
                 //alert(this.activeIndex);//切换结束时，告诉我现在是第几个slide
             },
         },
-        breakpoints: {
-            600: {  
-                direction: 'vertical',
-                spaceBetween: 0
-            }
-        }
+        //breakpoints: {
+        //    600: {  
+        //        direction: 'vertical',
+        //        spaceBetween: 0
+        //    }
+        //}
     });
 }
 
@@ -32,4 +32,10 @@ function initSwiperForecastHours() {
     var forecastHoursSwiper = new Swiper('.swiper-forecast-hours', {
         slidesPerView: 'auto',
     })
+}
+
+function swiperUpdateSize() {
+    setTimeout(()=>{
+        window.swiper.update();
+    },1500);
 }

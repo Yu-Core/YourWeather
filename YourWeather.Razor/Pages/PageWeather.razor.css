@@ -1,33 +1,50 @@
 ﻿.weather-baseInfo {
     display: flex;
-    height:130px;
-    flex-grow:1;
-    align-items:center;
+    height: 130px;
+    flex-grow: 1;
+    align-items: center;
 }
 
-.weather-temp{
-    font-size:5rem;
-    line-height:5rem;
+.weather-temp {
+    font-size: 5rem;
+    line-height: 5rem;
 }
 
 .weather-lives-item {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,48%);
-    grid-row-gap:20px;
 }
+
+    .weather-lives-item ::deep > * {
+        width: 48%;
+        margin-bottom: 20px;
+    }
 
 .swiper-forecast-hours .swiper-slide {
     width: auto; /*根据内容调整宽度*/
 }
 
-@media screen and (min-width:960px){
-    .weather-lives-item {
-        grid-template-columns: repeat(auto-fill,250px);
+@media screen and (min-width:960px) and (max-width:1264px) {
+    .weather-lives-item ::deep > * {
+        width: 32%;
     }
+
+        .weather-lives-item ::deep > *:last-child:nth-child(3n + 5) {
+            margin-right: 34%;
+        }
 }
-@media screen and (max-width:600px){
-    .weather-lives-item {
-        grid-row-gap: 12px;
+
+@media screen and (min-width:1264px){
+    .weather-lives-item ::deep > * {
+        width: 23%;
     }
+
+        .weather-lives-item ::deep > *:last-child:nth-child(4n + 6) {
+            margin-right: calc(46% + 8% / 3 * 2);
+        }
+
+        .weather-lives-item ::deep > *:last-child:nth-child(4n + 7) {
+            margin-right: calc(23% + 8% / 3 );
+        }
 }

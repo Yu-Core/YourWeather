@@ -67,7 +67,7 @@ namespace YourWeather.Razor.Shared
             if (firstRender)
             {
                 await JSRuntime.InvokeVoidAsync("initSwiper", null);
-
+                await JSRuntime.InvokeVoidAsync("swiperUpdateSize", null);
                 InitTheme();
 
             }

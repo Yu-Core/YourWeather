@@ -1,7 +1,7 @@
 ﻿
-<MCard Class="rounded-lg">
+<MCard Class="rounded-lg my-5">
     <MCardText Style="width:auto;">
-        <MSheet Class="d-flex justify-space-between px-5 px-sm-10">
+        <MSheet Class="d-flex justify-space-between align-center px-sm-10">
             <div class="weather-baseInfo justify-space-around justify-sm-start">
                 <div class=" d-flex align-end">
                     <span class="weather-temp font-weight-medium">
@@ -12,18 +12,70 @@
                     </span>
                 </div>
                 <div class="weather-icon ps-sm-10">
-                    <MIcon Class="@($"text-h1 {(IsDark()?"":"black--text")}" )">
+                    <MIcon Class="text-h1">
                         mdi-white-balance-sunny
                     </MIcon>
                 </div>
             </div>
-            <div class="d-none d-md-flex align-center ps-10 text-h5 font-weight-bold">
+            <MSubheader Class="d-none d-md-flex align-center text-h5 font-weight-bold">
                 <span>更新时间：</span>
                 <span>@(WeatherLives.LastUpdate.ToString("HH:mm"))</span>
-            </div>
+            </MSubheader>
         </MSheet>
     </MCardText>
 </MCard>
+
+
+<MCard Class="rounded-lg my-5">
+    <MCardTitle>逐小时预报</MCardTitle>
+    <div class="swiper swiper-forecast-hours">
+        <div class="swiper-wrapper">
+            @foreach (var item in WeatherForecastHours)
+            {
+                <div class="swiper-slide">
+                    <MList>
+                        <MListItem Class="text-body-2">
+                            @item.DateTime.ToString("HH:mm")
+                        </MListItem>
+                        <MListItem Class="d-flex justify-center">
+                            <MIcon Large>
+                                mdi-white-balance-sunny
+                            </MIcon>
+                        </MListItem>
+                        <MListItem Class="d-flex justify-center">
+                            @(item.Temp + "°")
+                        </MListItem>
+                    </MList>
+                </div>
+            }
+        </div>
+    </div>
+</MCard>
+
+
+<MCard Class="rounded-lg my-5">
+    <MCardTitle>未来几日天气预报</MCardTitle>
+    <MList>
+        @foreach (var item in WeatherForecastDays)
+        {
+            <MListItem>
+                <MListItemTitle>@item.Date.DayOfWeek.ToWeek()</MListItemTitle>
+
+                <MListItemIcon>
+                    <MIcon Large>
+                        mdi-white-balance-sunny
+                    </MIcon>
+                </MListItemIcon>
+
+                <MListItemSubtitle Class="text-right">
+                    <span>@(item.MaxTemp + "°")</span>
+                    <span>@("/" + item.MinTemp + "°")</span>
+                </MListItemSubtitle>
+            </MListItem>
+        }
+    </MList>
+</MCard>
+
 
 <div class="weather-lives-item my-5">
     <WeatherLivesInfoCard Value="@(WeatherLives.WindDeg)"
@@ -66,35 +118,5 @@
                           Unit="%">
     </WeatherLivesInfoCard>
 </div>
-
-@if (WeatherForecastHours != null)
-{
-    <MCard Class="rounded-lg">
-        <MCardTitle>逐小时预报</MCardTitle>
-        <div class="swiper swiper-forecast-hours">
-            <div class="swiper-wrapper">
-                @foreach (var item in WeatherForecastHours)
-                {
-                    <div class="swiper-slide">
-                        <MList>
-                            <MListItem Class="text-body-2">
-                                @item.DateTime.ToString("HH:mm")
-                            </MListItem>
-                            <MListItem Class="d-flex justify-center">
-                                <MIcon Large>
-                                    mdi-white-balance-sunny
-                                </MIcon>
-                            </MListItem>
-                            <MListItem Class="d-flex justify-center">
-                                @(item.Temp + "°")
-                            </MListItem>
-                        </MList>
-                    </div>
-                }
-            </div>
-        </div>
-    </MCard>
-}
-
 
 
