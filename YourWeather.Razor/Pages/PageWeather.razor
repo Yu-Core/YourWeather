@@ -18,6 +18,15 @@
                 </div>
             </div>
             <MSubheader Class="d-none d-md-flex align-center text-h5 font-weight-bold">
+                <MButton Icon
+                         XLarge
+                         Loading="LoadingUpadateWeather"
+                         Disabled="LoadingUpadateWeather"
+                         OnClick="UpadateWeather">
+                    <MIcon>
+                        mdi-rotate-3d-variant
+                    </MIcon>
+                </MButton>
                 <span>更新时间：</span>
                 <span>@(WeatherLives.LastUpdate.ToString("HH:mm"))</span>
             </MSubheader>
@@ -25,56 +34,65 @@
     </MCardText>
 </MCard>
 
-
-<MCard Class="rounded-lg my-5">
-    <MCardTitle>逐小时预报</MCardTitle>
-    <div class="swiper swiper-forecast-hours">
-        <div class="swiper-wrapper">
-            @foreach (var item in WeatherForecastHours)
-            {
-                <div class="swiper-slide">
-                    <MList>
-                        <MListItem Class="text-body-2">
-                            @item.DateTime.ToString("HH:mm")
-                        </MListItem>
-                        <MListItem Class="d-flex justify-center">
-                            <MIcon Large>
-                                mdi-white-balance-sunny
-                            </MIcon>
-                        </MListItem>
-                        <MListItem Class="d-flex justify-center">
-                            @(item.Temp + "°")
-                        </MListItem>
-                    </MList>
-                </div>
-            }
+@if (WeatherForecastHours != null)
+{
+    <MCard Class="rounded-lg my-5">
+        <MCardTitle>逐小时预报</MCardTitle>
+        <div class="swiper swiper-forecast-hours">
+            <div class="swiper-wrapper">
+                @foreach (var item in WeatherForecastHours)
+                {
+                    <div class="swiper-slide">
+                        <MList>
+                            <MListItem Class="text-body-2">
+                                @(WeatherForecastHours.IndexOf(item) == 0 ? "现在" : item.DateTime.ToString("HH:mm"))
+                            </MListItem>
+                            <MListItem Class="d-flex justify-center">
+                                <MIcon Large>
+                                    mdi-white-balance-sunny
+                                </MIcon>
+                            </MListItem>
+                            <MListItem Class="d-flex justify-center">
+                                @(item.Temp + "°")
+                            </MListItem>
+                        </MList>
+                    </div>
+                }
+            </div>
         </div>
-    </div>
-</MCard>
+    </MCard>
+}
 
 
-<MCard Class="rounded-lg my-5">
-    <MCardTitle>未来几日天气预报</MCardTitle>
-    <MList>
-        @foreach (var item in WeatherForecastDays)
-        {
-            <MListItem>
-                <MListItemTitle>@item.Date.DayOfWeek.ToWeek()</MListItemTitle>
+@if (WeatherForecastDays != null)
+{
+    <MCard Class="rounded-lg my-5">
+        <MCardTitle>近日天气预报</MCardTitle>
+        <MList>
+            @foreach (var item in WeatherForecastDays)
+            {
+                <MListItem>
+                    <MListItemTitle>
+                        @(WeatherForecastDays.IndexOf(item) == 0 ? "今天" : item.Date.DayOfWeek.ToWeek())
+                    </MListItemTitle>
 
-                <MListItemIcon>
-                    <MIcon Large>
-                        mdi-white-balance-sunny
-                    </MIcon>
-                </MListItemIcon>
+                    <MListItemTitle>
+                        <MIcon Large>
+                            mdi-white-balance-sunny
+                        </MIcon>
+                        @(item.Weather)
+                    </MListItemTitle>
 
-                <MListItemSubtitle Class="text-right">
-                    <span>@(item.MaxTemp + "°")</span>
-                    <span>@("/" + item.MinTemp + "°")</span>
-                </MListItemSubtitle>
-            </MListItem>
-        }
-    </MList>
-</MCard>
+                    <MListItemSubtitle Class="text-right">
+                        <span class="text-subtitle-1 @(IsDark()?"white--text":"black--text")">@(item.MaxTemp + "°")</span>
+                        <span>@("/" + item.MinTemp + "°")</span>
+                    </MListItemSubtitle>
+                </MListItem>
+            }
+        </MList>
+    </MCard>
+}
+
 
 
 <div class="weather-lives-item my-5">

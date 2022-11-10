@@ -26,6 +26,8 @@ namespace YourWeather.Razor.Pages
         private ISettingsService? SettingsService { get; set; }
         [Inject]
         private IThemeService? ThemeService { get; set; }
+        [Inject]
+        private WeatherService? WeatherService { get; set; }
 
         #endregion
 
@@ -119,6 +121,7 @@ namespace YourWeather.Razor.Pages
             {
                 _dialogWeatherSource = false;
                 SelectWeatherSourceIndex = WeatherSourceItems.IndexOf(value);
+                WeatherSourceChange();
             }
         }
 
@@ -149,7 +152,10 @@ namespace YourWeather.Razor.Pages
         {
             ThemeService.ThemeChanged(SettinsData.ThemeState);
         }
-
+        private void WeatherSourceChange()
+        {
+            WeatherService.SourceChange();
+        }
         #endregion
 
     }

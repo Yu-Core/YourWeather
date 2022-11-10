@@ -16,6 +16,7 @@ namespace YourWeather.BlazorWasm.Extend
             services.AddScoped<IThemeService, ThemeService>();
             services.AddScoped<ISystemService, SystemService>();
             services.AddScoped<ISettingsService, SettingsService>();
+            services.AddScoped<WeatherService>();
             return services;
         }
     }

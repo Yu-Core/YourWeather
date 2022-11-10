@@ -10,6 +10,10 @@ namespace YourWeather.Service
 {
     public class WeatherService
     {
-        
+        public event Action? OnChange;
+        public void SourceChange()
+        {
+            OnChange?.Invoke();
+        }
     }
 }
