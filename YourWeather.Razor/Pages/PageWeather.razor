@@ -4,7 +4,7 @@
         <MSheet Class="d-flex justify-space-between align-center px-sm-10">
             <div class="weather-baseInfo justify-space-around justify-sm-start">
                 <div class=" d-flex align-end">
-                    <span class="weather-temp font-weight-medium">
+                    <span class="text-h2 font-weight-medium">
                         @((WeatherLives.Temp ?? string.Empty) + "°")
                     </span>
                     <span class="text-h6 font-weight-bold">
@@ -12,21 +12,29 @@
                     </span>
                 </div>
                 <div class="weather-icon ps-sm-10">
-                    <i class="m-icon text-h1 @(IsDark()?"white--text":"black--text") @(GetWeatherIcon(WeatherLives.Weather,WeatherLives.LastUpdate))">
+                    <i class="m-icon text-h1 @(IsDark()?"theme--dark":"theme--light") @(GetWeatherIcon(WeatherLives.Weather,WeatherLives.LastUpdate))">
 
                     </i>
                 </div>
             </div>
             <MSubheader Class="d-none d-md-flex align-center text-h5 font-weight-bold">
-                <MButton Icon
-                         XLarge
-                         Loading="LoadingUpadateWeather"
-                         Disabled="LoadingUpadateWeather"
-                         OnClick="UpadateWeather">
-                    <MIcon>
-                        mdi-rotate-3d-variant
-                    </MIcon>
-                </MButton>
+                <MTooltip Bottom>
+                    <ActivatorContent>
+                        <MButton @attributes="@context.Attrs"
+                                 Icon
+                                 XLarge
+                                 Loading="LoadingUpadateWeather"
+                                 Disabled="LoadingUpadateWeather"
+                                 OnClick="UpadateWeather">
+                            <MIcon>
+                                mdi-rotate-3d-variant
+                            </MIcon>
+                        </MButton>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <span>刷新</span>
+                    </ChildContent>
+                </MTooltip>
                 <span>更新时间：</span>
                 <span>@(WeatherLives.LastUpdate.ToString("HH:mm"))</span>
             </MSubheader>
@@ -37,13 +45,14 @@
 @if (WeatherForecastHours != null)
 {
     <MCard Class="rounded-lg my-5">
-        <MCardTitle>逐小时预报</MCardTitle>
+        <MCardTitle Class="d-none d-sm-flex">逐小时预报</MCardTitle>
+        <MSubheader Class="d-sm-none">逐小时预报</MSubheader>
         <div class="swiper swiper-forecast-hours">
             <div class="swiper-wrapper">
                 @foreach (var item in WeatherForecastHours)
                 {
                     <div class="swiper-slide">
-                        <MList>
+                        <MList Dense="!MasaBlazor.Breakpoint.SmAndUp">
                             <MListItem Class="text-body-2">
                                 @(WeatherForecastHours.IndexOf(item) == 0 ? "现在" : item.DateTime.ToString("HH:mm"))
                             </MListItem>
@@ -65,8 +74,9 @@
 @if (WeatherForecastDays != null)
 {
     <MCard Class="rounded-lg my-5">
-        <MCardTitle>近日天气预报</MCardTitle>
-        <MList>
+        <MCardTitle Class="d-none d-sm-flex">近日天气预报</MCardTitle>
+        <MSubheader Class="d-sm-none">近日天气预报</MSubheader>
+        <MList Dense="MasaBlazor.Breakpoint.Xs">
             @foreach (var item in WeatherForecastDays)
             {
                 <MListItem>

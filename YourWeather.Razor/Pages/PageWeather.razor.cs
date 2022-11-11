@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Masa.Blazor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,9 @@ namespace YourWeather.Razor.Pages
         IJSRuntime JS { get; set; }
         [Inject]
         private WeatherService? WeatherService { get; set; }
+        [Inject]
+        private MasaBlazor MasaBlazor { get; set; }
+
         private string GetWeatherIcon(string weather) => WeatherService.GetWeatherIcon(weather);
         private string GetWeatherIcon(string weather, DateTime dateTime) => WeatherService.GetWeatherIcon(weather, dateTime);
         private bool LoadingUpadateWeather = false;
@@ -82,13 +86,14 @@ namespace YourWeather.Razor.Pages
                 InitWeather();
             }
             WeatherService.OnChange += InitWeather;
+            MasaBlazor.Breakpoint.OnUpdate += () => { return InvokeAsync(StateHasChanged); };
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-                await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+                //await JS.InvokeVoidAsync("initSwiperForecastHours", null);
             }
             await base.OnAfterRenderAsync(firstRender);
         }
@@ -97,6 +102,8 @@ namespace YourWeather.Razor.Pages
         {
             WeatherData = await SelectWeatherSourceItem.WeatherData(42.296082, 121.903438);
             await InvokeAsync(StateHasChanged);
+            await JS.InvokeVoidAsync("updateSwiper", null);
+            await JS.InvokeVoidAsync("initSwiperForecastHours", null);
         }
         private void UpadateWeather()
         {
