@@ -97,37 +97,37 @@
                         </MIcon>
                         @(SelectCodeSourceItem.Text)
                         <MIcon>@(_dialogSourceCode ? "mdi-chevron-up" : "mdi-chevron-down")</MIcon>
-                    </MButton>
-                </div>
+                        </MButton>
+                    </div>
 
-            </MListItemAction>
+                </MListItemAction>
 
-        </MListItem>
+            </MListItem>
 
-        <MDivider Class="mx-3 mx-sm-0"></MDivider>
+            <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-        <MListItem>
-            <MListItemContent>
-                第三方版权
-            </MListItemContent>
-            <MListItemAction>
-                <MIcon>mdi-chevron-right</MIcon>
-            </MListItemAction>
-        </MListItem>
+            <MListItem>
+                <MListItemContent>
+                    第三方版权
+                </MListItemContent>
+                <MListItemAction>
+                    <MIcon>mdi-chevron-right</MIcon>
+                </MListItemAction>
+            </MListItem>
 
-        <MDivider Class="mx-3 mx-sm-0"></MDivider>
+            <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-        <MListItem>
-            <MListItemContent>
-                日志
-            </MListItemContent>
-            <MListItemAction>
-                <MIcon>mdi-chevron-right</MIcon>
-            </MListItemAction>
-        </MListItem>
+            <MListItem>
+                <MListItemContent>
+                    日志
+                </MListItemContent>
+                <MListItemAction>
+                    <MIcon>mdi-chevron-right</MIcon>
+                </MListItemAction>
+            </MListItem>
 
-    </MList>
-</MCard>
+        </MList>
+    </MCard>
 @if (!OperatingSystem.IsBrowser())
 {
     <MCard>
@@ -224,6 +224,15 @@
     <MCard>
         <MCardTitle>
             更改语言
+            <MTooltip Bottom>
+                <ActivatorContent>
+                    <MIcon @attributes="@context.Attrs">mdi-information-outline</MIcon>
+                </ActivatorContent>
+                <ChildContent>
+                    <span>暂不可用</span>
+                </ChildContent>
+            </MTooltip>
+            
             <MSpacer></MSpacer>
             <MButton Icon OnClick="()=>_dialogLanguage= false">
                 <MIcon>mdi-close</MIcon>
@@ -232,6 +241,7 @@
         <MDivider></MDivider>
         <MCardText>
             <MRadioGroup @bind-Value="SelectLanguageItem"
+                         Disabled
                          Mandatory>
                 @foreach (var item in LanguageItems)
                 {

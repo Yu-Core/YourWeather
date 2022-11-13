@@ -1,4 +1,5 @@
-﻿using Masa.Blazor;
+﻿using BlazorComponent;
+using Masa.Blazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using YourWeather.IService;
 using YourWeather.Model;
 using YourWeather.Model.Enum;
+using YourWeather.Model.Location;
 using YourWeather.Model.Weather;
 using YourWeather.Model.Weather.WeatherSource;
 using YourWeather.Service;
@@ -28,6 +30,10 @@ namespace YourWeather.Razor.Pages
         private WeatherService? WeatherService { get; set; }
         [Inject]
         private MasaBlazor MasaBlazor { get; set; }
+        [Inject]
+        private ILocationService LocationService { get; set; }
+        [Inject]
+        private IPopupService PopupService { get; set; }
 
         private string GetWeatherIcon(string weather) => WeatherService.GetWeatherIcon(weather);
         private string GetWeatherIcon(string weather, DateTime dateTime) => WeatherService.GetWeatherIcon(weather, dateTime);
@@ -75,7 +81,7 @@ namespace YourWeather.Razor.Pages
 
         private List<IWeatherSource> WeatherSourceItems => StaticDataService.WeatherSources;
 
-        protected override void OnInitialized()
+        protected async override Task OnInitializedAsync()
         {
             if (OperatingSystem.IsBrowser())
             {
@@ -85,25 +91,26 @@ namespace YourWeather.Razor.Pages
             {
                 InitWeather();
             }
+
             WeatherService.OnChange += InitWeather;
             MasaBlazor.Breakpoint.OnUpdate += () => { return InvokeAsync(StateHasChanged); };
         }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                //await JS.InvokeVoidAsync("initSwiperForecastHours", null);
-            }
-            await base.OnAfterRenderAsync(firstRender);
-        }
 
         private async void InitWeather()
         {
-            WeatherData = await SelectWeatherSourceItem.WeatherData(42.296082, 121.903438);
-            await InvokeAsync(StateHasChanged);
-            await JS.InvokeVoidAsync("updateSwiper", null);
-            await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+            var result = await LocationService.GetLocation();
+            if (result.IsSuccess)
+            {
+                WeatherData = await SelectWeatherSourceItem.WeatherData(result.Data.Latitude, result.Data.Longitude);
+                await InvokeAsync(StateHasChanged);
+                await JS.InvokeVoidAsync("updateSwiper", null);
+                await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+            }
+            else
+            {
+                await PopupService.ConfirmAsync("定位失败", result.Message, AlertTypes.Error);
+            }
         }
         private void UpadateWeather()
         {
