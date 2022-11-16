@@ -133,7 +133,7 @@ namespace YourWeather.Razor.Pages
         #region 方法
         protected override Task OnInitializedAsync()
         {
-            SettingsService.OnChange += StateHasChanged;
+            SettingsService.OnInit += StateHasChanged;
             return base.OnInitializedAsync();
         }
 

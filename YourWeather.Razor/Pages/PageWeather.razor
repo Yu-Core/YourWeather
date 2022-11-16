@@ -143,4 +143,37 @@
     </WeatherLivesInfoCard>
 </div>
 
+<MDialog @bind-Value="ShowErrorDialog"
+         MaxWidth="420"
+         Persistent="!OperatingSystem.IsBrowser()">
+    <MCard>
+        <MCardTitle>
+            <MIcon Class="error--text mr-2">
+                mdi-close-circle-outline
+            </MIcon>
+            @ErrorDialogTitle
+        </MCardTitle>
+        <MCardText>
+            @ErrorDialogText
+        </MCardText>
+        <MCardActions>
+            <MSpacer></MSpacer>
+            @if (OperatingSystem.IsBrowser())
+            {
+                <MButton Text OnClick="()=>ShowErrorDialog=false">
+                    取消
+                </MButton>
+                <MButton Text Class="error--text" OnClick="()=>ShowErrorDialog=false">
+                    确认
+                </MButton>
+            }
+            else
+            {
+                <MButton Text OnClick="()=>SystemService.ExitApp()">
+                    退出
+                </MButton>
+            }
 
+        </MCardActions>
+    </MCard>
+</MDialog>

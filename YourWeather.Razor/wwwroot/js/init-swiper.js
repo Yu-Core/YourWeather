@@ -33,7 +33,7 @@ function initSwiperForecastHours() {
         touchAngle: 90,
         freeMode: {
             enabled: true,
-            momentumRatio: 2,
+           /* momentumRatio: 2,*/
             momentumVelocityRatio: 2,
         },
     });

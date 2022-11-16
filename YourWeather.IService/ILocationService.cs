@@ -10,6 +10,7 @@ namespace YourWeather.IService
 {
     public interface ILocationService
     {
-        Task<Result<LocationData>> GetLocation();
+        public LocationData SelectedLocation { get; set; }
+        Task<Result<LocationData>> GetCurrentLocation();
     }
 }

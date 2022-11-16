@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.WebView.Maui;
+﻿using Darnton.Blazor.DeviceInterop.Geolocation;
+using Microsoft.AspNetCore.Components.WebView.Maui;
 using YourWeather.MAUIBlazor.Extend;
 using YourWeather.MAUIBlazor.Service;
 using YourWeather.Razor;
@@ -23,6 +24,8 @@ namespace YourWeather.MAUIBlazor
             builder.Services.AddBlazorWebViewDeveloperTools();
 #endif
             builder.Services.AddMasaBlazor();
+
+            builder.Services.AddScoped<IGeolocationService, GeolocationService>();
 
             builder.Services.AddCustomIOC();
 

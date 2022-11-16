@@ -33,11 +33,15 @@ namespace YourWeather.Razor.Pages
         [Inject]
         private ILocationService LocationService { get; set; }
         [Inject]
-        private IPopupService PopupService { get; set; }
+        private ISystemService SystemService { get; set; }
 
         private string GetWeatherIcon(string weather) => WeatherService.GetWeatherIcon(weather);
         private string GetWeatherIcon(string weather, DateTime dateTime) => WeatherService.GetWeatherIcon(weather, dateTime);
         private bool LoadingUpadateWeather = false;
+        private string ErrorDialogTitle = string.Empty;
+        private string ErrorDialogText = string.Empty;
+        private bool ShowErrorDialog = false;
+        private LocationData SelectedLocation => LocationService.SelectedLocation;
         private WeatherData WeatherData { get; set; } = new WeatherData();
         private WeatherLives WeatherLives
         {
@@ -81,25 +85,27 @@ namespace YourWeather.Razor.Pages
 
         private List<IWeatherSource> WeatherSourceItems => StaticDataService.WeatherSources;
 
-        protected async override Task OnInitializedAsync()
+        protected override Task OnInitializedAsync()
         {
             if (OperatingSystem.IsBrowser())
             {
-                SettingsService.OnChange += InitWeather;
+                SettingsService.OnInit += InitWeather;
             }
             else
             {
                 InitWeather();
             }
 
-            WeatherService.OnChange += InitWeather;
+            WeatherService.OnChange += UpadateWeather;
             MasaBlazor.Breakpoint.OnUpdate += () => { return InvokeAsync(StateHasChanged); };
+
+            return base.OnInitializedAsync();
         }
 
 
         private async void InitWeather()
         {
-            var result = await LocationService.GetLocation();
+            var result = await LocationService.GetCurrentLocation();
             if (result.IsSuccess)
             {
                 WeatherData = await SelectWeatherSourceItem.WeatherData(result.Data.Latitude, result.Data.Longitude);
@@ -109,7 +115,7 @@ namespace YourWeather.Razor.Pages
             }
             else
             {
-                await PopupService.ConfirmAsync("定位失败", result.Message, AlertTypes.Error);
+                ErrorDialog("定位失败", result.Message);
             }
         }
         private void UpadateWeather()
@@ -117,11 +123,24 @@ namespace YourWeather.Razor.Pages
             LoadingUpadateWeather = true;
             Task.Run(async () =>
             {
-                await Task.Delay(1000);
-                InitWeather();
+                if(SelectedLocation != null)
+                {
+                    WeatherData = await SelectWeatherSourceItem.WeatherData(SelectedLocation.Latitude, SelectedLocation.Longitude);
+                    await JS.InvokeVoidAsync("updateSwiper", null);
+                    await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+                }
+                
                 LoadingUpadateWeather = false;
                 await InvokeAsync(StateHasChanged);
             });
+        }
+
+        private void ErrorDialog(string title,string text)
+        {
+            ErrorDialogTitle = title;
+            ErrorDialogText = text;
+            ShowErrorDialog = true;
+            StateHasChanged();
         }
     }
 }

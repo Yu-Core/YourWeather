@@ -27,8 +27,8 @@ namespace YourWeather.MAUIBlazor.Service
 
         public Settings Settings { get;private set; } = new Settings();
 
-        public event Action OnChange;
-        private void NotifyStateChanged() => OnChange?.Invoke();
+        public event Action OnInit;
+        private void NotifyStateChanged() => OnInit?.Invoke();
 
         private void InitSettings()
         {

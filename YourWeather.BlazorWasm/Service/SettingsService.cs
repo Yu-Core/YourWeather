@@ -20,8 +20,8 @@ namespace YourWeather.BlazorWasm.Service
         }
         public Settings Settings { get; private set; } = new Settings();
 
-        public event Action OnChange;
-        private void NotifyStateChanged() => OnChange?.Invoke();
+        public event Action OnInit;
+        private void NotifyStateChanged() => OnInit?.Invoke();
 
         private async void InitSettings()
         {
