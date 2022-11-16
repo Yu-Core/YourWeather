@@ -60,7 +60,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Darnton.Blazor.DeviceInterop" Version="0.1.2" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 

@@ -3,7 +3,7 @@ using YourWeather.IService;
 using YourWeather.Model.Location;
 using YourWeather.Model.Result;
 
-namespace YourWeather.BlazorWasm.Service
+namespace YourWeather.Service
 {
     public class LocationService : ILocationService
     {

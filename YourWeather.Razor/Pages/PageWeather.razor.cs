@@ -35,7 +35,7 @@ namespace YourWeather.Razor.Pages
         [Inject]
         private ISystemService SystemService { get; set; }
 
-        private string GetWeatherIcon(string weather) => WeatherService.GetWeatherIcon(weather);
+        private string GetDayWeatherIcon(string weather) => WeatherService.GetWeatherIcon(weather);
         private string GetWeatherIcon(string weather, DateTime dateTime) => WeatherService.GetWeatherIcon(weather, dateTime);
         private bool LoadingUpadateWeather = false;
         private string ErrorDialogTitle = string.Empty;

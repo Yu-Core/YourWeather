@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Darnton.Blazor.DeviceInterop" Version="0.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\YourWeather.IService\YourWeather.IService.csproj" />
   </ItemGroup>
 
