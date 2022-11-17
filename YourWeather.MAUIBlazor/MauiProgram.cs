@@ -25,8 +25,6 @@ namespace YourWeather.MAUIBlazor
 #endif
             builder.Services.AddMasaBlazor();
 
-            builder.Services.AddScoped<IGeolocationService, GeolocationService>();
-
             builder.Services.AddCustomIOC();
 
             return builder.Build();

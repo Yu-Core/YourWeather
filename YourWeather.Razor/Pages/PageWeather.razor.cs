@@ -12,6 +12,7 @@ using YourWeather.IService;
 using YourWeather.Model;
 using YourWeather.Model.Enum;
 using YourWeather.Model.Location;
+using YourWeather.Model.Result;
 using YourWeather.Model.Weather;
 using YourWeather.Model.Weather.WeatherSource;
 using YourWeather.Service;
@@ -87,13 +88,14 @@ namespace YourWeather.Razor.Pages
 
         protected override Task OnInitializedAsync()
         {
+            LocationService.OnLocationChanged += InitWeather;
             if (OperatingSystem.IsBrowser())
             {
-                SettingsService.OnInit += InitWeather;
+                SettingsService.OnInit += LocationService.InitCurrentLocation;
             }
             else
             {
-                InitWeather();
+                LocationService.InitCurrentLocation();
             }
 
             WeatherService.OnChange += UpadateWeather;
@@ -103,9 +105,8 @@ namespace YourWeather.Razor.Pages
         }
 
 
-        private async void InitWeather()
+        private async void InitWeather(Result<LocationData> result)
         {
-            var result = await LocationService.GetCurrentLocation();
             if (result.IsSuccess)
             {
                 WeatherData = await SelectWeatherSourceItem.WeatherData(result.Data.Latitude, result.Data.Longitude);
@@ -118,24 +119,23 @@ namespace YourWeather.Razor.Pages
                 ErrorDialog("定位失败", result.Message);
             }
         }
-        private void UpadateWeather()
+        private async void UpadateWeather()
         {
             LoadingUpadateWeather = true;
-            Task.Run(async () =>
+            if (SelectedLocation != null)
             {
-                if(SelectedLocation != null)
-                {
-                    WeatherData = await SelectWeatherSourceItem.WeatherData(SelectedLocation.Latitude, SelectedLocation.Longitude);
-                    await JS.InvokeVoidAsync("updateSwiper", null);
-                    await JS.InvokeVoidAsync("initSwiperForecastHours", null);
-                }
-                
-                LoadingUpadateWeather = false;
+                WeatherData = await SelectWeatherSourceItem.WeatherData(SelectedLocation.Latitude, SelectedLocation.Longitude);
                 await InvokeAsync(StateHasChanged);
-            });
+                await JS.InvokeVoidAsync("updateSwiper", null);
+                await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+            }
+
+            LoadingUpadateWeather = false;
+            await InvokeAsync(StateHasChanged);
+
         }
 
-        private void ErrorDialog(string title,string text)
+        private void ErrorDialog(string title, string text)
         {
             ErrorDialogTitle = title;
             ErrorDialogText = text;

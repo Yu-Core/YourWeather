@@ -11,6 +11,9 @@ namespace YourWeather.IService
     public interface ILocationService
     {
         public LocationData SelectedLocation { get; set; }
-        Task<Result<LocationData>> GetCurrentLocation();
+        //Task<Result<LocationData>> GetCurrentLocation();
+        public void InitCurrentLocation();
+
+        public event Action<Result<LocationData>> OnLocationChanged;
     }
 }

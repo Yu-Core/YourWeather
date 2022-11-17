@@ -3,7 +3,7 @@ using YourWeather.IService;
 using YourWeather.Model.Location;
 using YourWeather.Model.Result;
 
-namespace YourWeather.Service
+namespace YourWeather.BlazorWasm.Service
 {
     public class LocationService : ILocationService
     {
@@ -15,8 +15,12 @@ namespace YourWeather.Service
             GeolocationService = geolocationService;
         }
         private LocationData CurrentLocation;
-        public async Task<Result<LocationData>> GetCurrentLocation()
+
+        public event Action<Result<LocationData>> OnLocationChanged;
+
+        public async void InitCurrentLocation()
         {
+            Result<LocationData> location = null;
             if(CurrentLocation == null)
             {
                 var currentPositionResult = await GeolocationService.GetCurrentPosition();
@@ -29,15 +33,21 @@ namespace YourWeather.Service
                         Longitude = currentPositionResult.Position.Coords.Longitude,
                     };
                     SelectedLocation = CurrentLocation;
+                    location = ResultHelper.Success(CurrentLocation);
                 }
                 else
                 {
-                    return ResultHelper.Error<LocationData>(currentPositionResult.Error.Code.ToString());
+                    location = ResultHelper.Error<LocationData>(currentPositionResult.Error.Code.ToString());
                 }
             }
+            else
+            {
+                location = ResultHelper.Success(CurrentLocation);
+            }
 
-            return ResultHelper.Success(CurrentLocation);
+            OnLocationChanged.Invoke(location);
         }
 
+        
     }
 }

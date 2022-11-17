@@ -1,4 +1,6 @@
-﻿namespace YourWeather.MAUIBlazor
+﻿using Microsoft.AspNetCore.Components.WebView;
+
+namespace YourWeather.MAUIBlazor
 {
     public partial class MainPage : ContentPage
     {
@@ -7,6 +9,8 @@
         {
             InitializeComponent();
 
+            _blazorWebView.BlazorWebViewInitializing += BlazorWebViewInitializing;
+            _blazorWebView.BlazorWebViewInitialized += BlazorWebViewInitialized;
         }
         protected override bool OnBackButtonPressed()
         {
@@ -53,5 +57,8 @@
             }
             return true;
         }
+
+        private partial void BlazorWebViewInitializing(object? sender, BlazorWebViewInitializingEventArgs e);
+        private partial void BlazorWebViewInitialized(object? sender, BlazorWebViewInitializedEventArgs e);
     }
 }
