@@ -24,7 +24,7 @@ namespace YourWeather.Service
             new LanguageItem("中文","zh-CN"),
             new LanguageItem("English","en-US")
         };
-        public readonly static List<IWeatherSource> WeatherSources = new List<IWeatherSource>()
+        public static List<IWeatherSource> WeatherSources = new List<IWeatherSource>()
         {
             new OpenWeatherSource()
             {

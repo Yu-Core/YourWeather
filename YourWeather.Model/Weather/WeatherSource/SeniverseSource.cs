@@ -9,13 +9,9 @@ using YourWeather.Model.Weather.WeatherResult;
 
 namespace YourWeather.Model.Weather.WeatherSource
 {
-    public class SeniverseSource : IWeatherSource
+    public class SeniverseSource : BaseWeatherSource
     {
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public string? Key { get; set; }
-
-        public async Task<WeatherData> WeatherData(double lat, double lon)
+        protected override async Task<WeatherData> ReceiveWeatherData(double lat, double lon)
         {
             using HttpClient Http = new HttpClient();
             WeatherLives? lives = await Lives(lat, lon,Http);

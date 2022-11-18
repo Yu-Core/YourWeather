@@ -11,6 +11,7 @@ namespace YourWeather.Model.Weather.WeatherSource
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Key { get; set; }
-        public Task<WeatherData> WeatherData(double lat, double lon);
+        public WeatherData? WeatherData { get; set; }
+        public Task<WeatherData> GetWeatherData(double lat, double lon);
     }
 }

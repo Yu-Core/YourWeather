@@ -10,14 +10,9 @@ using static System.Net.WebRequestMethods;
 
 namespace YourWeather.Model.Weather.WeatherSource
 {
-    public class QWeatherSource : IWeatherSource
+    public class QWeatherSource : BaseWeatherSource
     {
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public string? Key { get; set; }
-
-
-        public async Task<WeatherData> WeatherData(double lat, double lon)
+        protected override async Task<WeatherData> ReceiveWeatherData(double lat, double lon)
         {
             //和风天气采用了gzip压缩了数据，需设置HttpClientHandler的AutomaticDecompression，gzip会被自动解压缩
             var handler = new HttpClientHandler();
@@ -115,11 +110,6 @@ namespace YourWeather.Model.Weather.WeatherSource
 
         public async Task<WeatherLives?> Lives(double lat, double lon,HttpClient Http)
         {
-            QWeatherResultCity? city = await GetCityAsync(lat, lon,Http);
-
-            if (city == null)
-                return null;
-
             //获取天气实况
             var livesUrl = $"https://devapi.qweather.com/v7/weather/now?location={lon},{lat}&key={Key}";
             QWeatherResultLives? lives = null;
@@ -142,7 +132,6 @@ namespace YourWeather.Model.Weather.WeatherSource
 
             WeatherLives weatherLives = new WeatherLives()
             {
-                City = city.location[0].name,
                 Weather = lives.now.text,
                 Temp = lives.now.temp,
                 WindDeg = lives.now.windDir,
@@ -156,20 +145,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             };
             return weatherLives;
         }
-        public async Task<QWeatherResultCity> GetCityAsync(double lat, double lon, HttpClient Http)
-        {
-            var cityUrl = $"https://geoapi.qweather.com/v2/city/lookup?location={lon},{lat}&key={Key}";
-            QWeatherResultCity? city = null;
-            try
-            {
-                city = await Http.GetFromJsonAsync<QWeatherResultCity>(cityUrl);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return city;
-        }
+        
 
     }
 }

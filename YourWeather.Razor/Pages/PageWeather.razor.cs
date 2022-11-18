@@ -109,10 +109,17 @@ namespace YourWeather.Razor.Pages
         {
             if (result.IsSuccess)
             {
-                WeatherData = await SelectWeatherSourceItem.WeatherData(result.Data.Latitude, result.Data.Longitude);
-                await InvokeAsync(StateHasChanged);
-                await JS.InvokeVoidAsync("updateSwiper", null);
-                await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+                WeatherData = await SelectWeatherSourceItem.GetWeatherData(result.Data.Latitude, result.Data.Longitude);
+                if(WeatherData.Lives != null)
+                {
+                    await InvokeAsync(StateHasChanged);
+                    await JS.InvokeVoidAsync("updateSwiper", null);
+                    await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+                }
+                else
+                {
+                    ErrorDialog("天气加载失败", "请尝试更换天气源");
+                }
             }
             else
             {
@@ -124,10 +131,17 @@ namespace YourWeather.Razor.Pages
             LoadingUpadateWeather = true;
             if (SelectedLocation != null)
             {
-                WeatherData = await SelectWeatherSourceItem.WeatherData(SelectedLocation.Latitude, SelectedLocation.Longitude);
-                await InvokeAsync(StateHasChanged);
-                await JS.InvokeVoidAsync("updateSwiper", null);
-                await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+                WeatherData = await SelectWeatherSourceItem.GetWeatherData(SelectedLocation.Latitude, SelectedLocation.Longitude);
+                if (WeatherData.Lives != null)
+                {
+                    await InvokeAsync(StateHasChanged);
+                    await JS.InvokeVoidAsync("updateSwiper", null);
+                    await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+                }
+                else
+                {
+                    ErrorDialog("天气加载失败", "请尝试更换天气源");
+                }
             }
 
             LoadingUpadateWeather = false;

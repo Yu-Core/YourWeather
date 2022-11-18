@@ -12,13 +12,9 @@ using YourWeather.Model.Weather.WeatherResult;
 
 namespace YourWeather.Model.Weather.WeatherSource
 {
-    public class AmapSource : IWeatherSource
+    public class AmapSource : BaseWeatherSource
     {
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public string? Key { get; set; }
-
-        public async Task<WeatherData> WeatherData(double lat, double lon)
+        protected override async Task<WeatherData> ReceiveWeatherData(double lat, double lon)
         {
             using HttpClient Http = new HttpClient();
 

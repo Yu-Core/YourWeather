@@ -144,8 +144,7 @@
 </div>
 
 <MDialog @bind-Value="ShowErrorDialog"
-         MaxWidth="420"
-         Persistent="!OperatingSystem.IsBrowser()">
+         MaxWidth="420">
     <MCard>
         <MCardTitle>
             <MIcon Class="error--text mr-2">
@@ -158,21 +157,12 @@
         </MCardText>
         <MCardActions>
             <MSpacer></MSpacer>
-            @if (OperatingSystem.IsBrowser())
-            {
-                <MButton Text OnClick="()=>ShowErrorDialog=false">
-                    取消
-                </MButton>
-                <MButton Text Class="error--text" OnClick="()=>ShowErrorDialog=false">
-                    确认
-                </MButton>
-            }
-            else
-            {
-                <MButton Text OnClick="()=>SystemService.ExitApp()">
-                    退出
-                </MButton>
-            }
+            <MButton Text OnClick="()=>ShowErrorDialog=false">
+                取消
+            </MButton>
+            <MButton Text Class="error--text" OnClick="()=>ShowErrorDialog=false">
+                确认
+            </MButton>
 
         </MCardActions>
     </MCard>

@@ -9,13 +9,9 @@ using YourWeather.Model.Weather.WeatherResult;
 
 namespace YourWeather.Model.Weather.WeatherSource
 {
-    public class VisualCrossingSource : IWeatherSource
+    public class VisualCrossingSource : BaseWeatherSource
     {
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public string? Key { get; set; }
-
-        public async Task<WeatherData> WeatherData(double lat, double lon)
+        protected override async Task<WeatherData> ReceiveWeatherData(double lat, double lon)
         {
             using HttpClient Http = new HttpClient();
             string url = $"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{lat},{lon}?unitGroup=metric&include=hours%2Cdays%2Ccurrent&key={Key}&contentType=json&lang=zh";
