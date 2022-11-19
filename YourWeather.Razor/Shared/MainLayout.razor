@@ -23,28 +23,27 @@
             </MNavigationDrawer>
         }
 
-        <MContainer>
-            <div class="swiper main-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div id="pullToRefresh" style="margin:4px;">
+        <div class="swiper main-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div id="pullToRefresh">
+                        <MContainer Style="box-sizing: border-box;">
                             <PageWeather></PageWeather>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div style="margin:4px;">
-                            <PageLocation></PageLocation>
-                        </div>
-
-                    </div>
-                    <div class="swiper-slide">
-                        <div style="margin:4px;">
-                            <PageSettings></PageSettings>
-                        </div>
+                        </MContainer>
                     </div>
                 </div>
+                <div class="swiper-slide">
+                    <MContainer Style="box-sizing: border-box;">
+                        <PageLocation></PageLocation>
+                    </MContainer>
+                </div>
+                <div class="swiper-slide">
+                    <MContainer Style="box-sizing: border-box;">
+                        <PageSettings></PageSettings>
+                    </MContainer>
+                </div>
             </div>
-        </MContainer>
+        </div>
     </MMain>
 
     <MBottomNavigation Class="d-flex justify-space-around d-sm-none "

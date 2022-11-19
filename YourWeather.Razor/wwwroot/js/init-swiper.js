@@ -2,7 +2,7 @@ function initSwiper() {
     console.log('Entered initSwiper!');
 
     window.swiper = new Swiper('.main-swiper', {
-        spaceBetween: 12,
+        //spaceBetween: 12,
         observer: true,
         observeParents: true,
         observeSlideChildren: true,
