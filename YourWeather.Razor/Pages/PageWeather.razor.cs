@@ -104,49 +104,54 @@ namespace YourWeather.Razor.Pages
             return base.OnInitializedAsync();
         }
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if(firstRender)
+            {
+                var objRef = DotNetObjectReference.Create(this);
+                await JS.InvokeVoidAsync("initPulltorefresh", new object[2] { objRef,"UpadateWeather" });
+            }
+            await base.OnAfterRenderAsync(firstRender);
+        }
 
         private async void InitWeather(Result<LocationData> result)
         {
             if (result.IsSuccess)
             {
-                WeatherData = await SelectWeatherSourceItem.GetWeatherData(result.Data.Latitude, result.Data.Longitude);
-                if(WeatherData.Lives != null)
-                {
-                    await InvokeAsync(StateHasChanged);
-                    await JS.InvokeVoidAsync("updateSwiper", null);
-                    await JS.InvokeVoidAsync("initSwiperForecastHours", null);
-                }
-                else
-                {
-                    ErrorDialog("天气加载失败", "请尝试更换天气源");
-                }
+                await GetWeatherData();
             }
             else
             {
                 ErrorDialog("定位失败", result.Message);
             }
         }
-        private async void UpadateWeather()
+
+        [JSInvokable]
+        public async void UpadateWeather()
         {
             LoadingUpadateWeather = true;
             if (SelectedLocation != null)
             {
-                WeatherData = await SelectWeatherSourceItem.GetWeatherData(SelectedLocation.Latitude, SelectedLocation.Longitude);
-                if (WeatherData.Lives != null)
-                {
-                    await InvokeAsync(StateHasChanged);
-                    await JS.InvokeVoidAsync("updateSwiper", null);
-                    await JS.InvokeVoidAsync("initSwiperForecastHours", null);
-                }
-                else
-                {
-                    ErrorDialog("天气加载失败", "请尝试更换天气源");
-                }
+                await GetWeatherData();
             }
 
             LoadingUpadateWeather = false;
             await InvokeAsync(StateHasChanged);
+        }
 
+        private async Task GetWeatherData()
+        {
+            WeatherData = await SelectWeatherSourceItem.GetWeatherData(SelectedLocation.Latitude, SelectedLocation.Longitude);
+            if (WeatherData.Lives != null)
+            {
+                await InvokeAsync(StateHasChanged);
+                await JS.InvokeVoidAsync("updateSwiper", null);
+                await JS.InvokeVoidAsync("initSwiperForecastHours", null);
+            }
+            else
+            {
+                ErrorDialog("天气加载失败", "请尝试更换天气源");
+            }
         }
 
         private void ErrorDialog(string title, string text)

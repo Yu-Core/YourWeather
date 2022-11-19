@@ -73,3 +73,13 @@ main {
         padding-right: 1.5rem !important;
     }
 }
+
+.swiper-slide{
+    min-height:calc(100vh - 80px);
+}
+
+@media screen and (min-width:600px){
+    .swiper-slide {
+        min-height: calc(100vh - 24px);
+    }
+}
