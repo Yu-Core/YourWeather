@@ -2,36 +2,7 @@
 
 「YourWeather」是一个支持多平台的天气应用，可以在Web端、桌面端、移动端运行。
 
-<style>
-.img-main{
-display:flex;
-width: 100%;
-}
-.img-wrap{
-flex: grow 1;
-}
-.img{
-object-fit: cover;
-height: 100%;
-max-width: 100%;
-}
-</style>
-
-<div  class="img-main">
-
-<div class="img-wrap">
-
-<img class="img"  src="./Images/Weather-Desktop.png" />
-   
-</div>
-
-<div class="img-wrap">
-
-<img class="img" src="./Images/Weather-Mobile.png" />
-    
-</div >
-
-</div>
+<img src="./Images/Weather.png" />
 
 ## 信息
 - 语言：C#
