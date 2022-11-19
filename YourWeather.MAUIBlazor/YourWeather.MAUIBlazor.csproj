@@ -51,6 +51,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <MauiAsset Remove="Resources\Raw\location.json" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\YourWeather.Razor\YourWeather.Razor.csproj" />
       <ProjectReference Include="..\YourWeather.Service\YourWeather.Service.csproj" />
     </ItemGroup>
