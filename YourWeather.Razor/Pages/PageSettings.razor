@@ -105,7 +105,7 @@
 
             <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-            <MListItem>
+            <MListItem OnClick="()=>_dialogThirdPartyCopyright = true">
                 <MListItemContent>
                     第三方版权
                 </MListItemContent>
@@ -319,3 +319,5 @@
         </MCardText>
     </MCard>
 </MDialog>
+
+<ThirdPartyCopyright @bind-Value="_dialogThirdPartyCopyright"></ThirdPartyCopyright>

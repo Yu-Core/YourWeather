@@ -40,6 +40,7 @@ namespace YourWeather.Razor.Pages
         private bool _dialogSourceCode;
         private bool _dialogLanguage;
         private bool _dialogIndexContentManager;
+        private bool _dialogThirdPartyCopyright;
         private bool SwitchTheme
         {
             get
