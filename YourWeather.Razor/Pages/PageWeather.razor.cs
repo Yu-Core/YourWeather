@@ -65,19 +65,19 @@ namespace YourWeather.Razor.Pages
                 return WeatherData.ForecastDays /*?? new List<WeatherForecastDay>()*/;
             }
         }
-        private Settings SettinsData => SettingsService.Settings;
+        private Settings SettingsData => SettingsService.Settings;
 
         private bool IsDark()
         {
-            return ThemeService.IsDark(SettinsData.ThemeState);
+            return ThemeService.IsDark(SettingsData.ThemeState);
         }
 
         private int SelectWeatherSourceIndex
         {
-            get => SettinsData.WeatherSource;
+            get => SettingsData.WeatherSource;
             set
             {
-                SettinsData.WeatherSource = value;
+                SettingsData.WeatherSource = value;
             }
         }
 
@@ -98,7 +98,8 @@ namespace YourWeather.Razor.Pages
                 LocationService.InitCurrentLocation();
             }
 
-            WeatherService.OnChange += UpadateWeather;
+            WeatherService.OnSourceChanged += UpadateWeather;
+            WeatherService.OnShowChanged += StateHasChanged;
             MasaBlazor.Breakpoint.OnUpdate += () => { return InvokeAsync(StateHasChanged); };
 
             return base.OnInitializedAsync();

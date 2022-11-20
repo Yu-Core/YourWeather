@@ -50,6 +50,47 @@ namespace YourWeather.Model
                 NotifyStateChanged();
             }
         }
+        private bool _showLives = true;
+        public bool ShowLives
+        {
+            get => _showLives;
+            set
+            {
+                _showLives = value;
+                NotifyStateChanged();
+            }
+        }
+        private bool _showForeastDays = true;
+        public bool ShowForeastDays
+        {
+            get => _showForeastDays;
+            set
+            {
+                _showForeastDays = value;
+                NotifyStateChanged();
+            }
+        }
+        private bool _showForeastHours = true;
+        public bool ShowForeastHour
+        {
+            get => _showForeastHours;
+            set
+            {
+                _showForeastHours = value;
+                NotifyStateChanged();
+            }
+        }
+        private bool _showLivesInfo = true;
+        public bool ShowLivesInfo
+        {
+            get => _showLivesInfo;
+            set
+            {
+                _showLivesInfo = value;
+                NotifyStateChanged();
+            }
+        }
+
         public event Action OnChange;
         private void NotifyStateChanged() => OnChange?.Invoke();
     }

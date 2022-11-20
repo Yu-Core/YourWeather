@@ -39,6 +39,7 @@ namespace YourWeather.Razor.Pages
         private bool _dialogTheme;
         private bool _dialogSourceCode;
         private bool _dialogLanguage;
+        private bool _dialogIndexContentManager;
         private bool SwitchTheme
         {
             get
@@ -154,7 +155,7 @@ namespace YourWeather.Razor.Pages
         }
         private void WeatherSourceChange()
         {
-            WeatherService.SourceChange();
+            WeatherService.NotifySourceChanged();
         }
         #endregion
 

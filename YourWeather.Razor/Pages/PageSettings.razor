@@ -28,7 +28,6 @@
                 </MListItemContent>
                 <MListItemAction>
                     <MIcon>mdi-chevron-right</MIcon>
-
                 </MListItemAction>
             </MListItem>
         }
@@ -58,7 +57,7 @@
 
         <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-        <MListItem>
+        <MListItem OnClick="()=>_dialogIndexContentManager = true">
             <MListItemContent>
                 首页内容管理
             </MListItemContent>
@@ -161,6 +160,7 @@
         </MCard>
     </MDialog>
 }
+
 <MDialog MaxWidth="420"
          @bind-Value="_dialogWeatherSource">
     <MCard>
@@ -187,6 +187,7 @@
         </MCardText>
     </MCard>
 </MDialog>
+
 <MDialog MaxWidth="420"
          @bind-Value="_dialogTheme">
     <MCard>
@@ -219,6 +220,7 @@
         </MCardText>
     </MCard>
 </MDialog>
+
 <MDialog MaxWidth="420"
          @bind-Value="_dialogLanguage">
     <MCard>
@@ -256,6 +258,9 @@
         </MCardText>
     </MCard>
 </MDialog>
+
+<IndexContentManager @bind-Value="_dialogIndexContentManager"></IndexContentManager>
+
 <MDialog MaxWidth="420"
          @bind-Value="_dialogAppInformation">
     <MCard>
@@ -287,6 +292,7 @@
         </MCardText>
     </MCard>
 </MDialog>
+
 <MDialog MaxWidth="420"
          @bind-Value="_dialogSourceCode">
     <MCard>

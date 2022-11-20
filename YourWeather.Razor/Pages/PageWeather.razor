@@ -1,48 +1,50 @@
-﻿
-<MCard Class="rounded-lg my-5">
-    <MCardText Style="width:auto;">
-        <MSheet Class="d-flex justify-space-between align-center px-sm-10">
-            <div class="weather-baseInfo justify-space-around justify-sm-start">
-                <div class=" d-flex align-end">
-                    <span class="text-h2 font-weight-medium">
-                        @((WeatherLives.Temp ?? string.Empty) + "°")
-                    </span>
-                    <span class="text-h6 font-weight-bold">
-                        @(WeatherLives.Weather ?? string.Empty)
-                    </span>
-                </div>
-                <div class="weather-icon ps-sm-10">
-                    <i class="m-icon text-h1 @(IsDark()?"theme--dark":"theme--light") @(GetWeatherIcon(WeatherLives.Weather,WeatherLives.LastUpdate))">
+﻿@if(SettingsData.ShowLives)
+{
+    <MCard Class="rounded-lg my-5">
+        <MCardText Style="width:auto;">
+            <MSheet Class="d-flex justify-space-between align-center px-sm-10">
+                <div class="weather-baseInfo justify-space-around justify-sm-start">
+                    <div class=" d-flex align-end">
+                        <span class="text-h2 font-weight-medium">
+                            @((WeatherLives.Temp ?? string.Empty) + "°")
+                        </span>
+                        <span class="text-h6 font-weight-bold">
+                            @(WeatherLives.Weather ?? string.Empty)
+                        </span>
+                    </div>
+                    <div class="weather-icon ps-sm-10">
+                        <i class="m-icon text-h1 @(IsDark()?"theme--dark":"theme--light") @(GetWeatherIcon(WeatherLives.Weather,WeatherLives.LastUpdate))">
 
-                    </i>
+                        </i>
+                    </div>
                 </div>
-            </div>
-            <MSubheader Class="d-none d-md-flex align-center text-h5 font-weight-bold">
-                <MTooltip Bottom>
-                    <ActivatorContent>
-                        <MButton @attributes="@context.Attrs"
+                <MSubheader Class="d-none d-md-flex align-center text-h5 font-weight-bold">
+                    <MTooltip Bottom>
+                        <ActivatorContent>
+                            <MButton @attributes="@context.Attrs"
                                  Icon
                                  XLarge
                                  Loading="LoadingUpadateWeather"
                                  Disabled="LoadingUpadateWeather"
                                  OnClick="UpadateWeather">
-                            <MIcon>
-                                mdi-rotate-3d-variant
-                            </MIcon>
-                        </MButton>
-                    </ActivatorContent>
-                    <ChildContent>
-                        <span>刷新</span>
-                    </ChildContent>
-                </MTooltip>
-                <span>更新时间：</span>
-                <span>@(WeatherLives.LastUpdate.ToString("HH:mm"))</span>
-            </MSubheader>
-        </MSheet>
-    </MCardText>
-</MCard>
+                                <MIcon>
+                                    mdi-rotate-3d-variant
+                                </MIcon>
+                            </MButton>
+                        </ActivatorContent>
+                        <ChildContent>
+                            <span>刷新</span>
+                        </ChildContent>
+                    </MTooltip>
+                    <span>更新时间：</span>
+                    <span>@(WeatherLives.LastUpdate.ToString("HH:mm"))</span>
+                </MSubheader>
+            </MSheet>
+        </MCardText>
+    </MCard>
+}
 
-@if (WeatherForecastHours != null)
+@if (WeatherForecastHours != null && SettingsData.ShowForeastHour)
 {
     <MCard Class="rounded-lg my-5">
         <MCardTitle Class="d-none d-sm-flex">逐小时预报</MCardTitle>
@@ -71,7 +73,7 @@
 }
 
 
-@if (WeatherForecastDays != null)
+@if (WeatherForecastDays != null && SettingsData.ShowForeastDays)
 {
     <MCard Class="rounded-lg my-5">
         <MCardTitle Class="d-none d-sm-flex">近日天气预报</MCardTitle>
@@ -100,48 +102,50 @@
 }
 
 
-
-<div class="weather-lives-item my-5">
-    <WeatherLivesInfoCard Value="@(WeatherLives.WindDeg)"
+@if(SettingsData.ShowLivesInfo)
+{
+    <div class="weather-lives-item my-5">
+        <WeatherLivesInfoCard Value="@(WeatherLives.WindDeg)"
                           Name="风向"
                           Icon="mdi-sign-direction">
-    </WeatherLivesInfoCard>
-    <WeatherLivesInfoCard Value="@(WeatherLives.WindSpeed)"
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(WeatherLives.WindSpeed)"
                           Name="风速"
                           Unit="km/h"
                           Icon="mdi-weather-windy">
-    </WeatherLivesInfoCard>
-    <WeatherLivesInfoCard Value="@(WeatherLives.WindScale)"
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(WeatherLives.WindScale)"
                           Name="风力等级"
                           Unit="级"
                           Icon="mdi-chevron-double-up">
-    </WeatherLivesInfoCard>
-    <WeatherLivesInfoCard Value="@(WeatherLives.Humidity)"
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(WeatherLives.Humidity)"
                           Name="湿度"
                           Unit="%"
                           Icon="mdi-water">
-    </WeatherLivesInfoCard>
-    <WeatherLivesInfoCard Value="@(WeatherLives.FeelsLike)"
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(WeatherLives.FeelsLike)"
                           Name="体感温度"
                           Unit="℃"
                           Icon="mdi-thermometer">
-    </WeatherLivesInfoCard>
-    <WeatherLivesInfoCard Value="@(WeatherLives.Pressure)"
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(WeatherLives.Pressure)"
                           Name="大气压"
                           Unit="hPa"
                           Icon="mdi-compass">
-    </WeatherLivesInfoCard>
-    <WeatherLivesInfoCard Value="@(WeatherLives.Visibility)"
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(WeatherLives.Visibility)"
                           Name="能见度"
                           Icon="mdi-eye"
                           Unit="km">
-    </WeatherLivesInfoCard>
-    <WeatherLivesInfoCard Value="@(WeatherLives.Cloud)"
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(WeatherLives.Cloud)"
                           Name="云量"
                           Icon="mdi-cloud"
                           Unit="%">
-    </WeatherLivesInfoCard>
-</div>
+        </WeatherLivesInfoCard>
+    </div>
+}
 
 <MDialog @bind-Value="ShowErrorDialog"
          MaxWidth="420">

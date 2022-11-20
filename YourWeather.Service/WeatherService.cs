@@ -10,10 +10,16 @@ namespace YourWeather.Service
 {
     public class WeatherService
     {
-        public event Action? OnChange;
-        public void SourceChange()
+        public event Action? OnSourceChanged;
+        public event Action? OnShowChanged;
+        public void NotifySourceChanged()
         {
-            OnChange?.Invoke();
+            OnSourceChanged?.Invoke();
+        }
+
+        public void NotifyShowChanged()
+        {
+            OnShowChanged?.Invoke();
         }
 
         public string GetWeatherIcon(string Weather)
