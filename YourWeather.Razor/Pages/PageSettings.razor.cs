@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Toolbelt.Blazor.HotKeys;
 using YourWeather.IService;
 using YourWeather.Model;
 using YourWeather.Model.Enum;
@@ -28,19 +29,80 @@ namespace YourWeather.Razor.Pages
         private IThemeService? ThemeService { get; set; }
         [Inject]
         private WeatherService? WeatherService { get; set; }
-
+        [Inject]
+        private BackPressService? BackPressService { get; set; }
+        [Inject]
+        protected HotKeys HotKeys { get; set; }
         #endregion
 
         #region 变量
 
-        private bool _dialogExit;
-        private bool _dialogAppInformation;
-        private bool _dialogWeatherSource;
-        private bool _dialogTheme;
-        private bool _dialogSourceCode;
-        private bool _dialogLanguage;
-        private bool _dialogIndexContentManager;
-        private bool _dialogThirdPartyCopyright;
+        protected HotKeysContext HotKeysContext;
+
+        private bool ShowDialogExit
+        {
+            get => BackPressService.DialogsState[0];
+            set
+            {
+                BackPressService.DialogsState[0] = value;
+            }
+        }
+        private bool ShowDialogAppInformation
+        {
+            get => BackPressService.DialogsState[1];
+            set
+            {
+                BackPressService.DialogsState[1] = value;
+            }
+        }
+        private bool ShowDialogWeatherSource
+        {
+            get => BackPressService.DialogsState[2];
+            set
+            {
+                BackPressService.DialogsState[2] = value;
+            }
+        }
+        private bool ShowDialogTheme
+        {
+            get => BackPressService.DialogsState[3];
+            set
+            {
+                BackPressService.DialogsState[3] = value;
+            }
+        }
+        private bool ShowDialogSourceCode
+        {
+            get => BackPressService.DialogsState[4];
+            set
+            {
+                BackPressService.DialogsState[4] = value;
+            }
+        }
+        private bool ShowDialogLanguage
+        {
+            get => BackPressService.DialogsState[5];
+            set
+            {
+                BackPressService.DialogsState[5] = value;
+            }
+        }
+        private bool ShowDialogIndexContentManager
+        {
+            get => BackPressService.DialogsState[6];
+            set
+            {
+                BackPressService.DialogsState[6] = value;
+            }
+        }
+        private bool ShowDialogThirdPartyCopyright
+        {
+            get => BackPressService.DialogsState[7];
+            set
+            {
+                BackPressService.DialogsState[7] = value;
+            }
+        }
         private bool SwitchTheme
         {
             get
@@ -69,7 +131,7 @@ namespace YourWeather.Razor.Pages
             get => CodeSourceItems[SelectCodeSourceIndex];
             set
             {
-                _dialogSourceCode = false;
+                ShowDialogSourceCode = false;
                 SelectCodeSourceIndex = CodeSourceItems.IndexOf(value);
             }
         }
@@ -84,7 +146,7 @@ namespace YourWeather.Razor.Pages
             get => SettinsData.ThemeState;
             set
             {
-                _dialogTheme = false;
+                ShowDialogTheme = false;
                 SettinsData.ThemeState = value;
                 ThemeChanged();
             }
@@ -102,7 +164,7 @@ namespace YourWeather.Razor.Pages
             get => LanguageItems[SelectLanguageIndex];
             set
             {
-                _dialogLanguage = false;
+                ShowDialogLanguage = false;
                 SelectLanguageIndex = LanguageItems.IndexOf(value);
             }
         }
@@ -121,7 +183,7 @@ namespace YourWeather.Razor.Pages
             get => WeatherSourceItems[SelectWeatherSourceIndex];
             set
             {
-                _dialogWeatherSource = false;
+                ShowDialogWeatherSource = false;
                 SelectWeatherSourceIndex = WeatherSourceItems.IndexOf(value);
                 WeatherSourceChange();
             }
@@ -136,6 +198,11 @@ namespace YourWeather.Razor.Pages
         protected override Task OnInitializedAsync()
         {
             SettingsService.OnInit += StateHasChanged;
+            BackPressService.OnBackPressChanged += StateHasChanged;
+
+            this.HotKeysContext = this.HotKeys.CreateContext()
+              .Add(ModKeys.None, Keys.ESC, BackPressService.NotifyBackPressChanged);
+
             return base.OnInitializedAsync();
         }
 
@@ -158,6 +225,7 @@ namespace YourWeather.Razor.Pages
         {
             WeatherService.NotifySourceChanged();
         }
+
         #endregion
 
     }

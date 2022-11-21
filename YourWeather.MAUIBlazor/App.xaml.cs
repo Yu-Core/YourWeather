@@ -1,12 +1,14 @@
-﻿namespace YourWeather.MAUIBlazor
+﻿using YourWeather.Service;
+
+namespace YourWeather.MAUIBlazor
 {
     public partial class App : Application
     {
-        public App()
+        public App(BackPressService backPressService)
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new MainPage(backPressService);
         }
     }
 }

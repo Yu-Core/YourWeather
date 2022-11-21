@@ -1,10 +1,11 @@
 ﻿@using YourWeather.Model.Enum
 
+<div class="mt-5"></div>
 <div class="text-h6 settings-tile">数据</div>
 <MCard Class="settings-card">
     <MList>
         <MSubheader Class="d-sm-none">数据</MSubheader>
-        <MListItem OnClick="()=>_dialogWeatherSource = true">
+        <MListItem OnClick="()=>ShowDialogWeatherSource = true">
             <MListItemContent>
                 更换天气源
             </MListItemContent>
@@ -22,7 +23,7 @@
 
         @if (!OperatingSystem.IsBrowser())
         {
-            <MListItem OnClick="()=>_dialogTheme = true">
+            <MListItem OnClick="()=>ShowDialogTheme = true">
                 <MListItemContent>
                     深色模式
                 </MListItemContent>
@@ -46,7 +47,7 @@
 
         <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-        <MListItem OnClick="()=>_dialogLanguage = true">
+        <MListItem OnClick="()=>ShowDialogLanguage = true">
             <MListItemContent>
                 切换语言
             </MListItemContent>
@@ -57,7 +58,7 @@
 
         <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-        <MListItem OnClick="()=>_dialogIndexContentManager = true">
+        <MListItem OnClick="()=>ShowDialogIndexContentManager = true">
             <MListItemContent>
                 首页内容管理
             </MListItemContent>
@@ -71,7 +72,7 @@
 <MCard Class="settings-card">
     <MList>
         <MSubheader Class="d-sm-none">关于</MSubheader>
-        <MListItem OnClick="()=>_dialogAppInformation = true">
+        <MListItem OnClick="()=>ShowDialogAppInformation = true">
             <MListItemContent>
                 应用信息
             </MListItemContent>
@@ -88,14 +89,14 @@
             </MListItemContent>
             <MListItemAction>
                 <div @onclick:stopPropagation="true">
-                    <MButton OnClick="()=>_dialogSourceCode = true"
+                    <MButton OnClick="()=>ShowDialogSourceCode = true"
                              Style="text-transform:initial;"
                              Outlined>
                         <MIcon Color="@(IsDark()?"white":"black")">
                             @(SelectCodeSourceItem.Icon)
                         </MIcon>
                         @(SelectCodeSourceItem.Text)
-                        <MIcon>@(_dialogSourceCode ? "mdi-chevron-up" : "mdi-chevron-down")</MIcon>
+                        <MIcon>@(ShowDialogSourceCode ? "mdi-chevron-up" : "mdi-chevron-down")</MIcon>
                         </MButton>
                     </div>
 
@@ -105,7 +106,7 @@
 
             <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-            <MListItem OnClick="()=>_dialogThirdPartyCopyright = true">
+            <MListItem OnClick="()=>ShowDialogThirdPartyCopyright = true">
                 <MListItemContent>
                     第三方版权
                 </MListItemContent>
@@ -130,7 +131,7 @@
 @if (!OperatingSystem.IsBrowser())
 {
     <MCard>
-        <MListItem OnClick="()=>_dialogExit = true">
+        <MListItem OnClick="()=>ShowDialogExit = true">
             <MListItemContent>
                 退出
             </MListItemContent>
@@ -139,7 +140,7 @@
             </MListItemAction>
         </MListItem>
     </MCard>
-    <MDialog @bind-Value="_dialogExit" MaxWidth="420">
+    <MDialog @bind-Value="ShowDialogExit" MaxWidth="420">
         <MCard>
             <MCardTitle Class="subtitle-1 justify-center">
                 确认退出应用吗？
@@ -147,7 +148,7 @@
             <MCardActions>
                 <MButton Class="flex-grow-1"
                      Text
-                     OnClick="()=>_dialogExit = false">
+                     OnClick="()=>ShowDialogExit = false">
                     取消
                 </MButton>
                 <MButton Class="flex-grow-1"
@@ -162,12 +163,12 @@
 }
 
 <MDialog MaxWidth="420"
-         @bind-Value="_dialogWeatherSource">
+         @bind-Value="ShowDialogWeatherSource">
     <MCard>
         <MCardTitle>
             更换天气源
             <MSpacer></MSpacer>
-            <MButton Icon OnClick="()=>_dialogWeatherSource = false">
+            <MButton Icon OnClick="()=>ShowDialogWeatherSource = false">
                 <MIcon>mdi-close</MIcon>
             </MButton>
         </MCardTitle>
@@ -189,12 +190,12 @@
 </MDialog>
 
 <MDialog MaxWidth="420"
-         @bind-Value="_dialogTheme">
+         @bind-Value="ShowDialogTheme">
     <MCard>
         <MCardTitle>
             深色模式
             <MSpacer></MSpacer>
-            <MButton Icon OnClick="()=>_dialogTheme = false">
+            <MButton Icon OnClick="()=>ShowDialogTheme = false">
                 <MIcon>mdi-close</MIcon>
             </MButton>
         </MCardTitle>
@@ -222,7 +223,7 @@
 </MDialog>
 
 <MDialog MaxWidth="420"
-         @bind-Value="_dialogLanguage">
+         @bind-Value="ShowDialogLanguage">
     <MCard>
         <MCardTitle>
             更改语言
@@ -236,7 +237,7 @@
             </MTooltip>
             
             <MSpacer></MSpacer>
-            <MButton Icon OnClick="()=>_dialogLanguage= false">
+            <MButton Icon OnClick="()=>ShowDialogLanguage= false">
                 <MIcon>mdi-close</MIcon>
             </MButton>
         </MCardTitle>
@@ -259,15 +260,15 @@
     </MCard>
 </MDialog>
 
-<IndexContentManager @bind-Value="_dialogIndexContentManager"></IndexContentManager>
+<IndexContentManager @bind-Value="ShowDialogIndexContentManager"></IndexContentManager>
 
 <MDialog MaxWidth="420"
-         @bind-Value="_dialogAppInformation">
+         @bind-Value="ShowDialogAppInformation">
     <MCard>
         <MCardTitle>
             应用信息
             <MSpacer></MSpacer>
-            <MButton Icon OnClick="()=>_dialogAppInformation= false">
+            <MButton Icon OnClick="()=>ShowDialogAppInformation= false">
                 <MIcon>mdi-close</MIcon>
             </MButton>
         </MCardTitle>
@@ -294,12 +295,12 @@
 </MDialog>
 
 <MDialog MaxWidth="420"
-         @bind-Value="_dialogSourceCode">
+         @bind-Value="ShowDialogSourceCode">
     <MCard>
         <MCardTitle>
             更改来源
             <MSpacer></MSpacer>
-            <MButton Icon OnClick="()=>_dialogSourceCode = false">
+            <MButton Icon OnClick="()=>ShowDialogSourceCode = false">
                 <MIcon>mdi-close</MIcon>
             </MButton>
         </MCardTitle>
@@ -320,4 +321,4 @@
     </MCard>
 </MDialog>
 
-<ThirdPartyCopyright @bind-Value="_dialogThirdPartyCopyright"></ThirdPartyCopyright>
+<ThirdPartyCopyright @bind-Value="ShowDialogThirdPartyCopyright"></ThirdPartyCopyright>

@@ -3,6 +3,7 @@ using Blazored.LocalStorage;
 using Darnton.Blazor.DeviceInterop.Geolocation;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 using YourWeather.BlazorWasm;
 using YourWeather.BlazorWasm.Extend;
 using YourWeather.Razor;
@@ -18,6 +19,8 @@ builder.Services.AddMasaBlazor();
 builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddScoped<IGeolocationService, GeolocationService>();
+
+builder.Services.AddHotKeys();
 
 builder.Services.AddCustomIOC();
 

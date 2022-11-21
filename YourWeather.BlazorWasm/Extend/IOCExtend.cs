@@ -18,6 +18,7 @@ namespace YourWeather.BlazorWasm.Extend
             services.AddScoped<ISettingsService, SettingsService>();
             services.AddScoped<WeatherService>();
             services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<BackPressService>();
             return services;
         }
     }

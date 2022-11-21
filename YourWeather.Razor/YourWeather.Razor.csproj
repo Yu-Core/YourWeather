@@ -15,6 +15,7 @@
     <PackageReference Include="Darnton.Blazor.DeviceInterop" Version="0.1.2" />
     <PackageReference Include="Masa.Blazor" Version="0.6.0-rc.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
+    <PackageReference Include="Toolbelt.Blazor.HotKeys" Version="13.0.0" />
   </ItemGroup>
 
   <ItemGroup>

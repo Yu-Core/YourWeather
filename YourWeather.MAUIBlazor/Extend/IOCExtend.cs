@@ -18,6 +18,7 @@ namespace YourWeather.MAUIBlazor.Extend
             services.AddScoped<ISettingsService, SettingsService>();
             services.AddScoped<WeatherService>();
             services.AddScoped<ILocationService, LocationService>();
+            services.AddSingleton<BackPressService>();
             return services;
         }
     }
