@@ -2,8 +2,8 @@
          ValueChanged="ValueChanged"
          Fullscreen
          Transition="dialog-right-transition">
-    <MCard Class="@(IsDark ?"":"grey lighten-4")">
-        <MToolbar>
+    <MCard>
+        <MToolbar Class="elevation-1">
             <MButton Icon
                      OnClick="HandleOnCancel">
                 <MIcon>mdi-arrow-left</MIcon>
@@ -11,50 +11,48 @@
             <MToolbarTitle>首页内容管理</MToolbarTitle>
             <MSpacer></MSpacer>
         </MToolbar>
-        <MCard Class="ma-5 rounded-lg elevation-3">
-            <MList>
-                <MListItem Class="ma-sm-1">
-                    <MListItemContent>
-                        实时天气
-                    </MListItemContent>
-                    <MListItemAction>
-                        <MSwitch @bind-Value="ShowLives"></MSwitch>
-                    </MListItemAction>
-                </MListItem>
+        <MList Class="py-5">
+            <MListItem Class="ma-sm-1 px-5">
+                <MListItemContent>
+                    实时天气
+                </MListItemContent>
+                <MListItemAction>
+                    <MSwitch Color="@(IsDark ? "":"grey")" @bind-Value="ShowLives"></MSwitch>
+                </MListItemAction>
+            </MListItem>
 
-                <MDivider Class="mx-3 mx-sm-0"></MDivider>
+            <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-                <MListItem Class="ma-sm-1">
-                    <MListItemContent>
-                        逐小时预报
-                    </MListItemContent>
-                    <MListItemAction>
-                        <MSwitch @bind-Value="ShowForeastHour"></MSwitch>
-                    </MListItemAction>
-                </MListItem>
+            <MListItem Class="ma-sm-1 px-5">
+                <MListItemContent>
+                    逐小时预报
+                </MListItemContent>
+                <MListItemAction>
+                    <MSwitch Color="@(IsDark ? "":"grey")" @bind-Value="ShowForeastHour"></MSwitch>
+                </MListItemAction>
+            </MListItem>
 
-                <MDivider Class="mx-3 mx-sm-0"></MDivider>
+            <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-                <MListItem Class="ma-sm-1">
-                    <MListItemContent>
-                        近日天气预报
-                    </MListItemContent>
-                    <MListItemAction>
-                        <MSwitch @bind-Value="ShowForeastDays"></MSwitch>
-                    </MListItemAction>
-                </MListItem>
+            <MListItem Class="ma-sm-1 px-5">
+                <MListItemContent>
+                    近日天气预报
+                </MListItemContent>
+                <MListItemAction>
+                    <MSwitch Color="@(IsDark ? "":"grey")" @bind-Value="ShowForeastDays"></MSwitch>
+                </MListItemAction>
+            </MListItem>
 
-                <MDivider Class="mx-3 mx-sm-0"></MDivider>
+            <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-                <MListItem Class="ma-sm-1">
-                    <MListItemContent>
-                        其他实时信息
-                    </MListItemContent>
-                    <MListItemAction>
-                        <MSwitch @bind-Value="ShowLivesInfo"></MSwitch>
-                    </MListItemAction>
-                </MListItem>
-            </MList>
-        </MCard>
+            <MListItem Class="ma-sm-1 px-5">
+                <MListItemContent>
+                    其他实时信息
+                </MListItemContent>
+                <MListItemAction>
+                    <MSwitch Color="@(IsDark ? "":"grey")" @bind-Value="ShowLivesInfo"></MSwitch>
+                </MListItemAction>
+            </MListItem>
+        </MList>
     </MCard>
 </MDialog>

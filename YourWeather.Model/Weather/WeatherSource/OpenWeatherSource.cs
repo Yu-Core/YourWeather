@@ -48,7 +48,7 @@ namespace YourWeather.Model.Weather.WeatherSource
             WeatherLives weatherLives = new WeatherLives()
             {
                 City = lives.name,
-                Weather = lives.weather[0].description,
+                Weather = lives.weather[0].description.ToWeather(),
                 Temp = Convert.ToInt32( lives.main.temp).ToString(),
                 WindDeg = lives.wind.deg.ToWindDir(),
                 WindSpeed = lives.wind.speed.ToString(),

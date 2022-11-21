@@ -49,6 +49,7 @@ namespace YourWeather.Model.Extend
                 return "未知";
 
             weather = weather.Split(",")[0];
+            weather = weather.Split("，")[0];
             if (VisualCrossingDic.ContainsKey(weather))
             {
                 weather = VisualCrossingDic[weather];
