@@ -3,7 +3,7 @@
          Fullscreen
          Transition="dialog-right-transition">
     <MCard>
-        <MToolbar Class="elevation-1">
+        <MToolbar Class="elevation-2">
             <MButton Icon
                      OnClick="HandleOnCancel">
                 <MIcon>mdi-arrow-left</MIcon>
@@ -17,7 +17,9 @@
                     实时天气
                 </MListItemContent>
                 <MListItemAction>
-                    <MSwitch Color="@(IsDark ? "":"grey")" @bind-Value="ShowLives"></MSwitch>
+                    <MSwitch @bind-Value="ShowLives"
+                             Color="@(IsDark() ? "white":"black")">
+                    </MSwitch>
                 </MListItemAction>
             </MListItem>
 
@@ -28,7 +30,9 @@
                     逐小时预报
                 </MListItemContent>
                 <MListItemAction>
-                    <MSwitch Color="@(IsDark ? "":"grey")" @bind-Value="ShowForeastHour"></MSwitch>
+                    <MSwitch @bind-Value="ShowForeastHour"
+                             Color="@(IsDark() ? "white":"black")">
+                    </MSwitch>
                 </MListItemAction>
             </MListItem>
 
@@ -39,7 +43,9 @@
                     近日天气预报
                 </MListItemContent>
                 <MListItemAction>
-                    <MSwitch Color="@(IsDark ? "":"grey")" @bind-Value="ShowForeastDays"></MSwitch>
+                    <MSwitch @bind-Value="ShowForeastDays"
+                             Color="@(IsDark() ? "white":"black")">
+                    </MSwitch>
                 </MListItemAction>
             </MListItem>
 
@@ -50,7 +56,9 @@
                     其他实时信息
                 </MListItemContent>
                 <MListItemAction>
-                    <MSwitch Color="@(IsDark ? "":"grey")" @bind-Value="ShowLivesInfo"></MSwitch>
+                    <MSwitch @bind-Value="ShowLivesInfo"
+                             Color="@(IsDark() ? "white":"black")">
+                    </MSwitch>
                 </MListItemAction>
             </MListItem>
         </MList>

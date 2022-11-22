@@ -75,11 +75,11 @@ main {
 }
 
 .swiper-slide{
-    min-height:calc(100vh - 80px);
+    min-height:calc(100vh - 56px);
 }
 
 @media screen and (min-width:600px){
     .swiper-slide {
-        min-height: calc(100vh - 24px);
+        min-height: 100vh;
     }
 }

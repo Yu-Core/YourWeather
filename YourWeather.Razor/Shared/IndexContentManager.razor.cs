@@ -30,7 +30,7 @@ namespace YourWeather.Razor.Shared
         public MasaBlazor MasaBlazor { get; set; }
 
         private Settings SettingsData => SettingsService.Settings;
-        private bool IsDark => ThemeService.IsDark(SettingsData.ThemeState);
+        private bool IsDark() => ThemeService.IsDark(SettingsData.ThemeState);
         private bool ShowLives
         {
             get => SettingsData.ShowLives;

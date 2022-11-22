@@ -10,7 +10,7 @@
 - 一个纯前端的项目
 - 使用了C#、HTML、CSS、JS
 - 该项目使用Blzor构建，Blazor WebAssembly和MAUI Blazor共享Razor类库 。Blazor 是一个使用 .NET 生成交互式客户端 Web UI 的框架。
-- Web端使用了[Blazored.LocalStorage](https://github.com/Blazored/LocalStorage)把数据存储在localStorage，其他平台以Json文件形式存储在AppData
+- Web端（Blazor WebAssembly）使用了[Blazored.LocalStorage](https://github.com/Blazored/LocalStorage)把数据存储在localStorage，其他平台（MAUI Blazor）以Json文件形式存储在AppData
 - 左右滑动使用了[Swiper](https://github.com/nolimits4web/swiper)
 - 下拉刷新使用了[PulltoRefresh.js](https://github.com/BoxFactura/pulltorefresh.js)
 - 快捷键使用了[Toolbelt.Blazor.HotKeys](https://github.com/jsakamoto/Toolbelt.Blazor.HotKeys)
@@ -38,3 +38,4 @@
 - [CsvHelper](https://github.com/JoshClose/CsvHelper)
 - [Loaders.css](https://github.com/ConnorAtherton/loaders.css)
 - [Toolbelt.Blazor.HotKeys](https://github.com/jsakamoto/Toolbelt.Blazor.HotKeys)
+- [Assets.Dotnet9](https://github.com/dotnet9/Assets.Dotnet9)

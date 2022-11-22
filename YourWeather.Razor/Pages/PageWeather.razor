@@ -6,10 +6,10 @@
                 <div class="weather-baseInfo justify-space-around justify-sm-start">
                     <div class=" d-flex align-end">
                         <span class="text-h2 font-weight-medium">
-                            @((WeatherLives.Temp ?? string.Empty) + "°")
+                            @((WeatherLives.Temp ?? "N/A") + "°")
                         </span>
                         <span class="text-h6 font-weight-bold">
-                            @(WeatherLives.Weather ?? string.Empty)
+                            @(WeatherLives.Weather ?? "未知")
                         </span>
                     </div>
                     <div class="weather-icon ps-sm-10">

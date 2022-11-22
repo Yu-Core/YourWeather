@@ -147,6 +147,7 @@ namespace YourWeather.Razor.Pages
             set
             {
                 ShowDialogTheme = false;
+                StateHasChanged();
                 SettinsData.ThemeState = value;
                 ThemeChanged();
             }
