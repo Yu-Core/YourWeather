@@ -8,8 +8,18 @@ namespace YourWeather.Model.Location
 {
     public class LocationData
     {
+        public LocationData() { }
+        public LocationData(string? name, string? info, double lat, double lon)
+        {
+            Name = name;
+            Info = info;
+            Lat = lat;
+            Lon = lon;
+        }
+
         public string? Name { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public string? Info { get; set; }
+        public double Lat { get; set; }
+        public double Lon { get; set; }
     }
 }

@@ -8,22 +8,48 @@
                 当前位置@(LocationService.SelectedLocation != null ? "" : "（请检查定位权限是否授权）")
             </MListItemContent>
             <MListItemAction>
-                <MSwitch Value="@(LocationService.SelectedLocation != null)"
+                @if (!ShowDeleteButton)
+                {
+                    <MSwitch Value="@(LocationService.SelectedLocation != null)"
                          Color="@(IsDark() ? "white":"black")"
                          Disabled>
-                </MSwitch>
+                    </MSwitch>
+                }
             </MListItemAction>
         </MListItem>
 
-        @*<MDivider Class="mx-3 mx-sm-0"></MDivider>*@
+        
+        @foreach (var item in SettingsData.LocationDatas)
+        {
+            <MDivider Class="mx-3 mx-sm-0"></MDivider>
+            <MListItem>
+                <MListItemContent>
+                    @(item.Name)
+                </MListItemContent>
+                <MListItemAction>
+                    @if(ShowDeleteButton)
+                    {
+                        <MButton Icon Small Class="error--text" OnClick="()=>DeleteLocationData(item)">
+                            <MIcon>mdi-delete</MIcon>
+                        </MButton>
+                    }
+                    else
+                    {
+                        <MSwitch Color="@(IsDark() ? "white":"black")">
+                        </MSwitch>
+                    }
+                    
+                </MListItemAction>
+            </MListItem>
+        }
 
     </MList>
 
 </MCard>
 <div class="text-h6 d-none d-sm-block font-weight-bold mx-2 mb-2">添加</div>
-<MCard>
+<MCard Class="mb-5">
     <MList>
-        <MListItem>
+        <MListItem OnClick="()=>ShowDialogSearchCity =true">
             <MListItemContent>
                 添加城市
             </MListItemContent>
@@ -34,7 +60,22 @@
     </MList>
 </MCard>
 
+<div class="text-h6 d-none d-sm-block font-weight-bold mx-2 mb-2">删除</div>
+<MCard>
+    <MList>
+        <MListItem OnClick="()=>ShowDeleteButton = !ShowDeleteButton">
+            <MListItemContent>
+                删除城市
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-delete</MIcon>
+            </MListItemAction>
+        </MListItem>
+    </MList>
+</MCard>
+
 <MButton Class="@($"mb-10 {(IsDark()?"white black--text":"black white--text")}")"
+         OnClick="()=>ShowDialogSearchCity =true"
          Absolute
          Bottom
          Right
@@ -43,3 +84,6 @@
         mdi-plus
     </MIcon>
 </MButton>
+
+<SearchCity @bind-Value="ShowDialogSearchCity"></SearchCity>
+

@@ -1,12 +1,9 @@
-﻿@using Masa.Blazor.Presets
-
-
-<MDialog Value="Value"
+﻿<MDialog Value="Value"
          ValueChanged="ValueChanged"
          Fullscreen
          Transition="dialog-right-transition">
     <MCard Class="@(IsDark ?"":"grey lighten-4")">
-        <MToolbar Class="elevation-2">
+        <MToolbar Class="@($"elevation-2 {(IsDark ?"":"grey lighten-4")}")">
             <MButton Icon
                      OnClick="HandleOnCancel">
                 <MIcon>mdi-arrow-left</MIcon>
@@ -14,7 +11,7 @@
             <MToolbarTitle>第三方版权</MToolbarTitle>
             <MSpacer></MSpacer>
         </MToolbar>
-        <MList>
+        <MList Class="@(IsDark ?"":"grey lighten-4")">
             <MListItem>
                 <MListItemContent>
                     <MListItemTitle>MASA.Blazor</MListItemTitle>

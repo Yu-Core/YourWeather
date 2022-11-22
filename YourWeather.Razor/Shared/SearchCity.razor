@@ -1,0 +1,51 @@
+﻿
+<MDialog Value="Value"
+         ValueChanged="ValueChanged"
+         Fullscreen
+         Transition="dialog-right-transition">
+    <MCard Class="@(IsDark() ?"":"grey lighten-4")">
+        <MToolbar Class="@($"elevation-2 {(IsDark() ?"":"grey lighten-4")}")">
+            <MButton Icon
+                     OnClick="HandleOnCancel">
+                <MIcon>mdi-arrow-left</MIcon>
+            </MButton>
+            <MToolbarTitle>搜索城市</MToolbarTitle>
+            <MSpacer></MSpacer>
+        </MToolbar>
+        <MContainer>
+            <MTextField TValue="string"
+                        Value="_search"
+                        ValueChanged="SearchTextChanged"
+                        Placeholder="请输入省、市、区、县搜索"
+                        Filled
+                        PrependInnerIcon="mdi-magnify"
+                        Rounded>
+            </MTextField>
+            <MCard Class="rounded-lg">
+                <MList>
+                    @foreach (var item in LocationDatas)
+                    {
+                        <MListItem OnClick="()=>AddLocationData(item)">
+                            <MListItemContent>
+                                @($"{item.Name}（{item.Info}）")
+                            </MListItemContent>
+                        </MListItem>
+                        if (item != LocationDatas.LastOrDefault())
+                        {
+                            <MDivider Class="mx-3 mx-sm-0"></MDivider>
+                        }
+                    }
+                    @if(LocationDatas.Count == 0)
+                    {
+                        <MListItem >
+                            <MListItemContent>
+                                未找到你想要的结果
+                            </MListItemContent>
+                        </MListItem>
+                    }
+                </MList>
+            </MCard>
+        </MContainer>
+    </MCard>
+
+</MDialog>

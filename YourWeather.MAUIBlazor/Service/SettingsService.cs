@@ -51,7 +51,7 @@ namespace YourWeather.MAUIBlazor.Service
                 
             }
             
-            Settings.OnChange += SaveSetings;
+            Settings.OnChanged += SaveSetings;
             NotifyStateChanged();
         }
 

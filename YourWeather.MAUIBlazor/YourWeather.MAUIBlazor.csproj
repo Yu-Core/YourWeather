@@ -51,7 +51,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <MauiAsset Remove="Resources\Raw\location.json" />
+      <Content Remove="Resources\Raw\location.json" />
     </ItemGroup>
 
     <ItemGroup>

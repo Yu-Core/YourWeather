@@ -41,7 +41,7 @@ namespace YourWeather.BlazorWasm.Service
                 
             }
             
-            Settings.OnChange += SaveSetings;
+            Settings.OnChanged += SaveSetings;
             NotifyStateChanged();
         }
         

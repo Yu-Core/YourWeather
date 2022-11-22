@@ -5,7 +5,7 @@ namespace YourWeather.Service
     {
         public BackPressService()
         {
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 10; i++)
             {
                 DialogsState.Add(false);
             }

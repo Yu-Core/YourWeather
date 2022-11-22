@@ -142,7 +142,7 @@ namespace YourWeather.Razor.Pages
 
         private async Task GetWeatherData()
         {
-            WeatherData = await SelectWeatherSourceItem.GetWeatherData(SelectedLocation.Latitude, SelectedLocation.Longitude);
+            WeatherData = await SelectWeatherSourceItem.GetWeatherData(SelectedLocation.Lat, SelectedLocation.Lon);
             if (WeatherData.Lives != null)
             {
                 await InvokeAsync(StateHasChanged);

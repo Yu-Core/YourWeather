@@ -1,4 +1,5 @@
 ﻿using Darnton.Blazor.DeviceInterop.Geolocation;
+using System.Net.Http.Json;
 using YourWeather.IService;
 using YourWeather.Model.Location;
 using YourWeather.Model.Result;
@@ -8,15 +9,19 @@ namespace YourWeather.BlazorWasm.Service
     public class LocationService : ILocationService
     {
         private IGeolocationService GeolocationService { get; set; }
-        public LocationData SelectedLocation { get; set; }
+        private HttpClient HttpClient { get; set; }
+        public LocationData? SelectedLocation { get; set; }
+        public List<LocationData>? ChinaCities { get; set; }
 
-        public LocationService(IGeolocationService geolocationService)
+        public LocationService(IGeolocationService geolocationService, HttpClient httpClient)
         {
             GeolocationService = geolocationService;
+            HttpClient = httpClient;
+            InitChinaCities();
         }
-        private LocationData CurrentLocation;
+        private LocationData? CurrentLocation;
 
-        public event Action<Result<LocationData>> OnLocationChanged;
+        public event Action<Result<LocationData>>? OnLocationChanged;
 
         public async void InitCurrentLocation()
         {
@@ -29,8 +34,8 @@ namespace YourWeather.BlazorWasm.Service
                 {
                     CurrentLocation = new LocationData()
                     {
-                        Latitude = currentPositionResult.Position.Coords.Latitude,
-                        Longitude = currentPositionResult.Position.Coords.Longitude,
+                        Lat = currentPositionResult.Position.Coords.Latitude,
+                        Lon = currentPositionResult.Position.Coords.Longitude,
                     };
                     SelectedLocation = CurrentLocation;
                     location = ResultHelper.Success(CurrentLocation);
@@ -45,9 +50,12 @@ namespace YourWeather.BlazorWasm.Service
                 location = ResultHelper.Success(CurrentLocation);
             }
 
-            OnLocationChanged.Invoke(location);
+            OnLocationChanged?.Invoke(location);
         }
 
-        
+        private async void InitChinaCities()
+        {
+            ChinaCities = await HttpClient.GetFromJsonAsync<List<LocationData>>("location/location.json");
+        }
     }
 }

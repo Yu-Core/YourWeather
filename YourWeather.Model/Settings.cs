@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YourWeather.Model.Enum;
 using YourWeather.Model.Item;
+using YourWeather.Model.Location;
 
 namespace YourWeather.Model
 {
@@ -44,8 +45,8 @@ namespace YourWeather.Model
         public int Language
         {
             get => _language;
-            set 
-            { 
+            set
+            {
                 _language = value;
                 NotifyStateChanged();
             }
@@ -90,8 +91,19 @@ namespace YourWeather.Model
                 NotifyStateChanged();
             }
         }
+        public List<LocationData> LocationDatas { get; private set; } = new();
+        public void AddLocationData(LocationData locationData)
+        {
+            LocationDatas.Add(locationData);
+            NotifyStateChanged();
+        }
+        public void RemoveLocationData(LocationData locationData)
+        {
+            LocationDatas.Remove(locationData);
+            NotifyStateChanged();
+        }
 
-        public event Action OnChange;
-        private void NotifyStateChanged() => OnChange?.Invoke();
+        public event Action OnChanged;
+        private void NotifyStateChanged() => OnChanged?.Invoke();
     }
 }
