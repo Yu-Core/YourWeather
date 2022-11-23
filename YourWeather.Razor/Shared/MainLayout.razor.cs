@@ -63,7 +63,7 @@ namespace YourWeather.Razor.Shared
         protected override Task OnInitializedAsync()
         {
             action = UpdateSelectItem;
-            LocationService.OnLocationVoidChanged += () =>{ _overlay = false; StateHasChanged(); };
+            LocationService.OnInitVoid += () =>{ _overlay = false; StateHasChanged(); };
             MasaBlazor.Breakpoint.OnUpdate += () => { return InvokeAsync(StateHasChanged); };
             return base.OnInitializedAsync();
         }

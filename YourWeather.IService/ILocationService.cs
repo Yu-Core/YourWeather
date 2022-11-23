@@ -10,11 +10,13 @@ namespace YourWeather.IService
 {
     public interface ILocationService
     {
-        public LocationData? SelectedLocation { get; set; }
+        public LocationData? CurrentLocation { get; set; }
         public List<LocationData>? ChinaCities { get;set; }
         public void InitCurrentLocation();
 
-        public event Action<Result<LocationData>>? OnLocationChanged;
-        public event Action? OnLocationVoidChanged;
+        public event Action<Result<LocationData>>? OnInit;
+        public event Action? OnInitVoid;
+        public event Action? OnCityChanged;
+        public void NotifyCityChanged();
     }
 }

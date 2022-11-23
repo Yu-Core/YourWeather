@@ -10,7 +10,6 @@ namespace YourWeather.BlazorWasm.Service
     {
         private IGeolocationService GeolocationService { get; set; }
         private HttpClient HttpClient { get; set; }
-        public LocationData? SelectedLocation { get; set; }
         public List<LocationData>? ChinaCities { get; set; }
 
         public LocationService(IGeolocationService geolocationService, HttpClient httpClient)
@@ -19,10 +18,11 @@ namespace YourWeather.BlazorWasm.Service
             HttpClient = httpClient;
             InitChinaCities();
         }
-        private LocationData? CurrentLocation;
+        public LocationData? CurrentLocation { get; set; }
 
-        public event Action<Result<LocationData>>? OnLocationChanged;
-        public event Action? OnLocationVoidChanged;
+        public event Action<Result<LocationData>>? OnInit;
+        public event Action? OnInitVoid;
+        public event Action? OnCityChanged;
 
         public async void InitCurrentLocation()
         {
@@ -38,7 +38,6 @@ namespace YourWeather.BlazorWasm.Service
                         Lat = currentPositionResult.Position.Coords.Latitude,
                         Lon = currentPositionResult.Position.Coords.Longitude,
                     };
-                    SelectedLocation = CurrentLocation;
                     location = ResultHelper.Success(CurrentLocation);
                 }
                 else
@@ -51,13 +50,18 @@ namespace YourWeather.BlazorWasm.Service
                 location = ResultHelper.Success(CurrentLocation);
             }
 
-            OnLocationChanged?.Invoke(location);
-            OnLocationVoidChanged?.Invoke();
+            OnInit?.Invoke(location);
+            OnInitVoid?.Invoke();
         }
 
         private async void InitChinaCities()
         {
             ChinaCities = await HttpClient.GetFromJsonAsync<List<LocationData>>("location/location.json");
+        }
+
+        public void NotifyCityChanged()
+        {
+            OnCityChanged?.Invoke();
         }
     }
 }

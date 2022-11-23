@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YourWeather.Model.Location;
 
 namespace YourWeather.Model.Weather.WeatherSource
 {
@@ -13,17 +14,21 @@ namespace YourWeather.Model.Weather.WeatherSource
         public string? Key { get; set; }
         public WeatherData? WeatherData { get; set; }
 
-        public async Task<WeatherData> GetWeatherData(double lat, double lon)
+        public async Task<WeatherData> GetWeatherData(LocationData location)
         {
             if (WeatherData != null && WeatherData.Lives != null)
             {
-                TimeSpan timeSpan = DateTime.Now - WeatherData.Lives.LastUpdate;
-                if (timeSpan.TotalMinutes < 10)
+                if(WeatherData.LocationData!= null && WeatherData.LocationData.Info == location.Info)
                 {
-                    return WeatherData;
+                    TimeSpan timeSpan = DateTime.Now - WeatherData.Lives.LastUpdate;
+                    if (timeSpan.TotalMinutes < 10)
+                    {
+                        return WeatherData;
+                    }
                 }
             }
-            WeatherData = await ReceiveWeatherData(lat, lon);
+            WeatherData = await ReceiveWeatherData(location.Lat, location.Lon);
+            WeatherData.LocationData = location;
             return WeatherData;
         }
 

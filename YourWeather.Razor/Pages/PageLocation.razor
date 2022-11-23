@@ -5,7 +5,7 @@
         <MSubheader Class="d-sm-none">位置</MSubheader>
         <MListItem>
             <MListItemContent>
-                当前位置@(LocationService.SelectedLocation != null ? "" : "（请检查定位权限是否授权）")
+                当前位置@(LocationService.CurrentLocation != null ? "" : "（请检查定位权限是否授权）")
             </MListItemContent>
             <MListItemAction>
                 <MSwitch Value="GetSwitchCityValue(null)"

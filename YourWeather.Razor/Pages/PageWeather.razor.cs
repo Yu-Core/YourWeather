@@ -42,7 +42,13 @@ namespace YourWeather.Razor.Pages
         private string ErrorDialogTitle = string.Empty;
         private string ErrorDialogText = string.Empty;
         private bool ShowErrorDialog = false;
-        private LocationData SelectedLocation => LocationService.SelectedLocation;
+        private LocationData? SelectedLocation
+        {
+            get 
+            {
+                return SettingsData.City ?? LocationService.CurrentLocation;
+            }
+        }
         private WeatherData WeatherData { get; set; } = new WeatherData();
         private WeatherLives WeatherLives
         {
@@ -88,7 +94,7 @@ namespace YourWeather.Razor.Pages
 
         protected override Task OnInitializedAsync()
         {
-            LocationService.OnLocationChanged += InitWeather;
+            LocationService.OnInit += InitWeather;
             if (OperatingSystem.IsBrowser())
             {
                 SettingsService.OnInit += LocationService.InitCurrentLocation;
@@ -100,6 +106,7 @@ namespace YourWeather.Razor.Pages
 
             WeatherService.OnSourceChanged += UpadateWeather;
             WeatherService.OnShowChanged += StateHasChanged;
+            LocationService.OnCityChanged += UpadateWeather;
             MasaBlazor.Breakpoint.OnUpdate += () => { return InvokeAsync(StateHasChanged); };
 
             return base.OnInitializedAsync();
@@ -117,14 +124,12 @@ namespace YourWeather.Razor.Pages
 
         private async void InitWeather(Result<LocationData> result)
         {
-            if (result.IsSuccess)
-            {
-                await GetWeatherData();
-            }
-            else
+            if (!result.IsSuccess)
             {
                 ErrorDialog("定位失败", result.Message);
+                
             }
+            await GetWeatherData();
             StateHasChanged();
         }
 
@@ -132,18 +137,18 @@ namespace YourWeather.Razor.Pages
         public async void UpadateWeather()
         {
             LoadingUpadateWeather = true;
-            if (SelectedLocation != null)
-            {
-                await GetWeatherData();
-            }
 
+            await GetWeatherData();
+            
             LoadingUpadateWeather = false;
             await InvokeAsync(StateHasChanged);
         }
 
         private async Task GetWeatherData()
         {
-            WeatherData = await SelectWeatherSourceItem.GetWeatherData(SelectedLocation.Lat, SelectedLocation.Lon);
+            if (SelectedLocation == null)
+                return;
+            WeatherData = await SelectWeatherSourceItem.GetWeatherData(SelectedLocation);
             if (WeatherData.Lives != null)
             {
                 await InvokeAsync(StateHasChanged);

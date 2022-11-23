@@ -69,7 +69,7 @@ namespace YourWeather.Razor.Pages
         {
             ThemeService.Onchange += StateHasChanged;
             BackPressService.OnBackPressChanged += StateHasChanged;
-            LocationService.OnLocationVoidChanged += StateHasChanged;
+            LocationService.OnInitVoid += StateHasChanged;
             return base.OnInitializedAsync();
         }
         private void OpenDeleteDialog(string Name, LocationData locationData)
@@ -93,7 +93,7 @@ namespace YourWeather.Razor.Pages
             if(value)
             {
                 SelectedCity = locationData;
-                
+                LocationService.NotifyCityChanged();
             }
             StateHasChanged();
             

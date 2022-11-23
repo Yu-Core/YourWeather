@@ -16,7 +16,7 @@ namespace YourWeather.MAUIBlazor.Service
     public class LocationService : ILocationService
     {
         private IJSRuntime JS { get; set; }
-        public LocationData? SelectedLocation { get; set; }
+        public LocationData? CurrentLocation { get; set; }
         public List<LocationData>? ChinaCities { get; set; }
 
         public LocationService(IJSRuntime jS)
@@ -24,10 +24,10 @@ namespace YourWeather.MAUIBlazor.Service
             JS = jS;
             InitChinaCities();
         }
-        private LocationData? CurrentLocation;
 
-        public event Action<Result<LocationData>>? OnLocationChanged;
-        public event Action? OnLocationVoidChanged;
+        public event Action<Result<LocationData>>? OnInit;
+        public event Action? OnInitVoid;
+        public event Action? OnCityChanged;
 
         public async void InitCurrentLocation()
         {
@@ -51,7 +51,6 @@ namespace YourWeather.MAUIBlazor.Service
                     Lat = result.Position.Coords.Latitude,
                     Lon = result.Position.Coords.Longitude,
                 };
-                SelectedLocation = CurrentLocation;
                 location = ResultHelper.Success(CurrentLocation);
             }
             else
@@ -59,8 +58,8 @@ namespace YourWeather.MAUIBlazor.Service
                 location = ResultHelper.Error<LocationData>(result.Error.Code.ToString());
             }
 
-            OnLocationChanged?.Invoke(location);
-            OnLocationVoidChanged?.Invoke();
+            OnInit?.Invoke(location);
+            OnInitVoid?.Invoke();
         }
 
         private async void InitChinaCities()
@@ -69,6 +68,11 @@ namespace YourWeather.MAUIBlazor.Service
             using var reader = new StreamReader(stream);
             var contents = reader.ReadToEnd();
             ChinaCities = JsonSerializer.Deserialize<List<LocationData>>(contents);
+        }
+
+        public void NotifyCityChanged()
+        {
+            OnCityChanged?.Invoke();
         }
     }
 }
