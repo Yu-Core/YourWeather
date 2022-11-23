@@ -15,5 +15,6 @@ namespace YourWeather.IService
         public void InitCurrentLocation();
 
         public event Action<Result<LocationData>>? OnLocationChanged;
+        public event Action? OnLocationVoidChanged;
     }
 }

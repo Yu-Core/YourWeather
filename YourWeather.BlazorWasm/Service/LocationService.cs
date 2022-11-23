@@ -22,6 +22,7 @@ namespace YourWeather.BlazorWasm.Service
         private LocationData? CurrentLocation;
 
         public event Action<Result<LocationData>>? OnLocationChanged;
+        public event Action? OnLocationVoidChanged;
 
         public async void InitCurrentLocation()
         {
@@ -51,6 +52,7 @@ namespace YourWeather.BlazorWasm.Service
             }
 
             OnLocationChanged?.Invoke(location);
+            OnLocationVoidChanged?.Invoke();
         }
 
         private async void InitChinaCities()

@@ -5,6 +5,9 @@
     *:hover i::before {
         display:inline-block
     }
+    *:hover .m-icon::before {
+        display: inline-block
+    }
 }
 
 @media (hover:hover)

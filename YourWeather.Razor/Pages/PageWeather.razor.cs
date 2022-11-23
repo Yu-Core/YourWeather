@@ -125,6 +125,7 @@ namespace YourWeather.Razor.Pages
             {
                 ErrorDialog("定位失败", result.Message);
             }
+            StateHasChanged();
         }
 
         [JSInvokable]

@@ -1,4 +1,4 @@
-﻿@if(SettingsData.ShowLives)
+﻿@if (SettingsData.ShowLives)
 {
     <MCard Class="rounded-lg my-5">
         <MCardText Style="width:auto;">
@@ -6,7 +6,7 @@
                 <div class="weather-baseInfo justify-space-around justify-sm-start">
                     <div class=" d-flex align-end">
                         <span class="text-h2 font-weight-medium">
-                            @((WeatherLives.Temp ?? "N/A") + "°")
+                            @((WeatherLives.Temp ?? "0") + "°")
                         </span>
                         <span class="text-h6 font-weight-bold">
                             @(WeatherLives.Weather ?? "未知")
@@ -102,7 +102,7 @@
 }
 
 
-@if(SettingsData.ShowLivesInfo)
+@if (SettingsData.ShowLivesInfo)
 {
     <div class="weather-lives-item my-5">
         <WeatherLivesInfoCard Value="@(WeatherLives.WindDeg)"

@@ -1,48 +1,39 @@
 ﻿<div class="mt-5"></div>
 <div class="text-h6 d-none d-sm-block font-weight-bold mx-2 mb-2">位置</div>
 <MCard Class="mb-5">
-    <MList>
+    <MList Flat>
         <MSubheader Class="d-sm-none">位置</MSubheader>
         <MListItem>
             <MListItemContent>
                 当前位置@(LocationService.SelectedLocation != null ? "" : "（请检查定位权限是否授权）")
             </MListItemContent>
             <MListItemAction>
-                @if (!ShowDeleteButton)
-                {
-                    <MSwitch Value="@(LocationService.SelectedLocation != null)"
+                <MSwitch Value="GetSwitchCityValue(null)"
+                         ValueChanged="(bool value)=>SelectedCityChanged(value,null)"
                          Color="@(IsDark() ? "white":"black")"
-                         Disabled>
-                    </MSwitch>
-                }
+                         Disabled="GetSwitchCityValue(null)">
+                </MSwitch>
             </MListItemAction>
         </MListItem>
 
-        
         @foreach (var item in SettingsData.LocationDatas)
         {
             <MDivider Class="mx-3 mx-sm-0"></MDivider>
-            <MListItem>
+            <MListItem OnClick="()=>OpenDeleteDialog(item.Name,item)">
                 <MListItemContent>
                     @(item.Name)
                 </MListItemContent>
                 <MListItemAction>
-                    @if(ShowDeleteButton)
-                    {
-                        <MButton Icon Small Class="error--text" OnClick="()=>DeleteLocationData(item)">
-                            <MIcon>mdi-delete</MIcon>
-                        </MButton>
-                    }
-                    else
-                    {
-                        <MSwitch Color="@(IsDark() ? "white":"black")">
+                    <div @onclick:stopPropagation="true">
+                        <MSwitch Value="GetSwitchCityValue(item)"
+                             ValueChanged="(bool value)=>SelectedCityChanged(value,item)"
+                             Color="@(IsDark() ? "white":"black")"
+                             Disabled="GetSwitchCityValue(item)">
                         </MSwitch>
-                    }
-                    
+                    </div>
                 </MListItemAction>
             </MListItem>
         }
-
     </MList>
 
 </MCard>
@@ -60,20 +51,6 @@
     </MList>
 </MCard>
 
-<div class="text-h6 d-none d-sm-block font-weight-bold mx-2 mb-2">删除</div>
-<MCard>
-    <MList>
-        <MListItem OnClick="()=>ShowDeleteButton = !ShowDeleteButton">
-            <MListItemContent>
-                删除城市
-            </MListItemContent>
-            <MListItemAction>
-                <MIcon>mdi-delete</MIcon>
-            </MListItemAction>
-        </MListItem>
-    </MList>
-</MCard>
-
 <MButton Class="@($"mb-10 {(IsDark()?"white black--text":"black white--text")}")"
          OnClick="()=>ShowDialogSearchCity =true"
          Absolute
@@ -86,4 +63,26 @@
 </MButton>
 
 <SearchCity @bind-Value="ShowDialogSearchCity"></SearchCity>
+
+<MDialog @bind-Value="ShowDeleteDialog"
+         MaxWidth="420">
+    <MCard>
+        <MCardTitle>
+            提示
+        </MCardTitle>
+        <MCardText>
+            是否删除@(DeleteDialogText)？
+        </MCardText>
+        <MCardActions>
+            <MSpacer></MSpacer>
+            <MButton Text OnClick="()=>ShowDeleteDialog=false">
+                取消
+            </MButton>
+            <MButton Text Class="error--text" OnClick="()=>{OnDeleteLocationData.Invoke();}">
+                确认
+            </MButton>
+
+        </MCardActions>
+    </MCard>
+</MDialog>
 

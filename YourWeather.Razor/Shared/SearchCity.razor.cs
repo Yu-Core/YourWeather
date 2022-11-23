@@ -25,6 +25,8 @@ namespace YourWeather.Razor.Shared
         private ISettingsService? SettingsService { get; set; }
         [Inject]
         private IThemeService ThemeService { get; set; }
+        [Inject] 
+        IPopupService PopupService { get; set; }
 
         private Settings SettingsData => SettingsService.Settings;
         private bool IsDark() => ThemeService.IsDark(SettingsData.ThemeState);
@@ -53,7 +55,7 @@ namespace YourWeather.Razor.Shared
             new LocationData( "西安市","陕西省 西安市",34.343207,108.939645),
             new LocationData( "郑州市","河南省 郑州市",34.746303,113.625351),
         };
-        
+
 
         protected virtual async Task HandleOnCancel(MouseEventArgs _)
         {
@@ -82,7 +84,11 @@ namespace YourWeather.Razor.Shared
             }
             else
             {
-                var cities = LocationService.ChinaCities.Where(it => it.Info.Contains(_search)).Take(50).ToList();
+                var cities = LocationService.ChinaCities
+                    .Where(p => SettingsData.LocationDatas.All(p2 => p2.Info != p.Info))
+                    .Where(it => it.Info.Contains(_search))
+                    .Take(50)
+                    .ToList();
                 if (cities.Any())
                 {
                     LocationDatas = cities;
@@ -95,8 +101,21 @@ namespace YourWeather.Razor.Shared
         }
         private async void AddLocationData(LocationData locationData)
         {
-            SettingsData.AddLocationData(locationData);
-            await InternalValueChanged(false);
+            var any = SettingsData.LocationDatas.Where(it => it.Info == locationData.Info).Any();
+            if (any)
+            {
+                await PopupService.AlertAsync(param =>
+                {
+                    param.Content = "该城市已存在";
+                    param.Centered = true;
+                });
+            }
+            else
+            {
+                SettingsData.AddLocationData(locationData);
+                await InternalValueChanged(false);
+            }
+            
         }
     }
 }

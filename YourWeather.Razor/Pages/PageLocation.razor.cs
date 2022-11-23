@@ -1,21 +1,17 @@
-﻿using BlazorComponent.I18n;
+﻿using BlazorComponent;
+using Masa.Blazor;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using YourWeather.IService;
 using YourWeather.Model;
 using YourWeather.Model.Location;
-using YourWeather.Model.Result;
 using YourWeather.Service;
 
 namespace YourWeather.Razor.Pages
 {
     public partial class PageLocation
     {
+        #region 注入
+
         [Inject]
         private IThemeService? ThemeService { get; set; }
         [Inject]
@@ -25,8 +21,11 @@ namespace YourWeather.Razor.Pages
         [Inject]
         private BackPressService BackPressService { get; set; }
 
+        #endregion
+
+        #region 变量
+
         private Settings SettingsData => SettingsService.Settings;
-        private bool IsDark() => ThemeService.IsDark(SettingsData.ThemeState);
         private bool ShowDialogSearchCity
         {
             get => BackPressService.DialogsState[8];
@@ -35,26 +34,86 @@ namespace YourWeather.Razor.Pages
                 BackPressService.DialogsState[8] = value;
             }
         }
-        private bool ShowDeleteButton
+        private bool ShowDeleteDialog
         {
             get => BackPressService.DialogsState[9];
             set
             {
                 BackPressService.DialogsState[9] = value;
+                if (!value)
+                {
+                    CloseDeleteDialog();
+                }
             }
         }
+
+        private Action? OnDeleteLocationData;
+        private string DeleteDialogText;
+        private LocationData? SelectedCity
+        {
+            get => SettingsData.City;
+            set
+            {
+                SettingsData.City = value;
+            }
+        }
+
+        #endregion
+
+        #region 方法
+
+        private bool IsDark() => ThemeService.IsDark(SettingsData.ThemeState);
+
 
         protected override Task OnInitializedAsync()
         {
             ThemeService.Onchange += StateHasChanged;
             BackPressService.OnBackPressChanged += StateHasChanged;
-            LocationService.OnLocationChanged += (Result<LocationData> result) => { StateHasChanged(); };
+            LocationService.OnLocationVoidChanged += StateHasChanged;
             return base.OnInitializedAsync();
         }
-        private void DeleteLocationData(LocationData locationData)
+        private void OpenDeleteDialog(string Name, LocationData locationData)
         {
-            SettingsData.RemoveLocationData(locationData);
-            ShowDeleteButton = false;
+            DeleteDialogText = Name;
+            OnDeleteLocationData += () => { ShowDeleteDialog = false; SettingsData.RemoveLocationData(locationData); };
+            ShowDeleteDialog = true;
+            StateHasChanged();
         }
+        private void CloseDeleteDialog()
+        {
+            DeleteDialogText = string.Empty;
+            foreach (var item in OnDeleteLocationData.GetInvocationList())
+            {
+                OnDeleteLocationData -= (Action)item;
+            }
+        }
+
+        private void SelectedCityChanged(bool value,LocationData? locationData)
+        {
+            if(value)
+            {
+                SelectedCity = locationData;
+                
+            }
+            StateHasChanged();
+            
+        }
+        
+
+        private bool GetSwitchCityValue(LocationData? locationData)
+        {
+            if(locationData != null && SelectedCity != null)
+            {
+                return SelectedCity.Info == locationData.Info;
+            }
+            else if(locationData == null && SelectedCity == null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
+
     }
 }

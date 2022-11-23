@@ -26,6 +26,8 @@ namespace YourWeather.Razor.Shared
         IJSRuntime JSRuntime { get; set; }
         [Inject]
         private ISettingsService? SettingsService { get; set; }
+        [Inject]
+        private ILocationService? LocationService { get; set; }
 
         private bool IsDark { get;set; }
 
@@ -34,6 +36,8 @@ namespace YourWeather.Razor.Shared
         private Settings SettingData => SettingsService.Settings;
 
         private static Action<int> action;
+
+        private bool _overlay = true;
 
         readonly List<NavigationButton> NavigationButtons = new()
         {
@@ -59,6 +63,7 @@ namespace YourWeather.Razor.Shared
         protected override Task OnInitializedAsync()
         {
             action = UpdateSelectItem;
+            LocationService.OnLocationVoidChanged += () =>{ _overlay = false; StateHasChanged(); };
             MasaBlazor.Breakpoint.OnUpdate += () => { return InvokeAsync(StateHasChanged); };
             return base.OnInitializedAsync();
         }

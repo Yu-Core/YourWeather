@@ -99,8 +99,22 @@ namespace YourWeather.Model
         }
         public void RemoveLocationData(LocationData locationData)
         {
+            if(locationData.Info == City.Info)
+            {
+                City = null;
+            }
             LocationDatas.Remove(locationData);
             NotifyStateChanged();
+        }
+        private LocationData? _city;
+        public LocationData? City
+        {
+            get => _city;
+            set
+            {
+                _city = value;
+                NotifyStateChanged();
+            }
         }
 
         public event Action OnChanged;
