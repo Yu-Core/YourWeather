@@ -75,17 +75,13 @@ namespace YourWeather.Razor.Pages
         private void OpenDeleteDialog(string Name, LocationData locationData)
         {
             DeleteDialogText = Name;
-            OnDeleteLocationData += () => { ShowDeleteDialog = false; SettingsData.RemoveLocationData(locationData); };
+            OnDeleteLocationData = () => { ShowDeleteDialog = false; SettingsData.RemoveLocationData(locationData); };
             ShowDeleteDialog = true;
             StateHasChanged();
         }
         private void CloseDeleteDialog()
         {
-            DeleteDialogText = string.Empty;
-            foreach (var item in OnDeleteLocationData.GetInvocationList())
-            {
-                OnDeleteLocationData -= (Action)item;
-            }
+            OnDeleteLocationData = null;
         }
 
         private void SelectedCityChanged(bool value,LocationData? locationData)

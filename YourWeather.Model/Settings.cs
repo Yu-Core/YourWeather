@@ -99,7 +99,7 @@ namespace YourWeather.Model
         }
         public void RemoveLocationData(LocationData locationData)
         {
-            if(locationData.Info == City.Info)
+            if (City != null && locationData.Info == City.Info)
             {
                 City = null;
             }

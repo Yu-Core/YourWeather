@@ -96,38 +96,40 @@
                             @(SelectCodeSourceItem.Icon)
                         </MIcon>
                         @(SelectCodeSourceItem.Text)
-                        <MIcon>@(ShowDialogSourceCode ? "mdi-chevron-up" : "mdi-chevron-down")</MIcon>
-                        </MButton>
-                    </div>
+                        <MIcon>
+                            @(ShowDialogSourceCode ? "mdi-chevron-up" : "mdi-chevron-down")
+                        </MIcon>
+                    </MButton>
+                </div>
 
-                </MListItemAction>
+            </MListItemAction>
 
-            </MListItem>
+        </MListItem>
 
-            <MDivider Class="mx-3 mx-sm-0"></MDivider>
+        <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-            <MListItem OnClick="()=>ShowDialogThirdPartyCopyright = true">
-                <MListItemContent>
-                    第三方版权
-                </MListItemContent>
-                <MListItemAction>
-                    <MIcon>mdi-chevron-right</MIcon>
-                </MListItemAction>
-            </MListItem>
+        <MListItem OnClick="()=>ShowDialogThirdPartyCopyright = true">
+            <MListItemContent>
+                第三方版权
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-chevron-right</MIcon>
+            </MListItemAction>
+        </MListItem>
 
-            <MDivider Class="mx-3 mx-sm-0"></MDivider>
+        <MDivider Class="mx-3 mx-sm-0"></MDivider>
 
-            <MListItem>
-                <MListItemContent>
-                    日志
-                </MListItemContent>
-                <MListItemAction>
-                    <MIcon>mdi-chevron-right</MIcon>
-                </MListItemAction>
-            </MListItem>
+        <MListItem>
+            <MListItemContent>
+                日志
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-chevron-right</MIcon>
+            </MListItemAction>
+        </MListItem>
 
-        </MList>
-    </MCard>
+    </MList>
+</MCard>
 @if (!OperatingSystem.IsBrowser())
 {
     <MCard>
@@ -142,6 +144,7 @@
     </MCard>
     <MDialog @bind-Value="ShowDialogExit" MaxWidth="420">
         <MCard>
+            <MCardTitle></MCardTitle>
             <MCardTitle Class="subtitle-1 justify-center">
                 确认退出应用吗？
             </MCardTitle>
@@ -235,7 +238,7 @@
                     <span>暂不可用</span>
                 </ChildContent>
             </MTooltip>
-            
+
             <MSpacer></MSpacer>
             <MButton Icon OnClick="()=>ShowDialogLanguage= false">
                 <MIcon>mdi-close</MIcon>

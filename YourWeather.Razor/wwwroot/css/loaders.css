@@ -78,7 +78,7 @@
     display: inline-block;
 }
 
-#app > .loader {
+.your-weather-loader {
     position: fixed;
     display: flex;
     justify-content: center;

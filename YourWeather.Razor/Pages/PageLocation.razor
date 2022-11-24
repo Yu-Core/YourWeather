@@ -11,6 +11,7 @@
                 <MSwitch Value="GetSwitchCityValue(null)"
                          ValueChanged="(bool value)=>SelectedCityChanged(value,null)"
                          Color="@(IsDark() ? "white":"black")"
+                         Style="opacity:initial;"
                          Disabled="GetSwitchCityValue(null)">
                 </MSwitch>
             </MListItemAction>
@@ -28,6 +29,7 @@
                         <MSwitch Value="GetSwitchCityValue(item)"
                              ValueChanged="(bool value)=>SelectedCityChanged(value,item)"
                              Color="@(IsDark() ? "white":"black")"
+                             Style="opacity:initial;"
                              Disabled="GetSwitchCityValue(item)">
                         </MSwitch>
                     </div>

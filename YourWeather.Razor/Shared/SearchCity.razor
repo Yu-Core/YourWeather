@@ -3,8 +3,10 @@
          ValueChanged="ValueChanged"
          Fullscreen
          Transition="dialog-right-transition">
-    <MCard Class="@(IsDark() ?"":"grey lighten-4")">
-        <MToolbar Class="@($"elevation-2 {(IsDark() ?"":"grey lighten-4")}")">
+    <MCard Class="@(IsDark() ?"":"grey lighten-4")" Style="padding-top:64px !important;">
+        <MToolbar Class="@($"elevation-2 {(IsDark() ?"":"grey lighten-4")}")"
+                  Style="position:fixed;width:100%;"
+                  Absolute>
             <MButton Icon
                      OnClick="HandleOnCancel">
                 <MIcon>mdi-arrow-left</MIcon>
@@ -13,6 +15,7 @@
             <MSpacer></MSpacer>
         </MToolbar>
         <MContainer>
+            <div class="mt-5"></div>
             <MTextField TValue="string"
                         Value="_search"
                         ValueChanged="SearchTextChanged"
@@ -35,9 +38,9 @@
                             <MDivider Class="mx-3 mx-sm-0"></MDivider>
                         }
                     }
-                    @if(LocationDatas.Count == 0)
+                    @if (LocationDatas.Count == 0)
                     {
-                        <MListItem >
+                        <MListItem>
                             <MListItemContent>
                                 未找到你想要的结果
                             </MListItemContent>

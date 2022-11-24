@@ -8,6 +8,14 @@
     *:hover .m-icon::before {
         display: inline-block
     }
+
+    * {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 @media (hover:hover)
