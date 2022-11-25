@@ -37,7 +37,10 @@ namespace YourWeather.Razor.Shared
             set
             {
                 SettingsData.ShowLives = value;
-                WeatherService.NotifyShowChanged();
+                Task.Run(() =>
+                {
+                    WeatherService.NotifyShowChanged();
+                });
             }
         }
         private bool ShowForeastHour
@@ -46,7 +49,10 @@ namespace YourWeather.Razor.Shared
             set
             {
                 SettingsData.ShowForeastHour = value;
-                WeatherService.NotifyShowChanged();
+                Task.Run(() =>
+                {
+                    WeatherService.NotifyShowChanged();
+                });
             }
         }
         private bool ShowForeastDays
@@ -55,7 +61,10 @@ namespace YourWeather.Razor.Shared
             set
             {
                 SettingsData.ShowForeastDays = value;
-                WeatherService.NotifyShowChanged();
+                Task.Run(() => 
+                { 
+                    WeatherService.NotifyShowChanged();
+                });
             }
         }
         private bool ShowLivesInfo
@@ -64,7 +73,10 @@ namespace YourWeather.Razor.Shared
             set
             {
                 SettingsData.ShowLivesInfo = value;
-                WeatherService.NotifyShowChanged();
+                Task.Run(() => 
+                { 
+                    WeatherService.NotifyShowChanged();
+                });
             }
         }
 

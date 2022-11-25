@@ -132,7 +132,11 @@ namespace YourWeather.Razor.Pages
             set
             {
                 ShowDialogSourceCode = false;
-                SelectCodeSourceIndex = CodeSourceItems.IndexOf(value);
+                Task.Run(() =>
+                {
+                    SelectCodeSourceIndex = CodeSourceItems.IndexOf(value);
+                    InvokeAsync(StateHasChanged);
+                });
             }
         }
         private bool IsDark()
@@ -147,9 +151,12 @@ namespace YourWeather.Razor.Pages
             set
             {
                 ShowDialogTheme = false;
-                StateHasChanged();
-                SettinsData.ThemeState = value;
-                ThemeChanged();
+                Task.Run(() =>
+                {
+                    SettinsData.ThemeState = value;
+                    ThemeChanged();
+                });
+                
             }
         }
         private int SelectLanguageIndex
@@ -185,8 +192,11 @@ namespace YourWeather.Razor.Pages
             set
             {
                 ShowDialogWeatherSource = false;
-                SelectWeatherSourceIndex = WeatherSourceItems.IndexOf(value);
-                WeatherSourceChange();
+                Task.Run(() =>
+                {
+                    SelectWeatherSourceIndex = WeatherSourceItems.IndexOf(value);
+                    WeatherSourceChange();
+                });
             }
         }
 

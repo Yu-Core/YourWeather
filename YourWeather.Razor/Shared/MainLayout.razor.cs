@@ -15,13 +15,13 @@ using YourWeather.Service;
 
 namespace YourWeather.Razor.Shared
 {
-    public partial class MainLayout : IDisposable
+    public partial class MainLayout 
     {
         [Inject]
         private MasaBlazor MasaBlazor { get; set; }
         [Inject]
         //注入主题服务
-        private IThemeService? SystemThemeService { get; set; }
+        private IThemeService? ThemeService { get; set; }
         [Inject]
         IJSRuntime JSRuntime { get; set; }
         [Inject]
@@ -29,7 +29,10 @@ namespace YourWeather.Razor.Shared
         [Inject]
         private ILocationService? LocationService { get; set; }
 
-        private bool IsDark { get;set; }
+        private bool IsDark
+        {
+            get => ThemeService.IsDark(SettingData.ThemeState);
+        }
 
         StringNumber SelectItem = 0;
 
@@ -63,6 +66,8 @@ namespace YourWeather.Razor.Shared
         protected override Task OnInitializedAsync()
         {
             action = UpdateSelectItem;
+            ThemeService.Onchange += StateHasChanged;
+            SettingsService.OnInit += StateHasChanged;
             LocationService.OnInitVoid += () =>{ _overlay = false; StateHasChanged(); };
             MasaBlazor.Breakpoint.OnUpdate += () => { return InvokeAsync(StateHasChanged); };
             return base.OnInitializedAsync();
@@ -73,7 +78,7 @@ namespace YourWeather.Razor.Shared
             if (firstRender)
             {
                 await JSRuntime.InvokeVoidAsync("initSwiper", null);
-                InitTheme();
+                //InitTheme();
 
             }
             await base.OnAfterRenderAsync(firstRender);
@@ -84,26 +89,26 @@ namespace YourWeather.Razor.Shared
             return SelectItem == navigationButton.Id ? navigationButton.SelectIcon : navigationButton.Icon;
         }
 
-        private void ChangeTheme()
-        {
-            IsDark = SystemThemeService!.IsDark(SettingData.ThemeState);
-            InvokeAsync(StateHasChanged);
-        }
+        //private void ChangeTheme()
+        //{
+        //    IsDark = SystemThemeService!.IsDark(SettingData.ThemeState);
+        //    InvokeAsync(StateHasChanged);
+        //}
 
-        private void InitTheme()
-        {
-            SystemThemeService.Onchange += ChangeTheme;
-            if (!OperatingSystem.IsBrowser())
-            {
-                SystemThemeService.ThemeChanged(SettingData.ThemeState);
-            }
-            else
-            {
-                ChangeTheme();
-            }
+        //private void InitTheme()
+        //{
+        //    SystemThemeService.Onchange += ChangeTheme;
+        //    if (!OperatingSystem.IsBrowser())
+        //    {
+        //        SystemThemeService.ThemeChanged(SettingData.ThemeState);
+        //    }
+        //    else
+        //    {
+        //        ChangeTheme();
+        //    }
 
-            StateHasChanged();
-        }
+        //    StateHasChanged();
+        //}
 
 
         private async Task ChangeView(int index)
@@ -121,14 +126,14 @@ namespace YourWeather.Razor.Shared
             action.Invoke(index);
         }
 
-        public void Dispose()
-        {
-            SystemThemeService.Onchange -= ChangeTheme;
-            if (!OperatingSystem.IsBrowser())
-            {
-                SystemThemeService.ThemeChanged(ThemeState.Light);
-            }
-        }
+        //public void Dispose()
+        //{
+        //    SystemThemeService.Onchange -= ChangeTheme;
+        //    if (!OperatingSystem.IsBrowser())
+        //    {
+        //        SystemThemeService.ThemeChanged(ThemeState.Light);
+        //    }
+        //}
 
     }
 }

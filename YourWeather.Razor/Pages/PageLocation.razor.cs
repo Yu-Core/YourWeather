@@ -40,10 +40,13 @@ namespace YourWeather.Razor.Pages
             set
             {
                 BackPressService.DialogsState[9] = value;
-                if (!value)
+                Task.Run(() =>
                 {
-                    CloseDeleteDialog();
-                }
+                    if (!value)
+                    {
+                        CloseDeleteDialog();
+                    }
+                });
             }
         }
 

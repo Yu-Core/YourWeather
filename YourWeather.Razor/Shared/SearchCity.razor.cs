@@ -1,6 +1,8 @@
-﻿using Masa.Blazor;
+﻿using BlazorComponent;
+using Masa.Blazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,8 @@ namespace YourWeather.Razor.Shared
         private IThemeService ThemeService { get; set; }
         [Inject] 
         IPopupService PopupService { get; set; }
+        [Inject]
+        IJSRuntime JSRuntime { get; set; }
 
         private Settings SettingsData => SettingsService.Settings;
         private bool IsDark() => ThemeService.IsDark(SettingsData.ThemeState);
@@ -56,6 +60,13 @@ namespace YourWeather.Razor.Shared
             new LocationData( "郑州市","河南省 郑州市",34.746303,113.625351),
         };
 
+        protected async override Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!Value)
+            {
+                _search = string.Empty;
+            }
+        }
 
         protected virtual async Task HandleOnCancel(MouseEventArgs _)
         {
@@ -71,8 +82,6 @@ namespace YourWeather.Razor.Shared
             {
                 await ValueChanged.InvokeAsync(value);
             }
-
-            SearchTextChanged(string.Empty);
         }
 
         private void SearchTextChanged(string search)

@@ -24,8 +24,10 @@
                         PrependInnerIcon="mdi-magnify"
                         Rounded>
             </MTextField>
+            <div class="text-h6 d-none d-sm-block font-weight-bold px-2 pb-2">热门城市</div>
             <MCard Class="rounded-lg">
                 <MList>
+                    <MSubheader Class="d-sm-none">热门城市</MSubheader>
                     @foreach (var item in LocationDatas)
                     {
                         <MListItem OnClick="()=>AddLocationData(item)">
