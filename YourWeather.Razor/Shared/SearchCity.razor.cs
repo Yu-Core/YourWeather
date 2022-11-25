@@ -60,7 +60,7 @@ namespace YourWeather.Razor.Shared
             new LocationData( "郑州市","河南省 郑州市",34.746303,113.625351),
         };
 
-        protected async override Task OnAfterRenderAsync(bool firstRender)
+        protected override void OnAfterRender(bool firstRender)
         {
             if (!Value)
             {
