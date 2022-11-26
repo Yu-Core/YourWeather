@@ -151,12 +151,7 @@ namespace YourWeather.Razor.Pages
             set
             {
                 ShowDialogTheme = false;
-                Task.Run(() =>
-                {
-                    SettinsData.ThemeState = value;
-                    ThemeChanged();
-                });
-                
+                ThemeChanged(value);
             }
         }
         private int SelectLanguageIndex
@@ -201,8 +196,8 @@ namespace YourWeather.Razor.Pages
         }
 
         public static List<CodeSourceItem> CodeSourceItems => StaticDataService.CodeSourceItems;
-        public List<LanguageItem> LanguageItems => StaticDataService.LanguageItems;
-        private List<IWeatherSource> WeatherSourceItems => StaticDataService.WeatherSources;
+        public static List<LanguageItem> LanguageItems => StaticDataService.LanguageItems;
+        private static List<IWeatherSource> WeatherSourceItems => StaticDataService.WeatherSources;
         #endregion
 
         #region 方法
@@ -228,9 +223,22 @@ namespace YourWeather.Razor.Pages
         }
 
         //主题状态更改
-        private void ThemeChanged()
+        private void ThemeChanged(ThemeState value)
         {
-            ThemeService.ThemeChanged(SettinsData.ThemeState);
+            if (OperatingSystem.IsWindows())
+            {
+                SettinsData.ThemeState = value;
+                ThemeService.ThemeChanged(SettinsData.ThemeState);
+            }
+            else
+            {
+                Task.Run(() =>
+                {
+                    SettinsData.ThemeState = value;
+                    ThemeService.ThemeChanged(SettinsData.ThemeState);
+                });
+            }
+
         }
         private void WeatherSourceChange()
         {

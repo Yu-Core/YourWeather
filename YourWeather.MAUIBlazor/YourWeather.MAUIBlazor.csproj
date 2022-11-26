@@ -33,6 +33,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+		<!-- App icon for Windows -->
+		<MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'"
+				  Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg_windows.svg" Color="#FFFFFF" />
+		
 		<!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FFFFFF" />
 
