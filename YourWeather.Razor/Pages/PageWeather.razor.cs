@@ -34,7 +34,7 @@ namespace YourWeather.Razor.Pages
         [Inject]
         private ILocationService LocationService { get; set; }
         [Inject]
-        private ISystemService SystemService { get; set; }
+        private IPopupService PopupService { get; set; }
 
         private string GetDayWeatherIcon(string weather) => WeatherService.GetWeatherIcon(weather);
         private string GetWeatherIcon(string weather, DateTime dateTime) => WeatherService.GetWeatherIcon(weather, dateTime);
@@ -142,6 +142,11 @@ namespace YourWeather.Razor.Pages
             
             LoadingUpadateWeather = false;
             await InvokeAsync(StateHasChanged);
+            await PopupService.AlertAsync(param =>
+            {
+                param.Content = "天气已刷新";
+                param.Centered = true;
+            });
         }
 
         private async Task GetWeatherData()
