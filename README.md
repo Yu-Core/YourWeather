@@ -33,6 +33,31 @@
 - 城市搜索只有中国的城市
 - 天气源的key在程序中无法自由更改（未来会完善）
 
+## 项目结构
+- YourWeather.IService **服务接口，由客户端服务实现**
+- YourWeather.Service **共用的服务**
+- YourWeather.BlazorWasm **Blazor Webassembly客户端**
+    - Extend **扩展方法**
+    - Service **服务**
+- YourWeather.MAUIBlazor **MAUI客户端**
+    - Extend **扩展方法**
+    - Platforms **MAUI各平台的配置及启动**
+    - Resources **资源**
+    - Service **服务**
+- YourWeather.Model **模型**
+    - Enum **枚举**
+    - Extend **扩展方法**
+    - Item **选项相关**
+    - Location **位置相关**
+    - Result **返回值封装**
+    - Weather **天气相关**
+        - WeatherResult **转换天气api返回的json**
+        - WeatherSource **天气源相关**
+- YourWeather.Razor **UI界面**
+    - Extend **扩展方法**
+    - Pages **页面**
+    - Shared **组件**
+
 ## 感谢以下开源项目
 - [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor)
 - [ASP.NET Core](https://github.com/dotnet/aspnetcore)
