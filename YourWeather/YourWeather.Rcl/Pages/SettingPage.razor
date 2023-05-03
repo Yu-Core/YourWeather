@@ -1,0 +1,102 @@
+﻿@page "/fetchdata"
+@inherits PageComponentBase
+
+<PageTitle>@Title</PageTitle>
+
+<MCard Elevation="0"
+       Rounded="@("lg")">
+    <MList>
+        <MListItem OnClick="()=>ShowLanguage=true">
+            <MListItemIcon>
+                <MIcon>
+                    mdi-web
+                </MIcon>
+            </MListItemIcon>
+            <MListItemContent>
+                @(I18n.T("Setting.Language"))
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-chevron-right</MIcon>
+            </MListItemAction>
+        </MListItem>
+
+        <MDivider Class="mx-3"></MDivider>
+
+        <MListItem OnClick="()=>ShowThemeType=true">
+            <MListItemIcon>
+                <MIcon>
+                    mdi-weather-night
+                </MIcon>
+            </MListItemIcon>
+            <MListItemContent>
+                @(I18n.T("Setting.Night mode"))
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-chevron-right</MIcon>
+            </MListItemAction>
+        </MListItem>
+
+        
+
+    </MList>
+</MCard>
+
+<MDialog MaxWidth="420"
+          @bind-Value="ShowLanguage">
+    <MCard Rounded="@("lg")">
+        <MCardTitle Class="font-weight-bold">
+            @(I18n.T("Setting.Language"))
+            <MSpacer></MSpacer>
+            <MButton Icon="true" OnClick="()=>ShowLanguage= false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MCardText>
+            <MRadioGroup Value="Language"
+                         TValue="string"
+                         ValueChanged="LanguageChanged"
+                         Class="mt-0 pb-1"
+                         OnClick="()=>ShowLanguage=false"
+                         HideDetails="@("auto")"
+                         Mandatory="true">
+                @foreach (var item in Languages)
+                {
+                    <MRadio Label="@(item.Key)"
+                        Class="my-2"
+                        Value="@(item.Value)">
+                    </MRadio>
+                }
+            </MRadioGroup>
+        </MCardText>
+    </MCard>
+</MDialog>
+
+<MDialog MaxWidth="420"
+         @bind-Value="ShowThemeType">
+    <MCard Rounded="@("lg")">
+        <MCardTitle Class="font-weight-bold">
+            @(I18n.T("Setting.Night mode"))
+            <MSpacer></MSpacer>
+            <MButton Icon="true" OnClick="()=>ShowThemeType= false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MCardText>
+            <MRadioGroup Value="ThemeType"
+                         TValue="ThemeType"
+                         ValueChanged="ThemeTypeChanged"
+                         Class="mt-0 pb-1"
+                         OnClick="()=>ShowThemeType=false"
+                         HideDetails="@("auto")"
+                         Mandatory="true">
+                @foreach (var item in ThemeTypes)
+                {
+                    <MRadio Label="@(I18n.T(item.Key))"
+                        Class="my-2"
+                        Value="@(item.Value)">
+                    </MRadio>
+                }
+            </MRadioGroup>
+        </MCardText>
+    </MCard>
+</MDialog>

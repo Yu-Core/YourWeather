@@ -1,0 +1,103 @@
+﻿@using BlazorComponent.I18n;
+@inherits LayoutComponentBase
+
+<MApp>
+    <MAppBar App>
+        <MAppBarNavIcon @onclick="() => _drawer = !_drawer"></MAppBarNavIcon>
+        <MToolbarTitle>@Title</MToolbarTitle>
+        <MSpacer></MSpacer>
+        <MButton Text Color="primary" Target="_blank" Href="https://docs.masastack.com/blazor/introduction/why-masa-blazor">About</MButton>
+    </MAppBar>
+
+    <MNavigationDrawer App @bind-Value="_drawer">
+        <MList Nav Routable>
+            <MListItem Href="/" ActiveClass="primary--text">
+                <MListItemIcon>
+                    <MIcon>mdi-home</MIcon>
+                </MListItemIcon>
+                <MListItemContent>
+                    <MListItemTitle>Home</MListItemTitle>
+                </MListItemContent>
+            </MListItem>
+            <MListItem Href="/counter" ActiveClass="primary--text">
+                <MListItemIcon>
+                    <MIcon>mdi-plus</MIcon>
+                </MListItemIcon>
+                <MListItemContent>
+                    <MListItemTitle>Counter</MListItemTitle>
+                </MListItemContent>
+            </MListItem>
+            <MListItem Href="/fetchdata" ActiveClass="primary--text">
+                <MListItemIcon>
+                    <MIcon>mdi-list-box</MIcon>
+                </MListItemIcon>
+                <MListItemContent>
+                    <MListItemTitle>Fetch data</MListItemTitle>
+                </MListItemContent>
+            </MListItem>
+        </MList>
+    </MNavigationDrawer>
+
+    <MMain>
+        <MContainer Fluid>
+            <MErrorHandler>
+                <CascadingValue Value="this" IsFixed>
+                    @Body
+                </CascadingValue>
+            </MErrorHandler>
+        </MContainer>
+    </MMain>
+</MApp>
+
+@code {
+
+    private bool _drawer;
+    private string? Title;
+
+    [Inject]
+    private MasaBlazor MasaBlazor { get; set; } = default!;
+    [Inject]
+    private IThemeService ThemeService { get; set; } = default!;
+    [Inject]
+    private ISettingsService SettingsService { get; set; } = default!;
+    [Inject]
+    private I18n I18n { get; set; } = default!;
+
+    public void UpdateTitle(string? value)
+    {
+        Title = value;
+        InvokeAsync(StateHasChanged);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        ThemeService.OnChanged += ThemeChanged;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if(firstRender)
+        {
+            await LoadSettings();
+        }
+    }
+
+    private void ThemeChanged(ThemeType value)
+    {
+        if (MasaBlazor.Theme.Dark != (value == ThemeType.Dark))
+        {
+            MasaBlazor.ToggleTheme();
+        }
+    }
+
+    private async Task LoadSettings()
+    {
+        int themeType = await SettingsService.Get<int>(SettingType.Theme);
+        ThemeService.ThemeType = (ThemeType)themeType;
+        var language = await SettingsService.Get<string>(SettingType.Language);
+        I18n.SetCulture(new(language));
+    }
+    
+}
