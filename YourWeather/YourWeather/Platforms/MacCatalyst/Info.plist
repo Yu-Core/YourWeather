@@ -27,5 +27,7 @@
     </array>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/appicon.appiconset</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app requires access to your location. Please grant access to your precise location when requested.</string>
 </dict>
 </plist>

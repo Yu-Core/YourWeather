@@ -3,10 +3,105 @@
 
 <PageTitle>@Title</PageTitle>
 
-@code{
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        Title = "天气";
-    }
+@if (ForecastHours != null)
+{
+    <MCard Class="rounded-lg my-5">
+        <MCardTitle Class="d-none d-sm-flex">逐小时预报</MCardTitle>
+        <MSubheader Class="d-sm-none">逐小时预报</MSubheader>
+        <div class="swiper swiper-forecast-hours">
+            <div class="swiper-wrapper">
+                @foreach (var item in ForecastHours)
+                {
+                    <div class="swiper-slide">
+                        <MList >
+                            <MListItem Class="text-body-2">
+                                @(ForecastHours.IndexOf(item) == 0 ? "现在" : item.DateTime.ToString("HH:mm"))
+                            </MListItem>
+                            <MListItem Class="d-flex justify-center">
+                                <i class="m-icon @(GetWeatherIcon(item.Weather,item.DateTime))"></i>
+                            </MListItem>
+                            <MListItem Class="d-flex justify-center">
+                                @(item.Temp + "°")
+                            </MListItem>
+                        </MList>
+                    </div>
+                }
+            </div>
+        </div>
+    </MCard>
+}
+
+
+@if (ForecastDays != null)
+{
+    <MCard Class="rounded-lg my-5">
+        <MCardTitle Class="d-none d-sm-flex">近日天气预报</MCardTitle>
+        <MSubheader Class="d-sm-none">近日天气预报</MSubheader>
+        <MList>
+            @foreach (var item in ForecastDays)
+            {
+                <MListItem>
+                    <MListItemTitle>
+                        @(ForecastDays.IndexOf(item) == 0 ? "今天" : item.Date.DayOfWeek.ToWeek())
+                    </MListItemTitle>
+
+                    <MListItemTitle>
+                        <i class="m-icon @(GetDayWeatherIcon(item.Weather))"></i>
+                        @(item.Weather)
+                    </MListItemTitle>
+
+                    <MListItemSubtitle Class="text-right">
+                        <span class="text-subtitle-1">@(item.MaxTemp + "°")</span>
+                        <span>@("/" + item.MinTemp + "°")</span>
+                    </MListItemSubtitle>
+                </MListItem>
+            }
+        </MList>
+    </MCard>
+}
+
+
+@if (Lives != null)
+{
+    <div class="weather-lives-item my-5">
+        <WeatherLivesInfoCard Value="@(Lives.WindDeg)"
+                          Name="风向"
+                          Icon="mdi-sign-direction">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.WindSpeed)"
+                          Name="风速"
+                          Unit="km/h"
+                          Icon="mdi-weather-windy">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.WindScale)"
+                          Name="风力等级"
+                          Unit="级"
+                          Icon="mdi-chevron-double-up">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.Humidity)"
+                          Name="湿度"
+                          Unit="%"
+                          Icon="mdi-water">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.FeelsLike)"
+                          Name="体感温度"
+                          Unit="℃"
+                          Icon="mdi-thermometer">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.Pressure)"
+                          Name="大气压"
+                          Unit="hPa"
+                          Icon="mdi-compass">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.Visibility)"
+                          Name="能见度"
+                          Icon="mdi-eye"
+                          Unit="km">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.Cloud)"
+                          Name="云量"
+                          Icon="mdi-cloud"
+                          Unit="%">
+        </WeatherLivesInfoCard>
+    </div>
 }

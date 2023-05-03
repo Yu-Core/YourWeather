@@ -7,7 +7,9 @@ namespace YourWeather.Rcl.Services
         protected readonly Dictionary<SettingType, dynamic> Settings = new()
         {
             {SettingType.Language,"zh-CN" },
-            {SettingType.Theme,(int)ThemeType.Light }
+            {SettingType.Theme,(int)ThemeType.Light },
+            {SettingType.WeatherSource,(int)WeatherSourceType.OpenWeather },
+            {SettingType.City,"" }
         };
 
         public virtual Task<bool> ContainsKey(string key)

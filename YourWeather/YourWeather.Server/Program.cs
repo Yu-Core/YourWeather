@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Darnton.Blazor.DeviceInterop.Geolocation;
 using YourWeather.Client.Extend;
 using YourWeather.Shared;
 
@@ -11,6 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMasaBlazor().AddI18nForServer("wwwroot/i18n");
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddScoped<IGeolocationService, GeolocationService>();
 builder.Services.AddCustomIOC();
 
 var app = builder.Build();

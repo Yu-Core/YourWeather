@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
+using Darnton.Blazor.DeviceInterop.Geolocation;
 using YourWeather.Extend;
-using YourWeather.Shared;
+using GeolocationService = YourWeather.Services.GeolocationService;
 
 namespace YourWeather
 {
@@ -20,6 +20,7 @@ namespace YourWeather
 
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddMasaBlazor().AddI18nForMauiBlazor("wwwroot/_content/YourWeather.Rcl/i18n");
+            builder.Services.AddScoped<IGeolocationService, GeolocationService>();
             builder.Services.AddCustomIOC();
 
             return builder.Build();
