@@ -1,19 +1,15 @@
 ﻿using YourWeather.Rcl.Components;
+using YourWeather.Rcl.Services;
 using YourWeather.Shared;
 
 namespace YourWeather.Rcl.Pages
 {
     public partial class SettingPage : PageComponentBase
     {
-        private bool ShowLanguage;
         private bool ShowThemeType;
+        private bool ShowWeatherSource;
         private ThemeType ThemeType;
-        private string? Language;
-        public Dictionary<string, string> Languages { get; } = new()
-        {
-            {"简体中文","zh-CN" },
-            {"English","en-US" }
-        };
+        private WeatherSourceType WeatherSourceType;
 
         protected override async Task OnInitializedAsync()
         {
@@ -23,6 +19,7 @@ namespace YourWeather.Rcl.Pages
         }
 
         private Dictionary<string, ThemeType> ThemeTypes => ThemeService.ThemeTypes;
+        private Dictionary<WeatherSourceType, IWeatherSource> WeatherSources => WeatherService.WeatherSources;
 
         private async Task ThemeTypeChanged(ThemeType value)
         {
@@ -33,16 +30,16 @@ namespace YourWeather.Rcl.Pages
 
         private async Task LoadSettings()
         {
-            Language = await SettingsService.Get<string>(SettingType.Language);
             int themeType = await SettingsService.Get<int>(SettingType.Theme);
             ThemeType = (ThemeType)themeType;
+            int weatherSourceType = await SettingsService.Get<int>(SettingType.WeatherSource);
+            WeatherSourceType = (WeatherSourceType)weatherSourceType;
         }
 
-        private async Task LanguageChanged(string value)
+        private async Task WeatherSourceChanged(WeatherSourceType value)
         {
-            Language = value;
-            I18n.SetCulture(new(value));
-            await SettingsService.Save(SettingType.Language, Language);
+            WeatherSourceType = value;
+            await SettingsService.Save(SettingType.WeatherSource, WeatherSourceType);
         }
     }
 }

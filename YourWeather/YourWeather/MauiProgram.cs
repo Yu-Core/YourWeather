@@ -19,6 +19,9 @@ namespace YourWeather
                 });
 
             builder.Services.AddMauiBlazorWebView();
+#if DEBUG
+            builder.Services.AddBlazorWebViewDeveloperTools();
+#endif
             builder.Services.AddMasaBlazor().AddI18nForMauiBlazor("wwwroot/_content/YourWeather.Rcl/i18n");
             builder.Services.AddScoped<IGeolocationService, GeolocationService>();
             builder.Services.AddCustomIOC();

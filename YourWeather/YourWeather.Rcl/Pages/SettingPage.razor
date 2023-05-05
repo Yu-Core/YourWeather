@@ -6,14 +6,14 @@
 <MCard Elevation="0"
        Rounded="@("lg")">
     <MList>
-        <MListItem OnClick="()=>ShowLanguage=true">
+        <MListItem OnClick="()=>ShowWeatherSource=true">
             <MListItemIcon>
                 <MIcon>
-                    mdi-web
+                    mdi-weather-cloudy
                 </MIcon>
             </MListItemIcon>
             <MListItemContent>
-                @(I18n.T("Setting.Language"))
+                天气源
             </MListItemContent>
             <MListItemAction>
                 <MIcon>mdi-chevron-right</MIcon>
@@ -29,7 +29,7 @@
                 </MIcon>
             </MListItemIcon>
             <MListItemContent>
-                @(I18n.T("Setting.Night mode"))
+                深色模式
             </MListItemContent>
             <MListItemAction>
                 <MIcon>mdi-chevron-right</MIcon>
@@ -42,28 +42,28 @@
 </MCard>
 
 <MDialog MaxWidth="420"
-          @bind-Value="ShowLanguage">
+         @bind-Value="ShowWeatherSource">
     <MCard Rounded="@("lg")">
         <MCardTitle Class="font-weight-bold">
-            @(I18n.T("Setting.Language"))
+            天气源
             <MSpacer></MSpacer>
-            <MButton Icon="true" OnClick="()=>ShowLanguage= false">
+            <MButton Icon="true" OnClick="()=>ShowWeatherSource= false">
                 <MIcon>mdi-close</MIcon>
             </MButton>
         </MCardTitle>
         <MCardText>
-            <MRadioGroup Value="Language"
-                         TValue="string"
-                         ValueChanged="LanguageChanged"
+            <MRadioGroup Value="WeatherSourceType"
+                         TValue="WeatherSourceType"
+                         ValueChanged="WeatherSourceChanged"
                          Class="mt-0 pb-1"
-                         OnClick="()=>ShowLanguage=false"
+                         OnClick="()=>ShowWeatherSource=false"
                          HideDetails="@("auto")"
                          Mandatory="true">
-                @foreach (var item in Languages)
+                @foreach (var item in WeatherSources)
                 {
-                    <MRadio Label="@(item.Key)"
+                    <MRadio Label="@(item.Value.Name)"
                         Class="my-2"
-                        Value="@(item.Value)">
+                        Value="@(item.Key)">
                     </MRadio>
                 }
             </MRadioGroup>
@@ -75,7 +75,7 @@
          @bind-Value="ShowThemeType">
     <MCard Rounded="@("lg")">
         <MCardTitle Class="font-weight-bold">
-            @(I18n.T("Setting.Night mode"))
+            深色模式
             <MSpacer></MSpacer>
             <MButton Icon="true" OnClick="()=>ShowThemeType= false">
                 <MIcon>mdi-close</MIcon>
@@ -91,7 +91,7 @@
                          Mandatory="true">
                 @foreach (var item in ThemeTypes)
                 {
-                    <MRadio Label="@(I18n.T(item.Key))"
+                    <MRadio Label="@(item.Key)"
                         Class="my-2"
                         Value="@(item.Value)">
                     </MRadio>

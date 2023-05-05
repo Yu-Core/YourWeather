@@ -1,5 +1,4 @@
-﻿using BlazorComponent.I18n;
-using Masa.Blazor;
+﻿using Masa.Blazor;
 using Microsoft.AspNetCore.Components;
 using YourWeather.Rcl.Shared;
 using YourWeather.Shared;
@@ -13,11 +12,13 @@ namespace YourWeather.Rcl.Components
         [Inject]
         protected ISettingsService SettingsService { get; set; } = default!;
         [Inject]
-        protected I18n I18n { get; set; } = default!;
-        [Inject]
         protected IThemeService ThemeService { get; set; } = default!;
         [Inject]
+        protected IWeatherService WeatherService { get; set; } = default!;
+        [Inject]
         protected IPopupService PopupService { get; set; } = default!;
+        [Inject]
+        protected ILocationService LocationService { get; set; } = default!;
 
         [CascadingParameter]
         public MainLayout MainLayout { get; set; } = default!;

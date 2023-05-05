@@ -18,9 +18,9 @@ namespace YourWeather.Rcl.Services
         {
             if (!string.IsNullOrEmpty(Weather))
             {
-                if (WeatherIconDayDic.ContainsKey(Weather))
+                if (WeatherIconDayDic.TryGetValue(Weather, out string value))
                 {
-                    return WeatherIconDayDic[Weather];
+                    return value;
                 }
             }
 
@@ -34,16 +34,16 @@ namespace YourWeather.Rcl.Services
                 //此处判断白天黑夜，判定较简单，正常应该从天气api或其他服务器那里获取到日出日落时间
                 if (hour >= 6 && hour < 18)
                 {
-                    if (WeatherIconDayDic.ContainsKey(Weather))
+                    if (WeatherIconDayDic.TryGetValue(Weather, out string? value))
                     {
-                        return WeatherIconDayDic[Weather];
+                        return value;
                     }
                 }
                 else
                 {
-                    if (WeatherIconNightDic.ContainsKey(Weather))
+                    if (WeatherIconNightDic.TryGetValue(Weather, out string? value))
                     {
-                        return WeatherIconNightDic[Weather];
+                        return value;
                     }
                 }
             }
@@ -51,8 +51,17 @@ namespace YourWeather.Rcl.Services
             return WeatherIconShareDic["未知"];
         }
 
-        protected static Dictionary<WeatherSourceType, IWeatherSource> WeatherSources = new()
+        public Dictionary<WeatherSourceType, IWeatherSource> WeatherSources { get; } = new()
         {
+            {
+                WeatherSourceType.Amap,
+                new AmapSource()
+                {
+                    Name = "高德地图",
+                    Description= "30万次调用/日，数据较少，没有逐小时预报",
+                    Key = "4eff3072b68dcef66ab85b8be38efc0b"
+                }
+            },
             { 
                 WeatherSourceType.OpenWeather,
                 new OpenWeatherSource()
@@ -89,17 +98,8 @@ namespace YourWeather.Rcl.Services
                     Key = "5SD8RVKRBSBGUKME3SN76M8TD"
                 } 
             },
-            {
-                WeatherSourceType.Amap,
-                new AmapSource()
-                {
-                    Name = "高德地图",
-                    Description= "30万次调用/日，数据较少，没有逐小时预报",
-                    Key = "4eff3072b68dcef66ab85b8be38efc0b"
-                } 
-            },
         };
-        protected readonly static Dictionary<string, string> WeatherIconShareDic = new Dictionary<string, string>()
+        protected readonly static Dictionary<string, string> WeatherIconShareDic = new()
         {
             {"阴","qi-104-fill" },
             {"雷阵雨","qi-302-fill" },
@@ -149,7 +149,7 @@ namespace YourWeather.Rcl.Services
             {"未知","qi-999" },
 
         };
-        protected readonly static Dictionary<string, string> WeatherIconDayDic = new Dictionary<string, string>(WeatherIconShareDic)
+        protected readonly static Dictionary<string, string> WeatherIconDayDic = new(WeatherIconShareDic)
         {
             {"晴","qi-100-fill" },
             {"多云","qi-101-fill" },
@@ -160,7 +160,7 @@ namespace YourWeather.Rcl.Services
             {"阵雨夹雪","qi-406-fill" },
             {"阵雪","qi-407-fill" },
         };
-        protected readonly static Dictionary<string, string> WeatherIconNightDic = new Dictionary<string, string>(WeatherIconShareDic)
+        protected readonly static Dictionary<string, string> WeatherIconNightDic = new(WeatherIconShareDic)
         {
             {"晴","qi-150-fill" },
             {"多云","qi-151-fill" },
@@ -171,5 +171,6 @@ namespace YourWeather.Rcl.Services
             {"阵雨夹雪","qi-456-fill" },
             {"阵雪","qi-457-fill" },
         };
+
     }
 }

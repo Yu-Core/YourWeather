@@ -11,11 +11,6 @@ namespace YourWeather.Rcl.Pages
         private WeatherSourceType WeatherSourceType;
         private WeatherData WeatherData = new();
 
-        [Inject]
-        private ILocationService LocationService { get; set; } = default!;
-        [Inject]
-        private IWeatherService WeatherService { get; set; } = default!;
-
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
@@ -28,7 +23,7 @@ namespace YourWeather.Rcl.Pages
             if(firstRender)
             {
                 await LoadSettings();
-                await UpdateWeatherDate(WeatherSourceType, Location);
+                await UpdateWeatherDate();
             }
         }
 
@@ -40,7 +35,7 @@ namespace YourWeather.Rcl.Pages
         {
             var weatherSourceType = await SettingsService.Get<int>(SettingType.WeatherSource);
             WeatherSourceType = (WeatherSourceType)weatherSourceType;
-            var city = await SettingsService.Get<string>(SettingType.City);
+            var city = await SettingsService.Get<string>(SettingType.Location);
             if(!string.IsNullOrEmpty(city))
             {
                 Location = JsonSerializer.Deserialize<Location>(city);
@@ -49,6 +44,11 @@ namespace YourWeather.Rcl.Pages
             {
                 Location = await LocationService.GetCurrentLocation();
             }
+        }
+
+        private Task UpdateWeatherDate()
+        {
+            return UpdateWeatherDate(WeatherSourceType, Location);
         }
 
         private async Task UpdateWeatherDate(WeatherSourceType weather, Location? location)

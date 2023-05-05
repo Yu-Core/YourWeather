@@ -17,8 +17,6 @@ Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源
 - 支持持久化存储
 	- Blazor WebAssembly 和 Blazor Server 中使用 localStorage
 	- Maui Blazor 中使用 Maui 提供的首选项
-- 支持多语言
-	- 由 [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor) 提供
 - 支持主题切换
 	- 由 [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor) 提供
 	- 额外支持 Maui 状态栏/标题栏的颜色改变

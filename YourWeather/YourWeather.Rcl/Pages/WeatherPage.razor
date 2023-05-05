@@ -3,6 +3,48 @@
 
 <PageTitle>@Title</PageTitle>
 
+@if (Lives != null)
+{
+    <MCard Class="rounded-lg my-5">
+        <MCardText Class="d-flex justify-space-between py-10 px-sm-10">
+            <div class="d-flex flex-grow-1 justify-space-around justify-sm-start align-center">
+                <div class="d-flex align-end">
+                    <span class="text-h2 font-weight-medium">
+                        @((Lives.Temp ?? "0") + "°")
+                    </span>
+                    <span class="text-h6 font-weight-bold d-flex align-end">
+                        @(Lives.Weather ?? "未知")
+                    </span>
+                </div>
+                <div class="ps-sm-10">
+                    <i class="m-icon text-h1 @(GetWeatherIcon(Lives.Weather,Lives.LastUpdate))">
+
+                    </i>
+                </div>
+            </div>
+            <div class="text-h5 font-weight-bold hidden-xs-only d-sm-flex align-center">
+                <MTooltip Bottom="true">
+                    <ActivatorContent>
+                        <MButton @attributes="@context.Attrs"
+                             Icon="true"
+                             XLarge="true"
+                             OnClick="UpdateWeatherDate">
+                            <MIcon>
+                                mdi-rotate-3d-variant
+                            </MIcon>
+                        </MButton>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <span>刷新</span>
+                    </ChildContent>
+                </MTooltip>
+                <span>更新时间：</span>
+                <span>@(Lives.LastUpdate.ToString("HH:mm"))</span>
+            </div>
+        </MCardText>
+    </MCard>
+}
+
 @if (ForecastHours != null)
 {
     <MCard Class="rounded-lg my-5">
@@ -13,7 +55,7 @@
                 @foreach (var item in ForecastHours)
                 {
                     <div class="swiper-slide">
-                        <MList >
+                        <MList>
                             <MListItem Class="text-body-2">
                                 @(ForecastHours.IndexOf(item) == 0 ? "现在" : item.DateTime.ToString("HH:mm"))
                             </MListItem>

@@ -2,10 +2,9 @@
 {
     public enum SettingType
     {
-        Language, 
         Theme,
         CodeSource,
         WeatherSource,
-        City
+        Location
     }
 }
