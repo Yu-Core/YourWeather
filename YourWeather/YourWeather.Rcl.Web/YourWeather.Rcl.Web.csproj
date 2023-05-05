@@ -20,4 +20,8 @@
 		<Folder Include="wwwroot\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
+	</ItemGroup>
+
 </Project>

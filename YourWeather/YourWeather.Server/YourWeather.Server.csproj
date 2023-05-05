@@ -11,11 +11,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\YourWeather.Rcl.Web\YourWeather.Rcl.Web.csproj" />
+	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Services\" />
+	  <ProjectReference Include="..\YourWeather.Rcl.Web\YourWeather.Rcl.Web.csproj" />
 	</ItemGroup>
 
 </Project>
