@@ -21,7 +21,8 @@ Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源
 - 支持主题切换
 	- 由 [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor) 提供
 	- 额外支持 Maui 状态栏/标题栏的颜色改变
-	- 额外支持 Winform 深色模式
+	- 额外支持 Winform 标题栏深色模式
+	- 额外支持 WPF 标题栏深色模式
 
 ## 相关技术
 - 跨平台UI框架：Maui

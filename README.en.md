@@ -21,7 +21,8 @@ Blazor/Maui Blazor entry-level project, obtains current weather and weather fore
 - Support for theme switching
 	- By [MASA. Blazor](https://github.com/BlazorComponent/MASA.Blazor) Provide
 	- Additional support for changing the color of Maui's status bar/title bar
-	- Additional support for Winform dark mode
+	- Additional support for Winform title bar dark mode
+	- Additional support for WPF title bar dark mode
 Additional support for changing the color of Maui's status bar/title bar
 
 ## Related technologies

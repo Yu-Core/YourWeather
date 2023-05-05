@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>YourWeather.Wpf</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.81" />
+		<PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
+		<PackageReference Include="PInvoke.User32" Version="0.7.124" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
+	  <ProjectReference Include="..\YourWeather.Shared\YourWeather.Shared.csproj" />
+	</ItemGroup>
+
+</Project>
