@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             blazorWebView = new Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView();
             SuspendLayout();
             // 
@@ -46,6 +47,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(blazorWebView);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             Text = "你的天气";
             ResumeLayout(false);
