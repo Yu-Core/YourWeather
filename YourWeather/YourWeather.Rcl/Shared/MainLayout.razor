@@ -7,9 +7,9 @@
         <MToolbarTitle>@Title</MToolbarTitle>
         <MSpacer></MSpacer>
         <MButton Text Color="primary" Target="_blank" Href="https://docs.masastack.com/blazor/introduction/why-masa-blazor">About</MButton>
-    </MAppBar>
+        </MAppBar>
 
-    <MNavigationDrawer App @bind-Value="_drawer">
+        <MNavigationDrawer App @bind-Value="_drawer">
         <MList Nav Routable>
             <MListItem Href="/" ActiveClass="primary--text">
                 <MListItemIcon>
@@ -40,9 +40,11 @@
 
     <MMain>
         <MContainer Fluid>
+            <MErrorHandler>
                 <CascadingValue Value="this" IsFixed>
                     @Body
                 </CascadingValue>
+            </MErrorHandler>
         </MContainer>
     </MMain>
 </MApp>
@@ -74,7 +76,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        if(firstRender)
+        if (firstRender)
         {
             await LoadSettings();
         }
@@ -93,5 +95,5 @@
         int themeType = await SettingsService.Get<int>(SettingType.Theme);
         ThemeService.ThemeType = (ThemeType)themeType;
     }
-    
+
 }
