@@ -10,7 +10,7 @@ builder.WebHost.UseStaticWebAssets();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddMasaBlazor().AddI18nForServer("wwwroot/i18n");
+builder.Services.AddMasaBlazor();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<IGeolocationService, GeolocationService>();
 builder.Services.AddCustomIOC();

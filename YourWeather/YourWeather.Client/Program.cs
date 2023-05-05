@@ -11,7 +11,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-await builder.Services.AddMasaBlazor().AddI18nForWasmAsync($"{builder.HostEnvironment.BaseAddress}/_content/YourWeather.Rcl/i18n");
+builder.Services.AddMasaBlazor();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<IGeolocationService,GeolocationService>();
 builder.Services.AddCustomIOC();
