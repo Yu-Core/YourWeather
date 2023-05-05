@@ -8,6 +8,11 @@ namespace YourWeather.Winform
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
+            {
+                MessageBox.Show(text: error.ExceptionObject.ToString(), caption: "Error");
+            };
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();

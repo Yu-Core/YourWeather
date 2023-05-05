@@ -25,6 +25,7 @@ namespace YourWeather
             builder.Services.AddMasaBlazor();
             builder.Services.AddScoped<IGeolocationService, GeolocationService>();
             builder.Services.AddCustomIOC();
+            builder.Services.AddMauiExceptionHandle();
 
             return builder.Build();
         }

@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="你的天气" Height="450" Width="800" Icon="/Resources/favicon.ico">
     <Grid>
-        <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+        <blazor:BlazorWebView x:Name="blazorWebView" HostPage="wwwroot\index.html" Services="{DynamicResource services}">
             <blazor:BlazorWebView.RootComponents>
                 <blazor:RootComponent Selector="#app" ComponentType="{x:Type razor:App}" />
             </blazor:BlazorWebView.RootComponents>

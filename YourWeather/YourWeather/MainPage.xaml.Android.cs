@@ -24,6 +24,7 @@ public partial class MainPage
             throw new InvalidOperationException($"The permission-managing WebChromeClient requires that the current activity be a '{nameof(ComponentActivity)}'.");
         }
 
+        e.WebView.VerticalScrollBarEnabled = false;
         e.WebView.Settings.JavaScriptEnabled = true;
         e.WebView.Settings.AllowFileAccess = true;
         e.WebView.Settings.MediaPlaybackRequiresUserGesture = false;
