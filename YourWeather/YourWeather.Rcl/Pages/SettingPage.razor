@@ -1,0 +1,102 @@
+﻿@page "/fetchdata"
+@inherits PageComponentBase
+
+<PageTitle>@Title</PageTitle>
+
+<MCard Elevation="0"
+       Rounded="@("lg")">
+    <MList>
+        <MListItem OnClick="()=>ShowWeatherSource=true">
+            <MListItemIcon>
+                <MIcon>
+                    mdi-weather-cloudy
+                </MIcon>
+            </MListItemIcon>
+            <MListItemContent>
+                天气源
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-chevron-right</MIcon>
+            </MListItemAction>
+        </MListItem>
+
+        <MDivider Class="mx-3"></MDivider>
+
+        <MListItem OnClick="()=>ShowThemeType=true">
+            <MListItemIcon>
+                <MIcon>
+                    mdi-weather-night
+                </MIcon>
+            </MListItemIcon>
+            <MListItemContent>
+                深色模式
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-chevron-right</MIcon>
+            </MListItemAction>
+        </MListItem>
+
+        
+
+    </MList>
+</MCard>
+
+<MDialog MaxWidth="420"
+         @bind-Value="ShowWeatherSource">
+    <MCard Rounded="@("lg")">
+        <MCardTitle Class="font-weight-bold">
+            天气源
+            <MSpacer></MSpacer>
+            <MButton Icon="true" OnClick="()=>ShowWeatherSource= false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MCardText>
+            <MRadioGroup Value="WeatherSourceType"
+                         TValue="WeatherSourceType"
+                         ValueChanged="WeatherSourceChanged"
+                         Class="mt-0 pb-1"
+                         OnClick="()=>ShowWeatherSource=false"
+                         HideDetails="@("auto")"
+                         Mandatory="true">
+                @foreach (var item in WeatherSources)
+                {
+                    <MRadio Label="@(item.Value.Name)"
+                        Class="my-2"
+                        Value="@(item.Key)">
+                    </MRadio>
+                }
+            </MRadioGroup>
+        </MCardText>
+    </MCard>
+</MDialog>
+
+<MDialog MaxWidth="420"
+         @bind-Value="ShowThemeType">
+    <MCard Rounded="@("lg")">
+        <MCardTitle Class="font-weight-bold">
+            深色模式
+            <MSpacer></MSpacer>
+            <MButton Icon="true" OnClick="()=>ShowThemeType= false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MCardText>
+            <MRadioGroup Value="ThemeType"
+                         TValue="ThemeType"
+                         ValueChanged="ThemeTypeChanged"
+                         Class="mt-0 pb-1"
+                         OnClick="()=>ShowThemeType=false"
+                         HideDetails="@("auto")"
+                         Mandatory="true">
+                @foreach (var item in ThemeTypes)
+                {
+                    <MRadio Label="@(item.Key)"
+                        Class="my-2"
+                        Value="@(item.Value)">
+                    </MRadio>
+                }
+            </MRadioGroup>
+        </MCardText>
+    </MCard>
+</MDialog>

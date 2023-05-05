@@ -1,0 +1,23 @@
+﻿@namespace YourWeather.Rcl.Components
+
+@if (!string.IsNullOrEmpty(Value))
+{
+    <MCard Class="rounded-lg">
+        <MListItem ThreeLine Class="mb-md-4">
+            <MListItemContent>
+                <MListItemTitle Class="text-subtitle-1 text-sm-h5 mb-1">
+                    @Value@Unit
+                </MListItemTitle>
+                <MListItemSubtitle>
+                    @Name
+                </MListItemSubtitle>
+            </MListItemContent>
+            <MListItemAvatar>
+                <MIcon Class="text-h4">
+                    @Icon
+                </MIcon>
+            </MListItemAvatar>
+        </MListItem>
+    </MCard>
+}
+

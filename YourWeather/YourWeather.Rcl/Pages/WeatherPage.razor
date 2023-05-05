@@ -1,0 +1,149 @@
+﻿@page "/"
+@inherits PageComponentBase
+
+<PageTitle>@Title</PageTitle>
+
+@if (Lives != null)
+{
+    <MCard Class="rounded-lg my-5">
+        <MCardText Class="d-flex justify-space-between py-10 px-sm-10">
+            <div class="d-flex flex-grow-1 justify-space-around justify-sm-start align-center">
+                <div class="d-flex align-end">
+                    <span class="text-h2 font-weight-medium">
+                        @((Lives.Temp ?? "0") + "°")
+                    </span>
+                    <span class="text-h6 font-weight-bold d-flex align-end">
+                        @(Lives.Weather ?? "未知")
+                    </span>
+                </div>
+                <div class="ps-sm-10">
+                    <i class="m-icon text-h1 @(GetWeatherIcon(Lives.Weather,Lives.LastUpdate))">
+
+                    </i>
+                </div>
+            </div>
+            <div class="text-h5 font-weight-bold hidden-xs-only d-sm-flex align-center">
+                <MTooltip Bottom="true">
+                    <ActivatorContent>
+                        <MButton @attributes="@context.Attrs"
+                             Icon="true"
+                             XLarge="true"
+                             OnClick="UpdateWeatherDate">
+                            <MIcon>
+                                mdi-rotate-3d-variant
+                            </MIcon>
+                        </MButton>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <span>刷新</span>
+                    </ChildContent>
+                </MTooltip>
+                <span>更新时间：</span>
+                <span>@(Lives.LastUpdate.ToString("HH:mm"))</span>
+            </div>
+        </MCardText>
+    </MCard>
+}
+
+@if (ForecastHours != null)
+{
+    <MCard Class="rounded-lg my-5">
+        <MCardTitle Class="d-none d-sm-flex">逐小时预报</MCardTitle>
+        <MSubheader Class="d-sm-none">逐小时预报</MSubheader>
+        <div class="swiper swiper-forecast-hours">
+            <div class="swiper-wrapper">
+                @foreach (var item in ForecastHours)
+                {
+                    <div class="swiper-slide">
+                        <MList>
+                            <MListItem Class="text-body-2">
+                                @(ForecastHours.IndexOf(item) == 0 ? "现在" : item.DateTime.ToString("HH:mm"))
+                            </MListItem>
+                            <MListItem Class="d-flex justify-center">
+                                <i class="m-icon @(GetWeatherIcon(item.Weather,item.DateTime))"></i>
+                            </MListItem>
+                            <MListItem Class="d-flex justify-center">
+                                @(item.Temp + "°")
+                            </MListItem>
+                        </MList>
+                    </div>
+                }
+            </div>
+        </div>
+    </MCard>
+}
+
+
+@if (ForecastDays != null)
+{
+    <MCard Class="rounded-lg my-5">
+        <MCardTitle Class="d-none d-sm-flex">近日天气预报</MCardTitle>
+        <MSubheader Class="d-sm-none">近日天气预报</MSubheader>
+        <MList>
+            @foreach (var item in ForecastDays)
+            {
+                <MListItem>
+                    <MListItemTitle>
+                        @(ForecastDays.IndexOf(item) == 0 ? "今天" : item.Date.DayOfWeek.ToWeek())
+                    </MListItemTitle>
+
+                    <MListItemTitle>
+                        <i class="m-icon @(GetDayWeatherIcon(item.Weather))"></i>
+                        @(item.Weather)
+                    </MListItemTitle>
+
+                    <MListItemSubtitle Class="text-right">
+                        <span class="text-subtitle-1">@(item.MaxTemp + "°")</span>
+                        <span>@("/" + item.MinTemp + "°")</span>
+                    </MListItemSubtitle>
+                </MListItem>
+            }
+        </MList>
+    </MCard>
+}
+
+
+@if (Lives != null)
+{
+    <div class="weather-lives-item my-5">
+        <WeatherLivesInfoCard Value="@(Lives.WindDeg)"
+                          Name="风向"
+                          Icon="mdi-sign-direction">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.WindSpeed)"
+                          Name="风速"
+                          Unit="km/h"
+                          Icon="mdi-weather-windy">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.WindScale)"
+                          Name="风力等级"
+                          Unit="级"
+                          Icon="mdi-chevron-double-up">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.Humidity)"
+                          Name="湿度"
+                          Unit="%"
+                          Icon="mdi-water">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.FeelsLike)"
+                          Name="体感温度"
+                          Unit="℃"
+                          Icon="mdi-thermometer">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.Pressure)"
+                          Name="大气压"
+                          Unit="hPa"
+                          Icon="mdi-compass">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.Visibility)"
+                          Name="能见度"
+                          Icon="mdi-eye"
+                          Unit="km">
+        </WeatherLivesInfoCard>
+        <WeatherLivesInfoCard Value="@(Lives.Cloud)"
+                          Name="云量"
+                          Icon="mdi-cloud"
+                          Unit="%">
+        </WeatherLivesInfoCard>
+    </div>
+}
