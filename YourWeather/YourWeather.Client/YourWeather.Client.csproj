@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\YourWeather.Rcl.Web\YourWeather.Rcl.Web.csproj" />
+    <ProjectReference Include="..\YourWeather.Rcl.Web\YourWeather.Rcl.Web.csproj" />
   </ItemGroup>
 
 </Project>
