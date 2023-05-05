@@ -23,11 +23,11 @@ public partial class MainPage
     // This example includes both implementations. You can switch between them by adding/removing the line in
     // the .csproj file defining the HANDLE_WEBVIEW2_PERMISSIONS_SILENTLY constant.
 
-    private partial void BlazorWebViewInitializing(object? sender, BlazorWebViewInitializingEventArgs e)
+    private partial void BlazorWebViewInitializing(object sender, BlazorWebViewInitializingEventArgs e)
     {
     }
 
-    private partial void BlazorWebViewInitialized(object? sender, BlazorWebViewInitializedEventArgs e)
+    private partial void BlazorWebViewInitialized(object sender, BlazorWebViewInitializedEventArgs e)
     {
         var permissionHandler = new SilentPermissionRequestHandler();
 

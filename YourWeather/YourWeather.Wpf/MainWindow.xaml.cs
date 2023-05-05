@@ -1,5 +1,7 @@
 ﻿using Blazored.LocalStorage;
 using Darnton.Blazor.DeviceInterop.Geolocation;
+using Microsoft.AspNetCore.Components.WebView;
+using Microsoft.AspNetCore.Components.WebView.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Interop;
@@ -26,7 +28,21 @@ namespace YourWeather.Wpf
             serviceCollection.AddBlazoredLocalStorage();
             serviceCollection.AddScoped<IGeolocationService, GeolocationService>();
             serviceCollection.AddCustomIOC();
+
+            blazorWebView.BlazorWebViewInitializing += BlazorWebViewInitializing;
+            blazorWebView.BlazorWebViewInitialized += BlazorWebViewInitialized;
             Resources.Add("services", serviceCollection.BuildServiceProvider());
+        }
+
+        private void BlazorWebViewInitializing(object? sender, BlazorWebViewInitializingEventArgs e)
+        {
+        }
+
+        private void BlazorWebViewInitialized(object? sender, BlazorWebViewInitializedEventArgs e)
+        {
+            var permissionHandler = new SilentPermissionRequestHandler();
+
+            e.WebView.CoreWebView2.PermissionRequested += (s, e) => permissionHandler.OnPermissionRequested((Microsoft.Web.WebView2.Core.CoreWebView2)s!, e);
         }
     }
 }

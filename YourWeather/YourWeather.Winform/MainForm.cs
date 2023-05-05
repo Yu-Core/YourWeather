@@ -1,5 +1,6 @@
 using Blazored.LocalStorage;
 using Darnton.Blazor.DeviceInterop.Geolocation;
+using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
 using System.Drawing.Drawing2D;
@@ -31,7 +32,19 @@ namespace YourWeather.Winform
             blazorWebView.HostPage = "wwwroot\\index.html";
             blazorWebView.Services = services.BuildServiceProvider();
             blazorWebView.RootComponents.Add<App>("#app");
+            blazorWebView.BlazorWebViewInitializing += BlazorWebViewInitializing;
+            blazorWebView.BlazorWebViewInitialized += BlazorWebViewInitialized;
         }
 
+        private void BlazorWebViewInitializing(object? sender, BlazorWebViewInitializingEventArgs e)
+        {
+        }
+
+        private void BlazorWebViewInitialized(object? sender, BlazorWebViewInitializedEventArgs e)
+        {
+            var permissionHandler = new SilentPermissionRequestHandler();
+
+            e.WebView.CoreWebView2.PermissionRequested += (s,e) => permissionHandler.OnPermissionRequested((Microsoft.Web.WebView2.Core.CoreWebView2)s!,e);
+        }
     }
 }
