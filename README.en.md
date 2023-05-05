@@ -53,5 +53,6 @@ Additional support for changing the color of Maui's status bar/title bar
 - [MASA.Blazor]( https://github.com/BlazorComponent/MASA.Blazor )
 - [Masa.Template]( https://github.com/masastack/MASA.Template )
 - [MauiBlazorPermissionsExample]( https://github.com/MackinnonBuck/MauiBlazorPermissionsExample )
+- [P/Invoke](https://github.com/dotnet/pinvoke)
 - [QWeather Icons]( https://github.com/qwd/Icons )
 > The above rankings are in no particular order

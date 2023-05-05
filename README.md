@@ -53,5 +53,6 @@ Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源
 - [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor)
 - [Masa.Template](https://github.com/masastack/MASA.Template)
 - [MauiBlazorPermissionsExample](https://github.com/MackinnonBuck/MauiBlazorPermissionsExample)
+- [P/Invoke](https://github.com/dotnet/pinvoke)
 - [QWeather Icons](https://github.com/qwd/Icons)
 > 以上排名不分先后
