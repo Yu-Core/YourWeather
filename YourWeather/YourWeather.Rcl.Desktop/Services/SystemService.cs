@@ -1,11 +1,10 @@
 ﻿using System.Diagnostics;
-using YourWeather.Shared;
 
-namespace YourWeather.Wpf.Services
+namespace YourWeather.Rcl.Desktop.Services
 {
-    public class SystemService : ISystemService
+    public class SystemService : Rcl.Services.SystemService
     {
-        public Task OpenBrowserUrl(string url)
+        public override Task OpenBrowserUrl(string url)
         {
             Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
             return Task.CompletedTask;

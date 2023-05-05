@@ -1,9 +1,8 @@
 ﻿using PInvoke;
 using System.Runtime.InteropServices;
-using YourWeather.Shared;
 using static PInvoke.User32;
 
-namespace YourWeather.Winform
+namespace YourWeather.Rcl.Desktop
 {
     public static class TitleBar
     {

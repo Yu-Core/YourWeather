@@ -1,4 +1,4 @@
-﻿using YourWeather.Server.Services;
+﻿using YourWeather.Rcl.Services;
 using YourWeather.Shared;
 
 namespace YourWeather.Client.Extend

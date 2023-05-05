@@ -1,4 +1,4 @@
-﻿namespace YourWeather.Client.Services
+﻿namespace YourWeather.Rcl.Web.Services
 {
     public class WeatherService : Rcl.Services.WeatherService
     {

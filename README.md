@@ -34,6 +34,9 @@ Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源
 - 前端框架：Blazor
 - UI组件库：Masa Blazor
 
+## 项目结构
+详见[./YourWeather/README.md](./YourWeather/README.md)
+
 
 ## 支持的平台
 - Web

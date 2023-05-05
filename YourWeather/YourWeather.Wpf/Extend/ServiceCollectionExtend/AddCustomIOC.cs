@@ -1,6 +1,6 @@
-﻿using YourWeather.Wpf.Services;
-using YourWeather.Shared;
+﻿using YourWeather.Shared;
 using Microsoft.Extensions.DependencyInjection;
+using YourWeather.Rcl.Desktop.Services;
 
 namespace YourWeather.Wpf.Extend
 {

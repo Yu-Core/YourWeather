@@ -1,12 +1,12 @@
 ﻿using Blazored.LocalStorage;
 
-namespace YourWeather.Client.Services
+namespace YourWeather.Rcl.Web.Services
 {
     public class SettingService : Rcl.Services.SettingService
     {
         private ILocalStorageService LocalStorage { get; set; }
 
-        public SettingService(ILocalStorageService localStorageService) 
+        public SettingService(ILocalStorageService localStorageService)
         {
             LocalStorage = localStorageService;
         }
@@ -19,7 +19,7 @@ namespace YourWeather.Client.Services
         public override async Task<T> Get<T>(string key, T defaultValue)
         {
             bool flag = await LocalStorage.ContainKeyAsync(key);
-            if(!flag)
+            if (!flag)
             {
                 return defaultValue;
             }

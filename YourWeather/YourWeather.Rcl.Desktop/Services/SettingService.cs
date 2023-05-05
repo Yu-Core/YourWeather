@@ -1,6 +1,6 @@
 ﻿using Blazored.LocalStorage;
 
-namespace YourWeather.Winform.Services
+namespace YourWeather.Rcl.Desktop.Services
 {
     public class SettingService : Rcl.Services.SettingService
     {
