@@ -1,7 +1,7 @@
 ﻿using Darnton.Blazor.DeviceInterop.Geolocation;
 using Microsoft.JSInterop;
 
-namespace YourWeather.Winform.Services
+namespace YourWeather.Rcl.Desktop.Services
 {
 
     /// <summary>

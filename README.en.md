@@ -34,6 +34,9 @@ Blazor/Maui Blazor entry-level project, obtains current weather and weather fore
 - Front end framework: Blazor
 - UI component library: Masa Blazor
 
+## Project structure
+For details [./YourWeather/README.md](./YourWeather/README.md)
+
 ## Supported Platforms
 - Web
 	- Blazor WebAssembly

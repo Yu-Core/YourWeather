@@ -1,10 +1,10 @@
 ﻿using Blazored.LocalStorage;
 using Darnton.Blazor.DeviceInterop.Geolocation;
 using Microsoft.AspNetCore.Components.WebView;
-using Microsoft.AspNetCore.Components.WebView.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Interop;
+using YourWeather.Rcl.Desktop;
 using YourWeather.Wpf.Extend;
 
 namespace YourWeather.Wpf

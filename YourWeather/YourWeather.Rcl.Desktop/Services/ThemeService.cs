@@ -1,4 +1,4 @@
-﻿namespace YourWeather.Wpf.Services
+﻿namespace YourWeather.Rcl.Desktop.Services
 {
     public class ThemeService : Rcl.Services.ThemeService
     {

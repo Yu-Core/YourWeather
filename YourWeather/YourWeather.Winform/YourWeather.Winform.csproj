@@ -22,14 +22,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="7.0.81" />
-		<PackageReference Include="PInvoke.User32" Version="0.7.124" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
-		<ProjectReference Include="..\YourWeather.Shared\YourWeather.Shared.csproj" />
+	  <Folder Include="Services\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\YourWeather.Rcl.Desktop\YourWeather.Rcl.Desktop.csproj" />
 	</ItemGroup>
 
 </Project>

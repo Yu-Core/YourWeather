@@ -3,11 +3,10 @@ using Darnton.Blazor.DeviceInterop.Geolocation;
 using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
-using System.Drawing.Drawing2D;
-using System.Runtime.InteropServices;
 using YourWeather.Rcl;
+using YourWeather.Rcl.Desktop;
 using YourWeather.Winform.Extend;
-using GeolocationService = YourWeather.Winform.Services.GeolocationService;
+using GeolocationService = YourWeather.Rcl.Desktop.Services.GeolocationService;
 
 namespace YourWeather.Winform
 {
