@@ -7,7 +7,20 @@
 		<UseWPF>true</UseWPF>
 		<RootNamespace>YourWeather.Wpf</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="appiconfg.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Resources\favicon.ico">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.81" />
@@ -18,6 +31,10 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
 	  <ProjectReference Include="..\YourWeather.Shared\YourWeather.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="appiconfg.svg" />
 	</ItemGroup>
 
 </Project>
