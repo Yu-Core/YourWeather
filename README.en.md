@@ -18,12 +18,16 @@ Blazor/Maui Blazor entry-level project, obtains current weather and weather fore
 	- Using LocalStorage in Blazor WebAssembly and Blazor Server
 	- Using the preferences provided by Maui in Maui Blazor
 	- Using LocalStorage in Winform
+	- Using LocalStorage in WPF
 - Support for theme switching
 	- By [MASA. Blazor](https://github.com/BlazorComponent/MASA.Blazor) Provide
 	- Additional support for changing the color of Maui's status bar/title bar
 	- Additional support for Winform title bar dark mode
 	- Additional support for WPF title bar dark mode
-Additional support for changing the color of Maui's status bar/title bar
+-Support opening external links using default browser
+	- Creating a tag through JavaScript in Blazor WebAssembly and Blazor Server
+	- Using the API provided by Maui in Maui Blazor
+	- Through cmd in Winform and WPF
 
 ## Related technologies
 - Cross platform UI framework: Maui
@@ -37,6 +41,7 @@ Additional support for changing the color of Maui's status bar/title bar
 - Windows
 	- Maui Blazor
 	- Winform (Blazor Hybrid)
+	- WPF (Blazor Hybrid)
 - Android
 	- Maui Blazor
 - iOS

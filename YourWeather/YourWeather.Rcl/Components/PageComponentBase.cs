@@ -19,6 +19,8 @@ namespace YourWeather.Rcl.Components
         protected IPopupService PopupService { get; set; } = default!;
         [Inject]
         protected ILocationService LocationService { get; set; } = default!;
+        [Inject]
+        protected ISystemService SystemService { get; set; } = default!;
 
         [CascadingParameter]
         public MainLayout MainLayout { get; set; } = default!;

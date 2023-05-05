@@ -9,9 +9,10 @@ namespace YourWeather.Wpf.Extend
         public static IServiceCollection AddCustomIOC(this IServiceCollection services)
         {
             services.AddScoped<ISettingsService, SettingService>();
-            services.AddScoped<IThemeService, ThemeService>();
-            services.AddScoped<IWeatherService, WeatherService>();
+            services.AddSingleton<IThemeService, ThemeService>();
+            services.AddSingleton<IWeatherService, WeatherService>();
             services.AddScoped<ILocationService, LocationService>();
+            services.AddSingleton<ISystemService, SystemService>();
             return services;
         }
     }

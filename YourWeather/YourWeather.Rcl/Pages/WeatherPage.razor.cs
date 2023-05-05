@@ -23,7 +23,7 @@ namespace YourWeather.Rcl.Pages
             if(firstRender)
             {
                 await LoadSettings();
-                await UpdateWeatherDate();
+                //await UpdateWeatherDate();
             }
         }
 

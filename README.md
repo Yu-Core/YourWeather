@@ -18,11 +18,16 @@ Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源
 	- Blazor WebAssembly 和 Blazor Server 中使用 localStorage
 	- Maui Blazor 中使用 Maui 提供的首选项
 	- Winform 中使用 localStorage
+	- WPF 中使用 localStorage
 - 支持主题切换
 	- 由 [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor) 提供
 	- 额外支持 Maui 状态栏/标题栏的颜色改变
 	- 额外支持 Winform 标题栏深色模式
 	- 额外支持 WPF 标题栏深色模式
+- 支持使用默认浏览器打开外部链接
+	- Blazor WebAssembly 和 Blazor Server 中通过js创建a标签
+	- Maui Blazor 中使用 Maui 提供的 api
+	- Winform 和 WPF 中通过cmd
 
 ## 相关技术
 - 跨平台UI框架：Maui
@@ -37,6 +42,7 @@ Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源
 - Windows
 	- Maui Blazor
 	- Winform (Blazor Hybrid)
+	- WPF (Blazor Hybrid)
 - Android
 	- Maui Blazor
 - iOS

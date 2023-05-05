@@ -36,7 +36,21 @@
             </MListItemAction>
         </MListItem>
 
-        
+        <MDivider Class="mx-3"></MDivider>
+
+        <MListItem OnClick="()=>ShowCodeSource=true">
+            <MListItemIcon>
+                <MIcon>
+                    mdi-book-open-page-variant-outline
+                </MIcon>
+            </MListItemIcon>
+            <MListItemContent>
+                查看源代码
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-chevron-right</MIcon>
+            </MListItemAction>
+        </MListItem>
 
     </MList>
 </MCard>
@@ -65,6 +79,7 @@
                         Class="my-2"
                         Value="@(item.Key)">
                     </MRadio>
+                    <div class="ms-8 mb-2 body-2">@item.Value.Description</div>
                 }
             </MRadioGroup>
         </MCardText>
@@ -97,6 +112,36 @@
                     </MRadio>
                 }
             </MRadioGroup>
+        </MCardText>
+    </MCard>
+</MDialog>
+
+<MDialog MaxWidth="420"
+         @bind-Value="ShowCodeSource">
+    <MCard Rounded="@("lg")">
+        <MCardTitle Class="font-weight-bold">
+            选择源代码
+            <MSpacer></MSpacer>
+            <MButton Icon="true" OnClick="()=>ShowCodeSource=false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MCardText>
+            @foreach (var item in CodeSources)
+            {
+                <MListItem Class="px-0" OnClick="()=>ToCodeSoucre(item.Url!)">
+                    <MListItemIcon>
+                        <MIcon Class="list-item-icon">
+                            @(item.Icon)
+                        </MIcon>
+                    </MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>
+                            @(item.Name)
+                        </MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+            }
         </MCardText>
     </MCard>
 </MDialog>
