@@ -4,12 +4,19 @@ using YourWeather.Shared;
 
 namespace YourWeather.Rcl.Pages
 {
-    public partial class WeatherSourcePage : PageComponentBase
+    public partial class WeatherSourcePage : PageComponentBase,IDisposable
     {
         private string? Key;
         private bool ShowEditDialog;
         private WeatherSourceType WeatherSourceType;
         private Dictionary<WeatherSourceType, IWeatherSource> WeatherSources => WeatherService.WeatherSources;
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            Title = "天气源管理";
+            MainLayout.ShowBack(true, "/setting");
+        }
 
         private async Task OpenEditDialog(WeatherSourceType type)
         {
@@ -35,6 +42,12 @@ namespace YourWeather.Rcl.Pages
             {
                 await HandleOnEdit();
             }
+        }
+
+        public void Dispose()
+        {
+            MainLayout.ShowBack(false, "");
+            GC.SuppressFinalize(this);
         }
     }
 }

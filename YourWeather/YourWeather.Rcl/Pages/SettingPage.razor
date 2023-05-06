@@ -1,10 +1,10 @@
 ﻿@page "/setting"
 @inherits PageComponentBase
 
-<PageTitle>@Title</PageTitle>
 
-<MCard Elevation="0"
-       Rounded="@("lg")">
+
+<MCard Outlined="true"
+    Rounded="@("lg")">
     <MList>
         <MListItem OnClick="()=>ShowWeatherSource=true">
             <MListItemIcon>
@@ -73,7 +73,7 @@
 
 <MDialog MaxWidth="420"
          @bind-Value="ShowWeatherSource">
-    <MCard Rounded="@("lg")">
+    <MCard Outlined="true" Rounded="@("lg")">
         <MCardTitle Class="font-weight-bold">
             天气源
             <MSpacer></MSpacer>
@@ -104,7 +104,7 @@
 
 <MDialog MaxWidth="420"
          @bind-Value="ShowThemeType">
-    <MCard Rounded="@("lg")">
+    <MCard Outlined="true" Rounded="@("lg")">
         <MCardTitle Class="font-weight-bold">
             深色模式
             <MSpacer></MSpacer>
@@ -134,9 +134,9 @@
 
 <MDialog MaxWidth="420"
          @bind-Value="ShowCodeSource">
-    <MCard Rounded="@("lg")">
+    <MCard Outlined="true" Rounded="@("lg")">
         <MCardTitle Class="font-weight-bold">
-            选择源代码
+            选择源代码网站
             <MSpacer></MSpacer>
             <MButton Icon="true" OnClick="()=>ShowCodeSource=false">
                 <MIcon>mdi-close</MIcon>

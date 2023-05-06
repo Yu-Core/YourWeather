@@ -1,12 +1,12 @@
 ﻿@page "/"
 @inherits PageComponentBase
 
-<PageTitle>@Title</PageTitle>
+
 
 @if (Lives != null)
 {
-    <MCard Class="rounded-lg my-5">
-        <MCardText Class="d-flex justify-space-between py-10 px-sm-10">
+    <MCard Outlined="true" Class="rounded-lg my-5">
+        <MSheet Class="d-flex justify-space-between py-10 px-sm-10">
             <div class="d-flex flex-grow-1 justify-space-around justify-sm-start align-center">
                 <div class="d-flex align-end">
                     <span class="text-h2 font-weight-medium">
@@ -41,34 +41,30 @@
                 <span>更新时间：</span>
                 <span>@(Lives.LastUpdate.ToString("HH:mm"))</span>
             </div>
-        </MCardText>
+        </MSheet>
     </MCard>
 }
 
 @if (ForecastHours != null)
 {
-    <MCard Class="rounded-lg my-5">
+    <MCard Outlined="true" Class="rounded-lg my-5">
         <MCardTitle Class="d-none d-sm-flex">逐小时预报</MCardTitle>
         <MSubheader Class="d-sm-none">逐小时预报</MSubheader>
-        <div class="swiper swiper-forecast-hours">
-            <div class="swiper-wrapper">
-                @foreach (var item in ForecastHours)
-                {
-                    <div class="swiper-slide">
-                        <MList>
-                            <MListItem Class="text-body-2">
-                                @(ForecastHours.IndexOf(item) == 0 ? "现在" : item.DateTime.ToString("HH:mm"))
-                            </MListItem>
-                            <MListItem Class="d-flex justify-center">
-                                <i class="m-icon @(GetWeatherIcon(item.Weather,item.DateTime))"></i>
-                            </MListItem>
-                            <MListItem Class="d-flex justify-center">
-                                @(item.Temp + "°")
-                            </MListItem>
-                        </MList>
-                    </div>
-                }
-            </div>
+        <div class="weather-hours scroll-show">
+            @foreach (var item in ForecastHours)
+            {
+                <MList>
+                    <MListItem Class="text-body-2">
+                        @(item.DateTime.ToString("HH:mm"))
+                    </MListItem>
+                    <MListItem Class="d-flex justify-center">
+                        <i class="m-icon @(GetWeatherIcon(item.Weather,item.DateTime))"></i>
+                    </MListItem>
+                    <MListItem Class="d-flex justify-center">
+                        @(item.Temp + "°")
+                    </MListItem>
+                </MList>
+            }
         </div>
     </MCard>
 }
@@ -76,7 +72,7 @@
 
 @if (ForecastDays != null)
 {
-    <MCard Class="rounded-lg my-5">
+    <MCard Outlined="true" Class="rounded-lg my-5">
         <MCardTitle Class="d-none d-sm-flex">近日天气预报</MCardTitle>
         <MSubheader Class="d-sm-none">近日天气预报</MSubheader>
         <MList>
