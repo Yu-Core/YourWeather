@@ -29,14 +29,42 @@ Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源
 	- Maui Blazor 中使用 Maui 提供的 api
 	- Winform 和 WPF 中通过cmd
 
+## 截图
+<table>
+	<tr>
+		<td>Blazor WebAssembly</td>
+		<td>Blazor Server</td>
+		<td>MAUI Android</td>
+	</tr>
+	<tr>
+		<td><img src="./Images/Blazor-Wasm.png"/></td>
+		<td><img src="./Images/Blazor-SSR.png"/></td>
+		<td rowspan="3"><img src="./Images/MAUI-Android.jpg"/></td>
+	</tr>
+	<tr>
+		<td>Winform</td>
+		<td>WPF</td>
+	</tr>
+	<tr>
+		<td><img src="./Images/Winform.png"/></td>
+		<td><img src="./Images/WPF.png"/></td>
+	</tr>
+	<tr>
+		<td>MAUI Windows</td>
+	</tr>
+	<tr>
+		<td><img src="./Images/MAUI-Windows.png"/></td>
+	</tr>
+</table>
+
 ## 相关技术
-- 跨平台UI框架：Maui
 - 前端框架：Blazor
+- 跨平台UI框架：Maui
+- 桌面端UI框架：Winform、WPF
 - UI组件库：Masa Blazor
 
 ## 项目结构
 详见[./YourWeather/README.md](./YourWeather/README.md)
-
 
 ## 支持的平台
 - Web
