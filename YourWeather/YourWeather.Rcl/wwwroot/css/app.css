@@ -38,3 +38,11 @@
     max-width:100%;
     overflow-x:auto;
 }
+
+/*禁止选中内容*/
+.user-select-none *{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}

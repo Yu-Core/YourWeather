@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Microsoft.Extensions.Logging;
+using System.Text.Json;
 using YourWeather.Rcl.Components;
 using YourWeather.Shared;
 
@@ -10,6 +11,7 @@ namespace YourWeather.Rcl.Pages
         private WeatherSourceType WeatherSourceType;
         private WeatherData WeatherData = new();
         private string? Key;
+        private bool ShowLoading = true;
 
         protected override async Task OnInitializedAsync()
         {
@@ -49,26 +51,30 @@ namespace YourWeather.Rcl.Pages
 
         private async Task UpdateWeatherDate()
         {
-            try
-            {
-                await UpdateWeatherDate(WeatherSourceType, Location);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw new("获取天气失败");
-            }
-            
+            await UpdateWeatherDate(WeatherSourceType, Location);
+            ShowLoading = false;
+            await InvokeAsync(StateHasChanged);
         }
 
         private async Task UpdateWeatherDate(WeatherSourceType weather, Location? location)
         {
-            if (location == null)
+            if (location != null)
             {
-                return;
+                var weatherData = await WeatherService.GetWeatherData(weather, location, Key);
+                if (weatherData != null)
+                {
+                    WeatherData = weatherData;
+                }
+                else
+                {
+                    await PopupService.EnqueueSnackbarAsync(new()
+                    {
+                        Content = "天气数据请求失败，请尝试更换key，或更换天气源",
+                        Type = BlazorComponent.AlertTypes.Error,
+                    });
+                }
             }
 
-            WeatherData = await WeatherService.GetWeatherData(weather, location, Key);
             await InvokeAsync(StateHasChanged);
         }
 

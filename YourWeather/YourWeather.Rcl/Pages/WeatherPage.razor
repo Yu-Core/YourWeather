@@ -1,8 +1,6 @@
 ﻿@page "/"
 @inherits PageComponentBase
 
-
-
 @if (Lives != null)
 {
     <MCard Outlined="true" Class="rounded-lg my-5">
@@ -50,7 +48,7 @@
     <MCard Outlined="true" Class="rounded-lg my-5">
         <MCardTitle Class="d-none d-sm-flex">逐小时预报</MCardTitle>
         <MSubheader Class="d-sm-none">逐小时预报</MSubheader>
-        <div class="weather-hours scroll-show">
+        <div class="weather-hours scroll-show user-select-none">
             @foreach (var item in ForecastHours)
             {
                 <MList>
@@ -143,3 +141,10 @@
         </WeatherLivesInfoCard>
     </div>
 }
+
+<MOverlay Value="ShowLoading" Absolute Opacity="0">
+    <MProgressCircular Indeterminate="true"
+                       Color="primary"
+                       Size="48">
+    </MProgressCircular>
+</MOverlay>

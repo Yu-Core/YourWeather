@@ -14,7 +14,7 @@ namespace YourWeather.Rcl.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            Title = "天气源管理";
+            Title = "天气源配置";
             MainLayout.ShowBack(true, "/setting");
         }
 
