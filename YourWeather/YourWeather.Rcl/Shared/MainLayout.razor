@@ -1,40 +1,56 @@
 ﻿@using BlazorComponent.I18n;
 @inherits LayoutComponentBase
 
+<PageTitle>@Title</PageTitle>
+
 <MApp>
-    <MAppBar App="true">
-        <MAppBarNavIcon @onclick="() => _drawer = !_drawer"></MAppBarNavIcon>
+    <MAppBar App="true" Outlined="true" Elevation="0">
+        @if (_showBack)
+        {
+            <MButton Icon="true" OnClick="Back">
+                <MIcon>mdi-arrow-left</MIcon>
+            </MButton>
+        }
+        else
+        {
+            <MAppBarNavIcon @onclick="() => _drawer = !_drawer"></MAppBarNavIcon>
+        }
+
         <MToolbarTitle>@Title</MToolbarTitle>
         <MSpacer></MSpacer>
-        <MButton Text="true" Color="primary" Target="_blank" Href="https://docs.masastack.com/blazor/introduction/why-masa-blazor">About</MButton>
     </MAppBar>
 
-    <MNavigationDrawer App="true" @bind-Value="_drawer">
+    <MNavigationDrawer App="true"
+                       @bind-Value="_drawer"
+                       Floating="true"
+                       Class="m-sheet--outlined">
         <MList Nav Routable>
-            <MListItem Href="/" ActiveClass="primary--text">
-                <MListItemIcon>
-                    <MIcon>mdi-weather-cloudy</MIcon>
-                </MListItemIcon>
-                <MListItemContent>
-                    <MListItemTitle>天气</MListItemTitle>
-                </MListItemContent>
-            </MListItem>
-            <MListItem Href="/counter" ActiveClass="primary--text">
-                <MListItemIcon>
-                    <MIcon>mdi-plus</MIcon>
-                </MListItemIcon>
-                <MListItemContent>
-                    <MListItemTitle>Counter</MListItemTitle>
-                </MListItemContent>
-            </MListItem>
-            <MListItem Href="/setting" ActiveClass="primary--text">
-                <MListItemIcon>
-                    <MIcon>mdi-cog-outline</MIcon>
-                </MListItemIcon>
-                <MListItemContent>
-                    <MListItemTitle>设置</MListItemTitle>
-                </MListItemContent>
-            </MListItem>
+            <MListItemGroup>
+                <MListItem Href="/">
+                    <MListItemIcon>
+                        <MIcon>mdi-weather-cloudy</MIcon>
+                    </MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>天气</MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+                <MListItem Href="/counter">
+                    <MListItemIcon>
+                        <MIcon>mdi-plus</MIcon>
+                    </MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>Counter</MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+                <MListItem Href="/setting">
+                    <MListItemIcon>
+                        <MIcon>mdi-cog-outline</MIcon>
+                    </MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>设置</MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+            </MListItemGroup>
         </MList>
     </MNavigationDrawer>
 
@@ -52,7 +68,9 @@
 @code {
 
     private bool _drawer;
+    private bool _showBack;
     private string? Title;
+    private string? HistoryUrl;
 
     [Inject]
     private MasaBlazor MasaBlazor { get; set; } = default!;
@@ -60,10 +78,19 @@
     private IThemeService ThemeService { get; set; } = default!;
     [Inject]
     private ISettingsService SettingsService { get; set; } = default!;
+    [Inject]
+    private NavigationManager Navigation { get; set; } = default!;
 
     public void UpdateTitle(string? value)
     {
         Title = value;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void ShowBack(bool show,string url)
+    {
+        _showBack = show;
+        HistoryUrl = url;
         InvokeAsync(StateHasChanged);
     }
 
@@ -96,4 +123,12 @@
         ThemeService.ThemeType = (ThemeType)themeType;
     }
 
+    private void Back()
+    {
+        _showBack = false;
+        if (!string.IsNullOrEmpty(HistoryUrl))
+        {
+            Navigation.NavigateTo(HistoryUrl);
+        }
+    }
 }

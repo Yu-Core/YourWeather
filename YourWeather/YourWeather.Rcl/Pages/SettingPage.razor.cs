@@ -26,7 +26,16 @@ namespace YourWeather.Rcl.Pages
         {
             await base.OnInitializedAsync();
             Title = "设置";
-            await LoadSettings();
+            
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+            if (firstRender)
+            {
+                await LoadSettings();
+            }
         }
 
         private Dictionary<string, ThemeType> ThemeTypes => ThemeService.ThemeTypes;
