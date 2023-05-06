@@ -14,7 +14,7 @@ namespace YourWeather.Rcl.Web.Services
 
         public override async Task OpenBrowserUrl(string url)
         {
-            //不要用window.open方法，新窗口没有加载完，回到原来窗口，会卡死
+            //不要用下面的window.open方法，如果新窗口没有加载完，回到原来窗口，会卡死
             //JS.InvokeVoidAsync("open", url, "_blank");
 
             await InitModule();
@@ -28,7 +28,7 @@ namespace YourWeather.Rcl.Web.Services
                 return;
             }
 
-            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/YourWeather.Rcl/js/system-service.js");
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/YourWeather.Rcl.Web/js/system-service.js");
         }
 
         public async ValueTask DisposeAsync()

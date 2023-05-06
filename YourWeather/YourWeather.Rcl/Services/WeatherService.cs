@@ -4,14 +4,17 @@ namespace YourWeather.Rcl.Services
 {
     public class WeatherService : IWeatherService
     {
-        public Task<WeatherData> GetWeatherData(WeatherSourceType weather,Location location)
+        public Task<WeatherData> GetWeatherData(WeatherSourceType weather, Location location, string? key = null)
         {
             if(!WeatherSources.ContainsKey(weather))
             {
                 return default!;
             }
 
-            return WeatherSources[weather].GetWeatherData(location);
+            var weatherSource = WeatherSources[weather];
+            weatherSource.Key = key;
+
+            return weatherSource.GetWeatherData(location);
         }
 
         public string GetWeatherIcon(string Weather)

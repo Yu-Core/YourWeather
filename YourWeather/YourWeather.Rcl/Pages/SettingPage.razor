@@ -1,4 +1,4 @@
-﻿@page "/fetchdata"
+﻿@page "/setting"
 @inherits PageComponentBase
 
 <PageTitle>@Title</PageTitle>
@@ -14,6 +14,22 @@
             </MListItemIcon>
             <MListItemContent>
                 天气源
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-chevron-right</MIcon>
+            </MListItemAction>
+        </MListItem>
+
+        <MDivider Class="mx-3"></MDivider>
+
+        <MListItem Href="/weatherSource">
+            <MListItemIcon>
+                <MIcon>
+                    mdi-cloud-cog-outline
+                </MIcon>
+            </MListItemIcon>
+            <MListItemContent>
+                天气源管理
             </MListItemContent>
             <MListItemAction>
                 <MIcon>mdi-chevron-right</MIcon>
