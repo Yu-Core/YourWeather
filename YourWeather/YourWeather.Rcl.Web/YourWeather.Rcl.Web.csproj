@@ -17,11 +17,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="wwwroot\" />
+	  <ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
+	  <Content Update="wwwroot\js\system-service.js">
+	    <SubType>Code</SubType>
+	  </Content>
 	</ItemGroup>
 
 </Project>

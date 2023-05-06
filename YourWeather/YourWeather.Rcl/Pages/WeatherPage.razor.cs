@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using System.Text.Json;
+﻿using System.Text.Json;
 using YourWeather.Rcl.Components;
 using YourWeather.Shared;
 
@@ -10,6 +9,7 @@ namespace YourWeather.Rcl.Pages
         private Location? Location;
         private WeatherSourceType WeatherSourceType;
         private WeatherData WeatherData = new();
+        private string? Key;
 
         protected override async Task OnInitializedAsync()
         {
@@ -20,7 +20,7 @@ namespace YourWeather.Rcl.Pages
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
-            if(firstRender)
+            if (firstRender)
             {
                 await LoadSettings();
                 await UpdateWeatherDate();
@@ -35,8 +35,9 @@ namespace YourWeather.Rcl.Pages
         {
             var weatherSourceType = await SettingsService.Get<int>(SettingType.WeatherSource);
             WeatherSourceType = (WeatherSourceType)weatherSourceType;
+            Key = await SettingsService.Get<string?>(WeatherSourceType.ToString(), null);
             var city = await SettingsService.Get<string>(SettingType.Location);
-            if(!string.IsNullOrEmpty(city))
+            if (!string.IsNullOrEmpty(city))
             {
                 Location = JsonSerializer.Deserialize<Location>(city);
             }
@@ -46,19 +47,28 @@ namespace YourWeather.Rcl.Pages
             }
         }
 
-        private Task UpdateWeatherDate()
+        private async Task UpdateWeatherDate()
         {
-            return UpdateWeatherDate(WeatherSourceType, Location);
+            try
+            {
+                await UpdateWeatherDate(WeatherSourceType, Location);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new("获取天气失败");
+            }
+            
         }
 
         private async Task UpdateWeatherDate(WeatherSourceType weather, Location? location)
         {
-            if(location == null)
+            if (location == null)
             {
                 return;
             }
 
-            WeatherData = await WeatherService.GetWeatherData(weather,location);
+            WeatherData = await WeatherService.GetWeatherData(weather, location, Key);
             await InvokeAsync(StateHasChanged);
         }
 

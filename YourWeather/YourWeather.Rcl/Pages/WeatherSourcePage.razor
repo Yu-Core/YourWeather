@@ -1,0 +1,56 @@
+﻿@page "/weatherSource"
+@inherits PageComponentBase
+
+@foreach (var item in WeatherSources)
+{
+    <MCard Class="mb-5"
+       Ripple="false"
+       Rounded="@("lg")"
+       OnClick="()=>OpenEditDialog(item.Key)">
+        <MList>
+            <MListItem>
+                <MListItemContent>
+                    @(item.Value.Name)
+                </MListItemContent>
+
+                <MListItemAction>
+                    <MIcon>mdi-pencil</MIcon>
+                </MListItemAction>
+            </MListItem>
+        </MList>
+    </MCard>
+}
+
+<MDialog @bind-Value="ShowEditDialog"
+         MaxWidth="420">
+    <MCard Rounded="@("lg")">
+        <MCardTitle Class="font-weight-bold">
+            @(WeatherSources[WeatherSourceType].Name)
+            <MSpacer></MSpacer>
+            <MButton Icon="true" OnClick="()=>ShowEditDialog=false">
+                <MIcon>mdi-close</MIcon>
+            </MButton>
+        </MCardTitle>
+        <MCardText Class="pb-0">
+            <MTextField @bind-Value="Key"
+                        OnKeyDown="HandleOnEnter"
+                        Dense
+                        HideDetails="@("auto")"
+                        Outlined
+                                    spellcheck="false"
+                        Placeholder="请输入API密钥">
+            </MTextField>
+            </MCardText>
+            <MCardActions>
+            <MSpacer></MSpacer>
+            <MButton Text OnClick="()=>ShowEditDialog=false">
+                取消
+            </MButton>
+            <MButton Text
+                     Color="primary"
+                     OnClick="HandleOnEdit">
+                确定
+            </MButton>
+            </MCardActions>
+            </MCard>
+            </MDialog>

@@ -2,21 +2,21 @@
 @inherits LayoutComponentBase
 
 <MApp>
-    <MAppBar App>
+    <MAppBar App="true">
         <MAppBarNavIcon @onclick="() => _drawer = !_drawer"></MAppBarNavIcon>
         <MToolbarTitle>@Title</MToolbarTitle>
         <MSpacer></MSpacer>
-        <MButton Text Color="primary" Target="_blank" Href="https://docs.masastack.com/blazor/introduction/why-masa-blazor">About</MButton>
-        </MAppBar>
+        <MButton Text="true" Color="primary" Target="_blank" Href="https://docs.masastack.com/blazor/introduction/why-masa-blazor">About</MButton>
+    </MAppBar>
 
-        <MNavigationDrawer App @bind-Value="_drawer">
+    <MNavigationDrawer App="true" @bind-Value="_drawer">
         <MList Nav Routable>
             <MListItem Href="/" ActiveClass="primary--text">
                 <MListItemIcon>
-                    <MIcon>mdi-home</MIcon>
+                    <MIcon>mdi-weather-cloudy</MIcon>
                 </MListItemIcon>
                 <MListItemContent>
-                    <MListItemTitle>Home</MListItemTitle>
+                    <MListItemTitle>天气</MListItemTitle>
                 </MListItemContent>
             </MListItem>
             <MListItem Href="/counter" ActiveClass="primary--text">
@@ -27,12 +27,12 @@
                     <MListItemTitle>Counter</MListItemTitle>
                 </MListItemContent>
             </MListItem>
-            <MListItem Href="/fetchdata" ActiveClass="primary--text">
+            <MListItem Href="/setting" ActiveClass="primary--text">
                 <MListItemIcon>
-                    <MIcon>mdi-list-box</MIcon>
+                    <MIcon>mdi-cog-outline</MIcon>
                 </MListItemIcon>
                 <MListItemContent>
-                    <MListItemTitle>Fetch data</MListItemTitle>
+                    <MListItemTitle>设置</MListItemTitle>
                 </MListItemContent>
             </MListItem>
         </MList>
