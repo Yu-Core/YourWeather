@@ -8,7 +8,6 @@ namespace YourWeather.Shared
         {
             var lat = location.Lat;
             var lon = location.Lon;
-            using HttpClient Http = new();
 
             var city = await GetCityAsync(lat, lon);
             if (string.IsNullOrEmpty(city))
@@ -16,6 +15,7 @@ namespace YourWeather.Shared
                 return null;
             }
 
+            using HttpClient Http = new();
             WeatherLives? live = await Lives(Http, city);
             List<WeatherForecastDay>? forecastDay = await ForecastDay(Http, city);
 

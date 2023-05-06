@@ -34,23 +34,23 @@
         <MCardText Class="pb-0">
             <MTextField @bind-Value="Key"
                         OnKeyDown="HandleOnEnter"
-                        Dense
+                        Dense="true"
                         HideDetails="@("auto")"
-                        Outlined
-                                    spellcheck="false"
+                        Outlined="true"
+                        spellcheck="false"
                         Placeholder="请输入API密钥">
             </MTextField>
-            </MCardText>
-            <MCardActions>
+        </MCardText>
+        <MCardActions>
             <MSpacer></MSpacer>
-            <MButton Text OnClick="()=>ShowEditDialog=false">
+            <MButton Text="true" OnClick="()=>ShowEditDialog=false">
                 取消
             </MButton>
-            <MButton Text
+            <MButton Text="true"
                      Color="primary"
                      OnClick="HandleOnEdit">
                 确定
             </MButton>
-            </MCardActions>
-            </MCard>
-            </MDialog>
+        </MCardActions>
+    </MCard>
+</MDialog>
