@@ -29,9 +29,38 @@ Blazor/Maui Blazor entry-level project, obtains current weather and weather fore
 	- Using the API provided by Maui in Maui Blazor
 	- Through cmd in Winform and WPF
 
+## Screenshot
+<table>
+	<tr>
+		<td>Blazor WebAssembly</td>
+		<td>Blazor Server</td>
+		<td>MAUI Android</td>
+	</tr>
+	<tr>
+		<td><img src="./Images/Blazor-Wasm.png"/></td>
+		<td><img src="./Images/Blazor-SSR.png"/></td>
+		<td rowspan="3"><img src="./Images/MAUI-Android.jpg"/></td>
+	</tr>
+	<tr>
+		<td>Winform</td>
+		<td>WPF</td>
+	</tr>
+	<tr>
+		<td><img src="./Images/Winform.png"/></td>
+		<td><img src="./Images/WPF.png"/></td>
+	</tr>
+	<tr>
+		<td>MAUI Windows</td>
+	</tr>
+	<tr>
+		<td><img src="./Images/MAUI-Windows.png"/></td>
+	</tr>
+</table>
+
 ## Related technologies
-- Cross platform UI framework: Maui
 - Front end framework: Blazor
+- Cross platform UI framework: Maui
+- Desktop UI framework: Winform, WPF
 - UI component library: Masa Blazor
 
 ## Project structure
