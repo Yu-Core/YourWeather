@@ -1,12 +1,14 @@
 ﻿@page "/addLocation"
 @inherits PageComponentBase
 
-<MTextField TValue="string"
+<MTextField Class="rounded-lg"
+            TValue="string"
             Value="_search"
             ValueChanged="SearchTextChanged"
             Placeholder="请输入省、市、区、县搜索"
             Outlined="true"
             spellcheck="false"
+            Clearable="true"
             PrependInnerIcon="mdi-magnify">
 </MTextField>
 
@@ -14,9 +16,9 @@
        Outlined="true">
     <MList>
         <MVirtualScroll Class="scroll-show"
-            Style="@(Height)" 
-            Items="LocationDatas" 
-            ItemSize="64">
+                        Style="max-height: calc(100vh - 190px);"
+                        Items="LocationDatas"
+                        ItemSize="50">
             <ItemContent>
                 <MListItem OnClick="()=>AddLocation(context)">
                     <MListItemContent>

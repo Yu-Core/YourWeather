@@ -10,7 +10,7 @@ namespace YourWeather.Rcl.Pages
         private List<Location> AllLocationDatas = new();
         private List<Location> LocationDatas = DefaultLocationDatas;
         private List<Location> SettingLocationDatas = new();
-        private readonly static List<Location> DefaultLocationDatas = new List<Location>()
+        private readonly static List<Location> DefaultLocationDatas = new()
         {
             new Location("北京市","北京市",39.904179,116.407387),
             new Location( "成都市","四川省 成都市",30.572961,104.066301),
@@ -55,8 +55,6 @@ namespace YourWeather.Rcl.Pages
                 await LoadSettings();
             }
         }
-
-        private string Height => $"height: calc(100vh - 190px);";
 
         private async Task LoadSettings()
         {

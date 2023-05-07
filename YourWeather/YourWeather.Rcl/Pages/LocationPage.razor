@@ -1,16 +1,166 @@
 ﻿@page "/location"
+@using System.ComponentModel.DataAnnotations
+@using Masa.Blazor.Presets;
 @inherits PageComponentBase
 
+<MCard Class="rounded-lg mb-5"
+       Outlined="true">
+    <MList>
+        <MListItem Ripple="false" OnClick="()=>SetLocation(null)">
+            @if (Location == null)
+            {
+                <MListItemIcon Class="mr-5">
+                    <MIcon>mdi-map-marker-outline</MIcon>
+                </MListItemIcon>
+            }
+            <MListItemContent>
+                当前定位
+            </MListItemContent>
+            <MListItemAction>
+                <MMenu Context="menuContext"
+                       Left="true"
+                       Bottom="true"
+                       ContentClass="elevation-1"
+                       Rounded="@("lg")">
+                    <ActivatorContent>
+                        <MButton Icon="true"
+                                 StopPropagation="true"
+                                 @attributes="@menuContext.Attrs">
+                            <MIcon>mdi-dots-vertical</MIcon>
+                        </MButton>
+                    </ActivatorContent>
 
-<MButton Color="primary" Href="addLocation">Click me</MButton>
+                    <ChildContent>
+                        <MList>
+                            <MListItem OnClick="()=>SetLocation(null)">
+                                <MListItemContent>
+                                    <MListItemTitle>
+                                        设为默认位置
+                                    </MListItemTitle>
+                                </MListItemContent>
+                            </MListItem>
 
-@code {
-    private int currentCount = 0;
+                            <MDivider Class="mx-2"></MDivider>
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        Title = "位置";
-    }
+                            <MListItem OnClick="()=>OpenDetails(CurrentLocation)">
+                                <MListItemContent>
+                                    <MListItemTitle>
+                                        详情
+                                    </MListItemTitle>
+                                </MListItemContent>
+                            </MListItem>
+                        </MList>
+                    </ChildContent>
+                </MMenu>
+            </MListItemAction>
+        </MListItem>
 
-}
+        <MVirtualScroll Class="scroll-show"
+                        Style="max-height: calc(100vh - 244px);"
+                        Items="LocationDatas"
+                        ItemSize="64">
+            <ItemContent>
+                <MDivider Class="mx-3"></MDivider>
+                <MListItem Ripple="false"
+                           OnClick="()=>SetLocation(context)">
+                    @if (context == Location)
+                    {
+                        <MListItemIcon Class="mr-5">
+                            <MIcon>mdi-map-marker-outline</MIcon>
+                        </MListItemIcon>
+                    }
+                    <MListItemContent>
+                        @(context.Name)
+                    </MListItemContent>
+                    <MListItemAction>
+                        <MMenu Context="menuContext"
+                               Left="true"
+                               Bottom="true"
+                               ContentClass="elevation-1"
+                               Rounded="@("lg")">
+                            <ActivatorContent>
+                                <MButton Icon="true"
+                                         StopPropagation="true"
+                                         @attributes="@menuContext.Attrs">
+                                    <MIcon>mdi-dots-vertical</MIcon>
+                                </MButton>
+                            </ActivatorContent>
+
+                            <ChildContent>
+                                <MList>
+                                    <MListItem OnClick="()=>SetLocation(context)">
+                                        <MListItemContent>
+                                            <MListItemTitle>
+                                                设为默认位置
+                                            </MListItemTitle>
+                                        </MListItemContent>
+                                    </MListItem>
+
+                                    <MDivider Class="mx-2"></MDivider>
+
+                                    <MListItem OnClick="()=>OpenDetails(context)">
+                                        <MListItemContent>
+                                            <MListItemTitle>
+                                                详情
+                                            </MListItemTitle>
+                                        </MListItemContent>
+                                    </MListItem>
+
+                                    <MDivider Class="mx-2"></MDivider>
+
+                                    <MListItem OnClick="()=>DeleteLocation(context)">
+                                        <MListItemContent>
+                                            <MListItemTitle>
+                                                删除
+                                            </MListItemTitle>
+                                        </MListItemContent>
+                                    </MListItem>
+                                </MList>
+                            </ChildContent>
+                        </MMenu>
+                    </MListItemAction>
+                </MListItem>
+            </ItemContent>
+        </MVirtualScroll>
+    </MList>
+</MCard>
+
+<MCard Class="rounded-lg"
+       Ripple="false"
+       Outlined="true">
+    <MListItem Href="addLocation" Ripple="false">
+        <MListItemContent>
+            添加位置
+        </MListItemContent>
+        <MListItemAction>
+            <MButton Icon>
+                <MIcon>mdi-plus</MIcon>
+            </MButton>
+        </MListItemAction>
+    </MListItem>
+</MCard>
+
+<PModal @bind-Value="ShowDetails"
+        Title="位置详情"
+        MaxWidth="500">
+    <MTextField Value="DetailsLocation.Name"
+                Label="位置名称"
+                Dense
+                Outlined
+                Readonly />
+    <MTextField Value="DetailsLocation.Info"
+                Label="详细信息"
+                Dense
+                Outlined
+                Readonly />
+    <MTextField Value="DetailsLocation.Lon"
+                Label="经度"
+                Dense
+                Outlined
+                Readonly />
+    <MTextField Value="DetailsLocation.Lat"
+                Label="纬度"
+                Dense
+                Outlined
+                Readonly />
+</PModal>
