@@ -1,5 +1,4 @@
 ﻿using YourWeather.Rcl.Components;
-using YourWeather.Rcl.Services;
 using YourWeather.Shared;
 
 namespace YourWeather.Rcl.Pages

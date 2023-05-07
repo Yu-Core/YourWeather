@@ -38,10 +38,10 @@ namespace YourWeather.Rcl.Pages
             var weatherSourceType = await SettingsService.Get<int>(SettingType.WeatherSource);
             WeatherSourceType = (WeatherSourceType)weatherSourceType;
             Key = await SettingsService.Get<string?>(WeatherSourceType.ToString(), null);
-            var city = await SettingsService.Get<string>(SettingType.Location);
-            if (!string.IsNullOrEmpty(city))
+            var location = await SettingsService.Get<string>(SettingType.Location);
+            if (!string.IsNullOrEmpty(location))
             {
-                Location = JsonSerializer.Deserialize<Location>(city);
+                Location = JsonSerializer.Deserialize<Location>(location);
             }
             else
             {

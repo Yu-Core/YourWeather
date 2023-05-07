@@ -8,7 +8,8 @@ namespace YourWeather.Rcl.Services
         {
             {SettingType.Theme,(int)ThemeType.Light },
             {SettingType.WeatherSource,(int)WeatherSourceType.Amap },
-            {SettingType.Location,"" }
+            {SettingType.Location,"" },
+            {SettingType.Locations,"" }
         };
 
         public virtual Task<bool> ContainsKey(string key)

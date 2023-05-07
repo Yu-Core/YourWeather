@@ -17,8 +17,8 @@ namespace YourWeather.Rcl.Services
 
         public virtual Dictionary<string, ThemeType> ThemeTypes { get; } = new()
         {
-            {"Light",ThemeType.Light },
-            {"Dark",ThemeType.Dark }
+            {"浅色",ThemeType.Light },
+            {"深色",ThemeType.Dark }
         };
 
         public event Action<ThemeType>? OnChanged;

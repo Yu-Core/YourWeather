@@ -19,5 +19,11 @@
   <ItemGroup>
     <ProjectReference Include="..\YourWeather.Shared\YourWeather.Shared.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\json\location.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 	
 </Project>

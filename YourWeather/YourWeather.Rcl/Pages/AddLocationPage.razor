@@ -1,0 +1,41 @@
+﻿@page "/addLocation"
+@inherits PageComponentBase
+
+<MTextField TValue="string"
+            Value="_search"
+            ValueChanged="SearchTextChanged"
+            Placeholder="请输入省、市、区、县搜索"
+            Outlined="true"
+            spellcheck="false"
+            PrependInnerIcon="mdi-magnify">
+</MTextField>
+
+<MCard Class="rounded-lg"
+       Outlined="true">
+    <MList>
+        <MVirtualScroll Class="scroll-show"
+            Style="@(Height)" 
+            Items="LocationDatas" 
+            ItemSize="64">
+            <ItemContent>
+                <MListItem OnClick="()=>AddLocation(context)">
+                    <MListItemContent>
+                        @($"{context.Name}（{context.Info}）")
+                    </MListItemContent>
+                </MListItem>
+                @if (context != LocationDatas.LastOrDefault())
+                {
+                    <MDivider Class="mx-3 mx-sm-0"></MDivider>
+                }
+            </ItemContent>
+        </MVirtualScroll>
+        @if (LocationDatas.Count == 0)
+        {
+            <MListItem>
+                <MListItemContent>
+                    未找到你想要的结果
+                </MListItemContent>
+            </MListItem>
+        }
+    </MList>
+</MCard>

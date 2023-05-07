@@ -56,12 +56,12 @@
 
     <MMain>
         <MContainer Fluid>
-            <MErrorHandler>
-                <CascadingValue Value="this" IsFixed>
-                    @Body
-                </CascadingValue>
-            </MErrorHandler>
-        </MContainer>
+                <MErrorHandler>
+                    <CascadingValue Value="this" IsFixed>
+                        @Body
+                    </CascadingValue>
+                </MErrorHandler>
+            </MContainer>
     </MMain>
 </MApp>
 
@@ -87,7 +87,7 @@
         InvokeAsync(StateHasChanged);
     }
 
-    public void ShowBack(bool show,string url)
+    public void ShowBack(bool show, string url)
     {
         _showBack = show;
         HistoryUrl = url;

@@ -8,9 +8,9 @@ namespace YourWeather.Services
         private bool AlreadySet;
         public override Dictionary<string, ThemeType> ThemeTypes { get; } = new()
         {
-            {"System",ThemeType.System },
-            {"Light",ThemeType.Light },
-            {"Dark",ThemeType.Dark }
+            {"跟随系统",ThemeType.System },
+            {"浅色",ThemeType.Light },
+            {"深色",ThemeType.Dark }
         };
 
         protected override ThemeType GetThemeType()

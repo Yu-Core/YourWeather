@@ -21,6 +21,8 @@ namespace YourWeather.Rcl.Components
         protected ILocationService LocationService { get; set; } = default!;
         [Inject]
         protected ISystemService SystemService { get; set; } = default!;
+        [Inject]
+        protected NavigationManager Navigation { get; set; } = default!;
 
         [CascadingParameter]
         public MainLayout MainLayout { get; set; } = default!;

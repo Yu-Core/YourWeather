@@ -2,12 +2,7 @@
 @inherits PageComponentBase
 
 
-
-<h1>Counter</h1>
-
-<p role="status">Current count: @currentCount</p>
-
-<MButton Color="primary" OnClick="IncrementCount">Click me</MButton>
+<MButton Color="primary" Href="addLocation">Click me</MButton>
 
 @code {
     private int currentCount = 0;
@@ -18,8 +13,4 @@
         Title = "位置";
     }
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
 }

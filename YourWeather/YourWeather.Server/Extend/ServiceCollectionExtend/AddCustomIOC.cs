@@ -1,6 +1,7 @@
 ﻿
 using YourWeather.Rcl.Web.Services;
 using YourWeather.Shared;
+using LocationService = YourWeather.Server.Services.LocationService;
 
 namespace YourWeather.Client.Extend
 {

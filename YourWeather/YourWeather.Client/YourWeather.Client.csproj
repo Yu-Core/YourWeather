@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Extend\ServiceCollectionExtend\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

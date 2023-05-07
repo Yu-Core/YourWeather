@@ -4,6 +4,7 @@
     {
         Theme,
         WeatherSource,
-        Location
+        Location,
+        Locations
     }
 }

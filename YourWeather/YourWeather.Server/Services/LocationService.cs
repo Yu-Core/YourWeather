@@ -1,11 +1,13 @@
 ﻿using Darnton.Blazor.DeviceInterop.Geolocation;
+using System.Net.Http.Json;
 using System.Text.Json;
 using YourWeather.Shared;
 
-namespace YourWeather.Rcl.Desktop.Services
+namespace YourWeather.Server.Services
 {
-    public class LocationService : Rcl.Services.LocationService
+    public class LocationService : Rcl.Web.Services.LocationService
     {
+
         public LocationService(IGeolocationService geolocationService) : base(geolocationService)
         {
 
@@ -13,7 +15,12 @@ namespace YourWeather.Rcl.Desktop.Services
 
         protected override async Task<List<Location>> ReadDate()
         {
-            using var reader = new StreamReader("wwwroot/json/location.json");
+            var path = $"{AppContext.BaseDirectory}/wwwroot/json/location.json";
+            if(!File.Exists(path))
+            {
+                throw new Exception("not find location.json");
+            }
+            using var reader = new StreamReader(path);
             var contents = await reader.ReadToEndAsync();
             return JsonSerializer.Deserialize<List<Location>>(contents) ?? throw new("not find location.json");
         }
