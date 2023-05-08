@@ -4,6 +4,8 @@
 
 Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源，也可以选择指定位置的天气。
 
+[在线演示地址](https://yu-core.github.io/YourWeather/)
+
 ## 特点
 - 支持多个天气源
 	- 高德地图

@@ -4,6 +4,8 @@ English | [¼òÌåÖÐÎÄ](./README.md)
 
 Blazor/Maui Blazor entry-level project, obtains current weather and weather forecasts through weather APIs, has multiple weather sources, and can also select weather from specified locations.
 
+[Live Demo](https://yu-core.github.io/YourWeather/)
+
 ## Characteristics
 - Support for multiple weather sources
 	- AMap
