@@ -8,6 +8,7 @@ namespace YourWeather.Rcl.Pages
         private bool ShowThemeType;
         private bool ShowWeatherSource;
         private bool ShowCodeSource;
+        private bool ShowAppInfo;
         private ThemeType ThemeType;
         private WeatherSourceType WeatherSourceType;
 
@@ -37,6 +38,7 @@ namespace YourWeather.Rcl.Pages
             }
         }
 
+        private string Version => SystemService.GetVersion();
         private Dictionary<string, ThemeType> ThemeTypes => ThemeService.ThemeTypes;
         private Dictionary<WeatherSourceType, IWeatherSource> WeatherSources => WeatherService.WeatherSources;
 

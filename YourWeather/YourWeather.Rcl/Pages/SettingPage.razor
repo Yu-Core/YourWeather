@@ -1,10 +1,8 @@
 ﻿@page "/setting"
 @inherits PageComponentBase
 
-
-
 <MCard Outlined="true"
-    Rounded="@("lg")">
+       Rounded="@("lg")">
     <MList>
         <MListItem OnClick="()=>ShowWeatherSource=true">
             <MListItemIcon>
@@ -62,6 +60,22 @@
             </MListItemIcon>
             <MListItemContent>
                 查看源代码
+            </MListItemContent>
+            <MListItemAction>
+                <MIcon>mdi-chevron-right</MIcon>
+            </MListItemAction>
+        </MListItem>
+
+        <MDivider Class="mx-3"></MDivider>
+
+        <MListItem OnClick="()=>ShowAppInfo=true">
+            <MListItemIcon>
+                <MIcon>
+                    mdi-information-outline
+                </MIcon>
+            </MListItemIcon>
+            <MListItemContent>
+                关于
             </MListItemContent>
             <MListItemAction>
                 <MIcon>mdi-chevron-right</MIcon>
@@ -161,3 +175,24 @@
         </MCardText>
     </MCard>
 </MDialog>
+
+<PModal @bind-Value="ShowAppInfo"
+        Title="应用信息"
+        MaxWidth="420">
+    <MRow>
+        <MCol Cols="6">
+            应用
+        </MCol>
+        <MCol Cols="6">
+            你的天气
+        </MCol>
+    </MRow>
+    <MRow>
+        <MCol Cols="6">
+            版本
+        </MCol>
+        <MCol Cols="6">
+            @Version
+        </MCol>
+    </MRow>
+</PModal>                 

@@ -9,5 +9,10 @@ namespace YourWeather.Rcl.Desktop.Services
             Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
             return Task.CompletedTask;
         }
+
+        public override string GetVersion()
+        {
+            return base.GetVersion();
+        }
     }
 }

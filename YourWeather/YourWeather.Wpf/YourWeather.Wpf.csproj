@@ -8,6 +8,7 @@
 		<RootNamespace>YourWeather.Wpf</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+		<Version>0.9.6</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

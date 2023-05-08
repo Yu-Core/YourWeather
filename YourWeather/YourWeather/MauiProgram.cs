@@ -16,7 +16,11 @@ namespace YourWeather
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                });
+                })
+                .ConfigureEssentials(essentials =>
+                {
+                    essentials.UseVersionTracking();
+                }); ;
 
             builder.Services.AddMauiBlazorWebView();
 #if DEBUG

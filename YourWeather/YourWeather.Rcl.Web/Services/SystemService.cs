@@ -12,6 +12,15 @@ namespace YourWeather.Rcl.Web.Services
 
         }
 
+        public async ValueTask DisposeAsync()
+        {
+            if (module != null)
+            {
+                await module.DisposeAsync();
+            }
+            GC.SuppressFinalize(this);
+        }
+
         public override async Task OpenBrowserUrl(string url)
         {
             //不要用下面的window.open方法，如果新窗口没有加载完，回到原来窗口，会卡死
@@ -31,13 +40,9 @@ namespace YourWeather.Rcl.Web.Services
             module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/YourWeather.Rcl.Web/js/system-service.js");
         }
 
-        public async ValueTask DisposeAsync()
+        public override string GetVersion()
         {
-            if (module != null)
-            {
-                await module.DisposeAsync();
-            }
-            GC.SuppressFinalize(this);
+            return base.GetVersion();
         }
     }
 }
