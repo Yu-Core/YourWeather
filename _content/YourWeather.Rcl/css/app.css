@@ -1,0 +1,48 @@
+﻿/*去除滚动条*/
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/*显示滚动条*/
+.scroll-show::-webkit-scrollbar-track {
+    border-radius: 15px;
+    margin: 5px 0;
+}
+
+.scroll-show::-webkit-scrollbar {
+    display: initial;
+    width: 5px;
+    height: 5px;
+    margin: 5px 0;
+}
+
+.scroll-show::-webkit-scrollbar-thumb {
+    margin: 5px 0;
+    border-radius: 15px;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(170 168 168)), color-stop(0.72, rgb(170 168 168)), color-stop(0.86, rgb(170 168 168)));
+}
+
+/*改变应用栏颜色*/
+.theme--light.m-app-bar.m-toolbar.m-sheet {
+    background: #fff !important;
+}
+
+/*天气逐小时*/
+.weather-hours{
+    display:flex;
+    max-width:100%;
+    overflow-x:auto;
+}
+
+/*禁止选中内容*/
+.user-select-none *{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
