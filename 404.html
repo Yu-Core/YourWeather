@@ -1,95 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>你的天气</title>
-    <base href="/YourWeather/" />
-    <link href="_content/Masa.Blazor/css/masa-blazor.min.css" rel="stylesheet">
-    <link href="css/app.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link href="YourWeather.Client.styles.css" rel="stylesheet" />
-    <link href="manifest.json" rel="manifest" />
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
-    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
-    <link href="_content/YourWeather.Rcl/css/materialdesign/v7.1.96/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="_content/YourWeather.Rcl/css/material/icons.css" rel="stylesheet">
-    <link href="_content/YourWeather.Rcl/css/fontawesome/v6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="_content/YourWeather.Rcl/css/qweather-icon/qweather-icons.css" rel="stylesheet" />
-    <link href="_content/YourWeather.Rcl/css/app.css" rel="stylesheet" />
-    
-    <!-- Start Single Page Apps for GitHub Pages -->
+    <meta charset="utf-8">
+    <title>Single Page Apps for GitHub Pages</title>
     <script type="text/javascript">
         // Single Page Apps for GitHub Pages
         // https://github.com/rafrex/spa-github-pages
         // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
         // ----------------------------------------------------------------------
-        // This script checks to see if a redirect is present in the query string
-        // and converts it back into the correct url and adds it to the
-        // browser's history using window.history.replaceState(...),
-        // which won't cause the browser to attempt to load the new url.
-        // When the single page app is loaded further down in this file,
-        // the correct url will be waiting in the browser's history for
-        // the single page app to route accordingly.
-        (function (l) {
-            if (l.search) {
-                var q = {};
-                l.search.slice(1).split('&').forEach(function (v) {
-                    var a = v.split('=');
-                    q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-                });
-                if (q.p !== undefined) {
-                    window.history.replaceState(null, null,
-                        l.pathname.slice(0, -1) + (q.p || '') +
-                        (q.q ? ('?' + q.q) : '') +
-                        l.hash
-                    );
-                }
-            }
-        }(window.location))
-    </script>
-    <!-- End Single Page Apps for GitHub Pages -->
+        // This script takes the current url and converts the path and query
+        // string into just a query string, and then redirects the browser
+        // to the new url with only a query string and hash fragment,
+        // e.g. http://www.foo.tld/one/two?a=b&c=d#qwe, becomes
+        // http://www.foo.tld/?p=/one/two&q=a=b~and~c=d#qwe
+        // Note: this 404.html file must be at least 512 bytes for it to work
+        // with Internet Explorer (it is currently > 512 bytes)
 
+        // If you're creating a Project Pages site and NOT using a custom domain,
+        // then set segmentCount to 1 (enterprise users may need to set it to > 1).
+        // This way the code will only replace the route part of the path, and not
+        // the real directory in which the app resides, for example:
+        // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
+        // https://username.github.io/repo-name/?p=/one/two&q=a=b~and~c=d#qwe
+        // Otherwise, leave segmentCount as 0.
+        var segmentCount = 1;
+        var l = window.location;
+        l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
+            l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
+            (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash
+        );
+    </script>
 </head>
-
 <body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script src="_content/BlazorComponent/js/blazor-component.js"></script>
-    <script>
-        Blazor.start({
-            loadBootResource: function (type, name, defaultUri, integrity) {
-                // For framework resources, use the precompressed .br files for faster downloads
-                // This is needed only because GitHub pages doesn't natively support Brotli (or even gzip for .dll files)
-                if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
-                    return (async function () {
-                        const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        const originalResponseBuffer = await response.arrayBuffer();
-                        const originalResponseArray = new Int8Array(originalResponseBuffer);
-                        const decompressedResponseArray = BrotliDecode(originalResponseArray);
-                        const contentType = type === 'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
-                        return new Response(decompressedResponseArray, { headers: { 'content-type': contentType } });
-                    })();
-                }
-            }
-        });
-    </script>
 </body>
-
 </html>
