@@ -35,6 +35,12 @@ namespace YourWeather.Winform
             blazorWebView.BlazorWebViewInitialized += BlazorWebViewInitialized;
         }
 
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Environment.Exit(0);
+        }
+
         private void BlazorWebViewInitializing(object? sender, BlazorWebViewInitializingEventArgs e)
         {
         }
