@@ -81,9 +81,9 @@
       "Units.dll": "sha256-lZBlkdG3twAkNSrZlgYv9rn05s0UkaOk5TNWzqP7zCA=",
       "Util.Reflection.dll": "sha256-SiJzXSZ0V+HPTw3hsaapATM0UksyLqEID4AeHVzQbPU=",
       "YourWeather.Client.dll": "sha256-EDParcMsbAZQgONTIcnEOk6e0iDbQhNp+cWAlA90Fao=",
-      "YourWeather.Rcl.dll": "sha256-jw0wwM3VpiMRrTw\/dVhfwXBdGa9n4lkiVzgsMO7z1Zo=",
+      "YourWeather.Rcl.dll": "sha256-IoyQYGHHW5in6W+2M1dbs4DfI4UWJmwrn4zYHmHSwi8=",
       "YourWeather.Rcl.Web.dll": "sha256-dafdqnaymg28PFRyNyH1ljjHHJrRkKTkDPOynuxaYog=",
-      "YourWeather.Shared.dll": "sha256-tlnpjL8j121T4W9ue8RmBKk2IuYTbrdlYM\/hbmRucUU="
+      "YourWeather.Shared.dll": "sha256-WZ3Bvq1FbrZam+IZMjvcbScCVok\/ADslAchUc3EZJ3s="
     },
     "extensions": null,
     "lazyAssembly": null,
