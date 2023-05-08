@@ -15,7 +15,7 @@ namespace YourWeather.Rcl.Pages
         {
             await base.OnInitializedAsync();
             Title = "天气源配置";
-            MainLayout.ShowBack(true, "/setting");
+            MainLayout.ShowBack(true, "setting");
         }
 
         private async Task OpenEditDialog(WeatherSourceType type)

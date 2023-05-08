@@ -43,7 +43,7 @@ namespace YourWeather.Rcl.Pages
         {
             await base.OnInitializedAsync();
             Title = "添加城市";
-            MainLayout.ShowBack(true, "/location");
+            MainLayout.ShowBack(true, "location");
             AllLocationDatas = await LocationService.GetAllLocations();
         }
 
@@ -83,7 +83,7 @@ namespace YourWeather.Rcl.Pages
                 await SettingsService.Save(SettingType.Locations, locations);
             }
             
-            Navigation.NavigateTo("/location");
+            Navigation.NavigateTo("location");
         }
 
         private void SearchTextChanged(string search)
