@@ -1,6 +1,6 @@
 # YourWeather
 
-English | [¼òÌåÖÐÎÄ](./README.md)
+English | [ç®€ä½“ä¸­æ–‡](./README.md)
 
 Blazor/Maui Blazor entry-level project, obtains current weather and weather forecasts through weather APIs, has multiple weather sources, and can also select weather from specified locations.
 
