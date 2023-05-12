@@ -60,7 +60,7 @@ namespace YourWeather.Rcl.Pages
         private async Task WeatherSourceChanged(WeatherSourceType value)
         {
             WeatherSourceType = value;
-            await SettingsService.Save(SettingType.WeatherSource, WeatherSourceType);
+            await SettingsService.Save(SettingType.WeatherSource, (int)WeatherSourceType);
         }
 
         private async Task ToCodeSoucre(string url)
