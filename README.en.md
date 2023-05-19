@@ -76,12 +76,16 @@ For details [./YourWeather/README.md](./YourWeather/README.md)
 	- Maui Blazor
 	- Winform (Blazor Hybrid)
 	- WPF (Blazor Hybrid)
+	- Photino Blazor
+- Linux
+	- Photino Blazor
 - Android
 	- Maui Blazor
 - iOS
 	- Maui Blazor
 - Mac
 	- Maui Blazor
+	- Photino Blazor
 
 ## Thank you for the following open source projects
 - [.NET MAUI]( https://github.com/dotnet/maui )
@@ -93,5 +97,6 @@ For details [./YourWeather/README.md](./YourWeather/README.md)
 - [Masa.Template]( https://github.com/masastack/MASA.Template )
 - [MauiBlazorPermissionsExample]( https://github.com/MackinnonBuck/MauiBlazorPermissionsExample )
 - [P/Invoke](https://github.com/dotnet/pinvoke)
+- [Photino.Blazor](https://github.com/tryphotino/photino.Blazor)
 - [QWeather Icons]( https://github.com/qwd/Icons )
 > The above rankings are in no particular order

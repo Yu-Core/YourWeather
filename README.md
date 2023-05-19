@@ -76,12 +76,16 @@ Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源
 	- Maui Blazor
 	- Winform (Blazor Hybrid)
 	- WPF (Blazor Hybrid)
+	- Photino Blazor
+- Linux
+	- Photino Blazor
 - Android
 	- Maui Blazor
 - iOS
 	- Maui Blazor
 - Mac
 	- Maui Blazor
+	- Photino Blazor
 
 ## 感谢以下开源项目
 - [.NET MAUI](https://github.com/dotnet/maui)
@@ -93,5 +97,6 @@ Blazor/Maui Blazor 入门级项目，通过天气API获取当前天气和天气预报，具有多个天气源
 - [Masa.Template](https://github.com/masastack/MASA.Template)
 - [MauiBlazorPermissionsExample](https://github.com/MackinnonBuck/MauiBlazorPermissionsExample)
 - [P/Invoke](https://github.com/dotnet/pinvoke)
+- [Photino.Blazor](https://github.com/tryphotino/photino.Blazor)
 - [QWeather Icons](https://github.com/qwd/Icons)
 > 以上排名不分先后

@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "目录结构", "目录结�
 		YourWeather\README.md = YourWeather\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourWeather.Phoptino", "YourWeather\YourWeather.Phoptino\YourWeather.Phoptino.csproj", "{2A103A13-79CF-48BF-9AFD-CD9410FD1445}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{6BCD3E66-09B7-47F2-A8CD-A49E15099040}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BCD3E66-09B7-47F2-A8CD-A49E15099040}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BCD3E66-09B7-47F2-A8CD-A49E15099040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A103A13-79CF-48BF-9AFD-CD9410FD1445}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A103A13-79CF-48BF-9AFD-CD9410FD1445}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A103A13-79CF-48BF-9AFD-CD9410FD1445}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A103A13-79CF-48BF-9AFD-CD9410FD1445}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
