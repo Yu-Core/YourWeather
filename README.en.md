@@ -2,31 +2,31 @@
 
 English | [简体中文](./README.md)
 
-Blazor/Maui Blazor entry-level project, obtains current weather and weather forecasts through weather APIs, has multiple weather sources, and can also select weather from specified locations.
+Blazor/Maui Blazor entry-level Demo, sharing one Rcl (Razor Class Library) for multiple projects, obtains current weather and weather forecasts through weather APIs, has multiple weather sources, and can also select weather from specified locations.
 
 [Live Demo](https://yu-core.github.io/YourWeather/)
 
 ## Characteristics
-- Support for multiple weather sources
+- Multiple weather sources
 	- AMap
 	- OpenWeather
 	- QWeather
 	- SeniverseWeather
 	- VisualCrossing
-- Support positioning
+- Positioning
 	- Through [Darnton. Blazor. DeviceInterop](https://github.com/darnton/BlazorDeviceInterop) Implementation
 	- Location permission reference in Maui Blazor [Maui BlazorPermissionsExample](https://github.com/MackinnonBuck/MauiBlazorPermissionsExample )
-- Support persistence storage
+- Persistence storage
 	- Using LocalStorage in Blazor WebAssembly and Blazor Server
 	- Using the preferences provided by Maui in Maui Blazor
 	- Using LocalStorage in Winform
 	- Using LocalStorage in WPF
-- Support for theme switching
+- Theme switching
 	- By [MASA. Blazor](https://github.com/BlazorComponent/MASA.Blazor) Provide
 	- Additional support for changing the color of Maui's status bar/title bar
 	- Additional support for Winform title bar dark mode
 	- Additional support for WPF title bar dark mode
--Support opening external links using default browser
+- Opening external links using default browser
 	- Creating a tag through JavaScript in Blazor WebAssembly and Blazor Server
 	- Using the API provided by Maui in Maui Blazor
 	- Through cmd in Winform and WPF
@@ -61,9 +61,10 @@ Blazor/Maui Blazor entry-level project, obtains current weather and weather fore
 
 ## Related technologies
 - Front end framework: Blazor
+- UI component library: Masa Blazor
 - Cross platform UI framework: Maui
 - Desktop UI framework: Winform, WPF
-- UI component library: Masa Blazor
+- Lightweight cross platform framework
 
 ## Project structure
 For details [./YourWeather/README.md](./YourWeather/README.md)
