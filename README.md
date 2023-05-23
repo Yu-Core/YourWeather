@@ -1,37 +1,37 @@
 # YourWeather
 
-[English](./README.en.md) | ¼òÌåÖĞÎÄ
+[English](./README.en.md) | ç®€ä½“ä¸­æ–‡
 
-Blazor/Maui Blazor ÈëÃÅ¼¶Demo£¬¶à¸öÏîÄ¿¹²ÓÃÒ»¸öRcl£¨RazorÀà¿â£©£¬Í¨¹ıÌìÆøAPI»ñÈ¡µ±Ç°ÌìÆøºÍÌìÆøÔ¤±¨£¬¾ßÓĞ¶à¸öÌìÆøÔ´£¬Ò²¿ÉÒÔÑ¡ÔñÖ¸¶¨Î»ÖÃµÄÌìÆø¡£
+Blazor/Maui Blazor å…¥é—¨çº§Demoï¼Œå¤šä¸ªé¡¹ç›®å…±ç”¨ä¸€ä¸ªRclï¼ˆRazorç±»åº“ï¼‰ï¼Œé€šè¿‡å¤©æ°”APIè·å–å½“å‰å¤©æ°”å’Œå¤©æ°”é¢„æŠ¥ï¼Œå…·æœ‰å¤šä¸ªå¤©æ°”æºï¼Œä¹Ÿå¯ä»¥é€‰æ‹©æŒ‡å®šä½ç½®çš„å¤©æ°”ã€‚
 
-[ÔÚÏßÑİÊ¾µØÖ·](https://yu-core.github.io/YourWeather/)
+[åœ¨çº¿æ¼”ç¤ºåœ°å€](https://yu-core.gitee.io/yourweather/)
 
-## ÌØµã
-- ¶à¸öÌìÆøÔ´
-	- ¸ßµÂµØÍ¼
+## ç‰¹ç‚¹
+- å¤šä¸ªå¤©æ°”æº
+	- é«˜å¾·åœ°å›¾
 	- OpenWeather
-	- ºÍ·çÌìÆø
-	- ĞÄÖªÌìÆø
+	- å’Œé£å¤©æ°”
+	- å¿ƒçŸ¥å¤©æ°”
 	- VisualCrossing
-- ¶¨Î»
-	- Í¨¹ı [Darnton.Blazor.DeviceInterop](https://github.com/darnton/BlazorDeviceInterop) ÊµÏÖ
-	- Maui Blazor ÖĞµÄ¶¨Î»È¨ÏŞ²Î¿¼ [MauiBlazorPermissionsExample](https://github.com/MackinnonBuck/MauiBlazorPermissionsExample)
-- ³Ö¾Ã»¯´æ´¢
-	- Blazor WebAssembly ºÍ Blazor Server ÖĞÊ¹ÓÃ localStorage
-	- Maui Blazor ÖĞÊ¹ÓÃ Maui Ìá¹©µÄÊ×Ñ¡Ïî
-	- Winform ÖĞÊ¹ÓÃ localStorage
-	- WPF ÖĞÊ¹ÓÃ localStorage
-- Ö÷ÌâÇĞ»»
-	- ÓÉ [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor) Ìá¹©
-	- ¶îÍâÖ§³Ö Maui ×´Ì¬À¸/±êÌâÀ¸µÄÑÕÉ«¸Ä±ä
-	- ¶îÍâÖ§³Ö Winform ±êÌâÀ¸ÉîÉ«Ä£Ê½
-	- ¶îÍâÖ§³Ö WPF ±êÌâÀ¸ÉîÉ«Ä£Ê½
-- Ê¹ÓÃÄ¬ÈÏä¯ÀÀÆ÷´ò¿ªÍâ²¿Á´½Ó
-	- Blazor WebAssembly ºÍ Blazor Server ÖĞÍ¨¹ıjs´´½¨a±êÇ©
-	- Maui Blazor ÖĞÊ¹ÓÃ Maui Ìá¹©µÄ api
-	- Winform ºÍ WPF ÖĞÍ¨¹ıcmd
+- å®šä½
+	- é€šè¿‡ [Darnton.Blazor.DeviceInterop](https://github.com/darnton/BlazorDeviceInterop) å®ç°
+	- Maui Blazor ä¸­çš„å®šä½æƒé™å‚è€ƒ [MauiBlazorPermissionsExample](https://github.com/MackinnonBuck/MauiBlazorPermissionsExample)
+- æŒä¹…åŒ–å­˜å‚¨
+	- Blazor WebAssembly å’Œ Blazor Server ä¸­ä½¿ç”¨ localStorage
+	- Maui Blazor ä¸­ä½¿ç”¨ Maui æä¾›çš„é¦–é€‰é¡¹
+	- Winform ä¸­ä½¿ç”¨ localStorage
+	- WPF ä¸­ä½¿ç”¨ localStorage
+- ä¸»é¢˜åˆ‡æ¢
+	- ç”± [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor) æä¾›
+	- é¢å¤–æ”¯æŒ Maui çŠ¶æ€æ /æ ‡é¢˜æ çš„é¢œè‰²æ”¹å˜
+	- é¢å¤–æ”¯æŒ Winform æ ‡é¢˜æ æ·±è‰²æ¨¡å¼
+	- é¢å¤–æ”¯æŒ WPF æ ‡é¢˜æ æ·±è‰²æ¨¡å¼
+- ä½¿ç”¨é»˜è®¤æµè§ˆå™¨æ‰“å¼€å¤–éƒ¨é“¾æ¥
+	- Blazor WebAssembly å’Œ Blazor Server ä¸­é€šè¿‡jsåˆ›å»ºaæ ‡ç­¾
+	- Maui Blazor ä¸­ä½¿ç”¨ Maui æä¾›çš„ api
+	- Winform å’Œ WPF ä¸­é€šè¿‡cmd
 
-## ½ØÍ¼
+## æˆªå›¾
 <table>
 	<tr>
 		<td>Blazor WebAssembly</td>
@@ -59,17 +59,17 @@ Blazor/Maui Blazor ÈëÃÅ¼¶Demo£¬¶à¸öÏîÄ¿¹²ÓÃÒ»¸öRcl£¨RazorÀà¿â£©£¬Í¨¹ıÌìÆøAPI»ñÈ¡
 	</tr>
 </table>
 
-## Ïà¹Ø¼¼Êõ
-- Ç°¶Ë¿ò¼Ü£ºBlazor
-- UI×é¼ş¿â£ºMasa Blazor
-- ¿çÆ½Ì¨UI¿ò¼Ü£ºMaui
-- ×ÀÃæ¶ËUI¿ò¼Ü£ºWinform¡¢WPF
-- ÇáÁ¿¼¶¿çÆ½Ì¨¿ò¼Ü£ºPhotino
+## ç›¸å…³æŠ€æœ¯
+- å‰ç«¯æ¡†æ¶ï¼šBlazor
+- UIç»„ä»¶åº“ï¼šMasa Blazor
+- è·¨å¹³å°UIæ¡†æ¶ï¼šMaui
+- æ¡Œé¢ç«¯UIæ¡†æ¶ï¼šWinformã€WPF
+- è½»é‡çº§è·¨å¹³å°æ¡†æ¶ï¼šPhotino
 
-## ÏîÄ¿½á¹¹
-Ïê¼û[./YourWeather/README.md](./YourWeather/README.md)
+## é¡¹ç›®ç»“æ„
+è¯¦è§[./YourWeather/README.md](./YourWeather/README.md)
 
-## Ö§³ÖµÄÆ½Ì¨
+## æ”¯æŒçš„å¹³å°
 - Web
 	- Blazor WebAssembly
 	- Blazor Server
@@ -88,7 +88,7 @@ Blazor/Maui Blazor ÈëÃÅ¼¶Demo£¬¶à¸öÏîÄ¿¹²ÓÃÒ»¸öRcl£¨RazorÀà¿â£©£¬Í¨¹ıÌìÆøAPI»ñÈ¡
 	- Maui Blazor
 	- Photino Blazor
 
-## ¸ĞĞ»ÒÔÏÂ¿ªÔ´ÏîÄ¿
+## æ„Ÿè°¢ä»¥ä¸‹å¼€æºé¡¹ç›®
 - [.NET MAUI](https://github.com/dotnet/maui)
 - [AreaCity-JsSpider-StatsGov](https://github.com/xiangyuecn/AreaCity-JsSpider-StatsGov)
 - [ASP.NET Core](https://github.com/dotnet/aspnetcore)
@@ -100,4 +100,4 @@ Blazor/Maui Blazor ÈëÃÅ¼¶Demo£¬¶à¸öÏîÄ¿¹²ÓÃÒ»¸öRcl£¨RazorÀà¿â£©£¬Í¨¹ıÌìÆøAPI»ñÈ¡
 - [P/Invoke](https://github.com/dotnet/pinvoke)
 - [Photino.Blazor](https://github.com/tryphotino/photino.Blazor)
 - [QWeather Icons](https://github.com/qwd/Icons)
-> ÒÔÉÏÅÅÃû²»·ÖÏÈºó
+> ä»¥ä¸Šæ’åä¸åˆ†å…ˆå
