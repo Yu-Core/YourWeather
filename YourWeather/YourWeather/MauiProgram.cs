@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Darnton.Blazor.DeviceInterop.Geolocation;
+using MauiBlazorToolkit;
 using YourWeather.Extend;
 using GeolocationService = YourWeather.Services.GeolocationService;
 
@@ -13,6 +14,10 @@ namespace YourWeather
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseMauiBlazorToolkit(options =>
+                {
+                    options.HiddenMacTitleVisibility = true;
+                })
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

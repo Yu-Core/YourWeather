@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core;
+using MauiBlazorToolkit;
+using MauiBlazorToolkit.Platform;
 using YourWeather.Shared;
 
 namespace YourWeather.Services
@@ -68,11 +70,10 @@ namespace YourWeather.Services
         {
             var Dark = themeState == ThemeType.Dark;
             Color backgroundColor = Dark ? statusBarColorDark : statusBarColorLight;
-            Color foreColor = Dark ? Colors.White : Colors.Black;
-#if WINDOWS
-            WindowsTitleBar.SetColorForWindows(backgroundColor, foreColor);
-#elif MACCATALYST
-            MacTitleBar.SetTitleBarColorForMac(backgroundColor, foreColor);
+#if WINDOWS || MACCATALYST
+            TitleBar.SetColor(backgroundColor);
+            TitleBarStyle titleBarStyle = Dark ? TitleBarStyle.LightContent : TitleBarStyle.DarkContent;
+            TitleBar.SetStyle(titleBarStyle);
 #elif ANDROID || IOS14_2_OR_GREATER
             CommunityToolkit.Maui.Core.Platform.StatusBar.SetColor(backgroundColor);
             StatusBarStyle statusBarStyle = Dark ? StatusBarStyle.LightContent : StatusBarStyle.DarkContent;
