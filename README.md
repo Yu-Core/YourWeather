@@ -4,7 +4,9 @@
 
 Blazor/Maui Blazor 入门级Demo，多个项目共用一个Rcl（Razor类库），通过天气API获取当前天气和天气预报，具有多个天气源，也可以选择指定位置的天气。
 
-[在线演示地址](https://yu-core.gitee.io/yourweather/)
+[在线演示地址（GitHub）](https://yu-core.github.io/YourWeather/)
+
+[在线演示地址（Gitee）](https://yu-core.gitee.io/yourweather/)
 
 ## 特点
 - 多个天气源
