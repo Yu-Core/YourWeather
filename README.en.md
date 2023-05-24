@@ -4,7 +4,7 @@ English | [简体中文](./README.md)
 
 Blazor/Maui Blazor entry-level Demo, sharing one Rcl (Razor Class Library) for multiple projects, obtains current weather and weather forecasts through weather APIs, has multiple weather sources, and can also select weather from specified locations.
 
-[Live Demo](https://yu-core.github.io/YourWeather/)
+[Live Demo](https://yu-core.gitee.io/yourweather/)
 
 ## Characteristics
 - Multiple weather sources
