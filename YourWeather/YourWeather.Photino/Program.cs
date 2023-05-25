@@ -2,7 +2,8 @@
 using Darnton.Blazor.DeviceInterop.Geolocation;
 using Microsoft.Extensions.DependencyInjection;
 using Photino.Blazor;
-using YourWeather.Phoptino.Extend;
+using YourWeather.Photino;
+using YourWeather.Photino.Extend;
 using YourWeather.Rcl;
 
 internal class Program
@@ -21,7 +22,9 @@ internal class Program
         var app = appBuilder.Build();
 
         app.MainWindow
-            .SetTitle("YourWeather.Phoptino");
+            .SetTitle("YourWeather.Photino");
+
+        app.MainWindow.WindowCreated += (sender, e) => TitleBar.Init(app.MainWindow.WindowHandle);
 
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {

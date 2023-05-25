@@ -1,8 +1,8 @@
 ﻿using YourWeather.Shared;
 using Microsoft.Extensions.DependencyInjection;
-using YourWeather.Phoptino.Services;
+using YourWeather.Photino.Services;
 
-namespace YourWeather.Phoptino.Extend
+namespace YourWeather.Photino.Extend
 {
     public static partial class ServiceCollectionExtend
     {

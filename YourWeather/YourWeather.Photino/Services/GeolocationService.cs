@@ -1,7 +1,7 @@
 ﻿using Darnton.Blazor.DeviceInterop.Geolocation;
 using Microsoft.JSInterop;
 
-namespace YourWeather.Phoptino.Services
+namespace YourWeather.Photino.Services
 {
 
     /// <summary>

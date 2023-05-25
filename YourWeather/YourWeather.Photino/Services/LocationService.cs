@@ -2,7 +2,7 @@
 using System.Text.Json;
 using YourWeather.Shared;
 
-namespace YourWeather.Phoptino.Services
+namespace YourWeather.Photino.Services
 {
     public class LocationService : Rcl.Services.LocationService
     {

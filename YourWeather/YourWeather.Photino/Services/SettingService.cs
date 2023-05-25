@@ -1,6 +1,6 @@
 ﻿using Blazored.LocalStorage;
 
-namespace YourWeather.Phoptino.Services
+namespace YourWeather.Photino.Services
 {
     public class SettingService : Rcl.Services.SettingService
     {

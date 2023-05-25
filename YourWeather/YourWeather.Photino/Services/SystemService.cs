@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace YourWeather.Phoptino.Services
+namespace YourWeather.Photino.Services
 {
     public class SystemService : Rcl.Services.SystemService
     {
