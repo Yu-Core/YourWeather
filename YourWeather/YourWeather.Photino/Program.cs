@@ -23,9 +23,9 @@ internal class Program
 
         app.MainWindow
             .SetTitle("YourWeather.Photino");
-
+#if Windows
         app.MainWindow.WindowCreated += (sender, e) => TitleBar.Init(app.MainWindow.WindowHandle);
-
+#endif
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {
         };
