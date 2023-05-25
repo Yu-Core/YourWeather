@@ -107,10 +107,6 @@
 		<PackageReference Include="Yu-Core.MauiBlazorToolkit" Version="1.0.1" />
     </ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true">
-		<PackageReference Include="PInvoke.User32" Version="0.7.124" />
-	</ItemGroup>
-
     <ItemGroup>
       <ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
     </ItemGroup>
