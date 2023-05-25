@@ -21,8 +21,8 @@ Blazor/Maui Blazor 入门级Demo，多个项目共用一个Rcl（Razor类库）�
 - 持久化存储
 	- Blazor WebAssembly 和 Blazor Server 中使用 localStorage
 	- Maui Blazor 中使用 Maui 提供的首选项
-	- Winform 中使用 localStorage
-	- WPF 中使用 localStorage
+	- Winform、WPF 中使用 localStorage
+	- Photino 中使用 localStorage
 - 主题切换
 	- 由 [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor) 提供
 	- 额外支持 Maui 状态栏/标题栏的颜色改变

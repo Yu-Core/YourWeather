@@ -21,13 +21,13 @@ Blazor/Maui Blazor entry-level Demo, sharing one Rcl (Razor Class Library) for m
 - Persistence storage
 	- Using LocalStorage in Blazor WebAssembly and Blazor Server
 	- Using the preferences provided by Maui in Maui Blazor
-	- Using LocalStorage in Winform
-	- Using LocalStorage in WPF
+	- Using LocalStorage in Winform、WPF
+	- Using LocalStorage in Photino
 - Theme switching
 	- By [MASA. Blazor](https://github.com/BlazorComponent/MASA.Blazor) Provide
 	- Additional support for changing the color of Maui's status bar/title bar
-	- Additional support for Winform title bar dark mode
-	- Additional support for WPF title bar dark mode
+	- Additional support for Winform、WPF title bar dark mode
+	- Additional support for Photino Windows title bar dark mode
 - Opening external links using default browser
 	- Creating a tag through JavaScript in Blazor WebAssembly and Blazor Server
 	- Using the API provided by Maui in Maui Blazor
