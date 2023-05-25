@@ -81,9 +81,9 @@ namespace YourWeather.Rcl.Pages
             await SettingsService.Save(SettingType.Locations, locations);
         }
 
-        private void OpenDetails(Location location)
+        private void OpenDetails(Location? location)
         {
-            DetailsLocation = location;
+            DetailsLocation = location ?? new();
             ShowDetails = true;
         }
     }
