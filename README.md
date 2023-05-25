@@ -26,8 +26,8 @@ Blazor/Maui Blazor 入门级Demo，多个项目共用一个Rcl（Razor类库）�
 - 主题切换
 	- 由 [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor) 提供
 	- 额外支持 Maui 状态栏/标题栏的颜色改变
-	- 额外支持 Winform 标题栏深色模式
-	- 额外支持 WPF 标题栏深色模式
+	- 额外支持 Winform、WPF 标题栏深色模式
+	- 额外支持 Photino 的 Windows标题栏深色模式
 - 使用默认浏览器打开外部链接
 	- Blazor WebAssembly 和 Blazor Server 中通过js创建a标签
 	- Maui Blazor 中使用 Maui 提供的 api
