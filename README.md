@@ -99,6 +99,7 @@ Blazor/Maui Blazor 入门级Demo，多个项目共用一个Rcl（Razor类库）�
 - [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor)
 - [Masa.Template](https://github.com/masastack/MASA.Template)
 - [MauiBlazorPermissionsExample](https://github.com/MackinnonBuck/MauiBlazorPermissionsExample)
+- [MauiBlazorToolkit](https://github.com/Yu-Core/MauiBlazorToolkit)
 - [P/Invoke](https://github.com/dotnet/pinvoke)
 - [Photino.Blazor](https://github.com/tryphotino/photino.Blazor)
 - [QWeather Icons](https://github.com/qwd/Icons)
