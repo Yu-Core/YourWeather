@@ -2,7 +2,9 @@
 
 English | [简体中文](./README.md)
 
-Blazor/Maui Blazor entry-level Demo, sharing one Rcl (Razor Class Library) for multiple projects, obtains current weather and weather forecasts through weather APIs, has multiple weather sources, and can also select weather from specified locations.
+Blazor cross-platform entry-level Demo, sharing one Rcl (Razor Class Library) for multiple projects, obtains current weather and weather forecasts through weather APIs, has multiple weather sources, and can also select weather from specified locations.
+
+Blazor WebAssembly / Blazor Server / MAUI / Winform / WPF / Photino Blazor
 
 [Live Demo（GitHub）](https://yu-core.github.io/YourWeather/)
 
@@ -55,9 +57,11 @@ Blazor/Maui Blazor entry-level Demo, sharing one Rcl (Razor Class Library) for m
 	</tr>
 	<tr>
 		<td>MAUI Windows</td>
+		<td>Photino Linux(Deepin V23)</td>
 	</tr>
 	<tr>
 		<td><img src="./Images/MAUI-Windows.png"/></td>
+		<td><img src="./Images/Photino-Linux(DeepinV23).png"/></td>
 	</tr>
 </table>
 
@@ -82,6 +86,7 @@ For details [./YourWeather/README.md](./YourWeather/README.md)
 	- Photino Blazor
 - Linux
 	- Photino Blazor
+	> If unable to run on Linux, please refer to [here](https://github.com/tryphotino/photino.Blazor/issues/81)
 - Android
 	- Maui Blazor
 - iOS

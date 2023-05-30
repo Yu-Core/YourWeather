@@ -2,7 +2,9 @@
 
 [English](./README.en.md) | 简体中文
 
-Blazor/Maui Blazor 入门级Demo，多个项目共用一个Rcl（Razor类库），通过天气API获取当前天气和天气预报，具有多个天气源，也可以选择指定位置的天气。
+Blazor 跨平台入门级Demo，多个项目共用一个Rcl（Razor类库），通过天气API获取当前天气和天气预报，具有多个天气源，也可以选择指定位置的天气。
+
+Blazor WebAssembly / Blazor Server / MAUI / Winform / WPF / Photino Blazor
 
 [在线演示地址（GitHub）](https://yu-core.github.io/YourWeather/)
 
@@ -55,9 +57,11 @@ Blazor/Maui Blazor 入门级Demo，多个项目共用一个Rcl（Razor类库）�
 	</tr>
 	<tr>
 		<td>MAUI Windows</td>
+		<td>Photino Linux(Deepin V23)</td>
 	</tr>
 	<tr>
 		<td><img src="./Images/MAUI-Windows.png"/></td>
+		<td><img src="./Images/Photino-Linux(DeepinV23).png"/></td>
 	</tr>
 </table>
 
@@ -82,6 +86,7 @@ Blazor/Maui Blazor 入门级Demo，多个项目共用一个Rcl（Razor类库）�
 	- Photino Blazor
 - Linux
 	- Photino Blazor
+	> Linux上无法运行请参考[这里](https://github.com/tryphotino/photino.Blazor/issues/81)
 - Android
 	- Maui Blazor
 - iOS
