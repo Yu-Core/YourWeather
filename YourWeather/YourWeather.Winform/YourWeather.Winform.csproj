@@ -7,7 +7,7 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
-		<Version>0.9.6</Version>
+		<Version>1.2.5</Version>
 		<AssemblyName>你的天气</AssemblyName>
 		<PublishSingleFile>true</PublishSingleFile>
 		<SelfContained>true</SelfContained>

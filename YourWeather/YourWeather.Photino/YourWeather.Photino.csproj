@@ -1,23 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <PropertyGroup>
-	<OutputType>WinExe</OutputType>
-        <TargetFramework>net7.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>1.2.5</Version>
+	</PropertyGroup>
 
-    <ItemGroup>
-      <None Remove="Resources\favicon.ico" />
-    </ItemGroup>
+	<ItemGroup>
+		<None Remove="Resources\favicon.ico" />
+	</ItemGroup>
 
-    <ItemGroup>
-      <Content Include="Resources\favicon.ico">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-    </ItemGroup>
+	<ItemGroup>
+		<Content Include="Resources\favicon.ico">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AZ.Photino.Blazor.UnOfficial" Version="2.6.0.1" />
@@ -27,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
+		<ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
