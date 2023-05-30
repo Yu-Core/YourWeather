@@ -23,7 +23,12 @@ internal class Program
         var app = appBuilder.Build();
 
         app.MainWindow
-            .SetTitle("YourWeather.Photino");
+#if DEBUG
+            .SetDevToolsEnabled(true)
+#endif
+            .SetTitle("YourWeather.Photino")
+            .SetGrantBrowserPermissions(true)
+            .SetIconFile("Resources/favicon.ico");
 #if Windows
         app.MainWindow.WindowCreated += (sender, e) => TitleBar.Init(app.MainWindow.WindowHandle);
 #endif

@@ -13,9 +13,14 @@ namespace YourWeather.Photino.Services
 
         protected override async Task<List<Location>> ReadDate()
         {
-            using var reader = new StreamReader("wwwroot/json/location.json");
-            var contents = await reader.ReadToEndAsync();
-            return JsonSerializer.Deserialize<List<Location>>(contents) ?? throw new("not find location.json");
+            string path = "wwwroot/json/location.json";
+            if (!File.Exists(path))
+            {
+                path = "wwwroot/_content/YourWeather.Rcl/json/location.json";
+            }
+
+            var json = await File.ReadAllTextAsync(path);
+            return JsonSerializer.Deserialize<List<Location>>(json) ?? throw new("not find location.json");
         }
     }
 }

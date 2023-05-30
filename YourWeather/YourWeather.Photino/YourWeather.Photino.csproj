@@ -7,8 +7,20 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="Resources\favicon.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Resources\favicon.ico">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
 	<ItemGroup>
-		<PackageReference Include="Photino.Blazor" Version="2.6.0" />
+		<PackageReference Include="AZ.Photino.Blazor.UnOfficial" Version="2.6.0.1" />
 		<PackageReference Include="Masa.Blazor" Version="1.0.0-rc.2" />
 		<PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
 		<PackageReference Include="PInvoke.User32" Version="0.7.124" />
