@@ -7,7 +7,6 @@ namespace YourWeather.Services
 {
     public class ThemeService : Rcl.Services.ThemeService
     {
-        private bool AlreadySet;
         public override Dictionary<string, ThemeType> ThemeTypes { get; } = new()
         {
             {"跟随系统",ThemeType.System },
@@ -27,16 +26,9 @@ namespace YourWeather.Services
 
         protected override void SetThemeType(ThemeType value)
         {
-            if (AlreadySet == false)
+            if (_themeType == value)
             {
-                AlreadySet = true;
-            }
-            else
-            {
-                if (_themeType == value)
-                {
-                    return;
-                }
+                return;
             }
 
             _themeType = value;
