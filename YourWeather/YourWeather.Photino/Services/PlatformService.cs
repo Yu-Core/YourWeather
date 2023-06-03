@@ -2,7 +2,7 @@
 
 namespace YourWeather.Photino.Services
 {
-    public class SystemService : Rcl.Services.SystemService
+    public class PlatformService : Rcl.Services.PlatformService
     {
         public override Task OpenBrowserUrl(string url)
         {

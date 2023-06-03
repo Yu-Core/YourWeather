@@ -20,7 +20,7 @@ namespace YourWeather.Rcl.Components
         [Inject]
         protected ILocationService LocationService { get; set; } = default!;
         [Inject]
-        protected ISystemService SystemService { get; set; } = default!;
+        protected IPlatformService PlatformService { get; set; } = default!;
         [Inject]
         protected NavigationManager Navigation { get; set; } = default!;
 

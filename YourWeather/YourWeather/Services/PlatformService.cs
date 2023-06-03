@@ -2,7 +2,7 @@
 
 namespace YourWeather.Services
 {
-    public class SystemService : ISystemService
+    public class PlatformService : IPlatformService
     {
         public string GetVersion()
         {

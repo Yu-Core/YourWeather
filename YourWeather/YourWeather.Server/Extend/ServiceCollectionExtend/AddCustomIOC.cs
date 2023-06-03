@@ -13,7 +13,7 @@ namespace YourWeather.Client.Extend
             services.AddScoped<IThemeService, ThemeService>();
             services.AddScoped<IWeatherService, WeatherService>();
             services.AddScoped<ILocationService, LocationService>();
-            services.AddScoped<ISystemService, SystemService>();
+            services.AddScoped<IPlatformService, PlatformService>();
             return services;
         }
     }

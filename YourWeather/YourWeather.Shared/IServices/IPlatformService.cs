@@ -1,6 +1,6 @@
 ﻿namespace YourWeather.Shared
 {
-    public interface ISystemService
+    public interface IPlatformService
     {
         Task OpenBrowserUrl(string url);
         string GetVersion();

@@ -38,7 +38,7 @@ namespace YourWeather.Rcl.Pages
             }
         }
 
-        private string Version => SystemService.GetVersion();
+        private string Version => PlatformService.GetVersion();
         private Dictionary<string, ThemeType> ThemeTypes => ThemeService.ThemeTypes;
         private Dictionary<WeatherSourceType, IWeatherSource> WeatherSources => WeatherService.WeatherSources;
 
@@ -66,7 +66,7 @@ namespace YourWeather.Rcl.Pages
         private async Task ToCodeSoucre(string url)
         {
             ShowCodeSource = false;
-            await SystemService.OpenBrowserUrl(url);
+            await PlatformService.OpenBrowserUrl(url);
         }
     }
 }

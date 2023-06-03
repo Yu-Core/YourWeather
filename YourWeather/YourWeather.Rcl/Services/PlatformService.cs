@@ -3,7 +3,7 @@ using YourWeather.Shared;
 
 namespace YourWeather.Rcl.Services
 {
-    public abstract class SystemService : ISystemService
+    public abstract class PlatformService : IPlatformService
     {
         public virtual string GetVersion()
         {

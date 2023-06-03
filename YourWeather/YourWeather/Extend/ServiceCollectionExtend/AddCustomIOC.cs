@@ -11,7 +11,7 @@ namespace YourWeather.Extend
             services.AddSingleton<IThemeService, ThemeService>();
             services.AddSingleton<IWeatherService, WeatherService>();
             services.AddScoped<ILocationService, LocationService>();
-            services.AddSingleton<ISystemService, SystemService>();
+            services.AddSingleton<IPlatformService, PlatformService>();
             return services;
         }
     }

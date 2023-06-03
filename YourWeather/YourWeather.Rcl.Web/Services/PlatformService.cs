@@ -2,11 +2,11 @@
 
 namespace YourWeather.Rcl.Web.Services
 {
-    public class SystemService : Rcl.Services.SystemService, IAsyncDisposable
+    public class PlatformService : Rcl.Services.PlatformService, IAsyncDisposable
     {
         protected readonly IJSRuntime JS;
         protected IJSObjectReference module = default!;
-        public SystemService(IJSRuntime js)
+        public PlatformService(IJSRuntime js)
         {
             JS = js;
 
