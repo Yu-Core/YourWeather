@@ -5,16 +5,10 @@ namespace YourWeather.Rcl.Services
 {
     public abstract class ThemeService : IThemeService
     {
-        public ThemeService(IJSRuntime jSRuntime)
-        {
-            JS = jSRuntime;
-            AddListent();
-        }
-
-        protected IJSRuntime JS;
-        protected IJSObjectReference? module;
+        public event Action<ThemeType>? OnChanged;
+        private readonly JSBinder _jsBinder;
         protected ThemeType _themeType = ThemeType.Light;
-
+        protected event Action<ThemeType>? SystemThemeChanged;
         public virtual Dictionary<string, ThemeType> ThemeTypes { get; } = new()
         {
             {"跟随系统",ThemeType.System },
@@ -22,26 +16,17 @@ namespace YourWeather.Rcl.Services
             {"深色",ThemeType.Dark }
         };
 
-        public event Action<ThemeType>? OnChanged;
-        event Action<ThemeType>? SystemThemeChanged;
+        public ThemeService(IJSRuntime jSRuntime)
+        {
+            _jsBinder = new JSBinder(jSRuntime, "./_content/YourWeather.Rcl/js/system-theme.js");
+            AddListent();
+        }
 
         [JSInvokable]
         public void SystemThemeChange(bool value)
         {
             ThemeType themeType = value ? ThemeType.Dark : ThemeType.Light;
             SystemThemeChanged?.Invoke(themeType);
-        }
-
-        protected async Task InitModule()
-        {
-            module ??= await JS.InvokeAsync<IJSObjectReference>("import", "./_content/YourWeather.Rcl/js/system-theme.js");
-        }
-
-        private async void AddListent()
-        {
-            await InitModule();
-            var dotNetCallbackRef = DotNetObjectReference.Create(this);
-            await module!.InvokeVoidAsync("followSystemTheme", new object[2] { dotNetCallbackRef, "SystemThemeChange" });
         }
 
         public virtual async Task SetThemeType(ThemeType value)
@@ -68,8 +53,8 @@ namespace YourWeather.Rcl.Services
         {
             if (_themeType == ThemeType.System)
             {
-                await InitModule();
-                var dark = await module!.InvokeAsync<bool>("systemIsDarkTheme", new object[] { });
+                var module = await _jsBinder.GetModule();
+                var dark = await module.InvokeAsync<bool>("systemIsDarkTheme", new object[] { });
                 return dark ? ThemeType.Dark : ThemeType.Light;
             }
 
@@ -81,5 +66,39 @@ namespace YourWeather.Rcl.Services
             OnChanged?.Invoke(themeType);
         }
 
+        private async void AddListent()
+        {
+            var dotNetCallbackRef = DotNetObjectReference.Create(this);
+            var module = await _jsBinder.GetModule();
+            await module.InvokeVoidAsync("followSystemTheme", new object[2] { dotNetCallbackRef, "SystemThemeChange" });
+        }
+    }
+
+    internal class JSBinder
+    {
+        internal IJSRuntime JSRuntime;
+        private readonly string _importPath;
+        private Task<IJSObjectReference>? _module;
+
+        public JSBinder(IJSRuntime jsRuntime, string importPath)
+        {
+            JSRuntime = jsRuntime;
+            _importPath = importPath;
+        }
+
+        internal async Task<IJSObjectReference> GetModule()
+        {
+            return await (_module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", _importPath).AsTask());
+        }
+
+        /// <inheritdoc/>
+        public async ValueTask DisposeAsync()
+        {
+            if (_module != null)
+            {
+                var module = await _module;
+                await module.DisposeAsync();
+            }
+        }
     }
 }

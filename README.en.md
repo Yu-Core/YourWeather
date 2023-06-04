@@ -27,6 +27,7 @@ Blazor WebAssembly / Blazor Server / MAUI / Winform / WPF / Photino Blazor
 	- Using LocalStorage in Photino
 - Theme switching
 	- By [MASA. Blazor](https://github.com/BlazorComponent/MASA.Blazor) Provide
+	- Additional support for following system theme
 	- Additional support for changing the color of Maui's status bar/title bar
 	- Additional support for Winform、WPF title bar dark mode
 	- Additional support for Photino Windows title bar dark mode

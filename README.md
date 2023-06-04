@@ -27,6 +27,7 @@ Blazor WebAssembly / Blazor Server / MAUI / Winform / WPF / Photino Blazor
 	- Photino 中使用 localStorage
 - 主题切换
 	- 由 [MASA.Blazor](https://github.com/BlazorComponent/MASA.Blazor) 提供
+	- 额外支持 跟随系统主题
 	- 额外支持 Maui 状态栏/标题栏的颜色改变
 	- 额外支持 Winform、WPF 标题栏深色模式
 	- 额外支持 Photino 的 Windows标题栏深色模式

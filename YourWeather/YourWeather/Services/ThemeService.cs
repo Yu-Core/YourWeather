@@ -22,7 +22,7 @@ namespace YourWeather.Services
         private static readonly Color statusBarColorDark = Color.FromRgb(18, 18, 18);
 
 #pragma warning disable CA1416
-        private void SetStatusBar(ThemeType themeState)
+        private static void SetStatusBar(ThemeType themeState)
         {
             var Dark = themeState == ThemeType.Dark;
             Color backgroundColor = Dark ? statusBarColorDark : statusBarColorLight;
