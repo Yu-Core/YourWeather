@@ -45,7 +45,7 @@ namespace YourWeather.Rcl.Pages
         private async Task ThemeTypeChanged(ThemeType value)
         {
             ThemeType = value;
-            ThemeService.ThemeType = value;
+            await ThemeService.SetThemeType(value);
             await SettingsService.Save(SettingType.Theme, (int)value);
         }
 

@@ -1,62 +1,26 @@
 ﻿using CommunityToolkit.Maui.Core;
 using MauiBlazorToolkit;
 using MauiBlazorToolkit.Platform;
+using Microsoft.JSInterop;
 using YourWeather.Shared;
 
 namespace YourWeather.Services
 {
     public class ThemeService : Rcl.Services.ThemeService
     {
-        public override Dictionary<string, ThemeType> ThemeTypes { get; } = new()
+        public ThemeService(IJSRuntime jSRuntime) : base(jSRuntime)
         {
-            {"跟随系统",ThemeType.System },
-            {"浅色",ThemeType.Light },
-            {"深色",ThemeType.Dark }
-        };
-
-        protected override ThemeType GetThemeType()
-        {
-            if (_themeType == ThemeType.System)
-            {
-                return Application.Current!.RequestedTheme == AppTheme.Dark ? ThemeType.Dark : ThemeType.Light;
-            }
-
-            return _themeType;
         }
 
-        protected override void SetThemeType(ThemeType value)
+        protected override void NotifyStateChanged(ThemeType themeType)
         {
-            if (_themeType == value)
-            {
-                return;
-            }
-
-            _themeType = value;
-            if (value == ThemeType.System)
-            {
-                Application.Current!.RequestedThemeChanged += HandlerAppThemeChanged;
-            }
-            else
-            {
-                Application.Current!.RequestedThemeChanged -= HandlerAppThemeChanged;
-            }
-
-            NotifyStateChanged();
-        }
-
-        private void HandlerAppThemeChanged(object sender, AppThemeChangedEventArgs e)
-        {
-            NotifyStateChanged();
-        }
-
-        protected override void NotifyStateChanged()
-        {
-            base.NotifyStateChanged();
-            SetStatusBar(ThemeType);
+            base.NotifyStateChanged(themeType);
+            SetStatusBar(themeType);
         }
 
         private static readonly Color statusBarColorLight = Color.FromRgb(255, 255, 255);
         private static readonly Color statusBarColorDark = Color.FromRgb(18, 18, 18);
+
 #pragma warning disable CA1416
         private void SetStatusBar(ThemeType themeState)
         {

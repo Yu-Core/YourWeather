@@ -3,9 +3,8 @@
     public interface IThemeService
     {
         event Action<ThemeType> OnChanged;
-        bool Light { get; }
-        bool Dark { get; }
-        ThemeType ThemeType { get; set; }
+        Task SetThemeType(ThemeType themeType);
+        Task<ThemeType> GetThemeType();
         Dictionary<string, ThemeType> ThemeTypes { get; }
     }
 }

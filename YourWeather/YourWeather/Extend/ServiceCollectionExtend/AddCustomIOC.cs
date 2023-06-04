@@ -8,7 +8,7 @@ namespace YourWeather.Extend
         public static IServiceCollection AddCustomIOC(this IServiceCollection services)
         {
             services.AddSingleton<ISettingsService, SettingService>();
-            services.AddSingleton<IThemeService, ThemeService>();
+            services.AddScoped<IThemeService, ThemeService>();
             services.AddSingleton<IWeatherService, WeatherService>();
             services.AddScoped<ILocationService, LocationService>();
             services.AddSingleton<IPlatformService, PlatformService>();

@@ -120,7 +120,7 @@
     private async Task LoadSettings()
     {
         int themeType = await SettingsService.Get<int>(SettingType.Theme);
-        ThemeService.ThemeType = (ThemeType)themeType;
+        await ThemeService.SetThemeType((ThemeType)themeType);
     }
 
     private void Back()
