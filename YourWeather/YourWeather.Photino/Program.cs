@@ -27,8 +27,7 @@ internal class Program
             .SetDevToolsEnabled(true)
 #endif
             .SetTitle("YourWeather.Photino")
-            .SetGrantBrowserPermissions(true)
-            .SetIconFile("Resources/favicon.ico");
+            .SetGrantBrowserPermissions(true);
 #if Windows
         app.MainWindow.WindowCreated += (sender, e) => TitleBar.Init(app.MainWindow.WindowHandle);
 #endif

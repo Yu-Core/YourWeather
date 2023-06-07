@@ -6,18 +6,13 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<Version>1.2.5</Version>
+		<ApplicationIcon>Resources/favicon.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Resources\favicon.ico" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Content Include="Resources\favicon.ico">
+		<None Update="Resources\favicon.ico">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
