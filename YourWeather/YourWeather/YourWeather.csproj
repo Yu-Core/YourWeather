@@ -103,8 +103,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
-		<PackageReference Include="Yu-Core.MauiBlazorToolkit" Version="1.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
+		<PackageReference Include="Yu-Core.MauiBlazorToolkit" Version="1.0.2" />
     </ItemGroup>
 
     <ItemGroup>
