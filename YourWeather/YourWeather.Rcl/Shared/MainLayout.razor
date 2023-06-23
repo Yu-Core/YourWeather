@@ -105,6 +105,7 @@
         await base.OnAfterRenderAsync(firstRender);
         if (firstRender)
         {
+            await ThemeService.Init();
             await LoadSettings();
         }
     }

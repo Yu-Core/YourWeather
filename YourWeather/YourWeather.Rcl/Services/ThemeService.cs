@@ -19,7 +19,6 @@ namespace YourWeather.Rcl.Services
         public ThemeService(IJSRuntime jSRuntime)
         {
             _jsBinder = new JSBinder(jSRuntime, "./_content/YourWeather.Rcl/js/system-theme.js");
-            AddListent();
         }
 
         [JSInvokable]
@@ -61,12 +60,17 @@ namespace YourWeather.Rcl.Services
             return _themeType;
         }
 
+        public async Task Init()
+        {
+            await AddListent();
+        }
+
         protected virtual void NotifyStateChanged(ThemeType themeType)
         {
             OnChanged?.Invoke(themeType);
         }
 
-        private async void AddListent()
+        private async Task AddListent()
         {
             var dotNetCallbackRef = DotNetObjectReference.Create(this);
             var module = await _jsBinder.GetModule();
