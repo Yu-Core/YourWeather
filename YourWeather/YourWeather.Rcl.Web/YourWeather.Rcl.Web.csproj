@@ -21,9 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Update="wwwroot\js\system-service.js">
-	    <SubType>Code</SubType>
-	  </Content>
+	  <Folder Include="wwwroot\js\" />
 	</ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿@using BlazorComponent.I18n;
+@using BlazorToolkit;
 @inherits LayoutComponentBase
 
 <PageTitle>@Title</PageTitle>
@@ -20,8 +21,8 @@
         <MSpacer></MSpacer>
     </MAppBar>
 
-    <MNavigationDrawer App="true"
-                       @bind-Value="_drawer"
+    <MNavigationDrawer @bind-Value="_drawer"
+                       App="true"
                        Floating="true"
                        Class="m-sheet--outlined">
         <MList Nav Routable>
@@ -56,14 +57,16 @@
 
     <MMain>
         <MContainer Fluid>
-                <MErrorHandler>
-                    <CascadingValue Value="this" IsFixed>
-                        @Body
-                    </CascadingValue>
-                </MErrorHandler>
-            </MContainer>
+            <MErrorHandler>
+                <CascadingValue Value="this" IsFixed>
+                    @Body
+                </CascadingValue>
+            </MErrorHandler>
+        </MContainer>
     </MMain>
 </MApp>
+
+<BlazorToolkitApp />
 
 @code {
 
@@ -105,7 +108,6 @@
         await base.OnAfterRenderAsync(firstRender);
         if (firstRender)
         {
-            await ThemeService.Init();
             await LoadSettings();
         }
     }

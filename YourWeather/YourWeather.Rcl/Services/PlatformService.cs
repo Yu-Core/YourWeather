@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using BlazorToolkit.Essentials;
+using System.Reflection;
 using YourWeather.Shared;
 
 namespace YourWeather.Rcl.Services
@@ -24,7 +25,7 @@ namespace YourWeather.Rcl.Services
 
         public virtual Task OpenBrowserUrl(string url)
         {
-            throw new NotImplementedException();
+            return Browser.Default.OpenAsync(url);
         }
     }
 }

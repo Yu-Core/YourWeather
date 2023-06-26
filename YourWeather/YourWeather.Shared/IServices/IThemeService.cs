@@ -6,6 +6,5 @@
         Task SetThemeType(ThemeType themeType);
         Task<ThemeType> GetThemeType();
         Dictionary<string, ThemeType> ThemeTypes { get; }
-        Task Init();
     }
 }

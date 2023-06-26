@@ -5,13 +5,10 @@ namespace YourWeather.Rcl.Desktop.Services
 {
     public class ThemeService : Rcl.Services.ThemeService
     {
-        public ThemeService(IJSRuntime jSRuntime) : base(jSRuntime)
-        {
-        }
 
-        protected override void NotifyStateChanged(ThemeType themeType)
+        protected override void InternalNotifyStateChanged(ThemeType themeType)
         {
-            base.NotifyStateChanged(themeType);
+            base.InternalNotifyStateChanged(themeType);
             TitleBar.EnableDarkMode(themeType == ThemeType.Dark);
         }
     }

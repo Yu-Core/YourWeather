@@ -5,13 +5,9 @@ namespace YourWeather.Photino.Services
 {
     public class ThemeService : Rcl.Services.ThemeService
     {
-        public ThemeService(IJSRuntime jSRuntime) : base(jSRuntime)
+        protected override void InternalNotifyStateChanged(ThemeType themeType)
         {
-        }
-
-        protected override void NotifyStateChanged(ThemeType themeType)
-        {
-            base.NotifyStateChanged(themeType);
+            base.InternalNotifyStateChanged(themeType);
 #if Windows
             TitleBar.EnableDarkMode(themeType == ThemeType.Dark);
 #endif
