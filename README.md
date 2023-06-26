@@ -32,9 +32,7 @@ Blazor WebAssembly / Blazor Server / MAUI / Winform / WPF / Photino Blazor
 	- 额外支持 Winform、WPF 标题栏深色模式
 	- 额外支持 Photino 的 Windows标题栏深色模式
 - 使用默认浏览器打开外部链接
-	- Blazor WebAssembly 和 Blazor Server 中通过js创建a标签
-	- Maui Blazor 中使用 Maui 提供的 api
-	- Winform 和 WPF 中通过cmd
+	- 通过js创建a标签
 
 ## 截图
 <table>

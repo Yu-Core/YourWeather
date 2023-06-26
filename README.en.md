@@ -32,9 +32,7 @@ Blazor WebAssembly / Blazor Server / MAUI / Winform / WPF / Photino Blazor
 	- Additional support for Winform、WPF title bar dark mode
 	- Additional support for Photino Windows title bar dark mode
 - Opening external links using default browser
-	- Creating a tag through JavaScript in Blazor WebAssembly and Blazor Server
-	- Using the API provided by Maui in Maui Blazor
-	- Through cmd in Winform and WPF
+	- Creating `<a>` tag through JavaScript
 
 ## Screenshot
 <table>
