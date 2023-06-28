@@ -42,25 +42,25 @@ Blazor WebAssembly / Blazor Server / MAUI / Winform / WPF / Photino Blazor
 		<td>MAUI Android</td>
 	</tr>
 	<tr>
-		<td><img src="./Images/Blazor-Wasm.png"/></td>
-		<td><img src="./Images/Blazor-SSR.png"/></td>
-		<td rowspan="3"><img src="./Images/MAUI-Android.jpg"/></td>
+		<td><img src="https://github.com/Yu-Core/YourWeather/assets/96511239/3001356d-55ef-4c95-8200-81fe6cb12e48"/></td>
+		<td><img src="https://github.com/Yu-Core/YourWeather/assets/96511239/2ef5c1d2-9954-4f99-80ae-9540ba9aeb1e"/></td>
+		<td rowspan="3"><img src="https://github.com/Yu-Core/YourWeather/assets/96511239/c4eb9369-f8a2-49d8-8b47-fe3bec68a2b5"/></td>
 	</tr>
 	<tr>
 		<td>Winform</td>
 		<td>WPF</td>
 	</tr>
 	<tr>
-		<td><img src="./Images/Winform.png"/></td>
-		<td><img src="./Images/WPF.png"/></td>
+		<td><img src="https://github.com/Yu-Core/YourWeather/assets/96511239/b98c602f-c136-4553-a604-58a391f6e502"/></td>
+		<td><img src="https://github.com/Yu-Core/YourWeather/assets/96511239/8aa96bfb-144a-417f-b3fb-757f852f0ecf"/></td>
 	</tr>
 	<tr>
 		<td>MAUI Windows</td>
-		<td>Photino Linux(Deepin V23)</td>
+		<td>Photino Linux ( Deepin )</td>
 	</tr>
 	<tr>
-		<td><img src="./Images/MAUI-Windows.png"/></td>
-		<td><img src="./Images/Photino-Linux(DeepinV23).png"/></td>
+		<td><img src="https://github.com/Yu-Core/YourWeather/assets/96511239/8ebe9733-5713-4430-94a6-c512ec6e32e0"/></td>
+		<td><img src="https://github.com/Yu-Core/YourWeather/assets/96511239/d89e4562-0c08-4dba-a22a-a4265d6336d1"/></td>
 	</tr>
 </table>
 
