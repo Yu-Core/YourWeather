@@ -1,6 +1,5 @@
 ﻿using YourWeather.Rcl.Web.Services;
 using YourWeather.Shared;
-using LocationService = YourWeather.Client.Services.LocationService;
 
 namespace YourWeather.Client.Extend
 {
@@ -11,8 +10,8 @@ namespace YourWeather.Client.Extend
             services.AddScoped<ISettingsService, SettingService>();
             services.AddScoped<IThemeService, ThemeService>();
             services.AddScoped<IWeatherService, WeatherService>();
-            services.AddScoped<ILocationService, LocationService>();
-            services.AddScoped<IPlatformService, PlatformService>();
+            services.AddScoped<IPlatformService, Services.PlatformService>();
+            services.AddScoped<ILocationService, Rcl.Services.LocationService>();
             return services;
         }
     }

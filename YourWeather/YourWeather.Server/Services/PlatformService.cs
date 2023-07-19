@@ -1,25 +1,23 @@
 ﻿using System.Text.Json;
 
-namespace YourWeather.Rcl.Desktop.Services
+namespace YourWeather.Server.Services
 {
     public class PlatformService : Rcl.Services.PlatformService
     {
-
-        public override string GetVersion()
-        {
-            return base.GetVersion();
-        }
-
         public override async Task<T> ReadJsonAsync<T>(string baseUri)
         {
-            string uri = $"wwwroot/{baseUri}";
-            if(!File.Exists(uri))
+#if DEBUG
+            var uri = $"{AppContext.BaseDirectory}/wwwroot/{baseUri}";
+#else
+            var uri = $"{AppContext.BaseDirectory}/wwwroot/_content/YourWeather.Rcl/{baseUri}";
+#endif
+            if (!File.Exists(uri))
             {
-                throw new("not find json");
+                throw new Exception("not find json");
             }
 
             using var reader = new StreamReader(uri);
-            var contents = await reader.ReadToEndAsync().ConfigureAwait(false);
+            var contents = await reader.ReadToEndAsync();
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true

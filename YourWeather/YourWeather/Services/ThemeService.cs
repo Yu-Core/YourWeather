@@ -1,20 +1,52 @@
 ﻿using CommunityToolkit.Maui.Core;
 using MauiBlazorToolkit;
 using MauiBlazorToolkit.Platform;
-using Microsoft.JSInterop;
 using YourWeather.Shared;
 
 namespace YourWeather.Services
 {
     public class ThemeService : Rcl.Services.ThemeService
     {
-        public ThemeService(IJSRuntime jSRuntime) : base(jSRuntime)
+        public override Task<ThemeType> GetThemeType()
         {
+            if (_themeType == ThemeType.System)
+            {
+                var themeType = Application.Current!.RequestedTheme == AppTheme.Dark ? ThemeType.Dark : ThemeType.Light;
+                return Task.FromResult(themeType);
+            }
+
+            return Task.FromResult(_themeType ?? ThemeType.Light);
         }
 
-        protected override void NotifyStateChanged(ThemeType themeType)
+        public override async Task SetThemeType(ThemeType value)
         {
-            base.NotifyStateChanged(themeType);
+            if (_themeType == value)
+            {
+                return;
+            }
+
+            _themeType = value;
+            if (value == ThemeType.System)
+            {
+                Application.Current.RequestedThemeChanged += NotifyStateChanged;
+            }
+            else
+            {
+                Application.Current.RequestedThemeChanged -= NotifyStateChanged;
+            }
+
+            ThemeType themeType = await GetThemeType();
+            InternalNotifyStateChanged(themeType);
+        }
+
+        private void NotifyStateChanged(object sender, AppThemeChangedEventArgs e)
+        {
+            InternalNotifyStateChanged(e.RequestedTheme == AppTheme.Dark ? ThemeType.Dark : ThemeType.Light);
+        }
+
+        protected override void InternalNotifyStateChanged(ThemeType themeType)
+        {
+            base.InternalNotifyStateChanged(themeType);
             SetStatusBar(themeType);
         }
 

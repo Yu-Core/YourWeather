@@ -4,6 +4,8 @@
 
 <PageTitle>@Title</PageTitle>
 
+<BlazorToolkitApp />
+
 <MApp>
     <MAppBar App="true" Outlined="true" Elevation="0">
         @if (_showBack)
@@ -66,7 +68,6 @@
     </MMain>
 </MApp>
 
-<BlazorToolkitApp />
 
 @code {
 
@@ -105,11 +106,11 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
         if (firstRender)
         {
             await LoadSettings();
         }
+        await base.OnAfterRenderAsync(firstRender);
     }
 
     private void ThemeChanged(ThemeType value)

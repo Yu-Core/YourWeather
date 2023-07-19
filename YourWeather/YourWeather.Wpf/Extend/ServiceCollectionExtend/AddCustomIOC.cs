@@ -11,8 +11,8 @@ namespace YourWeather.Wpf.Extend
             services.AddScoped<ISettingsService, SettingService>();
             services.AddScoped<IThemeService, ThemeService>();
             services.AddSingleton<IWeatherService, WeatherService>();
-            services.AddScoped<ILocationService, LocationService>();
             services.AddSingleton<IPlatformService, PlatformService>();
+            services.AddScoped<ILocationService, Rcl.Services.LocationService>();
             return services;
         }
     }

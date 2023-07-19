@@ -27,5 +27,10 @@ namespace YourWeather.Rcl.Services
         {
             return Browser.Default.OpenAsync(url);
         }
+
+        public virtual Task<T> ReadJsonAsync<T>(string baseUri)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
