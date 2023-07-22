@@ -11,18 +11,22 @@ namespace YourWeather.Photino.Services
 
         public override async Task<T> ReadJsonAsync<T>(string baseUri)
         {
+#if DEBUG
             string uri = $"wwwroot/{baseUri}";
+#else
+            string uri = $"wwwroot/_content/YourWeather.Rcl/{baseUri}";
+#endif
             if (!File.Exists(uri))
             {
-                uri = $"wwwroot/_content/YourWeather.Rcl/{baseUri}";
+                throw new Exception("not find json");
             }
 
-            var json = await File.ReadAllTextAsync(uri);
+            var contents = await File.ReadAllTextAsync(uri).ConfigureAwait(false);
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             };
-            return JsonSerializer.Deserialize<T>(json, options) ?? throw new("not find json");
+            return JsonSerializer.Deserialize<T>(contents, options) ?? throw new("not find json");
         }
     }
 }

@@ -16,8 +16,7 @@ namespace YourWeather.Server.Services
                 throw new Exception("not find json");
             }
 
-            using var reader = new StreamReader(uri);
-            var contents = await reader.ReadToEndAsync();
+            var contents = await File.ReadAllTextAsync(uri).ConfigureAwait(false);
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true

@@ -12,14 +12,17 @@ namespace YourWeather.Rcl.Desktop.Services
 
         public override async Task<T> ReadJsonAsync<T>(string baseUri)
         {
+#if DEBUG
             string uri = $"wwwroot/{baseUri}";
-            if(!File.Exists(uri))
+#else
+            string uri = $"wwwroot/_content/YourWeather.Rcl/{baseUri}";
+#endif
+            if (!File.Exists(uri))
             {
-                throw new("not find json");
+                throw new Exception("not find json");
             }
 
-            using var reader = new StreamReader(uri);
-            var contents = await reader.ReadToEndAsync().ConfigureAwait(false);
+            var contents = await File.ReadAllTextAsync(uri).ConfigureAwait(false);
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true

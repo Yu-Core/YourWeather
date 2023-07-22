@@ -18,7 +18,7 @@ namespace YourWeather.Services
         public async Task<T> ReadJsonAsync<T>(string baseUri)
         {
             string uri = $"wwwroot/_content/YourWeather.Rcl/{baseUri}";
-            bool exists = await FileSystem.AppPackageFileExistsAsync(uri);
+            bool exists = await FileSystem.AppPackageFileExistsAsync(uri).ConfigureAwait(false);
             if (!exists)
             {
                 throw new Exception("not find json");

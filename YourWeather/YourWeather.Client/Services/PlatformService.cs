@@ -14,7 +14,7 @@ namespace YourWeather.Client.Services
         public override async Task<T> ReadJsonAsync<T>(string baseUri)
         {
             string uri = $"_content/YourWeather.Rcl/{baseUri}";
-            var result = await HttpClient.GetFromJsonAsync<T>(uri);
+            var result = await HttpClient.GetFromJsonAsync<T>(uri).ConfigureAwait(false);
             return result ?? throw new Exception("not find json");
         }
     }
