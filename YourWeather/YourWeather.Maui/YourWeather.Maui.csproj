@@ -16,8 +16,8 @@
 		<ApplicationId>com.yucore.yourweather</ApplicationId>
 		<ApplicationIdGuid>51BB1FB4-E5F4-4A9F-AD35-F805AC8F33E6</ApplicationIdGuid>
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.2.5</ApplicationDisplayVersion>
-		<ApplicationVersion>125</ApplicationVersion>
+		<ApplicationDisplayVersion>1.4.4</ApplicationDisplayVersion>
+		<ApplicationVersion>144</ApplicationVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>

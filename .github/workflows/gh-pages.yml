@@ -1,0 +1,58 @@
+name: github pages
+
+on:
+  workflow_dispatch:
+
+env:
+  DOTNET_NOLOGO: true                     # Disable the .NET logo
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
+  DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
+  DOTNET_VERSION: '8.0'
+  CSPROJ_FILE_PATH: 'YourWeather/YourWeather.WebAssembly/YourWeather.WebAssembly.csproj'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - uses: actions/checkout@v3
+        with:
+           fetch-depth: 0
+
+      # Install .NET SDK
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+           dotnet-version: '${{ env.DOTNET_VERSION }}.x'
+           
+      - name: Install .NET WebAssembly Tools
+        run: dotnet workload install wasm-tools
+
+      # Get the commit count and format the version
+      - name: Get commit count and format version
+        id: version
+        run: |
+          commit_count=$(git rev-list --count HEAD)
+          major=$((commit_count / 100))
+          minor=$((commit_count % 100 / 10))
+          patch=$((commit_count % 10))
+          formatted_version="$major.$minor.$patch"
+          echo "FORMATTED_VERSION=$formatted_version" >> $GITHUB_ENV
+
+      # Replace the version in the csproj file
+      - name: Update version in csproj
+        run: |
+          sed -i "s/<Version>.*<\/Version>/<Version>${{ env.FORMATTED_VERSION }}<\/Version>/" \
+          ${{ env.CSPROJ_FILE_PATH }}
+
+      # Publish the site
+      - name: Publish
+        run: dotnet publish ${{ env.CSPROJ_FILE_PATH }} -c Release -o public -p GHPages=true
+
+      # Deploy the site
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public/wwwroot
+          force_orphan: true
