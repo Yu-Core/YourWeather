@@ -19,11 +19,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Resources\favicon.ico">
+    <Resource Include="Resources\favicon.ico">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
+    </Resource>
 	</ItemGroup>
 
 	<ItemGroup>
