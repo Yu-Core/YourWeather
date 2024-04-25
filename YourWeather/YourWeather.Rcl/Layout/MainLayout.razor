@@ -123,10 +123,7 @@
 
     protected virtual void ThemeChanged(ThemeType value)
     {
-        if (MasaBlazor.Theme.Dark != (value == ThemeType.Dark))
-        {
-            MasaBlazor.ToggleTheme();
-        }
+        MasaBlazor.SetTheme(value == ThemeType.Dark);
     }
 
     protected void Back()
