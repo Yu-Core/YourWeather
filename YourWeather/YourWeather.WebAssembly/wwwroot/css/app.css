@@ -59,3 +59,43 @@
     .loading-progress-text:after {
         content: var(--blazor-load-percentage-text, "Loading");
     }
+
+/* 旋转动画 指定class为trun即可使用*/
+.turn {
+    animation: turn 7.5s linear infinite;
+}
+
+/* 
+turn : 定义的动画名称
+10s : 动画时间
+linear : 动画平滑
+infinite :使动画无限循环
+transform:rotate(旋转角度)
+%0:动画开始
+%100:动画结束
+*/
+@keyframes turn {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(72deg);
+    }
+
+    40% {
+        transform: rotate(144deg);
+    }
+
+    60% {
+        transform: rotate(216deg);
+    }
+
+    80% {
+        transform: rotate(288deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
