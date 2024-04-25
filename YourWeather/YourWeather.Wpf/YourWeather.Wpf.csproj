@@ -1,46 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
-
-	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFramework>net7.0-windows</TargetFramework>
-		<Nullable>enable</Nullable>
-		<UseWPF>true</UseWPF>
-		<RootNamespace>YourWeather.Wpf</RootNamespace>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
-		<Version>1.2.5</Version>
-		<AssemblyName>你的天气</AssemblyName>
-		<PublishSingleFile>true</PublishSingleFile>
-		<SelfContained>true</SelfContained>
-		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-	</PropertyGroup>
-
-	<ItemGroup>
-	  <None Remove="appiconfg.svg" />
-	</ItemGroup>
-
-	<ItemGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>YourWeather.Wpf</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+    <Version>1.2.5</Version>
+    <AssemblyName>你的天气</AssemblyName>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="appiconfg.svg" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\favicon.ico">
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-	</ItemGroup>
+  </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.81" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.6" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Resource Include="appiconfg.svg" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Services\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\YourWeather.Rcl.Desktop\YourWeather.Rcl.Desktop.csproj" />
-	</ItemGroup>
-
+  <ItemGroup>
+    <Resource Include="appiconfg.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YourWeather.Rcl.Desktop\YourWeather.Rcl.Desktop.csproj" />
+  </ItemGroup>
 </Project>

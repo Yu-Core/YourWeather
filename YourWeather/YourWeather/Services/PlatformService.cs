@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
 using YourWeather.Shared;
+using Microsoft.Maui.Storage;
+using Microsoft.Maui.ApplicationModel;
 
 namespace YourWeather.Services
 {

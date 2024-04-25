@@ -1,14 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:YourWeather"
              xmlns:razor="clr-namespace:YourWeather.Rcl;assembly=YourWeather.Rcl"
              x:Class="YourWeather.MainPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:mauiBlazorToolkit="clr-namespace:MauiBlazorToolkit.Behaviors;assembly=MauiBlazorToolkit"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="#fff" StatusBarStyle="LightContent" />
+        <mauiBlazorToolkit:TitleBarBehavior TitleBarColor="#fff" TitleBarStyle="DarkContent"></mauiBlazorToolkit:TitleBarBehavior>
     </ContentPage.Behaviors>
     
     <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">

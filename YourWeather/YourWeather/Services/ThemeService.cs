@@ -2,6 +2,7 @@
 using MauiBlazorToolkit;
 using MauiBlazorToolkit.Platform;
 using YourWeather.Shared;
+using Microsoft.Maui.ApplicationModel;
 
 namespace YourWeather.Services
 {

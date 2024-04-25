@@ -1,4 +1,5 @@
-﻿namespace YourWeather.Services
+﻿using Microsoft.Maui.Storage;
+namespace YourWeather.Services
 {
     public class SettingService : Rcl.Services.SettingService
     {
