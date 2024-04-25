@@ -2,9 +2,8 @@
 using Darnton.Blazor.DeviceInterop.Geolocation;
 using Microsoft.Extensions.DependencyInjection;
 using Photino.Blazor;
-using YourWeather.Photino.Services;
-using YourWeather.Photino.Extend;
-using YourWeather.Rcl;
+using YourWeather.Photino;
+using YourWeather.Photino.Extensions;
 using GeolocationService = YourWeather.Photino.Services.GeolocationService;
 
 internal class Program
@@ -18,7 +17,7 @@ internal class Program
         appBuilder.Services.AddMasaBlazor();
         appBuilder.Services.AddBlazoredLocalStorage();
         appBuilder.Services.AddScoped<IGeolocationService, GeolocationService>();
-        appBuilder.Services.AddCustomIOC();
+        appBuilder.Services.AddDependencyInjection();
 
         var app = appBuilder.Build();
 

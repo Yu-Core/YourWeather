@@ -27,7 +27,7 @@ namespace YourWeather.Wpf
             serviceCollection.AddMasaBlazor();
             serviceCollection.AddBlazoredLocalStorage();
             serviceCollection.AddScoped<IGeolocationService, GeolocationService>();
-            serviceCollection.AddCustomIOC();
+            serviceCollection.AddDependencyInjection();
 
             blazorWebView.BlazorWebViewInitializing += BlazorWebViewInitializing;
             blazorWebView.BlazorWebViewInitialized += BlazorWebViewInitialized;

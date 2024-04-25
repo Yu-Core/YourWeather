@@ -1,6 +1,6 @@
 using Blazored.LocalStorage;
 using Darnton.Blazor.DeviceInterop.Geolocation;
-using YourWeather.Server.Extend;
+using YourWeather.Server.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 // https://github.com/dotnet/aspnetcore/issues/38212
@@ -12,7 +12,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddMasaBlazor();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<IGeolocationService, GeolocationService>();
-builder.Services.AddCustomIOC();
+builder.Services.AddDependencyInjection();
 
 var app = builder.Build();
 

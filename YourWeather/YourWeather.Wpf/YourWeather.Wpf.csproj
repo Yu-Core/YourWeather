@@ -32,9 +32,6 @@
     <Resource Include="appiconfg.svg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\YourWeather.Rcl.Desktop\YourWeather.Rcl.Desktop.csproj" />
   </ItemGroup>
 </Project>

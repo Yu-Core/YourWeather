@@ -16,8 +16,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AZ.Photino.Blazor.UnOfficial" Version="2.6.0.1" />
 		<PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
+		<PackageReference Include="Photino.Blazor" Version="2.7.0" />
 		<PackageReference Include="PInvoke.User32" Version="0.7.124" />
 	</ItemGroup>
 

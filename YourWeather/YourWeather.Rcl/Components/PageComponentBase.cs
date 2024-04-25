@@ -1,7 +1,7 @@
 ﻿using Masa.Blazor;
 using Microsoft.AspNetCore.Components;
+using YourWeather.Rcl.Services;
 using YourWeather.Rcl.Shared;
-using YourWeather.Shared;
 
 namespace YourWeather.Rcl.Components
 {
@@ -20,7 +20,7 @@ namespace YourWeather.Rcl.Components
         [Inject]
         protected ILocationService LocationService { get; set; } = default!;
         [Inject]
-        protected IPlatformService PlatformService { get; set; } = default!;
+        protected IPlatformIntegration PlatformService { get; set; } = default!;
         [Inject]
         protected NavigationManager Navigation { get; set; } = default!;
 

@@ -3,9 +3,8 @@ using Darnton.Blazor.DeviceInterop.Geolocation;
 using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
-using YourWeather.Rcl;
 using YourWeather.Rcl.Desktop;
-using YourWeather.Winform.Extend;
+using YourWeather.Winform.Extensions;
 using GeolocationService = YourWeather.Rcl.Desktop.Services.GeolocationService;
 
 namespace YourWeather.Winform
@@ -27,7 +26,7 @@ namespace YourWeather.Winform
             services.AddMasaBlazor();
             services.AddBlazoredLocalStorage();
             services.AddScoped<IGeolocationService, GeolocationService>();
-            services.AddCustomIOC();
+            services.AddDependencyInjection();
             blazorWebView.HostPage = "wwwroot\\index.html";
             blazorWebView.Services = services.BuildServiceProvider();
             blazorWebView.RootComponents.Add<App>("#app");
@@ -49,7 +48,7 @@ namespace YourWeather.Winform
         {
             var permissionHandler = new SilentPermissionRequestHandler();
 
-            e.WebView.CoreWebView2.PermissionRequested += (s,e) => permissionHandler.OnPermissionRequested((Microsoft.Web.WebView2.Core.CoreWebView2)s!,e);
+            e.WebView.CoreWebView2.PermissionRequested += (s, e) => permissionHandler.OnPermissionRequested((Microsoft.Web.WebView2.Core.CoreWebView2)s!, e);
         }
     }
 }
