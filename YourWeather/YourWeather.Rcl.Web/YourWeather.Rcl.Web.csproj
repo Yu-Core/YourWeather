@@ -5,6 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Services\WeatherService.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
   <ItemGroup>
@@ -13,8 +16,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YourWeather.Rcl\YourWeather.Rcl.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 </Project>

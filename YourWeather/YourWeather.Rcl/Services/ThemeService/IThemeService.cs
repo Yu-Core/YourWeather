@@ -4,9 +4,8 @@ namespace YourWeather.Rcl.Services
 {
     public interface IThemeService
     {
-        event Action<ThemeType> OnChanged;
-        Task SetThemeType(ThemeType themeType);
-        Task<ThemeType> GetThemeType();
-        Dictionary<string, ThemeType> ThemeTypes { get; }
+        event Action<ThemeType>? OnChanged;
+        ThemeType RealTheme { get; }
+        Task SetThemeAsync(ThemeType theme);
     }
 }

@@ -1,30 +1,20 @@
-﻿using Microsoft.JSInterop;
-using SwashbucklerDiary.WebAssembly.Essentials;
+﻿using YourWeather.Rcl.Services;
 using YourWeather.Shared;
 
-namespace YourWeather.Rcl.Services
+namespace YourWeather.Maui.Services
 {
     public class ThemeService : IThemeService
     {
         private ThemeType? _theme;
 
-        private readonly SystemThemeJSModule _systemThemeJSModule;
-
         public event Action<ThemeType>? OnChanged;
 
         public ThemeType RealTheme => _theme switch
         {
-            ThemeType.System => _systemThemeJSModule.SystemTheme,
+            ThemeType.System => Application.Current!.RequestedTheme == AppTheme.Dark ? ThemeType.Dark : ThemeType.Light,
             ThemeType.Dark => ThemeType.Dark,
             _ => ThemeType.Light
         };
-
-        public ThemeService(IJSRuntime jSRuntime)
-        {
-            _systemThemeJSModule = new SystemThemeJSModule(jSRuntime);
-        }
-
-        public Task InitializedAsync() => _systemThemeJSModule.InitializedAsync();
 
         public Task SetThemeAsync(ThemeType theme)
         {
@@ -36,12 +26,12 @@ namespace YourWeather.Rcl.Services
             //跟随系统主题改变
             if (theme == ThemeType.System)
             {
-                _systemThemeJSModule.SystemThemeChanged += HandleAppThemeChanged;
+                Application.Current!.RequestedThemeChanged += HandleAppThemeChanged;
             }
             //取消跟随系统主题改变
             else if (_theme == ThemeType.System)
             {
-                _systemThemeJSModule.SystemThemeChanged -= HandleAppThemeChanged;
+                Application.Current!.RequestedThemeChanged -= HandleAppThemeChanged;
             }
 
             _theme = theme;
@@ -50,10 +40,9 @@ namespace YourWeather.Rcl.Services
             return Task.CompletedTask;
         }
 
-        private Task HandleAppThemeChanged(ThemeType theme)
+        private void HandleAppThemeChanged(object? sender, AppThemeChangedEventArgs e)
         {
             InternalNotifyStateChanged();
-            return Task.CompletedTask;
         }
 
         private void InternalNotifyStateChanged()

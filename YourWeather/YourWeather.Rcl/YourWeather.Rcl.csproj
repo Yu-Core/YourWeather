@@ -14,7 +14,6 @@
     <PackageReference Include="Darnton.Blazor.DeviceInterop" Version="0.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.1" />
     <PackageReference Include="Masa.Blazor" Version="1.4.0-beta.1" />
-    <PackageReference Include="Yu-Core.BlazorToolkit" Version="1.0.13" />
   </ItemGroup>
 
   <ItemGroup>

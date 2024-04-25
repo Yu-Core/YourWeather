@@ -26,7 +26,7 @@ namespace YourWeather.Rcl.Pages
         {
             await base.OnInitializedAsync();
             Title = "设置";
-            
+
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -39,13 +39,18 @@ namespace YourWeather.Rcl.Pages
         }
 
         private string Version => PlatformService.GetVersion();
-        private Dictionary<string, ThemeType> ThemeTypes => ThemeService.ThemeTypes;
+        private readonly Dictionary<string, ThemeType> themeTypes = new()
+        {
+            {"跟随系统",ThemeType.System },
+            {"浅色",ThemeType.Light },
+            {"深色",ThemeType.Dark }
+        };
         private Dictionary<WeatherSourceType, IWeatherSource> WeatherSources => WeatherService.WeatherSources;
 
         private async Task ThemeTypeChanged(ThemeType value)
         {
             ThemeType = value;
-            await ThemeService.SetThemeType(value);
+            await ThemeService.SetThemeAsync(value);
             await SettingsService.Save(SettingType.Theme, (int)value);
         }
 

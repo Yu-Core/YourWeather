@@ -1,10 +1,17 @@
-﻿using BlazorToolkit.Essentials;
+﻿using Microsoft.JSInterop;
 using System.Reflection;
 
 namespace YourWeather.Rcl.Services
 {
-    public abstract class PlatformIntegration : IPlatformIntegration
+    public class PlatformIntegration : IPlatformIntegration
     {
+        private readonly Lazy<ValueTask<IJSObjectReference>> _module;
+
+        public PlatformIntegration(IJSRuntime jSRuntime)
+        {
+            _module = new(() => jSRuntime.InvokeAsync<IJSObjectReference>("import", $"./_content/{StaticWebAssets.RclAssemblyName}/js/platformIntegration.js"));
+        }
+
         public virtual string GetVersion()
         {
             var assembly = Assembly.GetEntryAssembly();
@@ -22,9 +29,10 @@ namespace YourWeather.Rcl.Services
             return assemblyFileVersionAttribute.Version;
         }
 
-        public virtual Task OpenBrowserUrl(string url)
+        public virtual async Task OpenBrowserUrl(string url)
         {
-            return Browser.Default.OpenAsync(url);
+            var module = await _module.Value;
+            await module.InvokeVoidAsync("openBrowserUrl", url);
         }
     }
 }

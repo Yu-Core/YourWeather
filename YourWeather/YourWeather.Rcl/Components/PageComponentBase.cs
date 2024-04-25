@@ -1,7 +1,7 @@
 ﻿using Masa.Blazor;
 using Microsoft.AspNetCore.Components;
 using YourWeather.Rcl.Services;
-using YourWeather.Rcl.Shared;
+using YourWeather.Rcl.Layout;
 
 namespace YourWeather.Rcl.Components
 {

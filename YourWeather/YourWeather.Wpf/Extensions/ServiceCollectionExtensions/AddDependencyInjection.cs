@@ -8,9 +8,9 @@ namespace YourWeather.Wpf.Extend
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<ISettingsService, Rcl.Desktop.Services.SettingService>();
-            services.AddScoped<IThemeService, Rcl.Desktop.Services.ThemeService>();
-            services.AddSingleton<IWeatherService, Rcl.Desktop.Services.WeatherService>();
-            services.AddSingleton<IPlatformIntegration, Rcl.Desktop.Services.PlatformIntegration>();
+            services.AddScoped<IThemeService, Rcl.Services.ThemeService>();
+            services.AddSingleton<IWeatherService, Rcl.Services.WeatherService>();
+            services.AddScoped<IPlatformIntegration, Rcl.Services.PlatformIntegration>();
             services.AddSingleton<IStaticWebAssets, Rcl.Desktop.Services.StaticWebAssets>();
             services.AddScoped<ILocationService, Rcl.Services.LocationService>();
             return services;

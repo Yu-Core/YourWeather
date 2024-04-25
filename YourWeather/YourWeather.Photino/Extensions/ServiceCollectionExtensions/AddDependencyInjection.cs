@@ -8,9 +8,9 @@ namespace YourWeather.Photino.Extensions
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<ISettingsService, Services.SettingService>();
-            services.AddScoped<IThemeService, Services.ThemeService>();
-            services.AddSingleton<IWeatherService, Services.WeatherService>();
-            services.AddSingleton<IPlatformIntegration, Services.PlatformIntegration>();
+            services.AddScoped<IThemeService, ThemeService>();
+            services.AddSingleton<IWeatherService, WeatherService>();
+            services.AddScoped<IPlatformIntegration, PlatformIntegration>();
             services.AddSingleton<IStaticWebAssets, Services.StaticWebAssets>();
             services.AddScoped<ILocationService, Rcl.Services.LocationService>();
             return services;

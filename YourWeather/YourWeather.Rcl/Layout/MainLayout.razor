@@ -1,9 +1,6 @@
-﻿@using BlazorToolkit;
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 
 <PageTitle>@Title</PageTitle>
-
-<BlazorToolkitApp />
 
 <MApp>
     <MAppBar App="true" Outlined="true" Elevation="0">
@@ -70,19 +67,19 @@
 
 @code {
 
-    private bool? _drawer;
-    private bool _showBack;
-    private string? Title;
-    private string? HistoryUrl;
+    protected bool? _drawer;
+    protected bool _showBack;
+    protected string? Title;
+    protected string? HistoryUrl;
 
     [Inject]
-    private MasaBlazor MasaBlazor { get; set; } = default!;
+    protected MasaBlazor MasaBlazor { get; set; } = default!;
     [Inject]
-    private IThemeService ThemeService { get; set; } = default!;
+    protected IThemeService ThemeService { get; set; } = default!;
     [Inject]
-    private ISettingsService SettingsService { get; set; } = default!;
+    protected ISettingsService SettingsService { get; set; } = default!;
     [Inject]
-    private NavigationManager Navigation { get; set; } = default!;
+    protected NavigationManager Navigation { get; set; } = default!;
 
     public void UpdateTitle(string? value)
     {
@@ -97,9 +94,9 @@
         InvokeAsync(StateHasChanged);
     }
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        await base.OnInitializedAsync();
+        base.OnInitialized();
         ThemeService.OnChanged += ThemeChanged;
     }
 
@@ -107,12 +104,24 @@
     {
         if (firstRender)
         {
-            await LoadSettings();
+            await InitThemeAsync();
         }
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    private void ThemeChanged(ThemeType value)
+    protected async Task InitThemeAsync()
+    {
+        await InitThemeServiceAsync();
+        int themeType = await SettingsService.Get<int>(SettingType.Theme);
+        await ThemeService.SetThemeAsync((ThemeType)themeType);
+    }
+
+    protected virtual Task InitThemeServiceAsync()
+    {
+        return ((ThemeService)ThemeService).InitializedAsync();
+    }
+
+    protected virtual void ThemeChanged(ThemeType value)
     {
         if (MasaBlazor.Theme.Dark != (value == ThemeType.Dark))
         {
@@ -120,13 +129,7 @@
         }
     }
 
-    private async Task LoadSettings()
-    {
-        int themeType = await SettingsService.Get<int>(SettingType.Theme);
-        await ThemeService.SetThemeType((ThemeType)themeType);
-    }
-
-    private void Back()
+    protected void Back()
     {
         _showBack = false;
         if (!string.IsNullOrEmpty(HistoryUrl))
