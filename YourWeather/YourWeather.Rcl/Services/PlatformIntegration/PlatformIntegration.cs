@@ -1,6 +1,5 @@
 ﻿using BlazorToolkit.Essentials;
 using System.Reflection;
-using YourWeather.Shared;
 
 namespace YourWeather.Rcl.Services
 {
@@ -26,11 +25,6 @@ namespace YourWeather.Rcl.Services
         public virtual Task OpenBrowserUrl(string url)
         {
             return Browser.Default.OpenAsync(url);
-        }
-
-        public virtual Task<T> ReadJsonAsync<T>(string baseUri)
-        {
-            throw new NotImplementedException();
         }
     }
 }

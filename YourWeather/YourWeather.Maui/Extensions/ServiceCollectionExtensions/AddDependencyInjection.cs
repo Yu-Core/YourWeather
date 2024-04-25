@@ -10,6 +10,7 @@ namespace YourWeather.Maui.Extensions
             services.AddScoped<IThemeService, Services.ThemeService>();
             services.AddSingleton<IWeatherService, Services.WeatherService>();
             services.AddSingleton<IPlatformIntegration, Services.PlatformIntegration>();
+            services.AddSingleton<IStaticWebAssets, Services.StaticWebAssets>();
             services.AddScoped<ILocationService, LocationService>();
             return services;
         }

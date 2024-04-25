@@ -8,12 +8,12 @@ namespace YourWeather.Rcl.Services
         private Location? CurrentLocation;
         private List<Location> AllLocations = new();
         private readonly IGeolocationService GeolocationService;
-        private readonly IPlatformIntegration PlatformService;
+        private readonly IStaticWebAssets StaticWebAssets;
 
-        public LocationService(IGeolocationService geolocationService,IPlatformIntegration platformService)
+        public LocationService(IGeolocationService geolocationService, IStaticWebAssets staticWebAssets)
         {
             GeolocationService = geolocationService;
-            PlatformService = platformService;
+            StaticWebAssets = staticWebAssets;
         }
 
         public async Task<Location> GetCurrentLocation()
@@ -43,9 +43,9 @@ namespace YourWeather.Rcl.Services
         {
             if (AllLocations == null || AllLocations.Count == 0)
             {
-                AllLocations = await PlatformService.ReadJsonAsync<List<Location>>("json/location.json");
+                AllLocations = await StaticWebAssets.ReadJsonAsync<List<Location>>("json/location.json");
             }
-            
+
             return AllLocations;
         }
     }

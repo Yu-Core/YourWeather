@@ -11,6 +11,7 @@ namespace YourWeather.Winform.Extensions
             services.AddScoped<IThemeService, Rcl.Desktop.Services.ThemeService>();
             services.AddSingleton<IWeatherService, Rcl.Desktop.Services.WeatherService>();
             services.AddSingleton<IPlatformIntegration, Rcl.Desktop.Services.PlatformIntegration>();
+            services.AddSingleton<IStaticWebAssets, Rcl.Desktop.Services.StaticWebAssets>();
             services.AddScoped<ILocationService, Rcl.Services.LocationService>();
             return services;
         }

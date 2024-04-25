@@ -11,6 +11,7 @@ namespace YourWeather.Photino.Extensions
             services.AddScoped<IThemeService, Services.ThemeService>();
             services.AddSingleton<IWeatherService, Services.WeatherService>();
             services.AddSingleton<IPlatformIntegration, Services.PlatformIntegration>();
+            services.AddSingleton<IStaticWebAssets, Services.StaticWebAssets>();
             services.AddScoped<ILocationService, Rcl.Services.LocationService>();
             return services;
         }
