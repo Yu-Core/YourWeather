@@ -2,7 +2,6 @@
 using Darnton.Blazor.DeviceInterop.Geolocation;
 using MauiBlazorToolkit.Extensions;
 using YourWeather.Maui.Extensions;
-using GeolocationService = YourWeather.Maui.Services.GeolocationService;
 
 namespace YourWeather.Maui
 {

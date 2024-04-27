@@ -11,12 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Darnton.Blazor.DeviceInterop" Version="0.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.*" />
     <PackageReference Include="Masa.Blazor" Version="1.5.0-beta.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Darnton.Blazor.DeviceInterop\Darnton.Blazor.DeviceInterop.csproj" />
     <ProjectReference Include="..\YourWeather.Shared\YourWeather.Shared.csproj" />
   </ItemGroup>
 

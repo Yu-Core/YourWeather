@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
 using YourWeather.Rcl.Desktop;
 using YourWeather.Winform.Extensions;
-using GeolocationService = YourWeather.Rcl.Desktop.Services.GeolocationService;
 
 namespace YourWeather.Winform
 {

@@ -1,9 +1,9 @@
-﻿using Darnton.Blazor.DeviceInterop.Geolocation;
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
+using System;
+using System.Threading.Tasks;
 
-namespace YourWeather.Photino.Services
+namespace Darnton.Blazor.DeviceInterop.Geolocation
 {
-
     /// <summary>
     /// An implementation of <see cref="IGeolocationService"/> that provides 
     /// an interop layer for the device's Geolocation API.
@@ -21,7 +21,7 @@ namespace YourWeather.Photino.Services
         /// <param name="JSRuntime"></param>
         public GeolocationService(IJSRuntime JSRuntime)
         {
-            _jsBinder = new JSBinder(JSRuntime, "./_content/Darnton.Blazor.DeviceInterop/js/Geolocation.js");
+            _jsBinder = new JSBinder(JSRuntime, "./_content/Darnton.Blazor.DeviceInterop/js/geolocation.js");
         }
 
         /// <inheritdoc/>
@@ -59,34 +59,6 @@ namespace YourWeather.Photino.Services
         {
             var module = await _jsBinder.GetModule();
             await module.InvokeVoidAsync("Geolocation.clearWatch", watchId);
-        }
-    }
-
-    internal class JSBinder
-    {
-        internal IJSRuntime JSRuntime;
-        private readonly string _importPath;
-        private Task<IJSObjectReference>? _module;
-
-        public JSBinder(IJSRuntime jsRuntime, string importPath)
-        {
-            JSRuntime = jsRuntime;
-            _importPath = importPath;
-        }
-
-        internal async Task<IJSObjectReference> GetModule()
-        {
-            return await (_module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", _importPath).AsTask());
-        }
-
-        /// <inheritdoc/>
-        public async ValueTask DisposeAsync()
-        {
-            if (_module != null)
-            {
-                var module = await _module;
-                await module.DisposeAsync();
-            }
         }
     }
 }

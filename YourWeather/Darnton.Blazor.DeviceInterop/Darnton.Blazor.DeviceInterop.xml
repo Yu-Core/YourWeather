@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Darnton.Blazor.DeviceInterop</name>
+    </assembly>
+    <members>
+        <member name="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationCoordinates">
+            <summary>
+            Geolocation Coordinates, based on <see href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationCoordinates.Latitude">
+            <summary>
+            Latitude in decimal degrees.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationCoordinates.Longitude">
+            <summary>
+            Longitude in decimal degrees.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationCoordinates.Altitude">
+            <summary>
+            Altitude in metres, relative to sea level.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationCoordinates.Accuracy">
+            <summary>
+            Accuracy of the latitude and longitude properties, in metres.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationCoordinates.AltitudeAccuracy">
+            <summary>
+            Accuracy of the altitude, in metres.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationCoordinates.Heading">
+            <summary>
+            The direction the device is travelling, in degrees clockwise from true north.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationCoordinates.Speed">
+            <summary>
+            The velocity of the device, in metres per second.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationEventArgs">
+            <summary>
+            Geolocation event data. Provides the <see cref="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationEventArgs.GeolocationResult"/> with the position or error associated with the event.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationEventArgs.GeolocationResult">
+            <summary>
+            The <see cref="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationEventArgs.GeolocationResult"/> associated with the event.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPosition">
+            <summary>
+            Geolocation Position, based on <see href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPosition"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPosition.Coords">
+            <summary>
+            The coordinates defining the current location
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPosition.Timestamp">
+            <summary>
+            The time the coordinates were taken, in milliseconds since the Unix epoch.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPosition.DateTimeOffset">
+            <summary>
+            The <see cref="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPosition.DateTimeOffset"/> derived from the <see cref="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPosition.Timestamp"/>, in UTC.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionError">
+            <summary>
+            The reason for a Geolocation error, based on <see href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPositionError"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionError.Code">
+            <summary>
+            The <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionErrorCode"/> for the error.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionError.Message">
+            <summary>
+            Details of the error. Intended for debugging rather than display to the user.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionErrorCode">
+            <summary>
+            An enumeration of error codes used by <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionError"/>.
+            <see href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPositionError/code"/>.
+            </summary>
+        </member>
+        <member name="F:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionErrorCode.DEVICE_NOT_SUPPORTED">
+            <summary>
+            Geolocation failoed because the device does not support geolocation. Not part of W3C spec.
+            </summary>
+        </member>
+        <member name="F:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionErrorCode.PERMISSION_DENIED">
+            <summary>
+            Geolocation failed because permission to access location was denied.
+            </summary>
+        </member>
+        <member name="F:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionErrorCode.POSITION_UNAVAILABLE">
+            <summary>
+            Geolocation failed because of an internal error on the device.
+            </summary>
+        </member>
+        <member name="F:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionErrorCode.TIMEOUT">
+            <summary>
+            Geolocation failed because no position was returned in time.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationResult">
+            <summary>
+            The result of a geolocation request. Contains either a <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPosition"/> or a <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionError"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationResult.Position">
+            <summary>
+            The <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPosition"/> returned on successful geolocation.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationResult.Error">
+            <summary>
+            The <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationPositionError"/> returned by a failed geolocation attempt.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationResult.IsSuccess">
+            <summary>
+            Indicates whether the geolocation attempt was successful.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationService">
+            <summary>
+            An implementation of <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.IGeolocationService"/> that provides 
+            an interop layer for the device's Geolocation API.
+            </summary>
+        </member>
+        <member name="E:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationService.WatchPositionReceived">
+            <inheritdoc/>
+        </member>
+        <member name="M:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationService.#ctor(Microsoft.JSInterop.IJSRuntime)">
+            <summary>
+            Constructs a <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationService"/> object.
+            </summary>
+            <param name="JSRuntime"></param>
+        </member>
+        <member name="M:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationService.GetCurrentPosition(Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationService.WatchPosition(Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationService.SetWatchPosition(Darnton.Blazor.DeviceInterop.Geolocation.GeolocationResult)">
+            <summary>
+            Invokes the <see cref="E:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationService.WatchPositionReceived"/> event handler.
+            Invoked by the success and error callbacks of the JavaScript watchPosition() function.
+            </summary>
+            <param name="watchResult">A <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationResult"/> passed back from JavaScript.</param>
+        </member>
+        <member name="M:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationService.ClearWatch(System.Int64)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Darnton.Blazor.DeviceInterop.Geolocation.IGeolocationService">
+            <summary>
+            A wrapper around the device's Geolocation API services.
+            <see href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API"/>.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.DeviceInterop.Geolocation.IGeolocationService.GetCurrentPosition(Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions)">
+            <summary>
+            A wrapper around the <see href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition"/> function,
+            used to get the current position of the device.
+            </summary>
+            <param name="options"><see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions"/> used to modify the request.</param>
+            <returns>The result of the geolocation request.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.DeviceInterop.Geolocation.IGeolocationService.WatchPosition(Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions)">
+            <summary>
+            A wrapper around the <see href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition"/> function,
+            used to listen for position changes. If the service is listening, a <see cref="E:Darnton.Blazor.DeviceInterop.Geolocation.IGeolocationService.WatchPositionReceived"/> event is fired
+            each time the device's position changes.
+            </summary>
+            <param name="options"><see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions"/> used to modify the request.</param>
+            <returns>A watch ID that refers to the handler. The ID can be used to unregister the handler with <see cref="M:Darnton.Blazor.DeviceInterop.Geolocation.IGeolocationService.ClearWatch(System.Int64)"/>.</returns>
+        </member>
+        <member name="E:Darnton.Blazor.DeviceInterop.Geolocation.IGeolocationService.WatchPositionReceived">
+            <summary>
+            Handles the receipt of new positions. Fired whenever a handler is registered and the device's position changes.
+            Invoked with the sender and the <see cref="T:Darnton.Blazor.DeviceInterop.Geolocation.GeolocationEventArgs"/>.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.DeviceInterop.Geolocation.IGeolocationService.ClearWatch(System.Int64)">
+            <summary>
+            A wrapper around the <see href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/clearWatch"/> function,
+            used to unregister a handler created with <see cref="M:Darnton.Blazor.DeviceInterop.Geolocation.IGeolocationService.WatchPosition(Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions)"/>.
+            </summary>
+            <param name="watchId">The ID of the registered watch handler.</param>
+            <returns>A task that represents the async clear operation.</returns>
+        </member>
+        <member name="T:Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions">
+            <summary>
+            Option properties to be passed to Geolocation functions, based on https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions.EnableHighAccuracy">
+            <summary>
+            Enable high accuracy mode for best possible results.
+            May be slower or increase power consumption. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions.Timeout">
+            <summary>
+            Maximum length of time allowed to return a position (in milliseconds).
+            Set to null for no timeout. Defaults to null.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.DeviceInterop.Geolocation.PositionOptions.MaximumAge">
+            <summary>
+            Maximum allowed age for a cached result.
+            Set to null to disregard the age of cached results.
+            Set to 0 to skip the cache and attempt a fresh result every time. Defaults to 0.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.DeviceInterop.JSBinder.DisposeAsync">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourWeather.Maui", "YourWea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourWeather.WebAssembly", "YourWeather\YourWeather.WebAssembly\YourWeather.WebAssembly.csproj", "{04DEBE9F-FE5A-47CF-A49E-972705515BC5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Darnton.Blazor.DeviceInterop", "YourWeather\Darnton.Blazor.DeviceInterop\Darnton.Blazor.DeviceInterop.csproj", "{CC119523-6E92-45B9-8475-A809F5C99FDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{04DEBE9F-FE5A-47CF-A49E-972705515BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04DEBE9F-FE5A-47CF-A49E-972705515BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04DEBE9F-FE5A-47CF-A49E-972705515BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC119523-6E92-45B9-8475-A809F5C99FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC119523-6E92-45B9-8475-A809F5C99FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC119523-6E92-45B9-8475-A809F5C99FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC119523-6E92-45B9-8475-A809F5C99FDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
